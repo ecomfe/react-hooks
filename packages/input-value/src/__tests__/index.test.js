@@ -1,5 +1,5 @@
 import {renderHook, act} from '@testing-library/react-hooks';
-import useInputValue from '../index';
+import {useInputValue} from '../index';
 
 test('has value and onChange', () => {
     const {result} = renderHook(() => useInputValue());

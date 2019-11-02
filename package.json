@@ -1,0 +1,15 @@
+{
+  "private": true,
+  "name": "@ecomfe/react-hooks",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:ecomfe/react-hooks.git",
+  "author": "otakustay <otakustay@gmail.com>",
+  "license": "MIT",
+  "workspaces": [
+    "packages/*"
+  ],
+  "devDependencies": {
+    "lerna": "^3.18.3"
+  }
+}

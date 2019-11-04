@@ -1,0 +1,38 @@
+{
+  "name": "@ecomfe/use-router",
+  "version": "1.0.0",
+  "main": "cjs/index.js",
+  "module": "es/index.js",
+  "types": "es/index.d.ts",
+  "license": "MIT",
+  "files": [
+    "cjs",
+    "es"
+  ],
+  "scripts": {
+    "lint": "skr lint",
+    "test": "skr test --target=react --coverage",
+    "build": "tsc && skr rollup --mode=development"
+  },
+  "devDependencies": {
+    "@testing-library/react": "^9.3.1",
+    "@testing-library/react-hooks": "^3.1.1",
+    "@types/react": "^16.9.11",
+    "@types/react-router": "^5.1.2",
+    "@types/uri-templates": "^0.1.30",
+    "enzyme": "^3.10.0",
+    "fast-json-stable-stringify": "^2.0.0",
+    "history": "^4.10.1",
+    "query-string": "^6.8.3",
+    "react": "^16.11.0",
+    "react-dom": "^16.11.0",
+    "react-router": "^5.1.2",
+    "reskript": "^0.20.6",
+    "typescript": "^3.6.4",
+    "uri-templates": "^0.2.0"
+  },
+  "peerDependencies": {
+    "react": "^16.8.0",
+    "react-router": "^5.1.0"
+  }
+}

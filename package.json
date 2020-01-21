@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "@ecomfe/react-hooks",
+  "name": "@huse/core",
   "version": "1.0.0",
   "main": "index.js",
   "repository": "git@github.com:ecomfe/react-hooks.git",
@@ -10,9 +10,11 @@
     "packages/*"
   ],
   "scripts": {
-    "test": "lerna run test"
+    "lint": "lerna run lint",
+    "test": "lerna run test",
+    "build": "lerna run build"
   },
   "devDependencies": {
-    "lerna": "^3.18.3"
+    "lerna": "^3.20.2"
   }
 }

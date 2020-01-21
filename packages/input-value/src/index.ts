@@ -12,4 +12,4 @@ export function useInputValue(initialValue: string = ''): InputValueState {
         []
     );
     return {value, onChange};
-};
+}

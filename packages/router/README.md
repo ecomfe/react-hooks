@@ -1,4 +1,4 @@
-# @ecomfe/use-router
+# @huse/router
 
 ## useQuery
 

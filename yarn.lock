@@ -2081,7 +2081,7 @@
 
 "@testing-library/react@^9.4.0":
   version "9.4.0"
-  resolved "https://registry.npm.taobao.org/@testing-library/react/download/@testing-library/react-9.4.0.tgz#b021ac8cb987c8dc54c6841875f745bf9b2e88e5"
+  resolved "https://registry.npm.taobao.org/@testing-library/react/download/@testing-library/react-9.4.0.tgz?cache=0&sync_timestamp=1576253830336&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2F%40testing-library%2Freact%2Fdownload%2F%40testing-library%2Freact-9.4.0.tgz#b021ac8cb987c8dc54c6841875f745bf9b2e88e5"
   integrity sha1-sCGsjLmHyNxUxoQYdfdFv5suiOU=
   dependencies:
     "@babel/runtime" "^7.7.6"

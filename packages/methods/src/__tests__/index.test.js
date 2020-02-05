@@ -13,6 +13,12 @@ test('valid return type', () => {
     expect(typeof inc).toBe('function');
 });
 
+test('factory initial value', () => {
+    const {result} = renderHook(() => useMethods({}, () => 0));
+    const [state] = result.current;
+    expect(state).toBe(0);
+});
+
 test('method call immutable', () => {
     const methods = {
         inc(value) {

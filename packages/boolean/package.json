@@ -1,6 +1,6 @@
 {
   "name": "@huse/boolean",
-  "version": "1.0.0",
+  "version": "0.8.0",
   "main": "cjs/index.js",
   "module": "es/index.js",
   "types": "es/index.d.ts",
@@ -25,6 +25,6 @@
     "react": "^16.8.0"
   },
   "dependencies": {
-    "@huse/methods": "^1.0.0"
+    "@huse/methods": "^0.8.0"
   }
 }

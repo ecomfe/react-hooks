@@ -11,7 +11,7 @@ Package name must comform a format of `@huse/use-foo-bar`.
 Each package should named export at least hook like:
 
 ```js
-import {useInputValue} from '@hust/use-input-value';
+import {useInputValue} from '@huse/use-input-value';
 ```
 
 Unit tests are forced to each hook, they are placed inside `src/__tests__` folder with an extension of `.test.js`, we highly recommend a 100% of branch coverage.

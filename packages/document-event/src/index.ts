@@ -1,16 +1,22 @@
 import {useRef, useLayoutEffect} from 'react';
 
-type DocumentEventHandler<K extends keyof DocumentEventMap> = (e: DocumentEventMap[K]) => any;
+type EventNames = keyof DocumentEventMap;
 
-export function useDocumentEvent<K extends keyof DocumentEventMap>(eventName: K, fn: DocumentEventHandler<K>) {
+type DocumentEventHandler<K extends EventNames> = (e: DocumentEventMap[K]) => any;
+
+export function useDocumentEvent<K extends EventNames>(
+    eventName: K,
+    fn: DocumentEventHandler<K>,
+    options?: boolean | AddEventListenerOptions
+) {
     const handler = useRef(fn);
     handler.current = fn;
     useLayoutEffect(
         () => {
             const trigger: DocumentEventHandler<K> = e => handler.current(e);
-            document.addEventListener(eventName, trigger);
+            document.addEventListener(eventName, trigger, options);
             return () => document.removeEventListener(eventName, trigger);
         },
-        [eventName]
+        [eventName, options]
     );
 }

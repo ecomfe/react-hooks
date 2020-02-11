@@ -1,0 +1,25 @@
+{
+  "name": "@huse/media",
+  "version": "0.8.0",
+  "main": "cjs/index.js",
+  "module": "es/index.js",
+  "types": "es/index.d.ts",
+  "license": "MIT",
+  "files": [
+    "cjs",
+    "es"
+  ],
+  "scripts": {
+    "lint": "skr lint",
+    "test": "echo 'No test in useMedia'",
+    "build": "rm -rf es cjs && tsc && tsc --module ESNext --outDir ./es"
+  },
+  "devDependencies": {
+    "@types/react": "^16.9.17",
+    "reskript": "^0.25.1",
+    "typescript": "^3.7.5"
+  },
+  "peerDependencies": {
+    "react": "^16.8.0"
+  }
+}

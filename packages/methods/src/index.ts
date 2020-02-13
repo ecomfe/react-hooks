@@ -20,8 +20,8 @@ export function useMethodsExtension<S, M>(methods: Reducers<S, M>, setState: Set
     return boundMethods as M;
 }
 
-export function useMethods<S, M>(methods: Reducers<S, M>, initialState: S | (() => S)): [S, M] {
+export function useMethods<S, M>(methods: Reducers<S, M>, initialState: S | (() => S)): [S, M, SetImmerState<S>] {
     const [state, setState] = useImmerState(initialState);
     const boundMethods = useMethodsExtension(methods, setState);
-    return [state, boundMethods];
+    return [state, boundMethods, setState];
 }

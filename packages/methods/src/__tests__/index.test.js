@@ -10,9 +10,10 @@ describe('useMethods', () => {
             },
         };
         const {result} = renderHook(() => useMethods(methods, 0));
-        const [state, {inc}] = result.current;
+        const [state, {inc}, setState] = result.current;
         expect(state).toBe(0);
         expect(typeof inc).toBe('function');
+        expect(typeof setState).toBe('function');
     });
 
     test('factory initial value', () => {
@@ -40,6 +41,12 @@ describe('useMethods', () => {
         };
         const {result} = renderHook(() => useMethods(methods, {value: 0}));
         act(() => result.current[1].inc());
+        expect(result.current[0].value).toBe(1);
+    });
+
+    test('set state', () => {
+        const {result} = renderHook(() => useMethods({}, {value: 0}));
+        act(() => result.current[2]({value: 1}));
         expect(result.current[0].value).toBe(1);
     });
 });

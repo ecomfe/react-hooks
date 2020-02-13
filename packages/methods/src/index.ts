@@ -1,12 +1,11 @@
 import {useMemo} from 'react';
-import {useImmerState} from '@huse/immer';
+import {useImmerState, SetImmerState} from '@huse/immer';
 
 type Reducer<S, M> = (state: S, ...args: any[]) => S | void;
 
 type Reducers<S, M> = {[K in keyof M]: Reducer<S, M>};
 
-export function useMethods<S, M>(methods: Reducers<S, M>, initialState: S | (() => S)): [S, M] {
-    const [state, setState] = useImmerState(initialState);
+export function useMethodsExtension<S, M>(methods: Reducers<S, M>, setState: SetImmerState<S>): M {
     const boundMethods = useMemo(
         () => Object.keys(methods).reduce(
             (boundMethods, name) => {
@@ -18,5 +17,11 @@ export function useMethods<S, M>(methods: Reducers<S, M>, initialState: S | (() 
         ),
         [methods, setState]
     );
-    return [state, boundMethods as M];
+    return boundMethods as M;
+}
+
+export function useMethods<S, M>(methods: Reducers<S, M>, initialState: S | (() => S)): [S, M] {
+    const [state, setState] = useImmerState(initialState);
+    const boundMethods = useMethodsExtension(methods, setState);
+    return [state, boundMethods];
 }

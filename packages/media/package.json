@@ -9,6 +9,10 @@
     "cjs",
     "es"
   ],
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.com"
+  },
   "scripts": {
     "lint": "skr lint",
     "test": "echo 'No test in useMedia'",

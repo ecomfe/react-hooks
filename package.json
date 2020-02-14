@@ -12,7 +12,10 @@
   "scripts": {
     "lint": "lerna run lint",
     "test": "lerna run test",
-    "build": "lerna run build"
+    "build": "lerna run build",
+    "release": "lerna version --conventional-commits --no-push",
+    "preversion": "yarn lint && yarn build && yarn lint",
+    "prepack": "yarn build"
   },
   "devDependencies": {
     "lerna": "^3.20.2"

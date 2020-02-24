@@ -1,7 +1,7 @@
-import {MutableRefObject} from 'react';
+import {RefObject} from 'react';
 import {useDocumentEvent} from '@huse/document-event';
 
-export function useClickOutside(ref: MutableRefObject<HTMLElement>, callback: () => void) {
+export function useClickOutside(ref: RefObject<HTMLElement>, callback: () => void) {
     const testAndTrigger = (e: MouseEvent | TouchEvent) => {
         if (!ref.current?.contains(e.target as Element)) {
             callback();

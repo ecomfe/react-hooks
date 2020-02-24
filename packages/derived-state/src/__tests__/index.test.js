@@ -24,7 +24,8 @@ test('custom derive', () => {
 test('update derive', () => {
     const derive = jest.fn(x => x + 1);
     const {result, rerender} = renderHook(props => useDerivedState(props.x, derive), {initialProps: {x: 123}});
+    act(() => result.current[1](345));
     rerender({x: 456});
     expect(result.current[0]).toBe(457);
-    expect(derive).toHaveBeenCalledWith(456, 123);
+    expect(derive).toHaveBeenCalledWith(456, 345);
 });

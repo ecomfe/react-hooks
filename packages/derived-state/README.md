@@ -1,69 +1,43 @@
-# @huse/previous-value
+# @huse/derived-state
 
-用于保留某个值的上一次更新副本并进行相关操作的hook。
+从`props`衍生出对应状态的hook。
 
-## usePreviousValue
+## useDerivedState
 
-获取某个值的上一次副本。
-
-```javascript
-import {usePreviousValue} from '@huse/previous-value';
-
-const previousValue = usePreviousValue(props.foo);
-
-return (
-    <div>
-        Changed from {previousValue} to {props.foo}
-    </div>
-);
-```
-
-## usePreviousEquals
-
-判断当前值是否与上一次值相同，默认使用浅比较，可自定义判断函数。
+这个hook相当于`getDerivedStateFromProps`的效果，如下代码：
 
 ```javascript
-import {usePreviousEquals} from '@huse/previous-value';
-
-const changed = !usePreviousEquals(props.foo, deepEquals);
-
-return (
-    <div>
-        {changed && <Alert type="warn">有变化</AlerT>}
-    </div>
-);
+class Foo extends Component {
+    static getDerivedStateFromProps(props, state) {
+        if (state.list !== props.list) {
+            return {
+                list: state.list ? props.list : state.list.concat(props.list),
+            };
+        }
+    }
+}
 ```
 
-## useOriginalCopy
-
-获取与当前值相等的最原始副本，默认采用浅比较，可自定义判断函数。
-
-这个hook可用于将“内容相等，但引用不相等”的值变为引用相等的值，可有效用于各类`useCallback`和`useEffect`等处。
+表达的含义为“每一次`props.list`更新时，将它添加到`state.list`后面”，那么它可以对应变成：
 
 ```javascript
-import {useOriginalCopy} from '@huse/previous-value';
+import {useDerivedState} from '@huse/derived-state';
 
-const foo = useOriginalCopy(props.foo, deepEquals);
-useEffect(
-    () => {
-        fetch('/api/foo', foo);
-    },
-    [foo]
-);
+const Foo = ({list}) => {
+    const [derivedList, setDerivedList] = useDerivedState(
+        list,
+        (propValue, stateValue) => {
+            if (!stateValue) {
+                return propValue;
+            }
+            return stateValue.concat(propValue);
+        }
+    );
+};
 ```
 
-## useOriginalDeepCopy
+当`props.list`变化时，`useDerivedState`第二个参数的函数会被执行，将`(propValue, stateValue)`作为参数。这个函数的默认值为返回`propValue`。
 
-采用深比较版本的`useOriginalCopy`。
+第一次执行时，`stateValue`的值为`undefined`。
 
-```javascript
-import {useOriginalDeepCopy} from '@huse/previous-value';
-
-const foo = useOriginalDeepCopy(props.foo);
-useEffect(
-    () => {
-        fetch('/api/foo', foo);
-    },
-    [foo]
-);
-```
+需要注意的是，如果仅仅需要“通过`props`的变化计算出一个可用的值”，而不需要在后续重新更新这个状态，则应当用`@huse/previous-value`中的`usePreviousValue`配合`useMemo`进行计算，不适用于这个hook。

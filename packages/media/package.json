@@ -19,9 +19,9 @@
     "build": "rm -rf es cjs && tsc && tsc --module ESNext --outDir ./es"
   },
   "devDependencies": {
-    "@types/react": "^16.9.17",
-    "reskript": "^0.25.1",
-    "typescript": "^3.7.5"
+    "@types/react": "^16.9.22",
+    "reskript": "^0.25.12",
+    "typescript": "^3.8.2"
   },
   "peerDependencies": {
     "react": "^16.8.0"

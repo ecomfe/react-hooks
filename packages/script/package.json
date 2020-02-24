@@ -23,12 +23,12 @@
     "@huse/update": "^0.9.0"
   },
   "devDependencies": {
-    "@types/react": "^16.9.17",
+    "@types/react": "^16.9.22",
     "classnames": "^2.2.6",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
-    "reskript": "^0.25.1",
-    "typescript": "^3.7.5",
+    "reskript": "^0.25.12",
+    "typescript": "^3.8.2",
     "webpack": "^4.41.6"
   },
   "peerDependencies": {

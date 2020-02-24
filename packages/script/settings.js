@@ -1,18 +1,3 @@
-exports.featureMatrix = {
-    stable: {},
-    dev: {},
-};
-
-exports.build = {
-    appTitle: 'Use Script',
-};
-
-exports.devServer = {
-    port: 8878,
-    apiPrefixes: [],
-    hot: 'all',
-};
-
 exports.addition = () => {
     return {
         devServer: {

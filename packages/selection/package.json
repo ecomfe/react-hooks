@@ -20,10 +20,10 @@
   },
   "devDependencies": {
     "@testing-library/react-hooks": "^3.2.1",
-    "@types/react": "^16.9.17",
+    "@types/react": "^16.9.22",
     "react": "^16.12.0",
-    "reskript": "^0.25.1",
-    "typescript": "^3.7.5"
+    "reskript": "^0.25.12",
+    "typescript": "^3.8.2"
   },
   "peerDependencies": {
     "react": "^16.8.0"

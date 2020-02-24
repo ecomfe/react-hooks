@@ -1,0 +1,23 @@
+# @huse/scroll-into-view
+
+控制元素滚动到视图内。
+
+## useScrollIntoView
+
+```javascript
+import {useRef} from 'react';
+import {useScrollIntoView} from '@huse/scroll-into-view';
+
+const Block = ({isFocused}) => {
+    const ref = useRef(null);
+    useScrollIntoView(ref, isFocused);
+
+    return (
+        <div ref={ref}>
+            ...
+        </div>
+    );
+};
+```
+
+具体的效果可勇者`demo`目录。

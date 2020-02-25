@@ -21,3 +21,7 @@ export function useMedia(query: string): boolean {
     );
     return matched;
 }
+
+export function usePreferDarkMode(): boolean {
+    return useMedia('(prefers-color-scheme: dark)');
+}

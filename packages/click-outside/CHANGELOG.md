@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.10.0](https://github.com/ecomfe/react-hooks/compare/@huse/click-outside@0.9.1...@huse/click-outside@0.10.0) (2020-02-25)
+
+
+### Features
+
+* pass event object to useClickOutside callback ([d39db77](https://github.com/ecomfe/react-hooks/commit/d39db770dd4d831c54c8526e5e0b92d7a12344ea))
+
+
+
+
+
 ## [0.9.1](https://github.com/ecomfe/react-hooks/compare/@huse/click-outside@0.9.0...@huse/click-outside@0.9.1) (2020-02-25)
 
 

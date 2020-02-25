@@ -1,6 +1,6 @@
 {
   "name": "@huse/click-outside",
-  "version": "0.9.1",
+  "version": "0.10.0",
   "main": "cjs/index.js",
   "module": "es/index.js",
   "types": "es/index.d.ts",

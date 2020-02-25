@@ -9,13 +9,18 @@ interface Action {
     payload: number;
 }
 
+export interface SelectionOptions {
+    multiple?: boolean;
+    range?: boolean;
+}
+
 export interface SelectionMethods {
     selectIndex(index: number, e?: ClickContext): void;
 }
 
-type SelectionHook = [number[], SelectionMethods];
+export type SelectionHook = [number[], SelectionMethods];
 
-interface ClickContext {
+export interface ClickContext {
     ctrlKey: boolean;
     metaKey: boolean;
     shiftKey: boolean;
@@ -27,15 +32,20 @@ interface SelectionContext {
     selected: number[];
 }
 
-const getActionType = (e?: ClickContext): Action['type'] => {
+const DEFAULT_OPTIONS: SelectionOptions = {
+    multiple: false,
+    range: false,
+};
+
+const getActionType = (e?: ClickContext, options: SelectionOptions = DEFAULT_OPTIONS): Action['type'] => {
     if (!e) {
         return 'single';
     }
     if (e.shiftKey) {
-        return 'range';
+        return options.range ? 'range' : 'single';
     }
     if (e.metaKey || e.ctrlKey) {
-        return 'multiple';
+        return options.multiple ? 'multiple' : 'single';
     }
     return 'single';
 };
@@ -47,7 +57,7 @@ const toggleSingleSelected = (selected: number[], target: number): number[] => {
     return selected.concat(target);
 };
 
-export function useSelection(initialSelection: number[] = []): SelectionHook {
+export function useSelection(initialSelection: number[] = [], options?: SelectionOptions): SelectionHook {
     const [{selected}, dispatch] = useReducer(
         (state: SelectionContext, action: Action) => {
             const {rangeStart, rangeEnd, selected} = state;
@@ -95,8 +105,8 @@ export function useSelection(initialSelection: number[] = []): SelectionHook {
         {rangeStart: 0, rangeEnd: undefined, selected: initialSelection}
     );
     const selectIndex: SelectionMethods['selectIndex'] = useCallback(
-        (index, e) => dispatch({type: getActionType(e), payload: index}),
-        []
+        (index, e) => dispatch({type: getActionType(e, options), payload: index}),
+        [options]
     );
     return [selected, {selectIndex}];
 }

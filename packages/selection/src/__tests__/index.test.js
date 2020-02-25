@@ -21,7 +21,7 @@ test('single select', () => {
 });
 
 test('multiple select', () => {
-    const {result} = renderHook(() => useSelection());
+    const {result} = renderHook(() => useSelection([], {multiple: true}));
     act(() => result.current[1].selectIndex(1));
     act(() => result.current[1].selectIndex(3, {metaKey: true}));
     act(() => result.current[1].selectIndex(5, {ctrlKey: true}));
@@ -29,7 +29,7 @@ test('multiple select', () => {
 });
 
 test('remove select', () => {
-    const {result} = renderHook(() => useSelection());
+    const {result} = renderHook(() => useSelection([], {multiple: true}));
     act(() => result.current[1].selectIndex(1));
     act(() => result.current[1].selectIndex(3, {metaKey: true}));
     act(() => result.current[1].selectIndex(5, {ctrlKey: true}));
@@ -38,27 +38,27 @@ test('remove select', () => {
 });
 
 test('initial range', () => {
-    const {result} = renderHook(() => useSelection());
+    const {result} = renderHook(() => useSelection([], {range: true}));
     act(() => result.current[1].selectIndex(3, {shiftKey: true}));
     expect(result.current[0]).toEqual([0, 1, 2, 3]);
 });
 
 test('range select', () => {
-    const {result} = renderHook(() => useSelection());
+    const {result} = renderHook(() => useSelection([], {range: true}));
     act(() => result.current[1].selectIndex(1));
     act(() => result.current[1].selectIndex(3, {shiftKey: true}));
     expect(result.current[0]).toEqual([1, 2, 3]);
 });
 
 test('reverse range', () => {
-    const {result} = renderHook(() => useSelection());
+    const {result} = renderHook(() => useSelection([], {range: true}));
     act(() => result.current[1].selectIndex(3));
     act(() => result.current[1].selectIndex(1, {shiftKey: true}));
     expect(result.current[0]).toEqual([3, 1, 2]);
 });
 
 test('range cover selected', () => {
-    const {result} = renderHook(() => useSelection());
+    const {result} = renderHook(() => useSelection([], {multiple: true, range: true}));
     act(() => result.current[1].selectIndex(1));
     act(() => result.current[1].selectIndex(2, {ctrlKey: true}));
     act(() => result.current[1].selectIndex(3, {shiftKey: true}));
@@ -66,7 +66,7 @@ test('range cover selected', () => {
 });
 
 test('expand range', () => {
-    const {result} = renderHook(() => useSelection());
+    const {result} = renderHook(() => useSelection([], {range: true}));
     act(() => result.current[1].selectIndex(1));
     act(() => result.current[1].selectIndex(3, {shiftKey: true}));
     act(() => result.current[1].selectIndex(5, {shiftKey: true}));
@@ -74,7 +74,7 @@ test('expand range', () => {
 });
 
 test('shrink range', () => {
-    const {result} = renderHook(() => useSelection());
+    const {result} = renderHook(() => useSelection([], {range: true}));
     act(() => result.current[1].selectIndex(1));
     act(() => result.current[1].selectIndex(5, {shiftKey: true}));
     act(() => result.current[1].selectIndex(3, {shiftKey: true}));
@@ -82,7 +82,7 @@ test('shrink range', () => {
 });
 
 test('reverse range', () => {
-    const {result} = renderHook(() => useSelection());
+    const {result} = renderHook(() => useSelection([], {range: true}));
     act(() => result.current[1].selectIndex(3));
     act(() => result.current[1].selectIndex(5, {shiftKey: true}));
     act(() => result.current[1].selectIndex(1, {shiftKey: true}));
@@ -90,9 +90,24 @@ test('reverse range', () => {
 });
 
 test('same range', () => {
-    const {result} = renderHook(() => useSelection());
+    const {result} = renderHook(() => useSelection([], {range: true}));
     act(() => result.current[1].selectIndex(1));
     act(() => result.current[1].selectIndex(3, {shiftKey: true}));
     act(() => result.current[1].selectIndex(3, {shiftKey: true}));
     expect(result.current[0]).toEqual([1, 2, 3]);
+});
+
+test('multiple disabled', () => {
+    const {result} = renderHook(() => useSelection());
+    act(() => result.current[1].selectIndex(1));
+    act(() => result.current[1].selectIndex(3, {ctrlKey: true}));
+    act(() => result.current[1].selectIndex(5, {metaKey: true}));
+    expect(result.current[0]).toEqual([5]);
+});
+
+test('range disabled', () => {
+    const {result} = renderHook(() => useSelection());
+    act(() => result.current[1].selectIndex(1));
+    act(() => result.current[1].selectIndex(3, {shiftKey: true}));
+    expect(result.current[0]).toEqual([3]);
 });

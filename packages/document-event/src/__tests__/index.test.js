@@ -3,9 +3,9 @@ import {useState} from 'react';
 import {render, fireEvent} from '@testing-library/react';
 import {useDocumentEvent} from '../index';
 
-const Foo = ({onClick, onAnotherClick}) => {
+const Foo = ({onClick, onAnotherClick, capture}) => {
     const [useAnother, setUseAnother] = useState(false);
-    useDocumentEvent('click', useAnother ? onAnotherClick : onClick);
+    useDocumentEvent('click', useAnother ? onAnotherClick : onClick, capture);
     return <span id="switch" onClick={() => setUseAnother(v => !v)} />;
 };
 
@@ -27,6 +27,14 @@ test('change handler', () => {
 test('remove on unmount', () => {
     const counter = {value: 1};
     const {baseElement, unmount} = render(<Foo onClick={() => counter.value++} />);
+    unmount();
+    fireEvent.click(baseElement.parentElement);
+    expect(counter.value).toBe(1);
+});
+
+test('with options', () => {
+    const counter = {value: 1};
+    const {baseElement, unmount} = render(<Foo capture onClick={() => counter.value++} />);
     unmount();
     fireEvent.click(baseElement.parentElement);
     expect(counter.value).toBe(1);

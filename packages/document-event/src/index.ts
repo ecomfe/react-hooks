@@ -15,7 +15,7 @@ export function useDocumentEvent<K extends EventNames>(
         () => {
             const trigger: DocumentEventHandler<K> = e => handler.current(e);
             document.addEventListener(eventName, trigger, options);
-            return () => document.removeEventListener(eventName, trigger);
+            return () => document.removeEventListener(eventName, trigger, options);
         },
         [eventName, options]
     );

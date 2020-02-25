@@ -17,8 +17,14 @@ export function usePreviousEquals<T>(value: T, equals: CustomEquals<T> = shallow
 }
 
 export function useOriginalCopy<T>(value: T, equals: CustomEquals<T> = shallowEquals): T {
-    const previousValue = usePreviousValue(value);
-    return equals(previousValue, value) ? previousValue as T : value;
+    const cache = useRef<T | undefined>(undefined);
+
+    if (equals(cache.current, value)) {
+        return cache.current as T;
+    }
+
+    cache.current = value;
+    return value;
 }
 
 export function useOriginalDeepCopy<T>(value: T): T {

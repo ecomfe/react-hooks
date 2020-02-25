@@ -15,13 +15,16 @@
   },
   "scripts": {
     "lint": "skr lint",
-    "test": "echo 'No test in useMedia'",
-    "build": "rm -rf es cjs && tsc && tsc --module ESNext --outDir ./es"
+    "test": "echo 'No test in @huse/media'",
+    "build": "rm -rf es cjs && tsc && tsc --module ESNext --outDir ./es",
+    "start": "skr dev --src=demo"
   },
   "devDependencies": {
     "@types/react": "^16.9.22",
+    "classnames": "^2.2.6",
     "reskript": "^0.25.12",
-    "typescript": "^3.8.2"
+    "typescript": "^3.8.2",
+    "webpack": "^4.41.6"
   },
   "peerDependencies": {
     "react": "^16.8.0"

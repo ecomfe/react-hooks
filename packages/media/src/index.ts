@@ -1,10 +1,18 @@
 import {useEffect, useState} from 'react';
 
-export function useMedia(query: string, initialMatched: boolean = false) {
-    const [matched, setMatched] = useState(initialMatched);
+const matchMedia = (query: string) => {
+    const watcher = window.matchMedia(query);
+    return {
+        watcher,
+        matches: watcher.matches,
+    };
+};
+
+export function useMedia(query: string): boolean {
+    const [matched, setMatched] = useState(() => matchMedia(query).matches);
     useEffect(
         () => {
-            const watcher = window.matchMedia(query);
+            const {watcher} = matchMedia(query);
             const onChange = () => setMatched(!!watcher.matches);
             watcher.addListener(onChange);
             return () => watcher.removeListener(onChange);

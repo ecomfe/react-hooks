@@ -1,6 +1,6 @@
 {
   "name": "@huse/document-event",
-  "version": "0.9.0",
+  "version": "0.9.1",
   "main": "cjs/index.js",
   "module": "es/index.js",
   "types": "es/index.d.ts",

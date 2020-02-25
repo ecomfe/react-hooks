@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.9.1](https://github.com/ecomfe/react-hooks/compare/@huse/previous-value@0.9.0...@huse/previous-value@0.9.1) (2020-02-25)
+
+
+### Bug Fixes
+
+* useOriginalCopy should not depend on usePreviousValue ([abb4728](https://github.com/ecomfe/react-hooks/commit/abb472849f08888790100fb9df313d7246cebfd0))
+
+
+
+
+
 # 0.9.0 (2020-02-14)
 
 

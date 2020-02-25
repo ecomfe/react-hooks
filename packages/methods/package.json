@@ -1,6 +1,6 @@
 {
   "name": "@huse/methods",
-  "version": "0.9.0",
+  "version": "0.9.1",
   "main": "cjs/index.js",
   "module": "es/index.js",
   "types": "es/index.d.ts",
@@ -29,6 +29,6 @@
     "react": "^16.8.0"
   },
   "dependencies": {
-    "@huse/immer": "^0.9.0"
+    "@huse/immer": "^0.9.1"
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "@huse/click-outside",
-  "version": "0.10.0",
+  "version": "0.10.1",
   "main": "cjs/index.js",
   "module": "es/index.js",
   "types": "es/index.d.ts",
@@ -31,6 +31,6 @@
     "react": "^16.8.0"
   },
   "dependencies": {
-    "@huse/document-event": "^0.9.1"
+    "@huse/document-event": "^0.9.2"
   }
 }

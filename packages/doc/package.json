@@ -1,0 +1,22 @@
+{
+  "name": "@huse/doc",
+  "version": "0.8.0",
+  "main": "index.js",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "docz:dev": "docz dev",
+    "docz:build": "docz build",
+    "docz:serve": "docz build && docz serve"
+  },
+  "devDependencies": {
+    "antd": "^4.0.0",
+    "docz": "^2.2.0",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0"
+  },
+  "dependencies": {
+    "@huse/boolean": "0.9.1",
+    "@huse/methods": "0.9.1"
+  }
+}

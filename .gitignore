@@ -63,3 +63,4 @@ typings/
 # reskript build assets
 /*/*/es
 /*/*/cjs
+packages/doc/.docz

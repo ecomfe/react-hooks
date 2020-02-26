@@ -20,4 +20,4 @@ const Block = ({isFocused}) => {
 };
 ```
 
-具体的效果可勇者`demo`目录。
+具体的效果可参考`demo`目录。

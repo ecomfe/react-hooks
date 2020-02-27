@@ -14,9 +14,9 @@
     "test": "lerna run test --ignore @huse/timeout && lerna run test --scope @huse/timeout",
     "build": "lerna run build",
     "release": "lerna version --conventional-commits --no-push",
-    "ci": "yarn lint && yarn build && yarn test",
+    "ci": "yarn && yarn lint && yarn build && yarn test",
     "preversion": "yarn ci",
-    "prepack": "yarn build"
+    "prepack": "yarn && yarn build"
   },
   "devDependencies": {
     "lerna": "^3.20.2"

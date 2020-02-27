@@ -1,6 +1,6 @@
 {
   "name": "@huse/intersection",
-  "version": "0.8.0",
+  "version": "0.9.0",
   "main": "cjs/index.js",
   "module": "es/index.js",
   "types": "es/index.d.ts",
@@ -20,7 +20,7 @@
     "start": "skr dev --src=demo"
   },
   "dependencies": {
-    "@huse/effect-ref": "^0.8.0"
+    "@huse/effect-ref": "^0.9.0"
   },
   "devDependencies": {
     "@types/react": "^16.9.22",

@@ -10,7 +10,7 @@ const arrayMethods = {
     },
     // 也可以有多个参数
     splice(state, index, count, ...inserts) {
-        state.splice(index, count, ...inerts);
+        state.splice(index, count, ...inserts);
     },
     empty() {
         // 可以返回新对象重置状态

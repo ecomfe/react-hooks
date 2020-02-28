@@ -1,4 +1,4 @@
-/* eslint-disable react/jsx-no-bind */
+/* eslint-disable no-console, react/jsx-no-bind */
 import {render} from '@testing-library/react';
 import {useEffectRef} from '../index';
 
@@ -20,4 +20,14 @@ test('dispose on unmount', () => {
     const {unmount} = render(<Foo onRef={callback} />);
     unmount();
     expect(dispose).toHaveBeenCalled();
+});
+
+test('warn on invalid return', () => {
+    const callback = jest.fn(() => 123);
+    const warn = jest.fn();
+    const nativeWarn = console.warn;
+    console.warn = warn;
+    render(<Foo onRef={callback} />);
+    console.warn = nativeWarn;
+    expect(warn).toHaveBeenCalled();
 });

@@ -4,21 +4,17 @@ export type EffectRef<E extends HTMLElement = HTMLElement> = (element: E | null)
 
 export type RefCallback<E extends HTMLElement = HTMLElement> = (element: E) => (() => void) | void;
 
+const noop = () => undefined;
+
 export function useEffectRef<E extends HTMLElement = HTMLElement>(callback: RefCallback<E>): EffectRef<E> {
-    const elementRef = useRef<HTMLElement>();
-    const disposeRef = useRef<(() => void) | undefined>(undefined);
+    const disposeRef = useRef<(() => void)>(noop);
     const effect = useCallback(
         (element: E | null) => {
-            const previousElement = elementRef.current;
-
-            if (previousElement) {
-                disposeRef.current && disposeRef.current();
-            }
+            disposeRef.current && disposeRef.current();
 
             if (element) {
                 const dispose = callback(element);
                 dispose && (disposeRef.current = dispose);
-                elementRef.current = element;
             }
         },
         [callback]

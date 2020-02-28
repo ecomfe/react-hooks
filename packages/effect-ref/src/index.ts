@@ -10,7 +10,9 @@ export function useEffectRef<E extends HTMLElement = HTMLElement>(callback: RefC
     const disposeRef = useRef<(() => void)>(noop);
     const effect = useCallback(
         (element: E | null) => {
-            disposeRef.current && disposeRef.current();
+            disposeRef.current();
+            // To ensure every dispose function is called only once.
+            disposeRef.current = noop;
 
             if (element) {
                 const dispose = callback(element);

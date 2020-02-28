@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.9.1](https://github.com/ecomfe/react-hooks/compare/@huse/effect-ref@0.9.0...@huse/effect-ref@0.9.1) (2020-02-28)
+
+
+### Bug Fixes
+
+* dispose of effect ref may be called multiple times ([b450834](https://github.com/ecomfe/react-hooks/commit/b4508340b9fb27b28a681b4d9d238955ceabb083))
+
+
+
+
+
 # 0.9.0 (2020-02-27)
 
 

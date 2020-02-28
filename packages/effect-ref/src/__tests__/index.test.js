@@ -22,6 +22,19 @@ test('dispose on unmount', () => {
     expect(dispose).toHaveBeenCalled();
 });
 
+test('dispose calls only once', () => {
+    const dispose = jest.fn();
+    const callback1 = () => dispose;
+    const callback2 = () => undefined;
+    const callback3 = () => undefined;
+    const {unmount, rerender} = render(<Foo onRef={callback1} />);
+    rerender(<Foo onRef={callback2} />);
+    rerender(<Foo onRef={callback3} />);
+    unmount();
+    expect(dispose).toHaveBeenCalledTimes(1);
+});
+
+
 test('warn on invalid return', () => {
     const callback = jest.fn(() => 123);
     const warn = jest.fn();

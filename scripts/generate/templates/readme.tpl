@@ -1,0 +1,1 @@
+# @huse/%packageName%

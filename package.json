@@ -10,6 +10,7 @@
     "packages/*"
   ],
   "scripts": {
+    "generate": "node scripts/generate",
     "lint": "lerna run lint",
     "test": "lerna run test --ignore @huse/timeout && lerna run test --scope @huse/timeout",
     "build": "lerna run build",
@@ -19,6 +20,10 @@
     "prepack": "yarn && yarn build"
   },
   "devDependencies": {
-    "lerna": "^3.20.2"
+    "fs-extra": "^8.1.0",
+    "immer": "^5.3.6",
+    "inquirer": "^7.0.4",
+    "lerna": "^3.20.2",
+    "sort-package-json": "^1.40.0"
   }
 }

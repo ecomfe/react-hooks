@@ -7808,7 +7808,7 @@ immer@1.10.0:
 
 immer@^5.3.6:
   version "5.3.6"
-  resolved "https://registry.npm.taobao.org/immer/download/immer-5.3.6.tgz?cache=0&sync_timestamp=1581627554509&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fimmer%2Fdownload%2Fimmer-5.3.6.tgz#51eab8cbbeb13075fe2244250f221598818cac04"
+  resolved "https://registry.npm.taobao.org/immer/download/immer-5.3.6.tgz#51eab8cbbeb13075fe2244250f221598818cac04"
   integrity sha1-Ueq4y76xMHX+IkQlDyIVmIGMrAQ=
 
 immutable@^3.7.4:
@@ -7991,7 +7991,7 @@ inquirer@^6.2.0:
 
 inquirer@^7.0.0, inquirer@^7.0.4:
   version "7.0.4"
-  resolved "https://registry.npm.taobao.org/inquirer/download/inquirer-7.0.4.tgz#99af5bde47153abca23f5c7fc30db247f39da703"
+  resolved "https://registry.npm.taobao.org/inquirer/download/inquirer-7.0.4.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Finquirer%2Fdownload%2Finquirer-7.0.4.tgz#99af5bde47153abca23f5c7fc30db247f39da703"
   integrity sha1-ma9b3kcVOryiP1x/ww2yR/OdpwM=
   dependencies:
     ansi-escapes "^4.2.1"
@@ -14011,7 +14011,7 @@ sort-object-keys@^1.1.3:
   resolved "https://registry.npm.taobao.org/sort-object-keys/download/sort-object-keys-1.1.3.tgz#bff833fe85cab147b34742e45863453c1e190b45"
   integrity sha1-v/gz/oXKsUezR0LkWGNFPB4ZC0U=
 
-sort-package-json@^1.39.1:
+sort-package-json@^1.39.1, sort-package-json@^1.40.0:
   version "1.40.0"
   resolved "https://registry.npm.taobao.org/sort-package-json/download/sort-package-json-1.40.0.tgz?cache=0&sync_timestamp=1582109443570&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fsort-package-json%2Fdownload%2Fsort-package-json-1.40.0.tgz#81ad8c2bd7dd21b6a127ab4a26186a160f07a157"
   integrity sha1-ga2MK9fdIbahJ6tKJhhqFg8HoVc=

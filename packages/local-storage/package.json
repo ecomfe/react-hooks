@@ -1,6 +1,14 @@
 {
   "name": "@huse/local-storage",
   "version": "0.9.1",
+  "keywords": [
+    "react",
+    "hooks"
+  ],
+  "homepage": "https://github.com/ecomfe/react-hooks/tree/master/packages/local-storage",
+  "bugs": {
+    "url": "https://github.com/ecomfe/react-hooks/issues"
+  },
   "main": "cjs/index.js",
   "module": "es/index.js",
   "types": "es/index.d.ts",
@@ -23,6 +31,7 @@
     "@types/react": "^16.9.22",
     "enzyme": "^3.11.0",
     "react": "^16.12.0",
+    "react-test-renderer": "^16.13.0",
     "react-dom": "^16.12.0",
     "reskript": "^0.25.15",
     "typescript": "^3.8.2"

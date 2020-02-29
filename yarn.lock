@@ -16019,7 +16019,7 @@ react-simple-code-editor@^0.10.0:
   resolved "https://registry.npm.taobao.org/react-simple-code-editor/download/react-simple-code-editor-0.10.0.tgz#73e7ac550a928069715482aeb33ccba36efe2373"
   integrity sha1-c+esVQqSgGlxVIKuszzLo27+I3M=
 
-react-test-renderer@^16.0.0-0:
+react-test-renderer@^16.0.0-0, react-test-renderer@^16.13.0:
   version "16.13.0"
   resolved "https://registry.npm.taobao.org/react-test-renderer/download/react-test-renderer-16.13.0.tgz#39ba3bf72cedc8210c3f81983f0bb061b14a3014"
   integrity sha1-Obo79yztyCEMP4GYPwuwYbFKMBQ=

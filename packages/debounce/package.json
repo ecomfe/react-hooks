@@ -1,6 +1,14 @@
 {
   "name": "@huse/debounce",
   "version": "0.9.0",
+  "keywords": [
+    "react",
+    "hooks"
+  ],
+  "homepage": "https://github.com/ecomfe/react-hooks/tree/master/packages/debounce",
+  "bugs": {
+    "url": "https://github.com/ecomfe/react-hooks/issues"
+  },
   "main": "cjs/index.js",
   "module": "es/index.js",
   "types": "es/index.d.ts",
@@ -15,7 +23,7 @@
   },
   "scripts": {
     "lint": "skr lint",
-    "test": "skr test --coverage --target=react",
+    "test": "skr test --coverage",
     "build": "rm -rf es cjs && tsc && tsc --module ESNext --outDir ./es"
   },
   "devDependencies": {
@@ -23,7 +31,7 @@
     "@types/debounce": "^1.2.0",
     "@types/react": "^16.9.22",
     "react": "^16.12.0",
-    "react-dom": "^16.12.0",
+    "react-test-renderer": "^16.13.0",
     "reskript": "^0.25.15",
     "typescript": "^3.8.2"
   },

@@ -1,6 +1,14 @@
 {
   "name": "@huse/element-size",
   "version": "0.9.1",
+  "keywords": [
+    "react",
+    "hooks"
+  ],
+  "homepage": "https://github.com/ecomfe/react-hooks/tree/master/packages/element-size",
+  "bugs": {
+    "url": "https://github.com/ecomfe/react-hooks/issues"
+  },
   "main": "cjs/index.js",
   "module": "es/index.js",
   "types": "es/index.d.ts",
@@ -20,7 +28,6 @@
     "start": "skr dev --src=demo"
   },
   "devDependencies": {
-    "@testing-library/react-hooks": "^3.2.1",
     "@types/react": "^16.9.22",
     "antd": "^4.0.0",
     "classnames": "^2.2.6",

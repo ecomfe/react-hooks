@@ -1,6 +1,14 @@
 {
   "name": "@huse/document-title",
   "version": "0.9.1",
+  "keywords": [
+    "react",
+    "hooks"
+  ],
+  "homepage": "https://github.com/ecomfe/react-hooks/tree/master/packages/document-title",
+  "bugs": {
+    "url": "https://github.com/ecomfe/react-hooks/issues"
+  },
   "main": "cjs/index.js",
   "module": "es/index.js",
   "types": "es/index.d.ts",

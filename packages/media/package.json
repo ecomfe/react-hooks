@@ -1,6 +1,14 @@
 {
   "name": "@huse/media",
   "version": "0.10.0",
+  "keywords": [
+    "react",
+    "hooks"
+  ],
+  "homepage": "https://github.com/ecomfe/react-hooks/tree/master/packages/media",
+  "bugs": {
+    "url": "https://github.com/ecomfe/react-hooks/issues"
+  },
   "main": "cjs/index.js",
   "module": "es/index.js",
   "types": "es/index.d.ts",

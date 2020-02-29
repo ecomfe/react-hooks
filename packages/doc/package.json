@@ -5,11 +5,11 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "docz:dev": "docz dev",
-    "docz:build": "docz build",
-    "docz:serve": "docz build && docz serve"
+    "test": "echo 'No test in @huse/doc'",
+    "lint": "echo 'No lint in @huse/doc'"
   },
   "devDependencies": {
+    "@ant-design/icons": "^4.0.0",
     "antd": "^4.0.0",
     "docz": "^2.2.0",
     "react": "^16.12.0",
@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "@huse/boolean": "0.9.1",
-    "@huse/methods": "0.9.1"
+    "@huse/methods": "0.9.1",
+    "@huse/network": "0.8.0"
   }
 }

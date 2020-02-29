@@ -18,6 +18,7 @@
   "dependencies": {
     "@huse/boolean": "0.9.1",
     "@huse/methods": "0.9.1",
-    "@huse/network": "0.8.0"
+    "@huse/network": "0.8.0",
+    "@huse/scroll-into-view": "0.10.0"
   }
 }

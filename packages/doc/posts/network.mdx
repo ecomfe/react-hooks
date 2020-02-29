@@ -1,0 +1,34 @@
+---
+name: network
+route: /network
+---
+
+import {CheckCircleOutlined, CloseCircleOutlined} from '@ant-design/icons';
+import 'antd/dist/antd.min.css';
+import {Playground} from 'docz'
+import {useOnLine} from '@huse/network';
+
+# @huse/network
+
+Provides hooks to resolve and listen on network states like online or connectivity.
+
+## useOnLine
+
+`useOnLine` returns a boolean indicates whether client is currently online.
+
+In case where client doesn't support `online` and `offline` events, this hook always return `true`.
+
+<Playground>
+    {
+        () => {
+            const isOnLine = useOnLine();
+            return (
+                <>
+                    {isOnLine ? <CheckCircleOutlined /> : <CloseCircleOutlined />}
+                    You are currently
+                    <strong>{isOnLine ? 'ONLINE' : 'OFFLINE'}</strong>
+                </>
+            )
+        }
+    }
+</Playground>

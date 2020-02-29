@@ -29,6 +29,14 @@ describe('useTimeout', () => {
         renderHook(() => useTimeout(undefined, 4));
         await timeout(5);
     });
+
+    test('stop on unmount', async () => {
+        const fn = jest.fn();
+        const {unmount} = renderHook(() => useTimeout(fn, 4));
+        unmount();
+        await timeout(5);
+        expect(fn).not.toHaveBeenCalled();
+    });
 });
 
 describe('useInterval', () => {
@@ -49,6 +57,14 @@ describe('useInterval', () => {
     test('works when callback is undefined', async () => {
         renderHook(() => useInterval(undefined, 4));
         await timeout(5);
+    });
+
+    test('stop on unmount', async () => {
+        const fn = jest.fn();
+        const {unmount} = renderHook(() => useInterval(fn, 4));
+        unmount();
+        await timeout(5);
+        expect(fn).not.toHaveBeenCalled();
     });
 });
 
@@ -77,6 +93,14 @@ describe('useStableInterval', () => {
     test('works when callback is undefined', async () => {
         renderHook(() => useStableInterval(undefined, 4));
         await timeout(5);
+    });
+
+    test('stop on unmount', async () => {
+        const fn = jest.fn();
+        const {unmount} = renderHook(() => useStableInterval(fn, 4));
+        unmount();
+        await timeout(5);
+        expect(fn).not.toHaveBeenCalled();
     });
 });
 

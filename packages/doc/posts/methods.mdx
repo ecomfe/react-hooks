@@ -1,0 +1,107 @@
+---
+name: methods
+route: /methods
+---
+
+import {useState} from 'react';
+import {Button, Switch} from 'antd';
+import 'antd/dist/antd.min.css';
+import {Playground} from 'docz'
+import {useMethods, useMethodsExtension} from '@huse/methods';
+
+# @huse/methods
+
+Provides infrastructure hooks to encapsulate a state and some methods together.
+
+## useMethods
+
+This hook combines a state and its mutation methods and returns `[state, methods]` tuple.
+
+```javascript
+const methods = {
+    // any functions to mutate state
+};
+
+const [state, methods] = useMethods(methods, defaultState);
+```
+
+A input method conforms to signature `(state, ...args) => newState`, the returned `methods` object contains exactly same function properties as input, with `state` parameter removed from all functions.
+
+Invoking any method in `methods` will update the state and trigger a render cycle.
+
+By utilizing [immer](https://www.npmjs.com/package/immer) as state mutation, all methods can mutate `state` argument in place.
+
+<Playground>
+    {
+        () => {
+            const userMethods = {
+                asAdmin(user) {
+                    user.role = 'admin';
+                    user.history.push('change to admin');
+                },
+                asUser(user) {
+                    user.role = 'uesr';
+                    user.history.push('change to user');
+                },
+                enable(user) {
+                    user.enabled = true;
+                    user.history.push('disabled');
+                },
+                disable(user) {
+                    user.enabled = false;
+                    user.history.push('enabled');
+                },
+            };
+            const [user, methods] = useMethods(
+                userMethods,
+                {role: 'user', enabled: true, history: []}
+            );
+            return (
+                <>
+                    <div>
+                        Admin: <Switch checked={user.role === 'admin'} onChange={user.role === 'admin' ? methods.asUser : methods.asAdmin} />
+                    </div>
+                    <div>
+                        Enabled: <Switch checked={user.enabled} onChange={user.enabled ? methods.disable : methods.enable} />
+                    </div>
+                    <h3>Mutation history:</h3>
+                    <ul>
+                        {user.history.map((s, i) => <li key={i}>{s}</li>)}
+                    </ul>
+                </>
+            );
+        }
+    }
+</Playground>
+
+We recommend to define `methods` in top scope of a module, defining it inside a component cause returned mutation functions to change on each render unless it is wrapped inside a `useMemo`.
+
+## useMethodsExtension
+
+In case you already have a `setState` in hand and still want to create a set of mutation methods, you can pass `setState` to `useMethodsExtension` like:
+
+<Playground>
+    {
+        () => {
+            const counterMethods = {
+                inc(value) {
+                    return value + 1;
+                },
+                dec(value) {
+                    return value - 1;
+                },
+            };
+            // A already in hand state
+            const [counter, setCounter] = useState(0);
+            // Create methods by setCount
+            const methods = useMethodsExtension(counterMethods, setCounter);
+            return (
+                <>
+                    <Button onClick={methods.dec}>-1</Button>
+                    <span style={{display: 'inline-block', width: '4ch', textAlign: 'center', margin: '0 20px'}}>{counter}</span>
+                    <Button onClick={methods.inc}>+1</Button>
+                </>
+            );
+        }
+    }
+</Playground>

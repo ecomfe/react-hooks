@@ -26,7 +26,9 @@ const BASE_PACKAGE_INFO = {
         build: 'rm -rf es cjs && tsc && tsc --module ESNext --outDir ./es',
     },
     devDependencies: {},
-    peerDependencies: {},
+    peerDependencies: {
+        react: '^16.8.0',
+    },
 };
 
 const main = async () => {
@@ -47,10 +49,15 @@ const main = async () => {
             addDevDependency('@types/react');
             addDevDependency('typescript');
             addDevDependency('reskript');
-            info.peerDependencies.react = '^16.8.0';
-            info.scripts.test = (answers.hookTest || answers.domTest)
-                ? 'skr test --coverage'
-                : `echo 'No test in @huse/${answers.packageName}'`;
+            if (answers.hookTest) {
+                info.scripts.test = 'skr test --coverage';
+            }
+            else if (answers.domTest) {
+                info.scripts.test = 'skr test --coverage --target=react';
+            }
+            else {
+                info.scripts.test = `echo 'No test in @huse/${answers.packageName}'`;
+            }
 
             if (answers.hookTest) {
                 addDevDependency('@testing-library/react-hooks');
@@ -80,7 +87,7 @@ const main = async () => {
         await writeTemplate('test-dom', to('src/__tests__/index.test.js'), answers);
     }
     if (answers.demo) {
-        await writeTemplate('demo', to('src/demo/entries/index.js'), answers);
+        await writeTemplate('demo', to('demo/entries/index.js'), answers);
     }
 
     // eslint-disable-next-line no-console

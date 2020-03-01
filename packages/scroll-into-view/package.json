@@ -23,7 +23,7 @@
   },
   "scripts": {
     "lint": "skr lint",
-    "test": "echo 'No test in scroll-into-view'",
+    "test": "echo 'No test in @huse/scroll-into-view'",
     "build": "rm -rf es cjs && tsc && tsc --module ESNext --outDir ./es",
     "start": "skr dev --src=demo"
   },

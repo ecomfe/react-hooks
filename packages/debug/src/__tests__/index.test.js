@@ -28,9 +28,11 @@ describe('useUpdateCause', () => {
     });
 
     test('report change', () => {
-        const {result, rerender} = renderHook(props => useUpdateCause(props, false), {initialProps: {x: {}}});
-        rerender({x: {}});
-        expect(result.current).toEqual([{propName: 'x', shallowEquals: true, deepEquals: true}]);
+        const {result, rerender} = renderHook(props => useUpdateCause(props, false), {initialProps: {x: 1}});
+        rerender({x: 2});
+        expect(result.current[0].propName).toBe('x');
+        expect(result.current[0].previousValue).toBe(1);
+        expect(result.current[0].currentValue).toBe(2);
     });
 
     test('report shallow equal', () => {

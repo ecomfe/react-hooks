@@ -16,6 +16,8 @@ export interface UpdateCause {
     propName: string;
     shallowEquals: boolean;
     deepEquals: boolean;
+    previousValue: any;
+    currentValue: any;
 }
 
 function findUpdateCause<T extends {}>(previous: T, current: T): UpdateCause[] {
@@ -28,6 +30,8 @@ function findUpdateCause<T extends {}>(previous: T, current: T): UpdateCause[] {
 
         if (previousValue !== currentValue) {
             const cause: UpdateCause = {
+                previousValue,
+                currentValue,
                 propName: key,
                 shallowEquals: shallowEquals(previousValue, currentValue),
                 deepEquals: deepEquals(previousValue, currentValue),
@@ -51,7 +55,7 @@ export function useUpdateCause<T extends {}>(props: T, print: boolean = true): U
     if (print && causes.length) {
         /* eslint-disable no-console */
         console.warn('Component updated from props changes');
-        console.table(keyBy(causes, c => c.propName), ['shallowEquals', 'deepEquals']);
+        console.table(keyBy(causes, c => c.propName), ['previousValue', 'currentValue', 'shallowEquals', 'deepEquals']);
         /* eslint-enable no-console */
     }
 

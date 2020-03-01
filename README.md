@@ -15,3 +15,12 @@ import {useInputValue} from '@huse/input-value';
 ```
 
 Unit tests are recommended, they are placed inside `src/__tests__` folder with an extension of `.test.js`, we highly recommend a 100% of branch coverage.
+
+## Document
+
+```
+yarn
+yarn doc:dev
+```
+
+Open `http://localhost:3000` to view documents about hooks.

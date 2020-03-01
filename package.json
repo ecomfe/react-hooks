@@ -23,7 +23,7 @@
   "devDependencies": {
     "fs-extra": "^8.1.0",
     "immer": "^5.3.6",
-    "inquirer": "^7.0.4",
+    "inquirer": "^7.0.5",
     "lerna": "^3.20.2",
     "sort-package-json": "^1.40.0"
   }

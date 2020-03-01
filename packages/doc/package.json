@@ -9,7 +9,7 @@
     "lint": "echo 'No lint in @huse/doc'"
   },
   "devDependencies": {
-    "@ant-design/icons": "^4.0.0",
+    "@ant-design/icons": "^4.0.2",
     "antd": "^4.0.0",
     "docz": "^2.2.0",
     "react": "^16.12.0",

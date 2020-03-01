@@ -24,7 +24,7 @@
   "scripts": {
     "lint": "skr lint",
     "test": "skr test --coverage",
-    "build": "rm -rf es cjs && tsc && tsc --module ESNext --outDir ./es"
+    "build": "rm -rf es cjs && tsc & tsc --module ESNext --outDir ./es"
   },
   "devDependencies": {
     "@testing-library/react-hooks": "^3.2.1",

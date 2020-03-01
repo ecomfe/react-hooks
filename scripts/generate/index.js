@@ -23,7 +23,7 @@ const BASE_PACKAGE_INFO = {
     },
     scripts: {
         lint: 'skr lint',
-        build: 'rm -rf es cjs && tsc && tsc --module ESNext --outDir ./es',
+        build: 'rm -rf es cjs && tsc & tsc --module ESNext --outDir ./es',
     },
     devDependencies: {},
     peerDependencies: {

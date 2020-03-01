@@ -12,7 +12,7 @@
   "scripts": {
     "lint": "skr lint",
     "test": "skr test --target=react --coverage",
-    "build": "rm -rf es cjs && tsc && tsc --module ESNext --outDir ./es"
+    "build": "rm -rf es cjs && tsc & tsc --module ESNext --outDir ./es"
   },
   "devDependencies": {
     "@testing-library/react": "^9.4.0",

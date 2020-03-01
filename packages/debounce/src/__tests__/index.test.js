@@ -16,6 +16,12 @@ describe('useDebouncedValue', () => {
         await act(() => timeout(6));
         expect(result.current).toBe(124);
     });
+
+    test('no debounce', () => {
+        const {result, rerender} = renderHook(props => useDebouncedValue(props.x, 0), {initialProps: {x: 123}});
+        rerender({x: 124});
+        expect(result.current).toBe(124);
+    });
 });
 
 describe('useDebouncedCallback', () => {
@@ -35,5 +41,12 @@ describe('useDebouncedCallback', () => {
         unmount();
         await timeout(6);
         expect(fn).not.toHaveBeenCalled();
+    });
+
+    test('no debounce', () => {
+        const fn = jest.fn();
+        const {result} = renderHook(() => useDebouncedCallback(fn, 0));
+        result.current(1);
+        expect(fn).toHaveBeenCalled();
     });
 });

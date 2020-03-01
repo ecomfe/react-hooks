@@ -1,0 +1,49 @@
+{
+  "name": "@huse/infinite-scroll",
+  "version": "0.8.0",
+  "keywords": [
+    "react",
+    "hooks"
+  ],
+  "homepage": "https://github.com/ecomfe/react-hooks/tree/master/packages/infinite-scroll",
+  "bugs": {
+    "url": "https://github.com/ecomfe/react-hooks/issues"
+  },
+  "license": "MIT",
+  "main": "cjs/index.js",
+  "module": "es/index.js",
+  "types": "es/index.d.ts",
+  "files": [
+    "cjs",
+    "es"
+  ],
+  "scripts": {
+    "build": "rm -rf es cjs && tsc && tsc --module ESNext --outDir ./es",
+    "lint": "skr lint",
+    "start": "skr dev --src=demo",
+    "test": "skr test --coverage"
+  },
+  "dependencies": {
+    "@huse/action-pending": "^0.9.1",
+    "@huse/collection": "^0.9.1"
+  },
+  "devDependencies": {
+    "@testing-library/react-hooks": "^3.2.1",
+    "@types/react": "^16.9.22",
+    "classnames": "^2.2.6",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "react-infinite-scroll-component": "^5.0.4",
+    "react-loading": "^2.0.3",
+    "reskript": "^0.25.15",
+    "typescript": "^3.8.2",
+    "webpack": "^4.41.6"
+  },
+  "peerDependencies": {
+    "react": "^16.8.0"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.com"
+  }
+}

@@ -15961,6 +15961,13 @@ react-hot-loader@^4.12.18:
     shallowequal "^1.1.0"
     source-map "^0.7.3"
 
+react-infinite-scroll-component@^5.0.4:
+  version "5.0.4"
+  resolved "https://registry.npm.taobao.org/react-infinite-scroll-component/download/react-infinite-scroll-component-5.0.4.tgz#45ca72c75bfe1ad5cf46d032247a8e0af65593ca"
+  integrity sha1-Rcpyx1v+GtXPRtAyJHqOCvZVk8o=
+  dependencies:
+    throttle-debounce "^2.1.0"
+
 react-is@^16.12.0, react-is@^16.7.0, react-is@^16.8.1, react-is@^16.8.4, react-is@^16.8.6, react-is@^16.9.0:
   version "16.13.0"
   resolved "https://registry.npm.taobao.org/react-is/download/react-is-16.13.0.tgz#0f37c3613c34fe6b37cd7f763a0d6293ab15c527"
@@ -15984,6 +15991,11 @@ react-live@^2.2.1:
     prop-types "^15.5.8"
     react-simple-code-editor "^0.10.0"
     unescape "^1.0.1"
+
+react-loading@^2.0.3:
+  version "2.0.3"
+  resolved "https://registry.npm.taobao.org/react-loading/download/react-loading-2.0.3.tgz#e8138fb0c3e4674e481b320802ac7048ae14ffb9"
+  integrity sha1-6BOPsMPkZ05IGzIIAqxwSK4U/7k=
 
 react-monaco-editor@^0.34.0:
   version "0.34.0"
@@ -18806,6 +18818,11 @@ throat@^5.0.0:
   version "5.0.0"
   resolved "https://registry.npm.taobao.org/throat/download/throat-5.0.0.tgz#c5199235803aad18754a667d659b5e72ce16764b"
   integrity sha1-xRmSNYA6rRh1SmZ9ZZtecs4Wdks=
+
+throttle-debounce@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.npm.taobao.org/throttle-debounce/download/throttle-debounce-2.1.0.tgz#257e648f0a56bd9e54fe0f132c4ab8611df4e1d5"
+  integrity sha1-JX5kjwpWvZ5U/g8TLEq4YR304dU=
 
 through2@^2.0.0, through2@^2.0.1, through2@^2.0.2:
   version "2.0.5"

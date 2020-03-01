@@ -1,4 +1,5 @@
-import {useEffect, useReducer, useCallback} from 'react';
+import {useEffect, useCallback, useRef} from 'react';
+import {useForceUpdate} from '@huse/update';
 import {useOriginalDeepCopy} from '@huse/previous-value';
 import {
     QueryStrategy,
@@ -30,11 +31,6 @@ export interface RequestResult<O = void, E = Error> {
     nextError?: E;
 }
 
-type Action<K, O, E> = {type: 'fetch', payload: K}
-    | {type: 'receive', payload: {key: K, data: O}}
-    | {type: 'error', payload: {key: K, error: E}}
-    | {type: 'accept', payload: K};
-
 const builtInStrategies: {[K in ResponseStrategy]: QueryStrategy} = {
     acceptLatest: createStrategy(acceptLatest),
     keepEarliest: createStrategy(keepEarliest),
@@ -49,47 +45,63 @@ export function useRequest<K, O, E>(task: Request<K, O>, params: K, options?: Re
         throw new Error(`Strategy named ${strategy} is not supported in useRequest`);
     }
 
-    const {initialize, fetch, receive, error, accept} = builtInStrategies[strategy];
-    const [querySet, dispatch] = useReducer(
-        (state: QuerySet<K, O, E>, action: Action<K, O, E>) => {
-            switch (action.type) {
-                case 'fetch':
-                    return fetch(state, action.payload);
-                case 'receive':
-                    return receive(state, action.payload.key, action.payload.data);
-                case 'error':
-                    return error(state, action.payload.key, action.payload.error);
-                case 'accept':
-                    return accept(state, action.payload);
-                /* istanbul ignore next */
-                default:
-                    return state;
-            }
+    const implement = builtInStrategies[strategy];
+    const querySets = useRef(new WeakMap<typeof task, QuerySet<K, O, E>>());
+    const forceUpdate = useForceUpdate();
+    const fetch = useCallback(
+        (key: K) => {
+            const querySet = querySets.current.get(task) as QuerySet<K, O, E>;
+            querySets.current.set(task, implement.fetch(querySet, key));
+            forceUpdate();
         },
-        null,
-        initialize
+        [forceUpdate, implement, task]
+    );
+    const receive = useCallback(
+        (key: K, data: O) => {
+            const querySet = querySets.current.get(task) as QuerySet<K, O, E>;
+            querySets.current.set(task, implement.receive(querySet, key, data));
+            forceUpdate();
+        },
+        [forceUpdate, implement, task]
+    );
+    const error = useCallback(
+        (key: K, error: E) => {
+            const querySet = querySets.current.get(task) as QuerySet<K, O, E>;
+            querySets.current.set(task, implement.error(querySet, key, error));
+            forceUpdate();
+        },
+        [forceUpdate, implement, task]
     );
     const key = useOriginalDeepCopy(params);
-    const previousQuery = findQuery(querySet, key);
-    const skipEffect = idempotent && previousQuery;
+    const querySet = querySets.current.get(task);
+    const query = querySet && findQuery(querySet, key);
+    const skipEffect = idempotent && query;
     useEffect(
         () => {
             if (skipEffect) {
                 return;
             }
-            dispatch({type: 'fetch', payload: key});
+
+            if (!querySets.current.has(task)) {
+                querySets.current.set(task, implement.initialize());
+            }
+
+            fetch(key);
 
             task(key).then(
-                data => dispatch({type: 'receive', payload: {key, data}}),
-                error => dispatch({type: 'error', payload: {key, error}})
+                data => receive(key, data),
+                ex => error(key, ex)
             );
         },
-        [key, skipEffect, task]
+        [error, fetch, implement, key, receive, skipEffect, task]
     );
-    const query = findQuery(querySet, key);
     const acceptCurrentKey = useCallback(
-        () => dispatch({type: 'accept', payload: key}),
-        [key]
+        () => {
+            const querySet = querySets.current.get(task) as QuerySet<K, O, E>;
+            querySets.current.set(task, implement.accept(querySet, key));
+            forceUpdate();
+        },
+        [forceUpdate, implement, key, task]
     );
 
     if (!query) {

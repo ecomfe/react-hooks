@@ -74,3 +74,17 @@ test('wait accept', async () => {
     expect(result.current.nextData).toBeUndefined();
     expect(result.current.data).toBe(nextData);
 });
+
+test('different tasks', async () => {
+    const task1 = jest.fn(x => Promise.resolve(x + 1));
+    const task2 = jest.fn(x => Promise.resolve(x + 2));
+    const {result, waitForNextUpdate, rerender} = renderHook(
+        props => useRequest(props.task, props.x, {strategy: 'keepEarliest'}),
+        {initialProps: {x: 1, task: task1}}
+    );
+    await waitForNextUpdate();
+    expect(result.current.data).toBe(2);
+    rerender({task: task2, x: 1});
+    await waitForNextUpdate();
+    expect(result.current.data).toBe(3);
+});

@@ -1,6 +1,5 @@
-import {useArray} from '@huse/collection';
-import {useActionPending} from '@huse/action-pending';
-import {useState, useCallback, useEffect} from 'react';
+import {useCallback, useEffect} from 'react';
+import {useMethods} from '@huse/methods';
 
 export interface FetchRequest {
     offset: number;
@@ -25,35 +24,58 @@ export interface InfiniteScrollHook<T> {
     loadMore(): void;
 }
 
+interface Context<T> {
+    pendingCount: number;
+    dataSource: T[];
+    hasMore: boolean;
+}
+
+interface Methods<T> {
+    requestStart(): void;
+    requestEnd(response: FetchResponse<T>): void;
+}
+
+const contextMethods = {
+    requestStart<T>(state: Context<T>) {
+        state.pendingCount++;
+    },
+    requestEnd<T>(state: Context<T>, response: FetchResponse<T>) {
+        state.pendingCount--;
+        state.dataSource.push(...response.results);
+        state.hasMore = response.hasMore;
+    },
+};
+
 export function useInfiniteScroll<T>(
     fetch: FetchDataSource<T>,
     options: InfiniteScrollOptions<T> = {}
 ): InfiniteScrollHook<T> {
     const {initialLoad = false, initialItems = []} = options;
-    const [dataSource, {concat}] = useArray<T>(initialItems);
-    const [hasMore, setHasMore] = useState(true);
-    const fetchNext = useCallback(
-        async () => {
-            const {hasMore, results} = await fetch({offset: dataSource.length});
-            setHasMore(hasMore);
-            concat(results);
-        },
-        [fetch, dataSource.length, concat]
+    const [{pendingCount, dataSource, hasMore}, {requestStart, requestEnd}] = useMethods<Context<T>, Methods<T>>(
+        contextMethods,
+        {pendingCount: 0, dataSource: initialItems, hasMore: true}
     );
-    const [loadMore, pending] = useActionPending(fetchNext);
+    const loadMore = useCallback(
+        async () => {
+            requestStart();
+            const response = await fetch({offset: dataSource.length});
+            requestEnd(response);
+        },
+        [requestStart, fetch, dataSource.length, requestEnd]
+    );
     useEffect(
         () => {
-            if (initialLoad && !dataSource.length && !pending) {
+            if (initialLoad && !dataSource.length && !pendingCount) {
                 loadMore();
             }
         },
-        [initialLoad, dataSource.length, loadMore, pending]
+        [initialLoad, dataSource.length, loadMore, pendingCount]
     );
 
     return {
         dataSource,
         loadMore,
         hasMore,
-        loading: !!pending,
+        loading: !!pendingCount,
     };
 }

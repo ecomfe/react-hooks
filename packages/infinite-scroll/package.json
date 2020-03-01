@@ -24,8 +24,7 @@
     "test": "skr test --coverage"
   },
   "dependencies": {
-    "@huse/action-pending": "^0.9.1",
-    "@huse/collection": "^0.9.1"
+    "@huse/methods": "^0.9.1"
   },
   "devDependencies": {
     "@testing-library/react-hooks": "^3.2.1",

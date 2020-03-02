@@ -83,6 +83,13 @@ describe('useStableInterval', () => {
         expect(fn).toHaveBeenCalledTimes(1);
     });
 
+    test('works when rejected', async () => {
+        const fn = jest.fn(() => Promise.reject(new Error('error')));
+        renderHook(() => useStableInterval(fn, 4));
+        await timeout(12);
+        expect(fn.mock.calls.length).toBeGreaterThan(1);
+    });
+
     test('do nothing if time is negative', async () => {
         const fn = jest.fn();
         renderHook(() => useStableInterval(fn, -1));

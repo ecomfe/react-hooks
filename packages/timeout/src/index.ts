@@ -63,7 +63,7 @@ export function useStableInterval(callback: (() => any) | undefined, time: numbe
 
                 const reutrnValue = fn.current();
                 if (typeof reutrnValue?.then === 'function') {
-                    reutrnValue.then(next);
+                    reutrnValue.then(next, next);
                 }
                 else {
                     next();

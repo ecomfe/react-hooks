@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.9.2](https://github.com/ecomfe/react-hooks/compare/@huse/poll@0.9.1...@huse/poll@0.9.2) (2020-03-02)
+
+
+### Bug Fixes
+
+* upgrade user-attention to use passive events ([aae1dd1](https://github.com/ecomfe/react-hooks/commit/aae1dd19d0d6b0d03472eccf214def8102828eca))
+
+
+
+
+
 ## [0.9.1](https://github.com/ecomfe/react-hooks/compare/@huse/poll@0.9.0...@huse/poll@0.9.1) (2020-02-25)
 
 **Note:** Version bump only for package @huse/poll

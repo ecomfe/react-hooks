@@ -9570,6 +9570,13 @@ has-flag@^4.0.0:
   resolved "https://registry.npm.taobao.org/has-flag/download/has-flag-4.0.0.tgz#944771fd9c81c81265c4d6941860da06bb59479b"
   integrity sha1-lEdx/ZyByBJlxNaUGGDaBrtZR5s=
 
+has-passive-events@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.npm.taobao.org/has-passive-events/download/has-passive-events-1.0.0.tgz#75fc3dc6dada182c58f24ebbdc018276d1ea3515"
+  integrity sha1-dfw9xtraGCxY8k673AGCdtHqNRU=
+  dependencies:
+    is-browser "^2.0.1"
+
 has-symbol-support-x@^1.4.1:
   version "1.4.2"
   resolved "https://registry.npm.taobao.org/has-symbol-support-x/download/has-symbol-support-x-1.4.2.tgz#1409f98bc00247da45da67cee0a36f282ff26455"
@@ -10612,6 +10619,11 @@ is-boolean-object@^1.0.1:
   version "1.0.1"
   resolved "https://registry.npm.taobao.org/is-boolean-object/download/is-boolean-object-1.0.1.tgz#10edc0900dd127697a92f6f9807c7617d68ac48e"
   integrity sha1-EO3AkA3RJ2l6kvb5gHx2F9aKxI4=
+
+is-browser@^2.0.1:
+  version "2.1.0"
+  resolved "https://registry.npm.taobao.org/is-browser/download/is-browser-2.1.0.tgz#fc084d59a5fced307d6708c59356bad7007371a9"
+  integrity sha1-/AhNWaX87TB9ZwjFk1a61wBzcak=
 
 is-buffer@^1.1.5, is-buffer@~1.1.1:
   version "1.1.6"
@@ -19686,10 +19698,12 @@ use@^3.1.0:
   resolved "https://registry.npm.taobao.org/use/download/use-3.1.1.tgz#d50c8cac79a19fbc20f2911f56eb973f4e10070f"
   integrity sha1-1QyMrHmhn7wg8pEfVuuXP04QBw8=
 
-user-attention@^1.0.2:
-  version "1.0.2"
-  resolved "https://registry.npm.taobao.org/user-attention/download/user-attention-1.0.2.tgz#3e36e8a1dc315963be047f6a9002225cb82da6f2"
-  integrity sha1-PjboodwxWWO+BH9qkAIiXLgtpvI=
+user-attention@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.npm.taobao.org/user-attention/download/user-attention-1.0.3.tgz#a34679ccae11ea09904a2f76c65e617ddc59d808"
+  integrity sha1-o0Z5zK4R6gmQSi92xl5hfdxZ2Ag=
+  dependencies:
+    has-passive-events "^1.0.0"
 
 username@^5.1.0:
   version "5.1.0"

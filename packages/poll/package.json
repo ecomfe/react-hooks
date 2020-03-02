@@ -30,7 +30,7 @@
   "dependencies": {
     "@huse/action-pending": "^0.9.1",
     "@huse/timeout": "^0.9.1",
-    "user-attention": "^1.0.2"
+    "user-attention": "^1.0.3"
   },
   "devDependencies": {
     "@types/react": "^16.9.22",

@@ -20,6 +20,7 @@
     "@huse/hover": "0.8.0",
     "@huse/methods": "0.9.1",
     "@huse/network": "0.8.0",
+    "@huse/performance": "0.8.0",
     "@huse/scroll-into-view": "0.10.0"
   }
 }

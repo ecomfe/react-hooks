@@ -102,5 +102,14 @@ describe('useStableInterval', () => {
         await timeout(5);
         expect(fn).not.toHaveBeenCalled();
     });
+
+    test('stop future async timer on unmount', async () => {
+        const fn = jest.fn(() => timeout(10));
+        const {unmount} = renderHook(() => useStableInterval(fn, 4));
+        await timeout(5);
+        unmount();
+        await timeout(20);
+        expect(fn).toHaveBeenCalledTimes(1);
+    });
 });
 

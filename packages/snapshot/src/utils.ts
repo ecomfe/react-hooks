@@ -22,8 +22,9 @@ export const mergePendingValueToHistory = <T>(history: T[], value: T): T[] => {
     return [...history.slice(0, -1), value];
 };
 
-export const commitValueToHistory = <T>(history: T[], value: T) => {
-    return history[history.length - 1] === value ? history : [...history, value];
+export const commitValueToHistory = <T>(history: T[], value: T, limit: number) => {
+    const nextHistory = history[history.length - 1] === value ? history : [...history, value];
+    return nextHistory.length <= limit ? nextHistory : nextHistory.slice(nextHistory.length - limit);
 };
 
 export const currentValue = <T>(state: SnapshotState<T>): T => {

@@ -13,6 +13,7 @@ import {SnapshotState} from './interface';
 
 export interface SnapshotOptions {
     delay?: number;
+    limit?: number;
 }
 
 export interface Snapshot {
@@ -28,36 +29,41 @@ export type SnapshotHook<T> = [T, Dispatch<SetStateAction<T>>, Snapshot];
 
 type Action<T> = {type: 'undo'} | {type: 'redo'} | {type: 'commit'} | {type: 'update', payload: T | ((value: T) => T)};
 
-const updateValue = <T>(state: SnapshotState<T>, nextValue: T, debounce: number): SnapshotState<T> => {
-    if (state.pendingValue === nextValue) {
+const updateValue = <T>(state: SnapshotState<T>, value: T, options: Required<SnapshotOptions>): SnapshotState<T> => {
+    if (state.pendingValue === value) {
         return state;
     }
 
     // If it is not the latest version, flush history on any input and clear undo stack
     if (state.version !== null) {
         return {
-            pendingValue: nextValue,
+            pendingValue: value,
             version: null,
-            history: [...state.history.slice(0, state.version + 1), nextValue],
+            history: [...state.history.slice(0, state.version + 1), value],
         };
     }
 
     return {
-        pendingValue: nextValue,
+        pendingValue: value,
         version: state.version,
-        history: debounce <= 0 ? [...state.history, nextValue] : state.history,
+        history: options.delay <= 0 ? commitValueToHistory(state.history, value, options.limit) : state.history,
     };
 };
 
-const commitValue = <T>(state: SnapshotState<T>): SnapshotState<T> => {
-    const nextHistory = commitValueToHistory(state.history, state.pendingValue);
+const commitValue = <T>(state: SnapshotState<T>, options: Required<SnapshotOptions>): SnapshotState<T> => {
+    const nextHistory = commitValueToHistory(state.history, state.pendingValue, options.limit);
     return state.history === nextHistory
         ? state
         : {pendingValue: state.pendingValue, version: state.version, history: nextHistory};
 };
 
 export function useSnapshotState<T>(init: T | (() => T), options: SnapshotOptions = {}): SnapshotHook<T> {
-    const {delay = 0} = options;
+    const {delay = 0, limit = Infinity} = options;
+
+    if (limit <= 0) {
+        throw new Error('Non-positive history length limit in useSnapshotState');
+    }
+
     const [{pendingValue, history, version}, dispatch] = useReducer(
         (state: SnapshotState<T>, action: Action<T>): SnapshotState<T> => {
             const {pendingValue, history, version} = state;
@@ -65,10 +71,10 @@ export function useSnapshotState<T>(init: T | (() => T), options: SnapshotOption
                 case 'update': {
                     const next = action.payload;
                     const nextValue = isProducer(next) ? next(currentValue(state)) : next;
-                    return updateValue(state, nextValue, delay);
+                    return updateValue(state, nextValue, {delay, limit});
                 }
                 case 'commit':
-                    return commitValue(state);
+                    return commitValue(state, {delay, limit});
                 case 'undo': {
                     if (version === 0 || history.length === 1) {
                         return state;

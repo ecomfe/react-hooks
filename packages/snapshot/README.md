@@ -8,7 +8,10 @@ Creates a state with version history and provides `undo` and `redo` function to 
 
 ```typescript
 export interface SnapshotOptions {
+    // debounce time to commit value to history, defaults to no debounce
     delay?: number;
+    // max history length, defaults to Infinity
+    limit?: number;
 }
 
 interface Snapshot {

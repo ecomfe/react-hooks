@@ -165,3 +165,23 @@ test('cancel debounced commit on undo', async () => {
     await act(() => timeout(5));
     expect(result.current[2].forwardLength).toBe(1);
 });
+
+test('limit length', () => {
+    const {result} = renderHook(() => useSnapshotState(1, {limit: 3}));
+    act(() => result.current[1](2));
+    act(() => result.current[1](3));
+    act(() => result.current[1](4));
+    expect(result.current[2].backLength).toBe(2);
+});
+
+test('limit length to 1', () => {
+    const {result} = renderHook(() => useSnapshotState(1, {limit: 1}));
+    act(() => result.current[1](2));
+    act(() => result.current[1](3));
+    expect(result.current[2].backLength).toBe(0);
+});
+
+test('non positive limit length', () => {
+    const {result} = renderHook(() => useSnapshotState(1, {limit: 0}));
+    expect(result.error).toBeDefined();
+});

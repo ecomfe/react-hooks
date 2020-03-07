@@ -1,6 +1,6 @@
 {
   "name": "@huse/derived-state",
-  "version": "0.9.1",
+  "version": "0.9.2",
   "keywords": [
     "react",
     "hooks"
@@ -38,6 +38,6 @@
     "react": "^16.8.0"
   },
   "dependencies": {
-    "@huse/previous-value": "^0.9.2"
+    "@huse/previous-value": "^0.9.3"
   }
 }

@@ -1,6 +1,6 @@
-import {useMethods} from '@huse/methods';
+import {useState, useMemo, Dispatch, SetStateAction} from 'react';
 
-interface MapMethods<K, V> {
+export interface MapMethods<K, V> {
     set(key: K, value: V): void;
     setAll(entries: Iterable<[K, V]>): void;
     delete(key: K): void;
@@ -8,9 +8,11 @@ interface MapMethods<K, V> {
     clear(): void;
 }
 
+export type MapHook<K, V> = [Map<K, V>, MapMethods<K, V>, Dispatch<SetStateAction<Map<K, V>>>];
+
 const clone = <K, V>(map: Map<K, V>) => new Map(map.entries());
 
-const methods = {
+const reducers = {
     set<K, V>(state: Map<K, V>, key: K, value: V) {
         return clone(state).set(key, value);
     },
@@ -37,12 +39,32 @@ const methods = {
         }
         return output;
     },
-    clear<K, V>() {
-        return new Map<K, V>();
-    },
 };
 
-export default function useMap<K, V>(initialValue: Iterable<[K, V]> = []) {
-    return useMethods<Map<K, V>, MapMethods<K, V>>(methods, () => new Map(initialValue));
+export default function useMap<K, V>(initialValue: Iterable<[K, V]> = []): MapHook<K, V> {
+    const [value, setValue] = useState(() => new Map(initialValue));
+    const methods = useMemo(
+        () => {
+            return {
+                set(key: K, value: V) {
+                    setValue(state => reducers.set(state, key, value));
+                },
+                setAll(entries: Iterable<[K, V]>) {
+                    setValue(state => reducers.setAll(state, entries));
+                },
+                delete(key: K) {
+                    setValue(state => reducers.delete(state, key));
+                },
+                deleteAll(keys: Iterable<K>) {
+                    setValue(state => reducers.deleteAll(state, keys));
+                },
+                clear() {
+                    setValue(new Map<K, V>());
+                },
+            };
+        },
+        []
+    );
+    return [value, methods, setValue];
 }
 

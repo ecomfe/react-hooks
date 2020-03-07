@@ -1,6 +1,6 @@
-import {useMethods} from '@huse/methods';
+import {useState, useMemo, SetStateAction, Dispatch} from 'react';
 
-interface SetMethods<T> {
+export interface SetMethods<T> {
     add(item: T): void;
     addAll(items: Iterable<T>): void;
     delete(item: T): void;
@@ -8,9 +8,11 @@ interface SetMethods<T> {
     clear(): void;
 }
 
+export type SetHook<T> = [Set<T>, SetMethods<T>, Dispatch<SetStateAction<Set<T>>>];
+
 const clone = <T>(set: Set<T>) => new Set(set.values());
 
-const methods = {
+const reducers = {
     add<T>(state: Set<T>, item: T) {
         if (state.has(item)) {
             return state;
@@ -41,12 +43,32 @@ const methods = {
         }
         return output;
     },
-    clear<T>() {
-        return new Set<T>();
-    },
 };
 
-export default function useSet<T>(initialValue: Iterable<T> = []) {
-    return useMethods<Set<T>, SetMethods<T>>(methods, () => new Set(initialValue));
+export default function useSet<T>(initialValue: Iterable<T> = []): SetHook<T> {
+    const [value, setValue] = useState(() => new Set(initialValue));
+    const methods = useMemo(
+        () => {
+            return {
+                add(item: T) {
+                    return setValue(state => reducers.add(state, item));
+                },
+                addAll(items: Iterable<T>) {
+                    return setValue(state => reducers.addAll(state, items));
+                },
+                delete(item: T) {
+                    return setValue(state => reducers.delete(state, item));
+                },
+                deleteAll(items: Iterable<T>) {
+                    return setValue(state => reducers.deleteAll(state, items));
+                },
+                clear() {
+                    setValue(new Set<T>());
+                },
+            };
+        },
+        []
+    );
+    return [value, methods, setValue];
 }
 

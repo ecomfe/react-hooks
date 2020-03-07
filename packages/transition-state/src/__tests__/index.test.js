@@ -30,6 +30,14 @@ test('custom duration', async () => {
     expect(result.current[0]).toBe(123);
 });
 
+test('custom duration revert', async () => {
+    const {result} = renderHook(() => useTransitionState(123, 4));
+    act(() => result.current[1](456, 10));
+    act(() => result.current[1](789));
+    await act(() => timeout(5));
+    expect(result.current[0]).toBe(123);
+});
+
 test('negative duration', async () => {
     const {result} = renderHook(() => useTransitionState(123, -1));
     act(() => result.current[1](456, 10));

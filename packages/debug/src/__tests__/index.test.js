@@ -74,11 +74,15 @@ describe('useUpdateCause', () => {
 
     test('print on console', () => {
         const warn = console.warn;
+        const table = console.table;
         const mockWarn = jest.fn();
+        const mockTable = jest.fn();
         console.warn = mockWarn;
+        console.table = mockTable;
         const {rerender} = renderHook(props => useUpdateCause(props), {initialProps: {x: [[1]]}});
         rerender({x: [[1]]});
         console.warn = warn;
+        console.table = table;
         expect(mockWarn).toHaveBeenCalled();
     });
 });

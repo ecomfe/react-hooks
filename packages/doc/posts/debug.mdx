@@ -3,6 +3,12 @@ name: debug
 route: /debug
 ---
 
+import {useState} from 'react';
+import {Playground} from 'docz';
+import {Button} from 'antd';
+import 'antd/dist/antd.min.css';
+import {useRenderTimes, useChangeTimes, useUpdateCause} from '@huse/debug';
+
 # @huse/debug
 
 A set of hooks for debugging component.
@@ -19,11 +25,55 @@ function useRenderTimes(): number
 
 This times returned starts from `1` and increase on each render, even props and states are not changed.
 
-```javascript
-import {useRenderTimes} from '@huse/debug';
+<Playground>
+    {
+        () => {
+            const [value, setValue] = useState(0);
+            const renderTimes = useRenderTimes();
+            return (
+                <>
+                    <Button onClick={() => setValue(value => value - 1)}>-1</Button>
+                    {value}
+                    <span style={{color: '#999', padding: '0 10px'}}>(rendered {renderTimes} times)</span>
+                    <Button onClick={() => setValue(value => value + 1)}>+1</Button>
+                </>
+            );
+        }
+    }
+</Playground>
 
-const App = () => {
-    const renderTimes = useRenderTimes();
+## useChangeTimes
+
+Like `useRenderTimes` but only increment when a value is actually changed, this value is zero based.
+
+```typescript
+function useChangeTimes<T>(value: T): number
+```
+
+<Playground>
+    {
+        () => {
+            const [value, setValue] = useState(0);
+            const renderTimes = useChangeTimes(value);
+            return (
+                <>
+                    <Button onClick={() => setValue(value => value - 1)}>-1</Button>
+                    {value}
+                    <span style={{color: '#999', padding: '0 10px'}}>(changed {renderTimes} times)</span>
+                    <Button onClick={() => setValue(value => value + 1)}>+1</Button>
+                </>
+            );
+        }
+    }
+</Playground>
+
+This hooks identifies "change" by reference, to inspect why a value is changed, try `useUpdateCause` hook.
+
+```javascript
+import {useChangeTimes} from '@huse/debug';
+
+const App = props => {
+    const renderTimes = useChangeTimes(props.foo);
 
     console.log(renderTimes);
 

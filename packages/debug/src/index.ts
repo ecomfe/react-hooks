@@ -12,6 +12,18 @@ export function useRenderTimes(): number {
     return count.current;
 }
 
+export function useChangeTimes<T>(value: T): number {
+    const count = useRef(0);
+    const previousValue = usePreviousValue(value);
+    const mounted = useRef(false);
+
+    if (mounted.current && value !== previousValue) {
+        count.current++;
+    }
+    mounted.current = true;
+    return count.current;
+}
+
 export interface UpdateCause {
     propName: string;
     shallowEquals: boolean;

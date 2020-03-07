@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import {renderHook} from '@testing-library/react-hooks';
-import {useRenderTimes, useUpdateCause} from '../index';
+import {useRenderTimes, useChangeTimes, useUpdateCause} from '../index';
 
 describe('useRenderTimes', () => {
     test('initial to 1', () => {
@@ -12,6 +12,30 @@ describe('useRenderTimes', () => {
         const {result, rerender} = renderHook(() => useRenderTimes());
         rerender();
         expect(result.current).toBe(2);
+    });
+});
+
+describe('useChangeTimes', () => {
+    test('initial to 0', () => {
+        const {result} = renderHook(() => useChangeTimes(123));
+        expect(result.current).toBe(0);
+    });
+
+    test('keep same when no change', () => {
+        const {result, rerender} = renderHook(props => useChangeTimes(props.value), {initialProps: {value: 123}});
+        rerender({value: 123});
+        expect(result.current).toBe(0);
+    });
+
+    test('increment on change', () => {
+        const {result, rerender} = renderHook(props => useChangeTimes(props.value), {initialProps: {value: 123}});
+        rerender({value: 456});
+        expect(result.current).toBe(1);
+    });
+
+    test('undefined initial value', () => {
+        const {result} = renderHook(props => useChangeTimes(props.value), {initialProps: {value: undefined}});
+        expect(result.current).toBe(0);
     });
 });
 

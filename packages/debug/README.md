@@ -26,6 +26,30 @@ const App = () => {
 };
 ```
 
+## useChangeTimes
+
+Like `useRenderTimes` but only increment when a value is actually changed.
+
+```typescript
+function useChangeTimes<T>(value: T): number
+```
+
+This hooks identifies "change" by reference, to inspect why a value is changed, try `useUpdateCause` hook.
+
+```javascript
+import {useChangeTimes} from '@huse/debug';
+
+const App = props => {
+    const renderTimes = useChangeTimes(props.foo);
+
+    console.log(renderTimes);
+
+    return (
+        // ...
+    );
+};
+```
+
 ## useUpdateCause
 
 Returns an array of reasons causing component to update.

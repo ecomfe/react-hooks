@@ -14,7 +14,7 @@
     "lint": "lerna run lint",
     "test": "lerna run test --ignore @huse/timeout && lerna run test --scope @huse/timeout",
     "build": "lerna run build",
-    "release": "lerna version --conventional-commits --no-push",
+    "release": "[ -z $GH_TOKEN ] && { echo 'No GH_TOKEN'; exit 1; } ||  lerna version --conventional-commits --create-release github",
     "ci": "yarn && yarn lint && yarn build && yarn test",
     "preversion": "yarn ci",
     "prepack": "yarn && yarn build",

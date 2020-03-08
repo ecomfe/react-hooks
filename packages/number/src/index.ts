@@ -1,14 +1,6 @@
 import {useMethods} from '@huse/methods';
 
-interface CounterMethods {
-    increment(): void;
-    decrement(): void;
-    inc(): void;
-    dec(): void;
-    reset(value?: number): void;
-}
-
-const methods = {
+const reducers = {
     increment(state: number) {
         return state + 1;
     },
@@ -27,5 +19,5 @@ const methods = {
 };
 
 export function useCounter(initialValue: number = 0) {
-    return useMethods<number, CounterMethods>(methods, initialValue);
+    return useMethods(reducers, initialValue);
 }

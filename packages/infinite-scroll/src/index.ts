@@ -35,15 +35,17 @@ interface Methods<T> {
     requestEnd(response: FetchResponse<T>): void;
 }
 
-const contextMethods = {
-    requestStart<T>(state: Context<T>) {
-        state.pendingCount++;
-    },
-    requestEnd<T>(state: Context<T>, response: FetchResponse<T>) {
-        state.pendingCount--;
-        state.dataSource.push(...response.results);
-        state.hasMore = response.hasMore;
-    },
+const createContextReducers = <T>() => {
+    return {
+        requestStart(state: Context<T>) {
+            state.pendingCount++;
+        },
+        requestEnd(state: Context<T>, response: FetchResponse<T>) {
+            state.pendingCount--;
+            state.dataSource.push(...response.results);
+            state.hasMore = response.hasMore;
+        },
+    };
 };
 
 export function useInfiniteScroll<T>(
@@ -51,8 +53,8 @@ export function useInfiniteScroll<T>(
     options: InfiniteScrollOptions<T> = {}
 ): InfiniteScrollHook<T> {
     const {initialLoad = false, initialItems = []} = options;
-    const [{pendingCount, dataSource, hasMore}, {requestStart, requestEnd}] = useMethods<Context<T>, Methods<T>>(
-        contextMethods,
+    const [{pendingCount, dataSource, hasMore}, {requestStart, requestEnd}] = useMethods(
+        createContextReducers<T>(),
         {pendingCount: 0, dataSource: initialItems, hasMore: true}
     );
     const loadMore = useCallback(

@@ -1,12 +1,6 @@
 import {useMethods} from '@huse/methods';
 
-interface BooleanMethods {
-    on(): void;
-    off(): void;
-    toggle(): void;
-}
-
-const methods = {
+const reducers = {
     on() {
         return true;
     },
@@ -19,7 +13,7 @@ const methods = {
 };
 
 export function useBoolean(initialValue: boolean = false) {
-    return useMethods<boolean, BooleanMethods>(methods, initialValue);
+    return useMethods(reducers, initialValue);
 }
 
 export function useSwitch(initialValue: boolean = false) {

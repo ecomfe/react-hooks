@@ -19,6 +19,7 @@
   ],
   "scripts": {
     "build": "rm -rf es cjs && tsc & tsc --module ESNext --outDir ./es",
+    "build-check": "tsc",
     "lint": "skr lint",
     "test": "skr test --coverage --target=react"
   },

@@ -22,9 +22,10 @@
     "registry": "https://registry.npmjs.com"
   },
   "scripts": {
+    "build": "rm -rf es cjs && tsc & tsc --module ESNext --outDir ./es",
+    "build-check": "tsc",
     "lint": "skr lint",
-    "test": "skr test --coverage --target=react",
-    "build": "rm -rf es cjs && tsc & tsc --module ESNext --outDir ./es"
+    "test": "skr test --coverage --target=react"
   },
   "devDependencies": {
     "@testing-library/react": "^9.5.0",

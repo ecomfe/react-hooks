@@ -22,10 +22,11 @@
     "registry": "https://registry.npmjs.com"
   },
   "scripts": {
-    "lint": "skr lint",
-    "test": "echo 'No test in @huse/intersection'",
     "build": "rm -rf es cjs && tsc & tsc --module ESNext --outDir ./es",
-    "start": "skr dev --src=demo"
+    "build-check": "tsc",
+    "lint": "skr lint",
+    "start": "skr dev --src=demo",
+    "test": "echo 'no test in @huse/intersection'"
   },
   "dependencies": {
     "@huse/effect-ref": "^0.9.3"

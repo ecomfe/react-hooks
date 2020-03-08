@@ -14,8 +14,9 @@
     "lint": "lerna run lint",
     "test": "lerna run test --ignore @huse/timeout && lerna run test --scope @huse/timeout",
     "build": "lerna run build",
+    "build-check": "lerna run build-check",
     "release": "lerna version --conventional-commits --no-push",
-    "ci": "yarn && yarn lint && yarn build && yarn test",
+    "ci": "yarn && yarn lint && yarn build-check && yarn test",
     "preversion": "yarn ci",
     "prepack": "yarn && yarn build",
     "doc:dev": "cd packages/doc && docz dev"

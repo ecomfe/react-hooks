@@ -5,8 +5,10 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "test": "echo 'No test in @huse/doc'",
-    "lint": "echo 'No lint in @huse/doc'"
+    "build": "echo 'No build in @huse/doc'",
+    "build-check": "echo 'No build in @huse/doc'",
+    "lint": "echo 'No lint in @huse/doc'",
+    "test": "echo 'No test in @huse/doc'"
   },
   "devDependencies": {
     "@ant-design/icons": "^4.0.2",

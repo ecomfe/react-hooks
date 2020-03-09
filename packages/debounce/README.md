@@ -1,8 +1,16 @@
 # @huse/debounce
 
-提供延迟状态或回调的hook。
+Provides hooks to debounce value changes, effects or callbacks.
 
 ## useDebouncedValue
+
+Derive a given value and debounce its update by a given delay.
+
+```typescript
+function useDebouncedValue<T>(value: T, wait: number): T
+```
+
+Returned value will not update unless the input value stops change longer than `wait`.
 
 ```javascript
 import {useState} from 'react';
@@ -53,18 +61,21 @@ const App = () => {
 
     return (
         <>
-            <div>
-                <input value={value} onChange={e => setValue(e.target.value)} />
-            </div>
-            <div>
-                Current Value: {debouncedValue}
-            </div>
+            <input value={value} onChange={e => setValue(e.target.value)} />
         </>
     );
 };
 ```
 
 ## useDebouncedCallback
+
+Simply wrap a callback to a debounced one.
+
+```typescript
+function useDebouncedCallback<C extends Function>(callback: C, wait: number): C
+```
+
+Note all queued invocation will be canceled when component unmounts and when either `callback` r=or `wait` is changed.
 
 ```javascript
 import {useState} from 'react';
@@ -81,5 +92,3 @@ const search = useDebouncedCallback(
     200
 );
 ```
-
-在组件销毁后，函数不会再被执行。

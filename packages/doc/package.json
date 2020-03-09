@@ -20,6 +20,7 @@
   "dependencies": {
     "@huse/action-pending": "^0.9.3",
     "@huse/boolean": "^0.9.3",
+    "@huse/click-outside": "^0.10.3",
     "@huse/hover": "^0.9.1",
     "@huse/merged-ref": "^0.8.0",
     "@huse/methods": "^0.9.3",

@@ -28,14 +28,16 @@ The second value of returned tuple is the `pendingCount`, a simple `!!pendingCou
     {
         () => {
             const wait = time => new Promise(resolve => setTimeout(resolve, time));
-            const [waitTime, pendingCount] = useActionPending(api);
+            const [waitTime, pendingCount] = useActionPending(wait);
             return (
                 <>
-                    {pendingCount && <div><Spin />{pendingCount} timeouts in the queue</div>}
-                    <Button onClick={() => waitTime(2000)}>Wait 2s</Button>
-                    <Button onClick={() => waitTime(4000)}>Wait 4s</Button>
-                    <Button onClick={() => waitTime(6000)}>Wait 6s</Button>
-                    <Button onClick={() => waitTime(8000)}>Wait 8s</Button>
+                    <div>
+                        <Button onClick={() => waitTime(2000)}>Wait 2s</Button>
+                        <Button onClick={() => waitTime(4000)}>Wait 4s</Button>
+                        <Button onClick={() => waitTime(6000)}>Wait 6s</Button>
+                        <Button onClick={() => waitTime(8000)}>Wait 8s</Button>
+                    </div>
+                    {!!pendingCount && <div><Spin />{pendingCount} timeouts in the queue</div>}
                 </>
             );
         }

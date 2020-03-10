@@ -27,6 +27,7 @@
     "@huse/document-event": "^0.9.4",
     "@huse/document-title": "^0.9.3",
     "@huse/effect-ref": "^0.9.3",
+    "@huse/element-size": "^0.9.3",
     "@huse/hover": "^0.9.1",
     "@huse/merged-ref": "^0.8.0",
     "@huse/methods": "^0.9.3",

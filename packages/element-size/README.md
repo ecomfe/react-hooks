@@ -1,40 +1,57 @@
 # @huse/element-size
 
-与元素尺寸相关的hook。
+Hooks related to observing element size.
 
 ## useElementResize
 
-当元素尺寸变化时调用相应函数。
+Trigger a callback when element resizes.
+
+```typescript
+type ElementResizeCallback = (element: HTMLElement | null) => void;
+
+function useElementResize(callback: (element: HTMLElement) => void): ElementResizeCallback;
+```
+
+To ensure all element changes are captured even with the change of element type (like from `<div>` to `<span>`),
+`useElementResize` returns a callback ref, you are required to pass it via `ref` prop to an DOM element.
+
+**Note: `useElementResize` does not trigger callback on initial mount.**
 
 ```javascript
 import {useElementResize} from '@huse/element-size';
 
-const ref = useRef(null);
-const onResize = useCallback(
-    () => console.log('Resized'),
-    []
-);
-useElementResize(onResize);
+const App = () => {
+    const ref = useRef(null);
+    const onResize = useCallback(
+        () => console.log('Resized'),
+        []
+    );
+    useElementResize(onResize);
 
-return (
-    <div ref={ref}>
-        Hello World
-    </div>
-);
+    return (
+        <div ref={ref}>
+            Hello World
+        </div>
+    );
+}
 ```
 
 ## useElementSize
 
-获取并同步元素的尺寸，返回结构如下：
+Observes and returns the offset size of an element.
 
 ```typescript
-interface Size {
+export interface Size {
     width: number; // offsetWidth
     height: number; // offsetHeight
 }
+
+type ElementResizeCallback = (element: HTMLElement | null) => void;
+
+function useElementSize(): [ElementResizeCallback, Size | undefined];
 ```
 
-在未初始化时，返回`undefined`。
+The initial size is `undefined` and will be updated on mount any anytime element is resized.
 
 ```javascript
 import {useElementSize} from '@huse/element-size';

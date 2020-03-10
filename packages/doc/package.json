@@ -41,6 +41,7 @@
     "@huse/performance": "^0.9.1",
     "@huse/poll": "^0.9.3",
     "@huse/previous-value": "^0.9.3",
+    "@huse/request": "^0.10.1",
     "@huse/scroll-into-view": "^0.10.2",
     "@huse/scroll-lock": "^0.9.0",
     "@huse/scroll-position": "^0.9.1",

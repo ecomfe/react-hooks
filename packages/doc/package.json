@@ -37,6 +37,7 @@
     "@huse/merged-ref": "^0.8.0",
     "@huse/methods": "^0.9.3",
     "@huse/network": "^0.9.1",
+    "@huse/number": "^0.9.3",
     "@huse/performance": "^0.9.1",
     "@huse/scroll-into-view": "^0.10.2",
     "@huse/scroll-lock": "^0.9.0",

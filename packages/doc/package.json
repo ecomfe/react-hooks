@@ -39,6 +39,7 @@
     "@huse/network": "^0.9.1",
     "@huse/number": "^0.9.3",
     "@huse/performance": "^0.9.1",
+    "@huse/poll": "^0.9.3",
     "@huse/scroll-into-view": "^0.10.2",
     "@huse/scroll-lock": "^0.9.0",
     "@huse/scroll-position": "^0.9.1",

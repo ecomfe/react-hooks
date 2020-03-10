@@ -1,43 +1,50 @@
 # @huse/poll
 
-定期拉取数据的hook。
+Poll data periodically and update corresponding state.
 
 ## usePoll
 
-指定时间拉取数据，并返回`[response, pendingCount]`的组合。
-
-可以普通地指定拉取时间：
-
-```javascript
-import {usePoll} from '@huse/poll';
-
-const [notifications, pendingCount] = usePoll(fetchLastNotifications, 60 * 1000);
-return (
-    <header>
-        {notifications.length} new messages
-        <a onClick={refreshNotifications} disabled={!!pendingCount}>Refresh</a>
-    </header>
-    <ul>
-        {notifications.map(renderNotification)}
-    </ul>
-)
-```
-
-另一个模式被称为智能模式，第2个参数传递一个对象，有以下属性：
+Provides the ability to periodically request data, store it in a state.
 
 ```typescript
-export interface PollOptions {
-    minInterval: number; // 最短的拉取间隔
-    maxInterval?: number; // 最长允许的拉取间隔
-    maxIdleTime?: number; // 认为用户不再活跃前的等待时间
-    stopOnInactive?: boolean; // 用户离开时是否继续拉取
+interface PollOptions {
+    minInterval: number; // Minimum interval
+    maxInterval?: number; // Maximum interval
+    maxIdleTime?: number; // How long to wait before user is inactive without any action
+    stopOnInactive?: boolean; // Stop poll when use is inactive
 }
+type PollHook<S> = [S | undefined, number];
+function usePoll<S>(fetch: () => Promise<S>, options: number | PollOptions): PollHook<S>
 ```
 
-用户的状态会被自动识别为3种可能性：
+The second number of returned tuple is `pendingCount` indicating how many requests are currently on the fly.
 
-- 活跃：此时按最短时间拉取数据。
-- 未知：当用户有一段时间没有任何活动（如鼠标移动等）后，会进入未知状态，此时使用最短与最长间隔间的某个值。
-- 离开：当浏览器失去焦点、最小化等情况出现时，认为用户已经离开，此时如果`stopOnInactive`为`true`则停止拉取，否则与未知状态保持一致。
+Without `options` argument, poll is triggered at a stable interval, time ellapsed between request and response are excluded from interval, the next request is started after `interval` milliseconds when response is arrived.
 
-需要注意的是：当`stopOnInactive`配置打开时，用户离开时长超过`minInterval`，重新进入活跃状态时会立刻进行一次数据拉取，但这一次拉取可能会导致下一次拉取延时较长。
+```javascript
+import {Spin} from 'antd';
+import {usePoll} from '@huse/poll';
+
+const App = () => {
+    const [notifications, pendingCount] = usePoll(fetchLastNotifications, 60 * 1000);
+
+    return (
+        <header>
+            {!!pendingCount && <Spin />}{notifications.length} new messages
+        </header>
+        <ul>
+            {notifications.map(renderNotification)}
+        </ul>
+    );
+};
+```
+
+By passing `options` argument with both `minInterval` and `maxInterval`, `usePoll` works in an "intelligent mode".
+
+In this mode, poll interval varies between `minInterval` and `maxInterval` corresponding to whether use is active or not.
+
+User active states are described as one of the three:
+
+- Active: user is actively interacting with current view, poll will be triggered at an interval of `minInterval`.
+- Unknown: user takes no activity for a while (specified by `maxIdleTime`, defaults to 30 seconds), poll will have an interval greater than `minInterval` but less than `maxInterval`.
+- Inactive: user is completely inactive, e.g. document is hidden or window losts focus, poll will be stopped if `stopOnInactive` is `ture`, or will behave like when user is in unknown state.

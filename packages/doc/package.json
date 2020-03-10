@@ -30,6 +30,7 @@
     "@huse/element-size": "^0.9.3",
     "@huse/hover": "^0.9.1",
     "@huse/immer": "^0.9.3",
+    "@huse/input-value": "^0.9.3",
     "@huse/merged-ref": "^0.8.0",
     "@huse/methods": "^0.9.3",
     "@huse/network": "^0.9.1",

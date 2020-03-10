@@ -1,19 +1,37 @@
 # @huse/input-value
 
-快速与输入类元素对接状态的hook。
+Generates `value` and `onChange` that satisfies input elements.
 
 ## useInputValue
+
+To get rid of the duplication of `e => setState(e.target.value)`, `useInputValue` returns an object containing both `value` and change event aware `onChange`.
+
+```typescript
+interface InputValueState {
+    value: string;
+    onChange(e: ChangeEvent<HTMLInputElement>): void;
+}
+function useInputValue(initialValue: string = ''): InputValueState;
+```
+
+This hook is better used with `{...props}` syntax in JSX.
 
 ```javascript
 import {useInputValue} from '@huse/input-value';
 
-const name = useInputValue('');
-const age = useInputValue(10);
+const App = () => {
+    const name = useInputValue('');
+    const age = useInputValue(10);
 
-<div>
-    <label>Username: <input {...name} /></label>
-</div>
-<div>
-    <label>Age: <input type="number" {...age} /></label>
-</div>
+    return (
+        <>
+            <div>
+                <label>Username: <input {...name} /></label>
+            </div>
+            <div>
+                <label>Age: <input type="number" {...age} /></label>
+            </div>
+        </>
+    );
+};
 ```

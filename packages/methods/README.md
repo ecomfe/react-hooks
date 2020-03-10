@@ -31,7 +31,7 @@ export function useMethods<S, R extends Reducers<S>>(init: R | (() => R), initia
 
 In short, `useMethods` returns a tuple containing 3 items: the state, an object of methods mutating the state, the `setState` function.
 
-```javascript
+```jsx
 const arrayReducers = {
     push(state, value) {
         // Immer is introduced by default
@@ -101,7 +101,7 @@ export function useMethodsExtension<S, R extends ImmerReducers<S>>(reducers: R, 
 
 This hook is also useful to extends more methods from an already generated methods hook.
 
-```javascript
+```jsx
 const App = () => {
     // Suppose useArray is a hook implemented on useMethods
     const [list, methods, setList] = useArray();

@@ -21,7 +21,7 @@ The second number of returned tuple is `pendingCount` indicating how many reques
 
 Without `options` argument, poll is triggered at a stable interval, time ellapsed between request and response are excluded from interval, the next request is started after `interval` milliseconds when response is arrived.
 
-```javascript
+```jsx
 import {Spin} from 'antd';
 import {usePoll} from '@huse/poll';
 

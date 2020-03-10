@@ -6,7 +6,7 @@
 
 在指定时间后执行。
 
-```javascript
+```jsx
 import {useTimeout} from '@huse/timeout';
 
 const callback = () => {
@@ -23,7 +23,7 @@ useTimeout(callback, 200); // executes after 200ms
 
 在指定时间后执行。
 
-```javascript
+```jsx
 import {useInterval} from '@huse/timeout';
 
 const callback = () => {
@@ -44,7 +44,7 @@ useInterval(callback, 200); // executes every 200ms
 
 如果函数为异步函数，则会在异步返回后再等待固定时间执行。
 
-```javascript
+```jsx
 import {useInterval} from '@huse/timeout';
 
 const callback = async () => {

@@ -16,7 +16,7 @@ function useDocumentEvent<K extends EventNames>(eventName: K, fn: DocumentEventH
 
 The event handler passed to `useDocumentEvent` is not forced to be reference equal, this means you are allowed to use a function expression without `useCallback` to memoize it.
 
-```javascript
+```jsx
 import {useDocumentEvent} from '@huse/document-event';
 
 const App = () => {

@@ -12,7 +12,7 @@ function useLocalStorage<T>(key: string, initialValue: T): [T, (value: T) => voi
 
 Any update to value from other tabs or frames will be observed via `storage` event and sync to state.
 
-```javascript
+```jsx
 import {useState, useCallback} from 'react';
 import {Input, Button} from 'antd';
 import {useLocalStorage} from '@huse/document-title';

@@ -4,7 +4,7 @@
 
 ## useBoolean
 
-```javascript
+```jsx
 import {useBoolean} from '@huse/boolean';
 
 const [value, {on, off, toggle}] = useBoolean(true);
@@ -18,7 +18,7 @@ toggle(); // revert value
 
 简单地将`useBoolean`的方法展开后返回。
 
-```javascript
+```jsx
 import {useBoolean} from '@huse/boolean';
 
 const [value, on, off, toggle] = useSwitch(true);
@@ -28,7 +28,7 @@ const [value, on, off, toggle] = useSwitch(true);
 
 仅支持`toggle`：
 
-```javascript
+```jsx
 import {useBoolean} from '@huse/boolean';
 
 const [value, toggle] = useToggle(true);

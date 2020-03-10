@@ -12,7 +12,7 @@ function useMedia(query: string): boolean;
 
 The return value is responsive to viewport and device changes.
 
-```javascript
+```jsx
 import {useMedia} from '@huse/media';
 
 const App = () => {
@@ -50,7 +50,7 @@ function usePreferDarkMode(): boolean;
 
 This hook is also response, that means the value will be updated if system changes color scheme or having a automatic scheme.
 
-```javascript
+```jsx
 import {usePreferDarkMode} from '@huse/media';
 
 const App = () => {

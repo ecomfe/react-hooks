@@ -20,7 +20,7 @@ This is a wrap of `useMethods` in `@huse/methods` and contains methods below:
 
 `inc` is an alias to `increment` and `dec` is an alias to `decrement`.
 
-```javascript
+```jsx
 import {Button} from 'antd';
 import {useCounter} from '@huse/boolean';
 

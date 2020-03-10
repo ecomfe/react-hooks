@@ -16,7 +16,7 @@ function useMergedRef<T>(refs: Array<RefLike<T>>): RefCallback<T>
 In the ecosystem of react, many custom hooks return callback ref, in order to serve multiple functions on the same element,
 `useMergedRef` is introduced.
 
-```javascript
+```jsx
 import {useMergedRef} from '@huse/merged-ref';
 import {useElementSize} from '@huse/element-size';
 import {useOnScreen} from '@huse/intersection';

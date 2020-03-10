@@ -15,7 +15,7 @@ This hook only checks intersection between element and the root element (`docume
 
 **Note: `useOnScreen` requires `IntersectionObserver` to work, without `IntersectionObserver` it supposes the element is always on screen.**
 
-```javascript
+```jsx
 import {useOnScreen} from '@huse/intersection';
 
 const LazyView = ({children}) => {

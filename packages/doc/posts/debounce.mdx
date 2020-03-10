@@ -90,7 +90,7 @@ function useDebouncedCallback<C extends Function>(callback: C, wait: number): C
 
 Note all queued invocation will be canceled when component unmounts and when either `callback` r=or `wait` is changed.
 
-```javascript
+```jsx
 import {useState} from 'react';
 import {useDebouncedCallback} from '@huse/debounce';
 

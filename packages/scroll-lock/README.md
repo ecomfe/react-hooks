@@ -14,7 +14,7 @@ When `lock` is `true` scroll will be locked, `overflow` style will be reverted w
 
 If an other modification of `overflow` style happens after scroll lock, `useScrollLock` will not revert the style.
 
-```javascript
+```jsx
 import {useState} from 'react';
 import {Button, Modal} from 'antd';
 import {useScrollLock} from '@huse/scroll-lock';

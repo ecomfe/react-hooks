@@ -21,7 +21,7 @@ function useHover(options?: HoverOptions, onEnter?: (event: MouseEvent) => void,
 
 The `delay` options is default to `0`, with a value less than or equals to 0 hover state will change immediately on mouse enter and leave.
 
-```javascript
+```jsx
 import {useHover} from '@huse/hover';
 
 const App = () => {
@@ -38,7 +38,7 @@ const App = () => {
 Note that when `delay` is a positive value, `onEnter` and `onLeave` callbacks are also debounced,
 once you want these callbacks to execute immediately without debouncing, compose callbacks yourself:
 
-```javascript
+```jsx
 import {useReducer, useCallback} from 'react';
 import {useHover} from '@huse/hover';
 

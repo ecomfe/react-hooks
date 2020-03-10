@@ -14,7 +14,7 @@ function useActionPending<A extends AsyncFunction>(action: A): [A, number]
 
 The second value of returned tuple is the `pendingCount`, a simple `!!pendingCount` can be used to check whether there is any unfinished calls and motivates to a loading UI.
 
-```javascript
+```jsx
 import {useActionPending} from '@huse/action-pending';
 
 const api = id => fetch(`/users/${id}`).then(r => r.json());

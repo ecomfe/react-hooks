@@ -18,7 +18,7 @@ The returned tuple is `[loaded, errored]` with three combinations indicating dif
 
 In most case the first `boolean` is meaningful enough.
 
-```javascript
+```jsx
 import {useScript} from '@huse/script';
 
 const App = () => {
@@ -55,7 +55,7 @@ function useScriptSuspense(src?: string): boolean
 
 A component using `useScriptSuspense` must reside inside a `<Suspense>`.
 
-```javascript
+```jsx
 import {useScriptSuspense} from '@huse/script';
 
 const Demo = () => {

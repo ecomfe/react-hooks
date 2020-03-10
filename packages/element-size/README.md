@@ -17,7 +17,7 @@ To ensure all element changes are captured even with the change of element type 
 
 **Note: `useElementResize` does not trigger callback on initial mount.**
 
-```javascript
+```jsx
 import {useElementResize} from '@huse/element-size';
 
 const App = () => {
@@ -53,7 +53,7 @@ function useElementSize(): [ElementResizeCallback, Size | undefined];
 
 The initial size is `undefined` and will be updated on mount any anytime element is resized.
 
-```javascript
+```jsx
 import {useElementSize} from '@huse/element-size';
 
 const ref = useRef(null);

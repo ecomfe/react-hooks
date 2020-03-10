@@ -15,7 +15,7 @@ function usePreviousValue<T>(value: T): T | undefined
 
 **Note: this hook is not designed to get the "previous different version", the previous value may be the same of given value.**
 
-```javascript
+```jsx
 import {useReducer} from 'react';
 import {Button} from 'antd';
 import {usePreviousValue} from '@huse/previous-value';
@@ -45,7 +45,7 @@ but its reference changes.
 
 This hook, `useOriginalCopy`, aimed to help retrieve the very first version of an object, that is:
 
-```javascript
+```jsx
 const foo = {x: 1};
 originalCopy(foo); // This keeps foo in cache
 originalCopy({x: 1}) === foo; // This will evaluate to true since a cached version is returned
@@ -60,7 +60,7 @@ function useOriginalCopy<T>(value: T, equals: CustomEquals<T> = shallowEquals): 
 
 By default a shallow equal is used, a custom equality function can be passed.
 
-```javascript
+```jsx
 import {useOriginalCopy} from '@huse/previous-value';
 
 const App = () => {
@@ -96,7 +96,7 @@ function useOriginalDeepCopy<T>(value: T): T;
 
 In short, this is exactly the same as:
 
-```javascript
+```jsx
 return useOriginalCopy(value, deepEquals)
 ```
 

@@ -6,7 +6,7 @@
 
 返回是否在线的`boolean`值。
 
-```javascript
+```jsx
 import {useOnLine} from '@huse/network';
 
 const isOnLine = useOnLine;

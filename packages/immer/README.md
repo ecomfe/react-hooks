@@ -15,7 +15,7 @@ function useImmerState<S = any>(initialState: S | (() => S)): ImmerState<S>;
 
 This works exactly the same as `useState` with a single difference that when a function is passed to `setState`, it can mutate state directly.
 
-```javascript
+```jsx
 import {useImmerState} from '@huse/immer';
 import {Button} from 'antd';
 
@@ -53,7 +53,7 @@ Some differences with `useReducer`:
 2. reducer can mutate state directly.
 3. `initializer` won't receive `initialState` as its argument.
 
-```javascript
+```jsx
 import {useImmerReducer} from '@huse/immer';
 
 const App = () => {

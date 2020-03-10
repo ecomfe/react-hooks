@@ -17,7 +17,7 @@ By default `compute` is `propValue => propValue`, this means state is always upd
 
 Suppose we have a `getDerivedStateFromProps` implement in early days:
 
-```javascript
+```jsx
 class Foo extends Component {
     static getDerivedStateFromProps(props, state) {
         if (state.list !== props.list) {
@@ -31,7 +31,7 @@ class Foo extends Component {
 
 A corresponding implement with `useDerivedState` could be:
 
-```javascript
+```jsx
 import {useDerivedState} from '@huse/derived-state';
 
 const Foo = ({list}) => {

@@ -40,7 +40,7 @@ The `fetch` function provided to `useInfiniteScroll` accepts an object containin
 
 This is a working example to integrate `useInfiniteScroll` with [react-infinite-scroll-component](https://www.npmjs.com/package/react-infinite-scroll-component):
 
-```javascript
+```jsx
 import InfiniteScroll from 'react-infinite-scroll-component';
 import {useInfiniteScroll} from '@huse/infinite-scroll';
 

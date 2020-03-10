@@ -4,7 +4,7 @@
 
 ## useForceupdate
 
-```javascript
+```jsx
 import {useForceUpdate} from '@huse/update';
 
 const forceUpdate = useForceupdate();

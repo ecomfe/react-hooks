@@ -4,7 +4,7 @@
 
 ## useSelection
 
-```javascript
+```jsx
 import {useSelection} from '@huse/selection';
 
 const [selection, {selectIndex}] = useSelection(initialSelectedIndex);

@@ -23,7 +23,7 @@ Unlike `useRef` which is not responsive to element change, this hook provides ab
 
 In case you need to use multiple callback refs on the same DOM element, `useMergedRef` from `@huse/merged-ref` may help.
 
-```javascript
+```jsx
 import {useState, useCallback} from 'react';
 import {useEffectRef} from '@huse/effect-ref';
 import elementResizeDetectorMaker from 'element-resize-detector';

@@ -53,7 +53,7 @@ but its reference changes.
 
 This hook, `useOriginalCopy`, aimed to help retrieve the very first version of an object, that is:
 
-```javascript
+```jsx
 const foo = {x: 1};
 originalCopy(foo); // This keeps foo in cache
 originalCopy({x: 1}) === foo; // This will evaluate to true since a cached version is returned
@@ -105,7 +105,7 @@ function useOriginalDeepCopy<T>(value: T): T;
 
 In short, this is exactly the same as:
 
-```javascript
+```jsx
 return useOriginalCopy(value, deepEquals)
 ```
 

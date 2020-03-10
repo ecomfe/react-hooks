@@ -16,7 +16,7 @@ function useInputValue(initialValue: string = ''): InputValueState;
 
 This hook is better used with `{...props}` syntax in JSX.
 
-```javascript
+```jsx
 import {useInputValue} from '@huse/input-value';
 
 const App = () => {

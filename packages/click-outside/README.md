@@ -14,7 +14,7 @@ This hook often used in cases where a modal or a dropdown should hide when click
 
 It also works in a touch device, `touchstart` will be used.
 
-```javascript
+```jsx
 import {useRef, useState} from 'react';
 import {useClickOutside} from '@huse/click-outside';
 

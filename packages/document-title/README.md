@@ -12,7 +12,7 @@ function useDocumentTitle(title: string): void;
 
 Since it reverts `document.title` to previous value, it should be safe to have multiple components using this hook simultaneously.
 
-```javascript
+```jsx
 import {useDocumentTitle} from '@huse/document-title';
 
 const App = () => {

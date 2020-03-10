@@ -31,7 +31,7 @@ Encapsulate arrays into methods via `useMethods`, contains methods below:
 }
 ```
 
-```javascript
+```jsx
 import {useArray} from '@huse/collection';
 
 const App = () => {
@@ -61,7 +61,7 @@ Encapsulate `Set` type into methods via `useMethods`, contains methods below:
 
 Works like any methods hook.
 
-```javascript
+```jsx
 import {useSet} from '@huse/collection';
 
 const App = () => {
@@ -89,7 +89,7 @@ Encapsulate `Map` type into methods via `useMethods`, contains methods below:
 
 Works like any methods hook.
 
-```javascript
+```jsx
 import {useMap} from '@huse/collection';
 
 const App = () => {

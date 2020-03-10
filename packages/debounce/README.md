@@ -12,7 +12,7 @@ function useDebouncedValue<T>(value: T, wait: number): T
 
 Returned value will not update unless the input value stops change longer than `wait`.
 
-```javascript
+```jsx
 import {useState} from 'react';
 import {useDebouncedValue} from '@huse/debounce';
 
@@ -45,7 +45,7 @@ Unlike `useEffect`, `useDebouncedEffect` accepts only one dependency value.
 
 Still `callback` can return a clean-up function, this function is called **immediately when value changes without delay**.
 
-```javascript
+```jsx
 import {useState} from 'react';
 import {useDebouncedEffect} from '@huse/debounce';
 
@@ -77,7 +77,7 @@ function useDebouncedCallback<C extends Function>(callback: C, wait: number): C
 
 Note all queued invocation will be canceled when component unmounts and when either `callback` r=or `wait` is changed.
 
-```javascript
+```jsx
 import {useState} from 'react';
 import {useDebouncedCallback} from '@huse/debounce';
 

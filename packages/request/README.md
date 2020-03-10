@@ -29,7 +29,7 @@ function useRequest<K, O, E>(task: Request<K, O>, params: K, options?: RequestOp
 
 Comparing to various request hooks in community, `useRequest` tries to keep itself simple and managed to solve some essential issues related to asynchronous processes.
 
-```javascript
+```jsx
 import {useRequest} from '@huse/request';
 
 const api = id => fetch(`/users/${id}`).then(r => r.json());
@@ -59,7 +59,7 @@ We provided 4 built-in strategies to store responses:
 - `keepEarliestSuccess`: Keep the earliest success response, discard subsequent ones, this is widely used where response is supposed to be stable, such as fetching an aggregated summary of a previous date.
 - `waitAccept`: In this strategy a latest response is stored in `nextData` or `nextError`, developers are able to show a notification to user and "accept" that manually, by invoking `accept()` the latested response overwrites the previous one.
 
-```javascript
+```jsx
 import {useState, useEffect} from 'react';
 import {notification, Button, Spin} from 'antd';
 import {useRequest} from '@huse/request';

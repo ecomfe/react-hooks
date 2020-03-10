@@ -30,7 +30,7 @@ function useSnapshotState<T>(init: T | (() => T), options: SnapshotOptions = {})
 
 A combination of `canUndo` and `undo` is a convenient solution to enable undo stack.
 
-```javascript
+```jsx
 const Game = () => {
     // A 3x3 matrix
     const [matrix, setMatrix, {undo, redo, canUndo, canRedo}] = useSnapshotState(() => Array(9).fill(false));
@@ -81,7 +81,7 @@ const Game = () => {
 By passing a `delay` option `useSnapshotState` will behave as debounced,
 that is only commit value to history when it is not changed after a certain time.
 
-```javascript
+```jsx
 const Editor = () => {
     // save to history after 200ms
     const [content, setContent, {undo, redo, canUndo, canRedo}] = useSnapshotState('', {delay: 200});

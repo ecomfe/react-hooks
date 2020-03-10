@@ -28,7 +28,7 @@ test('delay', async () => {
     await act(async () => {
         result.current[1].onMouseEnter();
         expect(result.current[0]).toBe(false);
-        await timeout(5);
+        await timeout(20);
         expect(result.current[0]).toBe(true);
     });
 });

@@ -33,6 +33,7 @@
     "@huse/input-value": "^0.9.3",
     "@huse/intersection": "^0.9.3",
     "@huse/local-storage": "^0.9.3",
+    "@huse/media": "^0.10.2",
     "@huse/merged-ref": "^0.8.0",
     "@huse/methods": "^0.9.3",
     "@huse/network": "^0.9.1",

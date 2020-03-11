@@ -50,6 +50,7 @@
     "@huse/snapshot": "^0.9.0",
     "@huse/timeout": "^0.9.3",
     "@huse/transition-state": "^0.9.0",
-    "@huse/update": "^0.9.3"
+    "@huse/update": "^0.9.3",
+    "@huse/window-size": "^0.9.3"
   }
 }

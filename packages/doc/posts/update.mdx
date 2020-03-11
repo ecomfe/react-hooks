@@ -1,3 +1,14 @@
+---
+name: update
+route: /update
+---
+
+import {useRef} from 'react';
+import {Button} from 'antd';
+import 'antd/dist/antd.min.css';
+import {Playground} from 'docz';
+import {useForceUpdate} from '@huse/update';
+
 # @huse/update
 
 Force component to update.
@@ -31,21 +42,18 @@ const useRefState = initialValue => {
 
 Every time `forceUpdate` is invoked, component will have a re-render despite of other state changes or `memo` usage.
 
-```jsx
-import {useRef} from 'react';
-import {Button} from 'antd';
-import {useForceUpdate} from '@huse/update';
-
-const App = () => {
-    const renderTimes = useRef(0);
-    const forceUpdate = useForceUpdate();
-    renderTimes.current++;
-
-    return (
-        <div>
-            Rendered {renderTimes.current} times
-            <Button onClick={forceUpdate}>Update</Button>
-        </div>
-    );
-};
-```
+<Playground>
+    {
+        () => {
+            const renderTimes = useRef(0);
+            const forceUpdate = useForceUpdate();
+            renderTimes.current++;
+            return (
+                <div>
+                    Rendered {renderTimes.current} times
+                    <Button onClick={forceUpdate}>Update</Button>
+                </div>
+            );
+        }
+    }
+</Playground>

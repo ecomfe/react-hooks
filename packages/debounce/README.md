@@ -1,10 +1,18 @@
 # @huse/debounce
 
-提供延迟状态或回调的hook。
+Provides hooks to debounce value changes, effects or callbacks.
 
 ## useDebouncedValue
 
-```javascript
+Derive a given value and debounce its update by a given delay.
+
+```typescript
+function useDebouncedValue<T>(value: T, wait: number): T
+```
+
+Returned value will not update unless the input value stops change longer than `wait`.
+
+```jsx
 import {useState} from 'react';
 import {useDebouncedValue} from '@huse/debounce';
 
@@ -37,7 +45,7 @@ Unlike `useEffect`, `useDebouncedEffect` accepts only one dependency value.
 
 Still `callback` can return a clean-up function, this function is called **immediately when value changes without delay**.
 
-```javascript
+```jsx
 import {useState} from 'react';
 import {useDebouncedEffect} from '@huse/debounce';
 
@@ -53,12 +61,7 @@ const App = () => {
 
     return (
         <>
-            <div>
-                <input value={value} onChange={e => setValue(e.target.value)} />
-            </div>
-            <div>
-                Current Value: {debouncedValue}
-            </div>
+            <input value={value} onChange={e => setValue(e.target.value)} />
         </>
     );
 };
@@ -66,7 +69,15 @@ const App = () => {
 
 ## useDebouncedCallback
 
-```javascript
+Simply wrap a callback to a debounced one.
+
+```typescript
+function useDebouncedCallback<C extends Function>(callback: C, wait: number): C
+```
+
+Note all queued invocation will be canceled when component unmounts and when either `callback` r=or `wait` is changed.
+
+```jsx
 import {useState} from 'react';
 import {useDebouncedCallback} from '@huse/debounce';
 
@@ -81,5 +92,3 @@ const search = useDebouncedCallback(
     200
 );
 ```
-
-在组件销毁后，函数不会再被执行。

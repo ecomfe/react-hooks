@@ -1,9 +1,36 @@
-# @huse/document-title
+# @huse/window-size
 
-修改页面标题，在组件unmount后自动恢复。
+Read and observe the size of viewport.
 
-```javascript
-import {useDocumentTitle} from '@huse/document-title';
+## useWindowSize
 
-useDocumentTitle('my title');
+Retrieve current window size, both inner and outer.
+
+```typescript
+interface WindowSize {
+    innerWidth: number;
+    innerHeight: number;
+    outerWidth: number;
+    outerHeight: number;
+}
+
+function useWindowSize(): WindowSize;
+```
+
+State will update when window resizes.
+
+```jsx
+import {useWindowSize} from '@huse/document-window-size';
+
+const App = () => {
+    const size = useWindowSize();
+
+    return (
+        <>
+            <p>Outer: {size.outerWidth} x {size.outerHeight}</p>
+            <p>Inner: {size.innerWidth} x {size.innerHeight}</p>
+            <p>Resize window to update</p>
+        </>
+    );
+};
 ```

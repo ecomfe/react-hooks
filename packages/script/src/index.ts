@@ -38,9 +38,7 @@ const loadScript = (src: string): Promise<never> => {
     return loading;
 };
 
-type ScriptHook = [boolean, boolean];
-
-export function useScript(src?: string): ScriptHook {
+export function useScript(src?: string): [boolean, boolean] {
     const forceUpdate = useForceUpdate();
     useEffect(
         () => {

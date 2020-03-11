@@ -18,6 +18,8 @@ Unit tests are recommended, they are placed inside `src/__tests__` folder with a
 
 ## Document
 
+By now we are unable to publish document online since `docz build` fails, you can find description to package in its `README.md`, or to start a document site locally.
+
 ```
 yarn
 yarn doc:dev

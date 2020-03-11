@@ -69,7 +69,7 @@ function useChangeTimes<T>(value: T): number
 
 This hooks identifies "change" by reference, to inspect why a value is changed, try `useUpdateCause` hook.
 
-```javascript
+```jsx
 import {useChangeTimes} from '@huse/debug';
 
 const App = props => {
@@ -116,7 +116,7 @@ By default this hook will print update causes in conse like:
 
 Passing the second argument as `false` can stop it from print in console.
 
-```javascript
+```jsx
 import {useUpdateCause} from '@huse/debug';
 
 const App = props => {

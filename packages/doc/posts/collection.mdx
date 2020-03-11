@@ -1,3 +1,13 @@
+---
+name: collection
+route: /collection
+---
+
+import {Button} from 'antd';
+import 'antd/dist/antd.min.css';
+import {Playground} from 'docz';
+import {useArray} from '@huse/collection';
+
 # @huse/collection
 
 Hooks to manage and mutate collection types.
@@ -31,19 +41,35 @@ Encapsulate arrays into methods via `useMethods`, contains methods below:
 }
 ```
 
-```jsx
-import {useArray} from '@huse/collection';
-
-const App = () => {
-    const [array, methods] = useArray([1, 2, 3]);
-
-    return (
-        <div>
-            {array.map(renderItem)}
-        </div>
-    );
-};
-```
+<Playground>
+    {
+        () => {
+            const [array, methods] = useArray(() => Array.from({length: 3}, () => Math.random()));
+            const itemStyle = {
+                height: 30,
+                backgroundColor: '#007bd2',
+                color: '#fff',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                fontSize: 20,
+            };
+            const renderItem = (value, i) => (
+                <div key={i} style={itemStyle}>
+                    #{i}: {value}
+                </div>
+            );
+            return (
+                <>
+                    <div>
+                        <Button onClick={() => methods.push(Math.random())}>Add Item</Button>
+                    </div>
+                    {array.map(renderItem)}
+                </>
+            );
+        }
+    }
+</Playground>
 
 ## useSet
 

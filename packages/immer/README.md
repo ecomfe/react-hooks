@@ -1,41 +1,89 @@
 # @huse/immer
 
-将`useReducer`、`useState`与[immer](https://github.com/immerjs/immer)进行整合。
+Provides reducer and state hooks bound to [immer](https://github.com/immerjs/immer) library.
 
 ## useImmerState
 
-形同`useState`，返回的`setValue`允许使用`immer`函数：
+Like `useState` but give the ability to update state by directly mutate it.
 
-```javascript
+```typescript
+type ImmerStateProducer<S> = (state: S) => S | void;
+type SetImmerState<S> = (next: S | ImmerStateProducer<S>) => void;
+type ImmerState<S> = [S, SetImmerState<S>];
+function useImmerState<S = any>(initialState: S | (() => S)): ImmerState<S>;
+```
+
+This works exactly the same as `useState` with a single difference that when a function is passed to `setState`, it can mutate state directly.
+
+```jsx
 import {useImmerState} from '@huse/immer';
+import {Button} from 'antd';
 
-const [value, setValue] = useImmerState({value: 1});
-// 可以直接设置值
-setValue({value: 2});
-// 也可以使用immer
-setValue(state => void (state.value++));
+const App = () => {
+    const [state, setState] = useImmerState({value: 1});
+
+    return (
+        <>
+            <p>Current Value: {state.value}</p>
+            <div>
+                {/* mutate state */}
+                <Button onClick={() => setState(s => s.value++)}>Increment</Button>
+                {/* return a new state */}
+                <Button onClick={() => setState(s => {value: s.value - 1})}>Decrement</Button>
+                {/* set to a new state */}
+                <Button onClick={() => setState({value: 0})}>Reset</Button>
+            </div>
+        </>
+    );
+};
 ```
 
 ## useImmerReducer
 
-形同`useReducer`，其中`reducer`函数是一个`immer`函数：
+A `useReducer` bound to immer, direct mutation of state is allowed inside reducer.
 
-```javascript
+```typescript
+type ImmerReducer<S = any, A = any> = (state: S, action: A) => S | void;
+function useImmerReducer<S = any, A = any>(reducer: ImmerReducer<S, A>, initialState: S, initializer?: () => S): [S, Dispatch<S>];
+```
+
+Some differences with `useReducer`:
+
+1. Requires a single `action` argument in reducer.
+2. reducer can mutate state directly.
+3. `initializer` won't receive `initialState` as its argument.
+
+```jsx
 import {useImmerReducer} from '@huse/immer';
 
-const [value, dispatch] = useImmerReducer(
-    (state, action) => {
-        switch (action.type) {
-            case 'inc':
-                state.value++;
-            case 'dec':
-                state.value--;
-            case 'reset':
-                state.value = action.payload || 0;
-            default:
-                break;
-        }
-    },
-    {value: 0}
-);
+const App = () => {
+    const [value, dispatch] = useImmerReducer(
+        (state, action) => {
+            switch (action.type) {
+                case 'inc':
+                    state.value++;
+                    break;
+                case 'dec':
+                    state.value--;
+                    break;
+                case 'reset':
+                    return {value: 0};
+                default:
+                    return state;
+            }
+        },
+        {value: 0}
+    );
+
+    return (
+        <>
+            <p>Current Value: {state.value}</p>
+            <div>
+                <Button onClick={() => dispatch({type: 'inc'})}>Increment</Button>
+                <Button onClick={() => dispatch({type: 'dec'})}>Decrement</Button>
+                <Button onClick={() => dispatch({type: 'reset'})}>Reset</Button>
+            </div>
+        </>
+    );
+};
 ```

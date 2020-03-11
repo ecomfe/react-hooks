@@ -26,7 +26,7 @@ every time when a flag is changed from `false` to `true` the `callback` will be 
 `callback` function receives a `Timings` object containing at least `initialRender` and `initialLayout` properties,
 all flags evaluated to `true` also reflects a property in this argument.
 
-```javascript
+```jsx
 import {usePerformanceTiming} from '@huse/performance';
 
 const App = () => {
@@ -43,7 +43,7 @@ const App = () => {
 
 The above example will trigger `sendToLog` twice:
 
-```javascript
+```jsx
 // First layout
 {
     initialRender: number,
@@ -74,7 +74,7 @@ function useLayoutTiming(callback: (timing: TimeRange) => void, meaningful?: boo
 `meaningful` is `true` by default in case the first layout will be reported,
 you can dynamiclly pass it to record a more meaningful layout time.
 
-```javascript
+```jsx
 import {useLayoutTiming} from '@huse/performance';
 
 const App = () => {

@@ -1,3 +1,14 @@
+---
+name: derived-state
+route: /derived-state
+---
+
+import {useState} from 'react';
+import {Button, Input} from 'antd';
+import 'antd/dist/antd.min.css';
+import {Playground} from 'docz';
+import {useDerivedState} from '@huse/derived-state';
+
 # @huse/derived-state
 
 Derive a value from input.
@@ -48,6 +59,34 @@ const Foo = ({list}) => {
 ```
 
 On the initial derived, `stateValue` is `undefined`.
+
+<Playground>
+    {
+        () => {
+            const [name, setName] = useState('');
+            const [commitedName, commitName] = useState('');
+            const [welcome, setWelcome] = useDerivedState(commitedName, name => `Hello ${name}:`);
+            return (
+                <>
+                    <div>
+                        <h4>Your name</h4>
+                        <Input value={name} onChange={e => setName(e.target.value)} />
+                        <Button disabled={!name} onClick={() => commitName(name)}>OK</Button>
+                        {commitedName && '(Change name and click OK will reset memo area)'}
+                    </div>
+                    {
+                        commitedName && (
+                            <div>
+                                <h4>Write a memo</h4>
+                                <Input.TextArea rows={4} value={welcome} onChange={e => setWelcome(e.target.value)} />
+                            </div>
+                        )
+                    }
+                </>
+            );
+        }
+    }
+</Playground>
 
 Note, this hook is to generate a state which will be updated later,
 if only a computation from a prop value to a derived value is required without future update,

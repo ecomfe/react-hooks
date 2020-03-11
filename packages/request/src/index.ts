@@ -23,12 +23,12 @@ export interface RequestOptions {
 
 export interface RequestResult<O = void, E = Error> {
     pending: boolean;
-    accept: () => void;
     pendingCount?: number;
     data?: O;
     error?: E;
     nextData?: O;
     nextError?: E;
+    accept(): void;
 }
 
 const builtInStrategies: {[K in ResponseStrategy]: QueryStrategy} = {

@@ -31,7 +31,7 @@ When `documentElement` is the observe target, simple `useScrollPosition()` witho
 In order to satisfy different developers, the returned `ScrollPosition` has a set of different key pairs,
 all `x`, `left`, `scrollLeft` have same value while `y`, `top`, `scrollTop` have same value.
 
-```javascript
+```jsx
 const App = () => {
     const ref = useRef(null);
     const position = useScrollPosition(ref.current);

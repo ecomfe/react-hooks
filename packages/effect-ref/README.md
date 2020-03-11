@@ -1,14 +1,29 @@
 # @huse/effect-ref
 
-使用一个[回调ref](https://zh-hans.reactjs.org/docs/refs-and-the-dom.html#callback-refs)以`useEffect`的形式处理DOM元素。
+Makes a [callback ref](https://zh-hans.reactjs.org/docs/refs-and-the-dom.html#callback-refs) behaves like effects.
 
 ## useEffectRef
 
-返回一个函数，将该函数通过`ref`传递给DOM元素可以获得类似`useEffect`的效果。
+This hook returns a callback function, pass it as `ref` prop to any DOM element to run callback on element mount.
 
-传递给`useEffectRef`的函数与`useEffect`相似，但接收元素对象为参数，它可以返回一个销毁用函数。
+Callback can return a clean-up function like `useEffect`'s callback to clean up side effects.
 
-```javascript
+A native callback ref may receive element argument as `null`, however `useEffectRef` handles this case internally,
+only `HTMLElement` node is passed to callback.
+
+```typescript
+export type EffectRef<E extends HTMLElement = HTMLElement> = (element: E | null) => void;
+
+export type RefCallback<E extends HTMLElement = HTMLElement> = (element: E) => (() => void) | void;
+
+export function useEffectRef<E extends HTMLElement = HTMLElement>(callback: RefCallback<E>): EffectRef<E>;
+```
+
+Unlike `useRef` which is not responsive to element change, this hook provides ability to observe any element's mount and unmount.
+
+In case you need to use multiple callback refs on the same DOM element, `useMergedRef` from `@huse/merged-ref` may help.
+
+```jsx
 import {useState, useCallback} from 'react';
 import {useEffectRef} from '@huse/effect-ref';
 import elementResizeDetectorMaker from 'element-resize-detector';

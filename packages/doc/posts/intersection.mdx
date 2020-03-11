@@ -1,0 +1,40 @@
+---
+name: intersection
+route: /intersection
+---
+
+import {Playground} from 'docz';
+import {useOnScreen} from '@huse/intersection';
+
+# @huse/intersection
+
+Provides hooks to observe intersection between element and viewport.
+
+## useOnScreen
+
+Returns a boolean indicating whether element is currently on screen.
+
+```typescript
+type OnScreenOptions = Omit<IntersectionObserverInit, 'root'>;
+function useOnScreen({rootMargin, threshold}: OnScreenOptions = {}): [EffectRef, boolean];
+```
+
+This hook only checks intersection between element and the root element (`documentElement` in browser).
+
+**Note: `useOnScreen` requires `IntersectionObserver` to work, without `IntersectionObserver` it supposes the element is always on screen.**
+
+<Playground>
+    {
+        () => {
+            const [ref, isOnScreen] = useOnScreen(ref, {rootMargin: '10px', threshold: '30%'});
+            return (
+                <>
+                    <p>Visual port is currently {isOnScreen ? 'on' : 'out of'} screen</p>
+                    <div ref={ref} style={{marginTop: 600, padding: 40, backgroundColor: '#007bd2', fontSize: 30, color: '#fff'}}>
+                        This is visual port
+                    </div>
+                </>
+            );
+        }
+    }
+</Playground>

@@ -4,7 +4,7 @@
 
 ## useScrollIntoView
 
-```javascript
+```jsx
 import {useRef} from 'react';
 import {useScrollIntoView} from '@huse/scroll-into-view';
 

@@ -1,55 +1,96 @@
 # @huse/timeout
 
-延时执行相关的hook。
+Hooks about timeout and interval.
 
 ## useTimeout
 
-在指定时间后执行。
+Set a timeout to execute callback.
 
-```javascript
-import {useTimeout} from '@huse/timeout';
-
-const callback = () => {
-    console.log('trigger');
-};
-useTimeout(callback, 200); // executes after 200ms
+```typescript
+function useTimeout(callback: (() => void) | undefined, time: number): void;
 ```
 
-时间指定为`-1`则会取消执行。
+`callback` is not required to be reference equal.
+
+To cancel timeout, pass a negative `time`, `-1` is recommended.
+
+```jsx
+import {useState} from 'react';
+import {useTimeout} from '@huse/timeout';
+import {Slider} from 'antd';
+
+const App = () => {
+    const [theme, setTheme] = useState('light');
+    const [delay, setDelay] = useState(2);
+    useTimeout(
+        () => setTheme(theme => (theme === 'light' ? 'dark' : 'light')),
+        delay * 1000
+    );
+    const style = {
+        height: 40,
+        lineHeight: '40px',
+        textAlign: 'center',
+        backgroundColor: theme === 'light' ? '#fff' : '#222',
+        color: theme === 'light' ? '#666' : '#f4f5f6',
+    };
+
+    return (
+        <>
+            <div>
+                Choose a delay to switch theme:
+                <Slider value={delay} onChange={setDelay} />
+            </div>
+            <div style={style}>
+                Hello World
+            </div>
+        </>
+    );
+};
+```
 
 ## useInterval
 
-按一定时间间隔执行。
+Set an interval to execute callback periodically.
 
-在指定时间后执行。
-
-```javascript
-import {useInterval} from '@huse/timeout';
-
-const callback = () => {
-    console.log('trigger');
-};
-useInterval(callback, 200); // executes every 200ms
+```typescript
+function useInterval(callback: (() => void) | undefined, time: number): void;
 ```
 
-时间指定为`-1`则会取消执行。
+To cancel interval, pass a native `time`, `-1` is recommended.
 
-`useInterval`并不会立刻执行函数，如果需要立刻执行一次，并且每隔一段时间重复执行，可以补一个`useEffect`来实现。
+**Note: `useInterval` does not execute `callback` on initial mount, to trigger it immediately, add an extra `useEffect`.**
+
+```jsx
+import {useState} from 'react';
+import {useTimeout} from '@huse/timeout';
+
+const App = () => {
+    const [theme, setTheme] = useState('light');
+    // Switch theme every 5s
+    useInterval(
+        () => setTheme(theme => (theme === 'light' ? 'dark' : 'light')),
+        5 * 1000
+    );
+    const style = {
+        height: 40,
+        lineHeight: '40px',
+        textAlign: 'center',
+        backgroundColor: theme === 'light' ? '#fff' : '#222',
+        color: theme === 'light' ? '#666' : '#f4f5f6',
+    };
+
+    return (
+        <>
+            <div style={style}>
+                Hello World
+            </div>
+        </>
+    );
+};
+```
 
 ## useStableInterval
 
-与`useInterval`相同，但会在函数执行完后再准确间隔指定时间后执行下一次。
+Like `useInterval` but counts time ellapsed to execute `callback`, when `callback` returns a `Promise`, it's resolve time is counted.
 
-如指定间隔400毫秒，函数执行需要300毫秒，则第一次会在400毫秒时执行，第2次会在1100毫秒（400 + 300 + 400)时执行。
-
-如果函数为异步函数，则会在异步返回后再等待固定时间执行。
-
-```javascript
-import {useInterval} from '@huse/timeout';
-
-const callback = async () => {
-    const list = await fetchNotifications();
-    console.log(list.length, 'notifications');
-};
-useInterval(callback, 200); // executes every 200ms after async resolved
-```
+`useStableInterval` ensures the next execution of callback is triggered after specified `delay` after `callback` is returned or resolved.

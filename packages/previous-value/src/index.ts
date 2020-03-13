@@ -1,4 +1,4 @@
-import {useRef} from 'react';
+import {useRef, useEffect} from 'react';
 import shallowEquals from 'shallowequal';
 import deepEquals from 'fast-deep-equal';
 
@@ -17,14 +17,24 @@ export function usePreviousEquals<T>(value: T, equals: CustomEquals<T> = shallow
 }
 
 export function useOriginalCopy<T>(value: T, equals: CustomEquals<T> = shallowEquals): T {
-    const cache = useRef<T | undefined>(undefined);
+    const cache = useRef<T>(value);
+    const equalsRef = useRef(equals);
+    useEffect(
+        () => {
+            equalsRef.current = equals;
+        },
+        [equals]
+    );
+    useEffect(
+        () => {
+            if (!equalsRef.current(cache.current, value)) {
+                cache.current = value;
+            }
+        },
+        [value]
+    );
 
-    if (equals(cache.current, value)) {
-        return cache.current as T;
-    }
-
-    cache.current = value;
-    return value;
+    return equals(cache.current, value) ? cache.current : value;
 }
 
 export function useOriginalDeepCopy<T>(value: T): T {

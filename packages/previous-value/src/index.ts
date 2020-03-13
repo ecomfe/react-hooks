@@ -6,9 +6,13 @@ type CustomEquals<T> = (previous: T | undefined, current: T) => boolean;
 
 export function usePreviousValue<T>(value: T): T | undefined {
     const cache = useRef<T | undefined>(undefined);
-    const previousValue = cache.current;
-    cache.current = value;
-    return previousValue;
+    useEffect(
+        () => {
+            cache.current = value;
+        },
+        [value]
+    );
+    return cache.current;
 }
 
 export function usePreviousEquals<T>(value: T, equals: CustomEquals<T> = shallowEquals): boolean {

@@ -37,8 +37,5 @@
   },
   "peerDependencies": {
     "react": "^16.8.0"
-  },
-  "dependencies": {
-    "@huse/previous-value": "^0.9.4"
   }
 }

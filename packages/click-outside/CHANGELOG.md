@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.10.4](https://github.com/ecomfe/react-hooks/compare/@huse/click-outside@0.10.3...@huse/click-outside@0.10.4) (2020-03-13)
+
+**Note:** Version bump only for package @huse/click-outside
+
+
+
+
+
 ## [0.10.3](https://github.com/ecomfe/react-hooks/compare/@huse/click-outside@0.10.2...@huse/click-outside@0.10.3) (2020-03-07)
 
 

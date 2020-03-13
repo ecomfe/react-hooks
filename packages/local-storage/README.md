@@ -15,7 +15,7 @@ Any update to value from other tabs or frames will be observed via `storage` eve
 ```jsx
 import {useState, useCallback} from 'react';
 import {Input, Button} from 'antd';
-import {useLocalStorage} from '@huse/document-title';
+import {useLocalStorage} from '@huse/local-storage';
 
 const App = () => {
     const [storageValue, setValueToStorage] = useLocalStorage('memo', '');

@@ -1,6 +1,6 @@
 {
   "name": "@huse/poll",
-  "version": "0.9.3",
+  "version": "0.9.4",
   "keywords": [
     "react",
     "hooks"
@@ -29,8 +29,8 @@
     "test": "echo 'no test in @huse/poll'"
   },
   "dependencies": {
-    "@huse/action-pending": "^0.9.3",
-    "@huse/timeout": "^0.9.3",
+    "@huse/action-pending": "^0.9.4",
+    "@huse/timeout": "^0.9.4",
     "user-attention": "^1.0.3"
   },
   "devDependencies": {

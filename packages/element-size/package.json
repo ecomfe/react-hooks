@@ -1,6 +1,6 @@
 {
   "name": "@huse/element-size",
-  "version": "0.9.3",
+  "version": "0.9.4",
   "keywords": [
     "react",
     "hooks"
@@ -42,7 +42,7 @@
     "react": "^16.8.0"
   },
   "dependencies": {
-    "@huse/effect-ref": "^0.9.3",
+    "@huse/effect-ref": "^0.9.4",
     "resize-detector": "^0.2.1"
   }
 }

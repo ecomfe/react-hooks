@@ -1,6 +1,6 @@
 {
   "name": "@huse/number",
-  "version": "0.9.3",
+  "version": "0.9.4",
   "keywords": [
     "react",
     "hooks"
@@ -39,6 +39,6 @@
     "react": "^16.8.0"
   },
   "dependencies": {
-    "@huse/methods": "^0.9.3"
+    "@huse/methods": "^0.10.0"
   }
 }

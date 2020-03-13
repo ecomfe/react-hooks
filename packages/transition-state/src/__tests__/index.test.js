@@ -23,10 +23,10 @@ test('back to default after default duration', async () => {
 
 test('custom duration', async () => {
     const {result} = renderHook(() => useTransitionState(123, 4));
-    act(() => result.current[1](456, 10));
+    act(() => result.current[1](456, 20));
     await act(() => timeout(5));
     expect(result.current[0]).toBe(456);
-    await act(() => timeout(5));
+    await act(() => timeout(20));
     expect(result.current[0]).toBe(123);
 });
 

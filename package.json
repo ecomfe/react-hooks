@@ -12,7 +12,7 @@
   "scripts": {
     "generate": "node scripts/generate",
     "lint": "lerna run lint",
-    "test": "lerna run test --ignore @huse/timeout && lerna run test --scope @huse/timeout",
+    "test": "lerna run test --concurrency 1",
     "build": "lerna run build",
     "build-check": "lerna run build-check",
     "release": "lerna version --conventional-commits --no-push",

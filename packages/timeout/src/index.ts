@@ -2,7 +2,12 @@ import {useEffect, useRef} from 'react';
 
 export function useTimeout(callback: (() => void) | undefined, time: number): void {
     const fn = useRef(callback);
-    fn.current = callback;
+    useEffect(
+        () => {
+            fn.current = callback;
+        },
+        [callback]
+    );
     useEffect(
         () => {
             if (time < 0) {
@@ -19,7 +24,12 @@ export function useTimeout(callback: (() => void) | undefined, time: number): vo
 
 export function useInterval(callback: (() => void) | undefined, time: number): void {
     const fn = useRef(callback);
-    fn.current = callback;
+    useEffect(
+        () => {
+            fn.current = callback;
+        },
+        [callback]
+    );
     useEffect(
         () => {
             if (time < 0) {
@@ -36,7 +46,12 @@ export function useInterval(callback: (() => void) | undefined, time: number): v
 
 export function useStableInterval(callback: (() => any) | undefined, time: number): void {
     const fn = useRef(callback);
-    fn.current = callback;
+    useEffect(
+        () => {
+            fn.current = callback;
+        },
+        [callback]
+    );
     useEffect(
         () => {
             if (time < 0) {

@@ -1,4 +1,4 @@
-import {useLayoutEffect, RefObject, useRef} from 'react';
+import {useEffect, RefObject, useRef} from 'react';
 
 export function useScrollIntoView(
     ref: RefObject<HTMLElement>,
@@ -6,8 +6,13 @@ export function useScrollIntoView(
     options: boolean | ScrollIntoViewOptions = {behavior: 'smooth'}
 ): void {
     const scrollOptions = useRef(options);
-    scrollOptions.current = options;
-    useLayoutEffect(
+    useEffect(
+        () => {
+            scrollOptions.current = options;
+        },
+        [options]
+    );
+    useEffect(
         () => {
             if (ref.current && active) {
                 ref.current.scrollIntoView(scrollOptions.current);

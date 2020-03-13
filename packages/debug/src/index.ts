@@ -1,4 +1,4 @@
-import {useRef} from 'react';
+import {useRef, useEffect} from 'react';
 import shallowEquals from 'shallowequal';
 import deepEquals from 'fast-deep-equal';
 import keyBy from 'lodash/keyBy';
@@ -16,11 +16,17 @@ export function useChangeTimes<T>(value: T): number {
     const count = useRef(0);
     const previousValue = usePreviousValue(value);
     const mounted = useRef(false);
+    useEffect(
+        () => {
+            mounted.current = true;
+        },
+        []
+    );
 
     if (mounted.current && value !== previousValue) {
         count.current++;
     }
-    mounted.current = true;
+
     return count.current;
 }
 

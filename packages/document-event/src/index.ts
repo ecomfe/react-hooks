@@ -1,4 +1,4 @@
-import {useRef, useLayoutEffect} from 'react';
+import {useRef, useEffect} from 'react';
 
 type EventNames = keyof DocumentEventMap;
 
@@ -10,8 +10,13 @@ export function useDocumentEvent<K extends EventNames>(
     options?: boolean | AddEventListenerOptions
 ) {
     const handler = useRef(fn);
-    handler.current = fn;
-    useLayoutEffect(
+    useEffect(
+        () => {
+            handler.current = fn;
+        },
+        [fn]
+    );
+    useEffect(
         () => {
             const trigger: DocumentEventHandler<K> = e => handler.current(e);
             document.addEventListener(eventName, trigger, options);

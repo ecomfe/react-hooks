@@ -33,6 +33,8 @@ const App = () => {
 };
 ```
 
+**Note: this hook updates a ref during render, using it for callbacks and later assign callbacks to DOM elements are not safe in concurrent mode.**
+
 ## useOriginalCopy
 
 React is a framework heavily depends on "reference equal",

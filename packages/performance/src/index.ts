@@ -1,4 +1,4 @@
-import {useRef, useLayoutEffect} from 'react';
+import {useRef, useEffect} from 'react';
 
 interface Timings {
     [flag: string]: number;
@@ -14,7 +14,13 @@ export function usePerformanceTiming(callback: (timings: Timings) => void, optio
     const {flags = {}} = options;
     const timings = useRef<Timings>({initialRender: performance.now(), initialLayout: 0});
     const notify = useRef(callback);
-    useLayoutEffect(
+    useEffect(
+        () => {
+            notify.current = callback;
+        },
+        [callback]
+    );
+    useEffect(
         () => {
             timings.current.initialLayout = performance.now();
             // Users may send a `setState` as callback, in order to trigger an update, clone it.
@@ -22,7 +28,7 @@ export function usePerformanceTiming(callback: (timings: Timings) => void, optio
         },
         []
     );
-    useLayoutEffect(
+    useEffect(
         () => {
             const newTimings = Object.entries(flags).filter(([name, triggered]) => triggered && !timings.current[name]);
 
@@ -38,7 +44,6 @@ export function usePerformanceTiming(callback: (timings: Timings) => void, optio
         },
         [flags]
     );
-    notify.current = callback;
 }
 
 interface TimeRange {
@@ -51,7 +56,13 @@ export function useLayoutTiming(callback: (timing: TimeRange) => void, meaningfu
     const renderStart = useRef(performance.now());
     const reported = useRef(false);
     const notify = useRef(callback);
-    useLayoutEffect(
+    useEffect(
+        () => {
+            notify.current = callback;
+        },
+        [callback]
+    );
+    useEffect(
         () => {
             if (reported.current || !meaningful) {
                 return;
@@ -67,6 +78,4 @@ export function useLayoutTiming(callback: (timing: TimeRange) => void, meaningfu
         },
         [meaningful]
     );
-
-    notify.current = callback;
 }

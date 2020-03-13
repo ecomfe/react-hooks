@@ -9,6 +9,12 @@ export function useDebouncedEffect<T>(callback: () => void | (() => void), value
     const cleanUpRef = useRef(noop);
     useEffect(
         () => {
+            callbackRef.current = callback;
+        },
+        [callback]
+    );
+    useEffect(
+        () => {
             if (wait <= 0) {
                 return;
             }
@@ -37,7 +43,6 @@ export function useDebouncedEffect<T>(callback: () => void | (() => void), value
         },
         [value, wait]
     );
-    callbackRef.current = callback;
 }
 
 export function useDebouncedValue<T>(value: T, wait: number): T {

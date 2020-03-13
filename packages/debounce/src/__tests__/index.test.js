@@ -23,6 +23,20 @@ describe('useDebouncedEffect', () => {
         expect(callback).toHaveBeenCalledTimes(1);
     });
 
+    test('change callback on update', async () => {
+        const mount = jest.fn();
+        const update = jest.fn();
+        const {rerender} = renderHook(
+            props => useDebouncedEffect(props.callback, props.value, 4),
+            {initialProps: {callback: mount, value: 1}}
+        );
+        await act(() => timeout(5));
+        rerender({callback: update, value: 2});
+        await act(() => timeout(5));
+        expect(mount).toHaveBeenCalledTimes(1);
+        expect(update).toHaveBeenCalledTimes(1);
+    });
+
     test('unmount', async () => {
         const callback = jest.fn();
         const {unmount} = renderHook(() => useDebouncedEffect(callback, 1, 4));

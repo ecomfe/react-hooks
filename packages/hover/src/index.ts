@@ -1,4 +1,4 @@
-import {useCallback} from 'react';
+import {useCallback, MouseEvent} from 'react';
 import {useSwitch} from '@huse/boolean';
 import {useDebouncedCallback} from '@huse/debounce';
 

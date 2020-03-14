@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0](https://github.com/ecomfe/react-hooks/compare/@huse/document-event@0.9.4...@huse/document-event@1.0.0) (2020-03-14)
+
+
+### Bug Fixes
+
+* delay update to ref value to commit phase ([#9](https://github.com/ecomfe/react-hooks/issues/9)) ([118f3cc](https://github.com/ecomfe/react-hooks/commit/118f3cc61a48422b06e3d3652de8c619aed1521e))
+
+
+
+
+
 ## [0.9.5](https://github.com/ecomfe/react-hooks/compare/@huse/document-event@0.9.4...@huse/document-event@0.9.5) (2020-03-13)
 
 **Note:** Version bump only for package @huse/document-event

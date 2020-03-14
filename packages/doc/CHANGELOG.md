@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0](https://github.com/ecomfe/react-hooks/compare/@huse/doc@0.10.0...@huse/doc@1.0.0) (2020-03-14)
+
+
+### Bug Fixes
+
+* delay update to ref value to commit phase ([#9](https://github.com/ecomfe/react-hooks/issues/9)) ([118f3cc](https://github.com/ecomfe/react-hooks/commit/118f3cc61a48422b06e3d3652de8c619aed1521e))
+* usePreviousValue should update previous version on commit ([#9](https://github.com/ecomfe/react-hooks/issues/9)) ([5e38920](https://github.com/ecomfe/react-hooks/commit/5e389206b43d48ef4c1ebcf124cda02e94e358d7))
+
+
+### Features
+
+* merged ref hooks ([fad341e](https://github.com/ecomfe/react-hooks/commit/fad341e6c28220858e6a85bf2e01640696d7723a))
+
+
+
+
+
 # [0.11.0](https://github.com/ecomfe/react-hooks/compare/@huse/doc@0.10.0...@huse/doc@0.11.0) (2020-03-13)
 
 

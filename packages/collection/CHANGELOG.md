@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0](https://github.com/ecomfe/react-hooks/compare/@huse/collection@0.9.3...@huse/collection@1.0.0) (2020-03-14)
+
+**Note:** Version bump only for package @huse/collection
+
+
+
+
+
 ## [0.9.4](https://github.com/ecomfe/react-hooks/compare/@huse/collection@0.9.3...@huse/collection@0.9.4) (2020-03-13)
 
 **Note:** Version bump only for package @huse/collection

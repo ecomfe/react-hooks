@@ -1,6 +1,6 @@
 {
   "name": "@huse/click-outside",
-  "version": "0.10.4",
+  "version": "1.0.0",
   "keywords": [
     "react",
     "hooks"
@@ -40,6 +40,6 @@
     "react": "^16.8.0"
   },
   "dependencies": {
-    "@huse/document-event": "^0.9.5"
+    "@huse/document-event": "^1.0.0"
   }
 }

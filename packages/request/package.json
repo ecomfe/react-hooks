@@ -1,6 +1,6 @@
 {
   "name": "@huse/request",
-  "version": "0.10.2",
+  "version": "1.0.0",
   "keywords": [
     "react",
     "hooks"
@@ -39,8 +39,8 @@
     "react": "^16.8.0"
   },
   "dependencies": {
-    "@huse/previous-value": "^0.9.4",
-    "@huse/update": "^0.9.4",
+    "@huse/previous-value": "^1.0.0",
+    "@huse/update": "^1.0.0",
     "query-shape": "^1.0.2"
   }
 }

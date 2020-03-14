@@ -1,6 +1,6 @@
 {
   "name": "@huse/network",
-  "version": "0.9.2",
+  "version": "1.0.0",
   "keywords": [
     "react",
     "hooks"
@@ -24,7 +24,7 @@
     "test": "skr test --coverage --target=react"
   },
   "dependencies": {
-    "@huse/boolean": "^0.9.4"
+    "@huse/boolean": "^1.0.0"
   },
   "devDependencies": {
     "@testing-library/react-hooks": "^3.2.1",

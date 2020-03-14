@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0](https://github.com/ecomfe/react-hooks/compare/@huse/infinite-scroll@0.9.1...@huse/infinite-scroll@1.0.0) (2020-03-14)
+
+**Note:** Version bump only for package @huse/infinite-scroll
+
+
+
+
+
 ## [0.9.2](https://github.com/ecomfe/react-hooks/compare/@huse/infinite-scroll@0.9.1...@huse/infinite-scroll@0.9.2) (2020-03-13)
 
 **Note:** Version bump only for package @huse/infinite-scroll

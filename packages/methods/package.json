@@ -1,6 +1,6 @@
 {
   "name": "@huse/methods",
-  "version": "0.10.0",
+  "version": "1.0.0",
   "keywords": [
     "react",
     "hooks"
@@ -39,6 +39,6 @@
     "react": "^16.8.0"
   },
   "dependencies": {
-    "@huse/immer": "^0.9.4"
+    "@huse/immer": "^1.0.0"
   }
 }

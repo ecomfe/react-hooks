@@ -1,0 +1,74 @@
+{
+  "name": "huse",
+  "version": "0.11.1",
+  "keywords": [
+    "react",
+    "hooks"
+  ],
+  "homepage": "https://github.com/ecomfe/react-hooks",
+  "bugs": {
+    "url": "https://github.com/ecomfe/react-hooks/issues"
+  },
+  "main": "cjs/index.js",
+  "module": "es/index.js",
+  "types": "es/index.d.ts",
+  "license": "MIT",
+  "files": [
+    "cjs",
+    "es"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.com"
+  },
+  "scripts": {
+    "build": "rm -rf es cjs && tsc & tsc --module ESNext --outDir ./es",
+    "build-check": "tsc",
+    "lint": "skr lint",
+    "test": "echo 'no test in huse'"
+  },
+  "dependencies": {
+    "@huse/action-pending": "^0.9.4",
+    "@huse/boolean": "^0.9.4",
+    "@huse/click-outside": "^0.10.4",
+    "@huse/collection": "^0.9.4",
+    "@huse/debounce": "^0.11.1",
+    "@huse/debug": "^0.10.1",
+    "@huse/derived-state": "^0.9.3",
+    "@huse/document-event": "^0.9.5",
+    "@huse/document-title": "^0.9.4",
+    "@huse/effect-ref": "^0.9.4",
+    "@huse/element-size": "^0.9.4",
+    "@huse/hover": "^0.9.2",
+    "@huse/immer": "^0.9.4",
+    "@huse/infinite-scroll": "^0.9.2",
+    "@huse/input-value": "^0.9.4",
+    "@huse/intersection": "^0.9.4",
+    "@huse/local-storage": "^0.9.4",
+    "@huse/media": "^0.10.3",
+    "@huse/merged-ref": "^0.9.0",
+    "@huse/methods": "^0.10.0",
+    "@huse/network": "^0.9.2",
+    "@huse/number": "^0.9.4",
+    "@huse/performance": "^0.9.2",
+    "@huse/poll": "^0.9.4",
+    "@huse/previous-value": "^0.9.4",
+    "@huse/request": "^0.10.2",
+    "@huse/script": "^0.9.3",
+    "@huse/scroll-into-view": "^0.10.3",
+    "@huse/scroll-lock": "^0.9.1",
+    "@huse/scroll-position": "^0.9.2",
+    "@huse/selection": "^0.9.3",
+    "@huse/snapshot": "^0.9.1",
+    "@huse/timeout": "^0.9.4",
+    "@huse/transition-state": "^0.9.1",
+    "@huse/update": "^0.9.4",
+    "@huse/window-size": "^0.9.4"
+  },
+  "devDependencies": {
+    "reskript": "^0.25.16"
+  },
+  "peerDependencies": {
+    "react": "^16.8.0"
+  }
+}

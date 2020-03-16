@@ -22,7 +22,7 @@ This is a wrap of `useMethods` in `@huse/methods` and contains methods below:
 
 ```jsx
 import {Button} from 'antd';
-import {useCounter} from '@huse/boolean';
+import {useCounter} from '@huse/number';
 
 const App = () => {
     const [value, {increment, decrement, reset}] = useCounter(3);

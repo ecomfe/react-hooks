@@ -24,8 +24,7 @@
     "test": "skr test --coverage --target=react"
   },
   "dependencies": {
-    "@huse/boolean": "^1.0.0",
-    "@huse/debounce": "^1.0.0"
+    "@huse/boolean": "^1.0.0"
   },
   "devDependencies": {
     "@testing-library/react-hooks": "^3.2.1",

@@ -25,12 +25,54 @@ test('leave', () => {
 
 test('delay', async () => {
     const {result} = renderHook(() => useHover({delay: 4}));
-    await act(async () => {
-        result.current[1].onMouseEnter();
-        expect(result.current[0]).toBe(false);
-        await timeout(20);
-        expect(result.current[0]).toBe(true);
-    });
+    act(() => result.current[1].onMouseEnter());
+    expect(result.current[0]).toBe(false);
+    await act(() => timeout(20));
+    expect(result.current[0]).toBe(true);
+});
+
+test('leave cancel delayed enter', async () => {
+    const enter = jest.fn();
+    const leave = jest.fn();
+    const {result} = renderHook(() => useHover({delay: 10, onEnter: enter, onLeave: leave}));
+    act(() => result.current[1].onMouseEnter());
+    await timeout(5);
+    act(() => result.current[1].onMouseLeave());
+    await act(() => timeout(10));
+    expect(result.current[0]).toBe(false);
+    expect(enter).not.toHaveBeenCalled();
+    expect(leave).not.toHaveBeenCalled();
+});
+
+test('enter when hovered', async () => {
+    const enter = jest.fn();
+    const leave = jest.fn();
+    const {result} = renderHook(() => useHover({delay: 10, onEnter: enter, onLeave: leave}));
+    act(() => result.current[1].onMouseEnter());
+    await act(() => timeout(15));
+    expect(result.current[0]).toBe(true);
+    act(() => result.current[1].onMouseLeave());
+    await timeout(5);
+    expect(result.current[0]).toBe(true);
+    act(() => result.current[1].onMouseEnter());
+    await act(() => timeout(10));
+    expect(result.current[0]).toBe(true);
+    expect(enter).toHaveBeenCalledTimes(1);
+    expect(leave).not.toHaveBeenCalled();
+});
+
+test('leave when not hovered', async () => {
+    const enter = jest.fn();
+    const leave = jest.fn();
+    const {result} = renderHook(() => useHover({delay: 10, onEnter: enter, onLeave: leave}));
+    act(() => result.current[1].onMouseEnter());
+    await act(() => timeout(5));
+    expect(result.current[0]).toBe(false);
+    act(() => result.current[1].onMouseLeave());
+    await timeout(10);
+    expect(result.current[0]).toBe(false);
+    expect(enter).not.toHaveBeenCalled();
+    expect(leave).not.toHaveBeenCalled();
 });
 
 test('extra callback', () => {

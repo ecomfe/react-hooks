@@ -1,6 +1,6 @@
 {
   "name": "@huse/doc",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "main": "index.js",
   "license": "MIT",
   "private": true,
@@ -28,7 +28,7 @@
     "@huse/document-title": "^1.0.0",
     "@huse/effect-ref": "^1.0.0",
     "@huse/element-size": "^1.0.0",
-    "@huse/hover": "^1.0.0",
+    "@huse/hover": "^1.0.1",
     "@huse/immer": "^1.0.0",
     "@huse/input-value": "^1.0.0",
     "@huse/intersection": "^1.0.0",

@@ -38,7 +38,11 @@ const builtInStrategies: {[K in ResponseStrategy]: QueryStrategy} = {
     waitAccept: createStrategy(waitAccept),
 };
 
-export function useRequest<K, O, E>(task: Request<K, O>, params: K, options?: RequestOptions): RequestResult<O, E> {
+export function useRequestCallback<K, O = void, E = Error>(
+    task: Request<K, O>,
+    params: K,
+    options?: RequestOptions
+): [() => void, RequestResult<O, E>] {
     const {strategy = 'acceptLatest', idempotent = false} = options || {};
 
     if (!builtInStrategies.hasOwnProperty(strategy)) {
@@ -75,8 +79,8 @@ export function useRequest<K, O, E>(task: Request<K, O>, params: K, options?: Re
     const key = useOriginalDeepCopy(params);
     const querySet = querySets.current.get(task);
     const query = querySet && findQuery(querySet, key);
-    const skipEffect = idempotent && query;
-    useEffect(
+    const skipEffect = idempotent && !!query;
+    const request = useCallback(
         () => {
             if (skipEffect) {
                 return;
@@ -105,19 +109,41 @@ export function useRequest<K, O, E>(task: Request<K, O>, params: K, options?: Re
     );
 
     if (!query) {
-        return {
-            accept: acceptCurrentKey,
-            pending: true,
-        };
+        return [
+            request,
+            {
+                accept: acceptCurrentKey,
+                pending: true,
+            },
+        ];
     }
 
-    return {
-        accept: acceptCurrentKey,
-        pendingCount: query.pendingMutex,
-        pending: query.pendingMutex > 0,
-        data: query.response?.data ?? undefined,
-        error: query.response?.error ?? undefined,
-        nextData: query.nextResponse?.data ?? undefined,
-        nextError: query.nextResponse?.error ?? undefined,
-    };
+    return [
+        request,
+        {
+            accept: acceptCurrentKey,
+            pendingCount: query.pendingMutex,
+            pending: query.pendingMutex > 0,
+            data: query.response?.data ?? undefined,
+            error: query.response?.error ?? undefined,
+            nextData: query.nextResponse?.data ?? undefined,
+            nextError: query.nextResponse?.error ?? undefined,
+        },
+    ];
+}
+
+export function useRequest<K, O = void, E = Error>(
+    task: Request<K, O>,
+    params: K,
+    options?: RequestOptions
+): RequestResult<O, E> {
+    const [request, result] = useRequestCallback<K, O, E>(task, params, options);
+    useEffect(
+        () => {
+            request();
+        },
+        [request]
+    );
+
+    return result;
 }

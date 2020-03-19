@@ -3,8 +3,10 @@ import {useEffectRef, EffectRef} from '@huse/effect-ref';
 
 export type OnScreenOptions = Omit<IntersectionObserverInit, 'root'>;
 
-export function useOnScreen({rootMargin, threshold}: OnScreenOptions = {}): [EffectRef, boolean] {
-    const [isIntersecting, setIntersecting] = useState(() => typeof IntersectionObserver === 'undefined');
+export function useOnScreenCallback(
+    callback: (e: IntersectionObserverEntry) => void,
+    {rootMargin, threshold}: OnScreenOptions = {}
+): EffectRef {
     const observe = useCallback(
         (element: HTMLElement) => {
             if (!element || typeof IntersectionObserver === 'undefined') {
@@ -12,7 +14,7 @@ export function useOnScreen({rootMargin, threshold}: OnScreenOptions = {}): [Eff
             }
 
             const observer = new IntersectionObserver(
-                ([entry]) => setIntersecting(entry.isIntersecting),
+                ([entry]) => callback(entry),
                 {rootMargin, threshold}
             );
             observer.observe(element);
@@ -21,9 +23,35 @@ export function useOnScreen({rootMargin, threshold}: OnScreenOptions = {}): [Eff
                 observer.unobserve(element);
             };
         },
-        [rootMargin, threshold]
+        [callback, rootMargin, threshold]
     );
     const observeOnScreen = useEffectRef(observe);
 
-    return [observeOnScreen, isIntersecting];
+    return observeOnScreen;
+}
+
+export function useOnScreen(options?: OnScreenOptions): [EffectRef, boolean] {
+    const [isIntersecting, setIntersecting] = useState(() => typeof IntersectionObserver === 'undefined');
+    const callback = useCallback(
+        (entry: IntersectionObserverEntry) => setIntersecting(entry.isIntersecting),
+        []
+    );
+    const ref = useOnScreenCallback(callback, options);
+
+    return [ref, isIntersecting];
+}
+
+export function useOnScreenLazyValue<T>(value: T, options?: OnScreenOptions): [EffectRef, T | undefined] {
+    const [intersected, setIntersected] = useState(() => typeof IntersectionObserver === 'undefined');
+    const callback = useCallback(
+        (entry: IntersectionObserverEntry) => {
+            if (entry.isIntersecting) {
+                setIntersected(true);
+            }
+        },
+        []
+    );
+    const ref = useOnScreenCallback(callback, options);
+
+    return [ref, intersected ? value : undefined];
 }

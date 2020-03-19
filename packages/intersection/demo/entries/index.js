@@ -1,33 +1,28 @@
 import {render} from 'react-dom';
-import {useOnScreen} from '../../src';
+import {useOnScreenValue} from '../../src';
+
+const EMPTY_GIF = 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==';
 
 const Fly = () => {
-    const [listenOnScreen, isOnScreen] = useOnScreen();
+    const [listenOnScreen, src] = useOnScreenValue(
+        'https://mildaintrainings.com/wp-content/uploads/2017/11/react-logo.png',
+        EMPTY_GIF
+    );
     const style = {
-        width: 120,
-        height: 120,
-        lineHeight: '120px',
-        textAlign: 'center',
-        fontSize: 24,
+        width: 300,
+        height: 300,
         position: 'absolute',
         top: '120vh',
         left: '45vw',
-        backgroundColor: '#158cee',
-        color: '#fff',
+        marginBottom: 60,
     };
 
     return (
-        <div ref={listenOnScreen} style={style}>
-            {isOnScreen && 'In Screen'}
-        </div>
+        <img ref={listenOnScreen} style={style} src={src} />
     );
 };
 
-const App = () => (
-    <Fly />
-);
-
 render(
-    <App />,
+    <Fly />,
     document.body.appendChild(document.createElement('div'))
 );

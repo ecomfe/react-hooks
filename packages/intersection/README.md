@@ -8,7 +8,7 @@ Returns a boolean indicating whether element is currently on screen.
 
 ```typescript
 type OnScreenOptions = Omit<IntersectionObserverInit, 'root'>;
-function useOnScreen({rootMargin, threshold}: OnScreenOptions = {}): [EffectRef, boolean];
+function useOnScreen(options?: OnScreenOptions): [EffectRef, boolean];
 ```
 
 This hook only checks intersection between element and the root element (`documentElement` in browser).
@@ -28,3 +28,59 @@ const LazyView = ({children}) => {
     );
 };
 ```
+
+## useOnScreenLazyValue
+
+Return a value only when element intersects with screen.
+
+```typescript
+type OnScreenOptions = Omit<IntersectionObserverInit, 'root'>;
+function useOnScreenLazyValue<T>(value: T, options?: OnScreenOptions): [EffectRef, T | undefined];
+```
+
+If element is out of screen when mount, `undefined` will return, once the element intersects with screen, `value` will return.
+
+**Note: even if element is out of screen again after it goes into screen, `value` is still used, it never goes back to `undefined`.**
+
+This can be helpful to implement lazy loading.
+
+```jsx
+import {useOnScreenLazyValue} from '@huse/intersection';
+
+const LazyImage = props => {
+    const [listenOnScreen, src] = useOnScreenLazyValue(props.src);
+
+    return (
+        <img {...props} ref={listenOnScreen} src={src} />
+    );
+};
+```
+
+Passing a `true` as value works as `useOnScreen` but triggers only once:
+
+```jsx
+import {useOnScreenLazyValue} from '@huse/intersection';
+
+const App = ({children}) => {
+    const [ref, isOnScreen] = useOnScreenLazyValue(true);
+
+    return (
+        <div style={{backgroundColor: isOnScreen ? 'blue' : 'transparent'}}>
+            {children}
+        </div>
+    );
+};
+```
+
+## useOnScreenCallback
+
+This is a fundamental hook which triggers a callback when element intersects with screen.
+
+```typescript
+type OnScreenOptions = Omit<IntersectionObserverInit, 'root'>;
+function useOnScreenCallback(callback: (entry: IntersectionObserverEntry) => void, options?: OnScreenOptions): EffectRef;
+```
+
+`callback` is triggered whenever element is into or out of screen.
+
+Most of the time `useOnScreen` and `useOnScreenValue` are enough, this hooks leaves the ability to extend custom logics with screen intersection.

@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/ecomfe/react-hooks/compare/@huse/doc@1.1.0...@huse/doc@1.2.0) (2020-03-19)
+
+
+### Features
+
+* add useOnScreenLazyValue and useOnScreenCallback hooks ([3fe2327](https://github.com/ecomfe/react-hooks/commit/3fe232714063f629b591138e697a43ea84b67206))
+* add useRequestCallback to allow manual trigger of request ([f47648b](https://github.com/ecomfe/react-hooks/commit/f47648b8cba13f7b53ec70b8087438cda7ad42f3))
+
+
+
+
+
 # [1.1.0](https://github.com/ecomfe/react-hooks/compare/@huse/doc@0.10.0...@huse/doc@1.1.0) (2020-03-17)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0](https://github.com/ecomfe/react-hooks/compare/@huse/request@0.10.1...@huse/request@1.1.0) (2020-03-19)
+
+
+### Features
+
+* add useRequestCallback to allow manual trigger of request ([f47648b](https://github.com/ecomfe/react-hooks/commit/f47648b8cba13f7b53ec70b8087438cda7ad42f3))
+
+
+
+
+
 # [1.0.0](https://github.com/ecomfe/react-hooks/compare/@huse/request@0.10.1...@huse/request@1.0.0) (2020-03-14)
 
 **Note:** Version bump only for package @huse/request

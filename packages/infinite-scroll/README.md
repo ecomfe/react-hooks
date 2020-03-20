@@ -7,6 +7,17 @@ Provides hooks to work with scroll-to-load cases.
 Given an async fetch function, this hook returns a set of properties to help integrated common infinite scroll solutions.
 
 ```typescript
+interface FetchRequest {
+    offset: number;
+}
+
+interface FetchResponse<T> {
+    hasMore: boolean;
+    results: T[];
+}
+
+type FetchDataSource<T> = (request: FetchRequest) => Promise<FetchResponse<T>>;
+
 function useInfiniteScroll<T>(fetch: FetchDataSource<T>, options: InfiniteScrollOptions<T> = {}): InfiniteScrollHook<T>
 ```
 

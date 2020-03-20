@@ -30,11 +30,6 @@ interface Context<T> {
     hasMore: boolean;
 }
 
-interface Methods<T> {
-    requestStart(): void;
-    requestEnd(response: FetchResponse<T>): void;
-}
-
 const createContextReducers = <T>() => {
     return {
         requestStart(state: Context<T>) {

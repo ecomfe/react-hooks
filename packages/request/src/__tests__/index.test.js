@@ -89,6 +89,17 @@ describe('useRequest', () => {
         expect(fetch).toHaveBeenCalledTimes(1);
     });
 
+    test('idempotent with different key', async () => {
+        const fetch = jest.fn(props => Promise.resolve(props.x + 1));
+        const {waitForNextUpdate, rerender} = renderHook(
+            props => useRequest(fetch, props, {idempotent: true}),
+            {initialProps: {x: 1}}
+        );
+        rerender({x: 2});
+        await waitForNextUpdate();
+        expect(fetch).toHaveBeenCalledTimes(2);
+    });
+
     test('wait accept', async () => {
         const fetch = jest.fn(props => Promise.resolve(props.x + Math.random()));
         const {result, waitForNextUpdate, rerender} = renderHook(

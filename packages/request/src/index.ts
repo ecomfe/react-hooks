@@ -113,7 +113,7 @@ export function useRequestCallback<K, O = void, E = Error>(
             request,
             {
                 accept: acceptCurrentKey,
-                pending: true,
+                pending: false,
             },
         ];
     }
@@ -138,6 +138,12 @@ export function useRequest<K, O = void, E = Error>(
     options?: RequestOptions
 ): RequestResult<O, E> {
     const [request, result] = useRequestCallback<K, O, E>(task, params, options);
+    // Since `useRequestCallback` triggers request manually, its initial `pending` is `false`,
+    // however in `useRequest` we need initial `pending` to be `true`.
+    const resultFixedForEffect: RequestResult<O, E> = {
+        ...result,
+        pending: result.pendingCount === undefined ? true : result.pending,
+    };
     useEffect(
         () => {
             request();
@@ -145,5 +151,5 @@ export function useRequest<K, O = void, E = Error>(
         [request]
     );
 
-    return result;
+    return resultFixedForEffect;
 }

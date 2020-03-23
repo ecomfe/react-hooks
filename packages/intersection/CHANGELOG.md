@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.1](https://github.com/ecomfe/react-hooks/compare/@huse/intersection@1.1.0...@huse/intersection@1.1.1) (2020-03-23)
+
+
+### Bug Fixes
+
+* publish src to make source maps working as expected ([9d49f6b](https://github.com/ecomfe/react-hooks/commit/9d49f6b294a445c302f05da958c6e427e7eae669))
+
+
+
+
+
 # [1.1.0](https://github.com/ecomfe/react-hooks/compare/@huse/intersection@0.9.3...@huse/intersection@1.1.0) (2020-03-19)
 
 

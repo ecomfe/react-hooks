@@ -1,6 +1,6 @@
 {
   "name": "@huse/infinite-scroll",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "keywords": [
     "react",
     "hooks"
@@ -26,7 +26,7 @@
     "test": "skr test --coverage"
   },
   "dependencies": {
-    "@huse/methods": "^1.0.0"
+    "@huse/methods": "^1.1.0"
   },
   "devDependencies": {
     "@testing-library/react-hooks": "^3.2.1",

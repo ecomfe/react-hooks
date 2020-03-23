@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.2](https://github.com/ecomfe/react-hooks/compare/huse@1.1.1...huse@1.1.2) (2020-03-23)
+
+
+### Bug Fixes
+
+* publish src to make source maps working as expected ([9d49f6b](https://github.com/ecomfe/react-hooks/commit/9d49f6b294a445c302f05da958c6e427e7eae669))
+
+
+
+
+
 ## [1.1.1](https://github.com/ecomfe/react-hooks/compare/huse@1.1.0...huse@1.1.1) (2020-03-19)
 
 **Note:** Version bump only for package huse

@@ -1,6 +1,6 @@
 {
   "name": "@huse/action-pending",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "keywords": [
     "react",
     "hooks"
@@ -40,6 +40,6 @@
     "react": "^16.8.0"
   },
   "dependencies": {
-    "@huse/number": "^1.0.0"
+    "@huse/number": "^1.0.1"
   }
 }

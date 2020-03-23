@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.1](https://github.com/ecomfe/react-hooks/compare/@huse/derived-state@0.9.2...@huse/derived-state@1.0.1) (2020-03-23)
+
+
+### Bug Fixes
+
+* publish src to make source maps working as expected ([9d49f6b](https://github.com/ecomfe/react-hooks/commit/9d49f6b294a445c302f05da958c6e427e7eae669))
+* usePreviousValue should update previous version on commit ([#9](https://github.com/ecomfe/react-hooks/issues/9)) ([5e38920](https://github.com/ecomfe/react-hooks/commit/5e389206b43d48ef4c1ebcf124cda02e94e358d7))
+
+
+
+
+
 # [1.0.0](https://github.com/ecomfe/react-hooks/compare/@huse/derived-state@0.9.2...@huse/derived-state@1.0.0) (2020-03-14)
 
 

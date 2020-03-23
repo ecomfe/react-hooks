@@ -58,3 +58,13 @@ test('loading', async () => {
         return loading;
     });
 });
+
+test('empty data source on initial load', async () => {
+    const fetch = jest.fn(() => timeout(5).then(() => ({results: [], hasMore: false})));
+    const {result, waitForNextUpdate} = renderHook(() => useInfiniteScroll(fetch, {initialLoad: true}));
+    await waitForNextUpdate();
+    expect(fetch).toHaveBeenCalledTimes(1);
+    expect(result.current.hasMore).toBe(false);
+    expect(result.current.dataSource).toEqual([]);
+    expect(result.current.loading).toBe(false);
+});

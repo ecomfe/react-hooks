@@ -1,4 +1,4 @@
-import {useCallback, useEffect} from 'react';
+import {useCallback, useEffect, useRef} from 'react';
 import {useMethods} from '@huse/methods';
 
 export interface FetchRequest {
@@ -48,12 +48,14 @@ export function useInfiniteScroll<T>(
     options: InfiniteScrollOptions<T> = {}
 ): InfiniteScrollHook<T> {
     const {initialLoad = false, initialItems = []} = options;
+    const initialLoadStarted = useRef(false);
     const [{pendingCount, dataSource, hasMore}, {requestStart, requestEnd}] = useMethods(
         createContextReducers<T>(),
         {pendingCount: 0, dataSource: initialItems, hasMore: true}
     );
     const loadMore = useCallback(
         async () => {
+            initialLoadStarted.current = true;
             requestStart();
             const response = await fetch({offset: dataSource.length});
             requestEnd(response);
@@ -62,11 +64,11 @@ export function useInfiniteScroll<T>(
     );
     useEffect(
         () => {
-            if (initialLoad && !dataSource.length && !pendingCount) {
+            if (initialLoad && !initialLoadStarted.current) {
                 loadMore();
             }
         },
-        [initialLoad, dataSource.length, loadMore, pendingCount]
+        [initialLoad, loadMore]
     );
 
     return {

@@ -29,7 +29,7 @@ const App = () => {
                 {/* mutate state */}
                 <Button onClick={() => setState(s => s.value++)}>Increment</Button>
                 {/* return a new state */}
-                <Button onClick={() => setState(s => {value: s.value - 1})}>Decrement</Button>
+                <Button onClick={() => setState(s => ({value: s.value - 1})}>Decrement</Button>
                 {/* set to a new state */}
                 <Button onClick={() => setState({value: 0})}>Reset</Button>
             </div>

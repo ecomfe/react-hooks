@@ -1,4 +1,4 @@
-import {useState, useReducer, Reducer, useCallback} from 'react';
+import {useState, useReducer, Reducer, Dispatch, useCallback} from 'react';
 import {produce} from 'immer';
 
 // I don't think anyone will use immer reducer without action argument.
@@ -8,7 +8,7 @@ export function useImmerReducer<S = any, A = any>(
     reducer: ImmerReducer<S, A>,
     initialState: S,
     initializer?: () => S
-) {
+): [S, Dispatch<A>] {
     return useReducer<Reducer<S, A>>(
         (state, action) => {
             // @ts-ignore

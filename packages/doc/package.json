@@ -38,6 +38,7 @@
     "@huse/methods": "^1.1.0",
     "@huse/network": "^1.0.1",
     "@huse/number": "^1.0.1",
+    "@huse/optimistic": "^0.8.0",
     "@huse/performance": "^1.0.1",
     "@huse/poll": "^1.0.1",
     "@huse/previous-value": "^1.0.1",

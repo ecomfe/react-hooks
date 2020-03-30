@@ -20,6 +20,7 @@ export * from '@huse/merged-ref';
 export * from '@huse/methods';
 export * from '@huse/network';
 export * from '@huse/number';
+export * from '@huse/optimistic';
 export * from '@huse/performance';
 export * from '@huse/poll';
 export * from '@huse/previous-value';

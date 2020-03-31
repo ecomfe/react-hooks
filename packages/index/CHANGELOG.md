@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/ecomfe/react-hooks/compare/huse@1.1.2...huse@1.2.0) (2020-03-31)
+
+
+### Features
+
+* optimistic hooks ([5272675](https://github.com/ecomfe/react-hooks/commit/527267597c3e7bc3751d4d9490bfa161d77a433b))
+
+
+
+
+
 ## [1.1.2](https://github.com/ecomfe/react-hooks/compare/huse@1.1.1...huse@1.1.2) (2020-03-23)
 
 

@@ -1,6 +1,6 @@
 {
   "name": "@huse/boolean",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "keywords": [
     "react",
     "hooks"
@@ -40,6 +40,6 @@
     "react": "^16.8.0"
   },
   "dependencies": {
-    "@huse/methods": "^1.1.0"
+    "@huse/methods": "^1.1.1"
   }
 }

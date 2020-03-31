@@ -1,6 +1,6 @@
 {
   "name": "@huse/hover",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "keywords": [
     "react",
     "hooks"
@@ -25,7 +25,7 @@
     "test": "skr test --coverage --target=react"
   },
   "dependencies": {
-    "@huse/boolean": "^1.0.1"
+    "@huse/boolean": "^1.0.2"
   },
   "devDependencies": {
     "@testing-library/react-hooks": "^3.2.1",

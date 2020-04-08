@@ -93,3 +93,6 @@ Open `http://localhost:3000` to view documents about hooks.
 | useTransitionState | A state which will revert back to its initial value when updated |
 | useForceUpdate | Force update a component |
 | useWindowSize | Get the size of window |
+| useOptimisticFactory | Infrastructure hook to create optimistic state |
+| useOptimisticState | Optimistic state |
+| useOptimisticTask | Wrap async task to have optimistic result |

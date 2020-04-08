@@ -20,6 +20,7 @@ export interface InfiniteScrollOptions<T> {
 export interface InfiniteScrollHook<T> {
     hasMore: boolean;
     loading: boolean;
+    initialLoading: boolean;
     dataSource: T[];
     loadMore(): void;
 }
@@ -49,6 +50,7 @@ export function useInfiniteScroll<T>(
 ): InfiniteScrollHook<T> {
     const {initialLoad = false, initialItems = []} = options;
     const initialLoadStarted = useRef(false);
+    const initialLoadEnded = useRef(false);
     const [{pendingCount, dataSource, hasMore}, {requestStart, requestEnd}] = useMethods(
         createContextReducers<T>(),
         {pendingCount: 0, dataSource: initialItems, hasMore: true}
@@ -58,6 +60,7 @@ export function useInfiniteScroll<T>(
             initialLoadStarted.current = true;
             requestStart();
             const response = await fetch({offset: dataSource.length});
+            initialLoadEnded.current = true;
             requestEnd(response);
         },
         [requestStart, fetch, dataSource.length, requestEnd]
@@ -76,5 +79,6 @@ export function useInfiniteScroll<T>(
         loadMore,
         hasMore,
         loading: !!pendingCount,
+        initialLoading: initialLoad && !initialLoadEnded.current && !!pendingCount,
     };
 }

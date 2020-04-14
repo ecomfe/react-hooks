@@ -7,7 +7,8 @@
   "license": "MIT",
   "files": [
     "cjs",
-    "es"
+    "es",
+    "src"
   ],
   "scripts": {
     "build": "rm -rf es cjs && tsc & tsc --module ESNext --outDir ./es",

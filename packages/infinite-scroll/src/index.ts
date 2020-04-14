@@ -1,4 +1,4 @@
-import {useCallback, useEffect} from 'react';
+import {useCallback, useEffect, useRef} from 'react';
 import {useMethods} from '@huse/methods';
 
 export interface FetchRequest {
@@ -20,6 +20,7 @@ export interface InfiniteScrollOptions<T> {
 export interface InfiniteScrollHook<T> {
     hasMore: boolean;
     loading: boolean;
+    initialLoading: boolean;
     dataSource: T[];
     loadMore(): void;
 }
@@ -28,11 +29,6 @@ interface Context<T> {
     pendingCount: number;
     dataSource: T[];
     hasMore: boolean;
-}
-
-interface Methods<T> {
-    requestStart(): void;
-    requestEnd(response: FetchResponse<T>): void;
 }
 
 const createContextReducers = <T>() => {
@@ -53,25 +49,29 @@ export function useInfiniteScroll<T>(
     options: InfiniteScrollOptions<T> = {}
 ): InfiniteScrollHook<T> {
     const {initialLoad = false, initialItems = []} = options;
+    const initialLoadStarted = useRef(false);
+    const initialLoadEnded = useRef(false);
     const [{pendingCount, dataSource, hasMore}, {requestStart, requestEnd}] = useMethods(
         createContextReducers<T>(),
         {pendingCount: 0, dataSource: initialItems, hasMore: true}
     );
     const loadMore = useCallback(
         async () => {
+            initialLoadStarted.current = true;
             requestStart();
             const response = await fetch({offset: dataSource.length});
+            initialLoadEnded.current = true;
             requestEnd(response);
         },
         [requestStart, fetch, dataSource.length, requestEnd]
     );
     useEffect(
         () => {
-            if (initialLoad && !dataSource.length && !pendingCount) {
+            if (initialLoad && !initialLoadStarted.current) {
                 loadMore();
             }
         },
-        [initialLoad, dataSource.length, loadMore, pendingCount]
+        [initialLoad, loadMore]
     );
 
     return {
@@ -79,5 +79,6 @@ export function useInfiniteScroll<T>(
         loadMore,
         hasMore,
         loading: !!pendingCount,
+        initialLoading: initialLoad && !initialLoadEnded.current && !!pendingCount,
     };
 }

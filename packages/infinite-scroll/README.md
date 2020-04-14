@@ -7,6 +7,17 @@ Provides hooks to work with scroll-to-load cases.
 Given an async fetch function, this hook returns a set of properties to help integrated common infinite scroll solutions.
 
 ```typescript
+interface FetchRequest {
+    offset: number;
+}
+
+interface FetchResponse<T> {
+    hasMore: boolean;
+    results: T[];
+}
+
+type FetchDataSource<T> = (request: FetchRequest) => Promise<FetchResponse<T>>;
+
 function useInfiniteScroll<T>(fetch: FetchDataSource<T>, options: InfiniteScrollOptions<T> = {}): InfiniteScrollHook<T>
 ```
 
@@ -18,6 +29,8 @@ interface InfiniteScrollHook<T> {
     hasMore: boolean;
     // Whether it is in a loading state currently
     loading: boolean;
+    // Whether it is performing the initial data loading, only works when initialLoad option is set
+    initialLoading: boolean;
     // Loaded items, will be appended on each load
     dataSource: T[];
     // A function to load more items on scroll
@@ -50,11 +63,15 @@ const fetchRemoteDataSource = async ({offset}) => {
 
 const ScrollList = () => {
     // react-infinite-scroll-component requires {initialLoad: true} to work
-    const {dataSource, loadMore, hasMore} = useInfiniteScroll(fetchRemoteDataSource, {initialLoad: true});
+    const {dataSource, loadMore, hasMore, initialLoading} = useInfiniteScroll(fetchRemoteDataSource, {initialLoad: true});
 
     const renderItem = item => {
         // Render item to react node
     };
+
+    if (initialLoading) {
+        return <Loading />;
+    }
 
     return (
         <InfiniteScroll

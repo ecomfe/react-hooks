@@ -3,6 +3,54 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0](https://github.com/ecomfe/react-hooks/compare/@huse/doc@1.2.1...@huse/doc@1.3.0) (2020-03-31)
+
+
+### Features
+
+* optimistic hooks ([5272675](https://github.com/ecomfe/react-hooks/commit/527267597c3e7bc3751d4d9490bfa161d77a433b))
+
+
+
+
+
+## [1.2.1](https://github.com/ecomfe/react-hooks/compare/@huse/doc@1.2.0...@huse/doc@1.2.1) (2020-03-23)
+
+**Note:** Version bump only for package @huse/doc
+
+
+
+
+
+# [1.2.0](https://github.com/ecomfe/react-hooks/compare/@huse/doc@1.1.0...@huse/doc@1.2.0) (2020-03-19)
+
+
+### Features
+
+* add useOnScreenLazyValue and useOnScreenCallback hooks ([3fe2327](https://github.com/ecomfe/react-hooks/commit/3fe232714063f629b591138e697a43ea84b67206))
+* add useRequestCallback to allow manual trigger of request ([f47648b](https://github.com/ecomfe/react-hooks/commit/f47648b8cba13f7b53ec70b8087438cda7ad42f3))
+
+
+
+
+
+# [1.1.0](https://github.com/ecomfe/react-hooks/compare/@huse/doc@0.10.0...@huse/doc@1.1.0) (2020-03-17)
+
+
+### Bug Fixes
+
+* delay update to ref value to commit phase ([#9](https://github.com/ecomfe/react-hooks/issues/9)) ([118f3cc](https://github.com/ecomfe/react-hooks/commit/118f3cc61a48422b06e3d3652de8c619aed1521e))
+* usePreviousValue should update previous version on commit ([#9](https://github.com/ecomfe/react-hooks/issues/9)) ([5e38920](https://github.com/ecomfe/react-hooks/commit/5e389206b43d48ef4c1ebcf124cda02e94e358d7))
+
+
+### Features
+
+* merged ref hooks ([fad341e](https://github.com/ecomfe/react-hooks/commit/fad341e6c28220858e6a85bf2e01640696d7723a))
+
+
+
+
+
 # [1.0.0](https://github.com/ecomfe/react-hooks/compare/@huse/doc@0.10.0...@huse/doc@1.0.0) (2020-03-14)
 
 

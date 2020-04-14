@@ -1,6 +1,6 @@
 {
   "name": "@huse/poll",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "keywords": [
     "react",
     "hooks"
@@ -15,7 +15,8 @@
   "license": "MIT",
   "files": [
     "cjs",
-    "es"
+    "es",
+    "src"
   ],
   "publishConfig": {
     "access": "public",
@@ -29,8 +30,8 @@
     "test": "echo 'no test in @huse/poll'"
   },
   "dependencies": {
-    "@huse/action-pending": "^1.0.0",
-    "@huse/timeout": "^1.0.0",
+    "@huse/action-pending": "^1.0.2",
+    "@huse/timeout": "^1.0.1",
     "user-attention": "^1.0.3"
   },
   "devDependencies": {

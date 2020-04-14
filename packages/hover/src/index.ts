@@ -1,6 +1,5 @@
-import {useCallback, MouseEvent} from 'react';
+import {useCallback, useRef, MouseEvent} from 'react';
 import {useSwitch} from '@huse/boolean';
-import {useDebouncedCallback} from '@huse/debounce';
 
 export interface HoverOptions {
     delay?: number;
@@ -15,28 +14,57 @@ export interface HoverCallbacks {
 
 export function useHover({delay = 0, onEnter, onLeave}: HoverOptions = {}): [boolean, HoverCallbacks] {
     const [inHover, enterHover, leaveHover] = useSwitch();
+    const tick = useRef<any>(-1);
     const enter = useCallback(
         (e: MouseEvent) => {
-            enterHover();
-            onEnter && onEnter(e);
+            clearTimeout(tick.current);
+
+            if (inHover) {
+                return;
+            }
+
+            const trigger = () => {
+                enterHover();
+                onEnter && onEnter(e);
+            };
+
+            if (delay) {
+                tick.current = setTimeout(trigger, delay);
+            }
+            else {
+                trigger();
+            }
         },
-        [enterHover, onEnter]
+        [delay, enterHover, inHover, onEnter]
     );
     const leave = useCallback(
         (e: MouseEvent) => {
-            leaveHover();
-            onLeave && onLeave(e);
+            clearTimeout(tick.current);
+
+            if (!inHover) {
+                return;
+            }
+
+            const trigger = () => {
+                leaveHover();
+                onLeave && onLeave(e);
+            };
+
+            if (delay) {
+                tick.current = setTimeout(trigger, delay);
+            }
+            else {
+                trigger();
+            }
         },
-        [leaveHover, onLeave]
+        [delay, inHover, leaveHover, onLeave]
     );
-    const debouncedEnter = useDebouncedCallback(enter, delay);
-    const debouncedLeave = useDebouncedCallback(leave, delay);
 
     return [
         inHover,
         {
-            onMouseEnter: debouncedEnter,
-            onMouseLeave: debouncedLeave,
+            onMouseEnter: enter,
+            onMouseLeave: leave,
         },
     ];
 }

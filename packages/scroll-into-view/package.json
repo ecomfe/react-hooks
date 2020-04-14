@@ -1,6 +1,6 @@
 {
   "name": "@huse/scroll-into-view",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "keywords": [
     "react",
     "hooks"
@@ -15,7 +15,8 @@
   "license": "MIT",
   "files": [
     "cjs",
-    "es"
+    "es",
+    "src"
   ],
   "publishConfig": {
     "access": "public",

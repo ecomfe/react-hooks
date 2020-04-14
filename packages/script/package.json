@@ -1,6 +1,6 @@
 {
   "name": "@huse/script",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "keywords": [
     "react",
     "hooks"
@@ -15,7 +15,8 @@
   "license": "MIT",
   "files": [
     "cjs",
-    "es"
+    "es",
+    "src"
   ],
   "publishConfig": {
     "access": "public",
@@ -29,7 +30,7 @@
     "test": "echo 'no test in @huse/script'"
   },
   "dependencies": {
-    "@huse/update": "^1.0.0"
+    "@huse/update": "^1.0.1"
   },
   "devDependencies": {
     "@types/react": "^16.9.22",

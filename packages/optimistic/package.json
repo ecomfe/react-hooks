@@ -1,0 +1,41 @@
+{
+  "name": "@huse/optimistic",
+  "version": "0.9.0",
+  "keywords": [
+    "react",
+    "hooks"
+  ],
+  "homepage": "https://github.com/ecomfe/react-hooks/tree/master/packages/optimistic",
+  "bugs": {
+    "url": "https://github.com/ecomfe/react-hooks/issues"
+  },
+  "license": "MIT",
+  "main": "cjs/index.js",
+  "module": "es/index.js",
+  "types": "es/index.d.ts",
+  "files": [
+    "cjs",
+    "es",
+    "src"
+  ],
+  "scripts": {
+    "build": "rm -rf es cjs && tsc & tsc --module ESNext --outDir ./es",
+    "build-check": "tsc",
+    "lint": "skr lint",
+    "test": "skr test --coverage"
+  },
+  "devDependencies": {
+    "@testing-library/react-hooks": "^3.2.1",
+    "@types/react": "^16.9.22",
+    "react": "^16.12.0",
+    "reskript": "^0.25.16",
+    "typescript": "^3.8.2"
+  },
+  "peerDependencies": {
+    "react": "^16.8.0"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.com"
+  }
+}

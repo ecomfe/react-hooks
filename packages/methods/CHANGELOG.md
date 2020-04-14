@@ -3,6 +3,31 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.1](https://github.com/ecomfe/react-hooks/compare/@huse/methods@1.1.0...@huse/methods@1.1.1) (2020-03-31)
+
+**Note:** Version bump only for package @huse/methods
+
+
+
+
+
+# [1.1.0](https://github.com/ecomfe/react-hooks/compare/@huse/methods@0.9.3...@huse/methods@1.1.0) (2020-03-23)
+
+
+### Bug Fixes
+
+* publish src to make source maps working as expected ([9d49f6b](https://github.com/ecomfe/react-hooks/commit/9d49f6b294a445c302f05da958c6e427e7eae669))
+
+
+### Features
+
+* add useMethodsNative and useMethodsExtensionNative to wrap methods around native react state without immer ([605dc3d](https://github.com/ecomfe/react-hooks/commit/605dc3d6b8d38ecf2aa1f16575fc7a6ede8a209c))
+* initialize methods once and improve type inference ([c161e95](https://github.com/ecomfe/react-hooks/commit/c161e95a9e26148a0f0f1756a28eea61b53fade8))
+
+
+
+
+
 # [1.0.0](https://github.com/ecomfe/react-hooks/compare/@huse/methods@0.9.3...@huse/methods@1.0.0) (2020-03-14)
 
 

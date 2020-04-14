@@ -1,6 +1,6 @@
 {
   "name": "@huse/infinite-scroll",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "keywords": [
     "react",
     "hooks"
@@ -15,7 +15,8 @@
   "types": "es/index.d.ts",
   "files": [
     "cjs",
-    "es"
+    "es",
+    "src"
   ],
   "scripts": {
     "build": "rm -rf es cjs && tsc & tsc --module ESNext --outDir ./es",
@@ -25,7 +26,7 @@
     "test": "skr test --coverage"
   },
   "dependencies": {
-    "@huse/methods": "^1.0.0"
+    "@huse/methods": "^1.1.1"
   },
   "devDependencies": {
     "@testing-library/react-hooks": "^3.2.1",

@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.1](https://github.com/ecomfe/react-hooks/compare/@huse/debounce@0.11.0...@huse/debounce@1.0.1) (2020-03-23)
+
+
+### Bug Fixes
+
+* delay update to ref value to commit phase ([#9](https://github.com/ecomfe/react-hooks/issues/9)) ([118f3cc](https://github.com/ecomfe/react-hooks/commit/118f3cc61a48422b06e3d3652de8c619aed1521e))
+* publish src to make source maps working as expected ([9d49f6b](https://github.com/ecomfe/react-hooks/commit/9d49f6b294a445c302f05da958c6e427e7eae669))
+
+
+
+
+
 # [1.0.0](https://github.com/ecomfe/react-hooks/compare/@huse/debounce@0.11.0...@huse/debounce@1.0.0) (2020-03-14)
 
 

@@ -16,7 +16,7 @@ const BASE_PACKAGE_INFO = {
         url: 'https://github.com/ecomfe/react-hooks/issues',
     },
     license: 'MIT',
-    files: ['cjs', 'es'],
+    files: ['cjs', 'es', 'src'],
     publishConfig: {
         access: 'public',
         registry: 'https://registry.npmjs.com',

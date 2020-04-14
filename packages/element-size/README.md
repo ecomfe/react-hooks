@@ -56,11 +56,10 @@ The initial size is `undefined` and will be updated on mount any anytime element
 ```jsx
 import {useElementSize} from '@huse/element-size';
 
-const ref = useRef(null);
-const size = useElementSize(ref);
+const [observeSize, size] = useElementSize();
 
 return (
-    <div>
+    <div ref={observeSize}>
         {size & `${size.width} x ${size.height}`}
     </div>
 );

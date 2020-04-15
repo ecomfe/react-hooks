@@ -1,0 +1,44 @@
+{
+  "name": "@huse/user-media",
+  "version": "0.8.0",
+  "keywords": [
+    "react",
+    "hooks"
+  ],
+  "homepage": "https://github.com/ecomfe/react-hooks/tree/master/packages/user-media",
+  "bugs": {
+    "url": "https://github.com/ecomfe/react-hooks/issues"
+  },
+  "main": "cjs/index.js",
+  "module": "es/index.js",
+  "types": "es/index.d.ts",
+  "license": "MIT",
+  "files": [
+    "cjs",
+    "es",
+    "src"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.com"
+  },
+  "scripts": {
+    "build": "rm -rf es cjs && tsc & tsc --module ESNext --outDir ./es",
+    "build-check": "tsc",
+    "lint": "skr lint",
+    "test": "skr test --coverage"
+  },
+  "devDependencies": {
+    "@testing-library/react-hooks": "^3.2.1",
+    "@types/react": "^16.9.34",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-test-renderer": "^16.13.1",
+    "reskript": "^0.25.21",
+    "typescript": "^3.8.3"
+  },
+  "peerDependencies": {
+    "react": "^16.8.0"
+  }
+}
+  

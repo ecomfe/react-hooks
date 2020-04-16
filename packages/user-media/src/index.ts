@@ -14,31 +14,23 @@ const DEFAULT_CONSTRAINTS = {
     audio: true,
 };
 
-// 兼容getUserMedia接口 参考: https://developer.mozilla.org/zh-CN/docs/Web/API/MediaDevices/getUserMedia
-function adapterUserMedia(): void {
-    // 老的浏览器可能根本没有实现 mediaDevices，所以我们可以先设置一个空的对象
-    if (navigator.mediaDevices === undefined) {
-        (navigator as any).mediaDevices = {};
+function adapterGetUserMedia(constraints: MediaStreamConstraints): Promise<any> {
+    if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+        return navigator.mediaDevices.getUserMedia(constraints);
     }
 
-    // 一些浏览器部分支持mediaDevices。我们不能直接给对象设置getUserMedia
-    // 因为这样可能会覆盖已有的属性。这里我们只会在没有getUserMedia属性的时候添加它
-    if (navigator.mediaDevices.getUserMedia === undefined) {
-        navigator.mediaDevices.getUserMedia = constraints => {
-            // 首先，如果有getUserMedia的话，就获得它
-            const getUserMedia = (navigator as any).webkitGetUserMedia
-                ? (navigator as any).webkitGetUserMedia : (navigator as any).mozGetUserMedia;
-
-            // 一些浏览器根本没实现它 - 那么就返回一个error到promise的reject来保持一个统一的接口
-            if (!getUserMedia) {
-                return Promise.reject(new Error('getUserMedia is not implemented in this browser'));
-            }
-            // 否则，为老的navigator.getUserMedia方法包裹一个Promise
-            return new Promise((resolve, reject) => {
-                getUserMedia.call(navigator, constraints, resolve, reject);
-            });
-        };
+    // 如果有其他getUserMedia实现的话，就获得它
+    const getUserMedia = (navigator as any).webkitGetUserMedia
+        ? (navigator as any).webkitGetUserMedia : (navigator as any).mozGetUserMedia;
+    if (getUserMedia) {
+        return new Promise((resolve, reject) => {
+            getUserMedia.call(navigator, constraints, resolve, reject);
+        });
     }
+    // 浏览器没有任何getUserMedia方法
+    const error = new Error('getUserMedia is not implemented in this browser');
+    (error as any).code = 'ERR_METHOD_NOT_IMPLEMENTED';
+    return Promise.reject(error);
 }
 
 export function useUserMedia(
@@ -60,32 +52,32 @@ export function useUserMedia(
         onSuccess && onSuccess(stream);
     }, [onSuccess]);
 
-    // 开启
-    const start = useCallback(async () => {
-        // 调起getUserMedia参数
-        const constraintsParams = originalConstraints ? originalConstraints : DEFAULT_CONSTRAINTS;
-        try {
-            const stream = await navigator.mediaDevices.getUserMedia(constraintsParams);
-            handleSuccess(stream);
-        }
-        catch (error) {
-            onError && onError(error);
-        }
-    }, [originalConstraints, handleSuccess, onError]);
-
     // 停止
     const stop = useCallback(() => {
         if (streamRef.current) {
             const tracks = streamRef.current.getTracks();
             tracks.forEach(track => track.stop());
             setRecording(false);
+            streamRef.current = null;
         }
     }, []);
 
-    useEffect(() => {
-        // 浏览器接口兼容
-        adapterUserMedia();
+    // 开启
+    const start = useCallback(async () => {
+        try {
+            // 开启录制时试图关掉上一次流
+            stop();
+            // 调起getUserMedia参数
+            const constraintsParams = originalConstraints ? originalConstraints : DEFAULT_CONSTRAINTS;
+            const stream = await adapterGetUserMedia(constraintsParams);
+            handleSuccess(stream);
+        }
+        catch (error) {
+            onError && onError(error);
+        }
+    }, [stop, originalConstraints, handleSuccess, onError]);
 
+    useEffect(() => {
         // 这里自动帮用户兜底，关掉开启的流
         return () => {
             stop();

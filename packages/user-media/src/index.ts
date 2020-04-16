@@ -1,4 +1,5 @@
 import {useState, useEffect, useCallback, useRef} from 'react';
+import {useOriginalCopy} from '@huse/previous-value';
 
 export interface UserMediaResult {
     stream: MediaStream | null;
@@ -25,7 +26,9 @@ function adapterUserMedia(): void {
     if (navigator.mediaDevices.getUserMedia === undefined) {
         navigator.mediaDevices.getUserMedia = constraints => {
             // 首先，如果有getUserMedia的话，就获得它
-            const getUserMedia = (navigator as any).webkitGetUserMedia || (navigator as any).mozGetUserMedia;
+            const getUserMedia = (navigator as any).webkitGetUserMedia
+                ? (navigator as any).webkitGetUserMedia : (navigator as any).mozGetUserMedia;
+
             // 一些浏览器根本没实现它 - 那么就返回一个error到promise的reject来保持一个统一的接口
             if (!getUserMedia) {
                 return Promise.reject(new Error('getUserMedia is not implemented in this browser'));
@@ -45,6 +48,8 @@ export function useUserMedia(
 ): UserMediaResult {
     const [recording, setRecording] = useState<boolean>(false);
 
+    const originalConstraints = useOriginalCopy(constraints);
+
     // 流对象
     const streamRef = useRef<MediaStream | null>(null);
 
@@ -58,10 +63,7 @@ export function useUserMedia(
     // 开启
     const start = useCallback(async () => {
         // 调起getUserMedia参数
-        const constraintsParams = {
-            ...DEFAULT_CONSTRAINTS,
-            ...(constraints ? constraints : {}),
-        };
+        const constraintsParams = originalConstraints ? originalConstraints : DEFAULT_CONSTRAINTS;
         try {
             const stream = await navigator.mediaDevices.getUserMedia(constraintsParams);
             handleSuccess(stream);
@@ -69,7 +71,7 @@ export function useUserMedia(
         catch (error) {
             onError && onError(error);
         }
-    }, [constraints, handleSuccess, onError]);
+    }, [originalConstraints, handleSuccess, onError]);
 
     // 停止
     const stop = useCallback(() => {
@@ -88,7 +90,7 @@ export function useUserMedia(
         return () => {
             stop();
         };
-    }, []);
+    }, [stop]);
 
     return {
         stream: streamRef.current,

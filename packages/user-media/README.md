@@ -1,13 +1,13 @@
 # @huse/user-media
 
-web上获取客户端音视频媒体的hook
+web客户端获取音视频媒体的hook
 
 ## useUserMedia
 
-返回启动/关闭方法、stream对象和`录制`的状态
+通过传入`constraint`和成功/失败的回调方法，`useUserMedia`支持在web客户端获取用户音视频流
 
 ```typescript
-interface UserMediaResult {
+interface UserMediaHook {
     stream: MediaStream | null;
     recording: boolean;
     start: () => void;
@@ -18,7 +18,7 @@ function useUserMedia(
     constraints?: MediaStreamConstraints,
     onSuccess?: (stream: MediaStream) => void,
     onError?: (error: Error) => void
-): UserMediaResult;
+): UserMediaHook;
 ```
 
 示例：实时录制用户音视频并展示在播放器上

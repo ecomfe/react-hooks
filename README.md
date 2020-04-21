@@ -96,3 +96,4 @@ Open `http://localhost:3000` to view documents about hooks.
 | useOptimisticFactory | Infrastructure hook to create optimistic state |
 | useOptimisticState | Optimistic state |
 | useOptimisticTask | Wrap async task to have optimistic result |
+| useUserMedia | Open video and audio streams in browser |

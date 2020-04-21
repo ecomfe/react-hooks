@@ -51,6 +51,7 @@ describe('adapterUserMedia', () => {
         renderHook(() => useUserMedia(constraints, onSuccess, onError));
         expect(typeof global.navigator.mediaDevices.getUserMedia).toBe('function');
     });
+
     test('webkitGetUserMedia', () => {
         const onSuccess = jest.fn();
         const onError = jest.fn();
@@ -79,6 +80,7 @@ describe('start success, stop success', () => {
         expect(stopRecording).toBe(false);
         expect(closeStream).toBe(null);
     });
+
     test('webkitGetUserMedia', async () => {
         const onSuccess = jest.fn();
         const onError = jest.fn();
@@ -96,6 +98,7 @@ describe('start success, stop success', () => {
         expect(stopRecording).toBe(false);
         expect(closeStream).toBe(null);
     });
+
     test('no constraints', async () => {
         const onSuccess = jest.fn();
         const onError = jest.fn();

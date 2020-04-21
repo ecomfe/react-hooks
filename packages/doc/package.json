@@ -52,6 +52,7 @@
     "@huse/timeout": "^1.0.1",
     "@huse/transition-state": "^1.0.1",
     "@huse/update": "^1.0.1",
+    "@huse/user-media": "^0.8.0",
     "@huse/window-size": "^1.0.1"
   }
 }

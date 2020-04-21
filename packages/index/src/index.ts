@@ -34,4 +34,5 @@ export * from '@huse/snapshot';
 export * from '@huse/timeout';
 export * from '@huse/transition-state';
 export * from '@huse/update';
+export * from '@huse/user-media';
 export * from '@huse/window-size';

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0](https://github.com/ecomfe/react-hooks/compare/@huse/infinite-scroll@1.0.2...@huse/infinite-scroll@1.1.0) (2020-04-21)
+
+
+### Features
+
+* add initialLoading result to useInfiniteScroll ([954ed1b](https://github.com/ecomfe/react-hooks/commit/954ed1b61c29ddcbcd1e483b220cce05cbd1da3c))
+
+
+
+
+
 ## [1.0.2](https://github.com/ecomfe/react-hooks/compare/@huse/infinite-scroll@1.0.1...@huse/infinite-scroll@1.0.2) (2020-03-31)
 
 **Note:** Version bump only for package @huse/infinite-scroll

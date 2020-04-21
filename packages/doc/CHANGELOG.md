@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.4.0](https://github.com/ecomfe/react-hooks/compare/@huse/doc@1.3.0...@huse/doc@1.4.0) (2020-04-21)
+
+
+### Features
+
+* add initialLoading result to useInfiniteScroll ([954ed1b](https://github.com/ecomfe/react-hooks/commit/954ed1b61c29ddcbcd1e483b220cce05cbd1da3c))
+* add user media hooks to index ([bdf6d50](https://github.com/ecomfe/react-hooks/commit/bdf6d50c4aa03b1a8b4333d88c4a1ef3a1839dc8))
+* user media hooks ([#25](https://github.com/ecomfe/react-hooks/issues/25)) ([8af0885](https://github.com/ecomfe/react-hooks/commit/8af0885cc2571e943e687e9c707a177be65b4c3c))
+
+
+
+
+
 # [1.3.0](https://github.com/ecomfe/react-hooks/compare/@huse/doc@1.2.1...@huse/doc@1.3.0) (2020-03-31)
 
 

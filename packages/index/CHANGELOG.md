@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0](https://github.com/ecomfe/react-hooks/compare/huse@1.2.0...huse@1.3.0) (2020-04-21)
+
+
+### Features
+
+* add user media hooks to index ([bdf6d50](https://github.com/ecomfe/react-hooks/commit/bdf6d50c4aa03b1a8b4333d88c4a1ef3a1839dc8))
+
+
+
+
+
 # [1.2.0](https://github.com/ecomfe/react-hooks/compare/huse@1.1.2...huse@1.2.0) (2020-03-31)
 
 

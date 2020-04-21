@@ -1,6 +1,8 @@
 # huse
 
-This is an index package for all [@huse packages](https://www.npmjs.com/search?q=%40huse).
+This is an index package for all [@huse packages](https://www.npmjs.com/search?q=%40huse) **expect `@huse/router`**.
+
+**NOTE: This package does not include `@huse/router` since it requires `react-router-dom` which is not commonly installed.**
 
 Refer to [github repository](https://github.com/ecomfe/react-hooks/tree/master/packages) to find all hooks.
 

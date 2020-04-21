@@ -97,3 +97,10 @@ Open `http://localhost:3000` to view documents about hooks.
 | useOptimisticState | Optimistic state |
 | useOptimisticTask | Wrap async task to have optimistic result |
 | useUserMedia | Open video and audio streams in browser |
+| useNavigate | Get a function to navigate to any location |
+| useLocationState | Wrap location's state into a react state |
+| useSearchParams | Parse search string to `URLSearchParams` |
+| useSearchParam | Get a single search param |
+| useSearchParamAll | Get a single search param as array |
+| useUpdateSearchParams | Get a function to update search params |
+| useSearchParamState | Wrap a single search param into a react state |

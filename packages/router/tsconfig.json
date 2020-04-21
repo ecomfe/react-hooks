@@ -11,7 +11,8 @@
         "rootDir": "./src",
         "outDir": "./cjs",
         "noEmit": false,
-        "declaration": true
+        "declaration": true,
+        "lib": ["ES2016", "DOM", "DOM.Iterable"]
     },
     "include": ["src"]
 }

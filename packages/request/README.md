@@ -104,13 +104,13 @@ const App = ({user}) => {
 
 ### Idempotent
 
-The `idempotent` option indicates whether a request is indempotent, that is it should respond with the same result if given params keep identical, usually a HTTP GET request is indempotent.
+The `idempotent` option indicates whether a request is idempotent, that is it should respond with the same result if given params keep identical, usually a HTTP GET request is idempotent.
 
 When `idempotent` is set to `true`, and a previous request with the same params is pending, `useRequest` doesn't fire another request, it reuses the previous one.
 
 ### Race Condition
 
-The term "race condition" refers to the issue where a request may receive an unrelated response because multiple requests and responses are not in series oreder.
+The term "race condition" refers to the issue where a request may receive an unrelated response because multiple requests and responses are not in series order.
 
 `useRequest` solves race condition issue by having a map of params and response, `params` are not required to be reference equal.
 

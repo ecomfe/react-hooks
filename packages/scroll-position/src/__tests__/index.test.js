@@ -39,6 +39,20 @@ describe('useScrollPosition', () => {
         document.documentElement.scrollLeft = 0;
     });
 
+    test('window scroll change', async () => {
+        const {result, waitForNextUpdate} = renderHook(() => useScrollPosition());
+        expect(result.current.x).toBe(0);
+        expect(result.current.y).toBe(0);
+        document.documentElement.scrollTop = 20;
+        document.documentElement.scrollLeft = 30;
+        document.dispatchEvent(new Event('scroll'));
+        await waitForNextUpdate();
+        expect(result.current.x).toBe(30);
+        expect(result.current.y).toBe(20);
+        document.documentElement.scrollTop = 0;
+        document.documentElement.scrollLeft = 0;
+    });
+
     test('change element', () => {
         const div = document.createElement('div');
         const span = document.createElement('div');

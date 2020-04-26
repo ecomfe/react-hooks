@@ -37,8 +37,8 @@ export function useScrollPosition(element?: HTMLElement | null): ScrollPosition 
                 return;
             }
 
-            const target = element === undefined ? document : element;
-            const targetElement = element === undefined ? document.documentElement : element;
+            const target = element ?? document;
+            const targetElement = element ?? document.documentElement;
 
             setPosition(getScrollPosition(targetElement));
 

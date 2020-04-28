@@ -37,9 +37,10 @@ export function useScrollPosition(element?: HTMLElement | null): ScrollPosition 
                 return;
             }
 
-            const target = element === undefined ? document.documentElement : element;
+            const target = element ?? document;
+            const targetElement = element ?? document.documentElement;
 
-            setPosition(getScrollPosition(target));
+            setPosition(getScrollPosition(targetElement));
 
             const syncScroll = () => {
                 if (rafTick.current) {
@@ -47,7 +48,7 @@ export function useScrollPosition(element?: HTMLElement | null): ScrollPosition 
                 }
 
                 const callback = () => {
-                    setPosition(getScrollPosition(target));
+                    setPosition(getScrollPosition(targetElement));
                     rafTick.current = 0;
                 };
                 rafTick.current = requestAnimationFrame(callback);

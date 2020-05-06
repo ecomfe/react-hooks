@@ -1,11 +1,11 @@
 {
-  "name": "@huse/scroll-position",
-  "version": "1.0.2",
+  "name": "@huse/router",
+  "version": "0.9.0",
   "keywords": [
     "react",
     "hooks"
   ],
-  "homepage": "https://github.com/ecomfe/react-hooks/tree/master/packages/scroll-position",
+  "homepage": "https://github.com/ecomfe/react-hooks/tree/master/packages/router",
   "bugs": {
     "url": "https://github.com/ecomfe/react-hooks/issues"
   },
@@ -22,23 +22,27 @@
     "build": "rm -rf es cjs && tsc & tsc --module ESNext --outDir ./es",
     "build-check": "tsc",
     "lint": "skr lint",
-    "test": "skr test --coverage --target=react"
+    "test": "skr test --coverage"
   },
   "devDependencies": {
     "@testing-library/react-hooks": "^3.2.1",
     "@types/react": "^16.9.22",
     "react": "^16.12.0",
+    "react-router-dom": "^5.1.2",
     "reskript": "^0.25.16",
     "typescript": "^3.8.2"
   },
   "peerDependencies": {
-    "react": "^16.8.0"
+    "react": "^16.8.0",
+    "react-router-dom": "5.x"
   },
   "publishConfig": {
     "access": "public",
     "registry": "https://registry.npmjs.com"
   },
   "dependencies": {
-    "has-passive-events": "^1.0.0"
+    "@types/history": "^4.7.5",
+    "@types/react-router-dom": "^5.1.4",
+    "history": "^4.10.1"
   }
 }

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.4.0](https://github.com/ecomfe/react-hooks/compare/huse@1.3.0...huse@1.4.0) (2020-05-03)
+
+
+### Features
+
+* router hooks ([19c3128](https://github.com/ecomfe/react-hooks/commit/19c3128446131826cd2d66f1eea795a0700ae64a))
+
+
+
+
+
 # [1.3.0](https://github.com/ecomfe/react-hooks/compare/huse@1.2.0...huse@1.3.0) (2020-04-21)
 
 

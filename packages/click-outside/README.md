@@ -19,12 +19,12 @@ import {useRef, useState} from 'react';
 import {useClickOutside} from '@huse/click-outside';
 
 const App = () => {
-    const ref = useRef();
+    const modalRef = useRef();
     const [modalOpen, setModalOpen] = useState(false);
-    useClickOutside(ref, () => setModalOpen(false));
+    useClickOutside(modalRef, () => setModalOpen(false));
 
     return (
-        <Modal visible={modalOpen}>
+        <Modal ref={modalRef} visible={modalOpen}>
             Modal Content
         </Modal>
     );

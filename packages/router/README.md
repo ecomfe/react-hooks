@@ -9,7 +9,13 @@ Enpower `react-router-dom` with hooks to interactive with location, state, searc
 A implement of `react-router@6.x`'s `useNavigate` above version `5.x`.
 
 ```typescript
+interface NavigateOptions<S = LocationState> {
+    replace?: boolean;
+    state?: S;
+}
+
 type Navigate = <S>(to: Location<S> | string, options?: NavigateOptions<S>) => void;
+
 function useNavigate(): Navigate;
 ```
 
@@ -19,6 +25,7 @@ Wrap `location.state` to a react state tuple.
 
 ```typescript
 type UpdateLocationState<T> = (patch: Partial<T>) => void;
+
 function useLocationState<T>(defaultValue: T): [T, UpdateLocationState<T>];
 ```
 
@@ -65,15 +72,52 @@ const App = () => {
 
 ## useSearchParams
 
-Parse location search to a `URLSearchParams` object.
+Parse location search to a `URLSearchParams` object as well as a function to update it.
 
 ```typescript
-function useSearchParams(): URLSearchParams;
+interface SearchQuery {
+    [key: string]: string | string[];
+}
+
+interface SearchParamsPatch {
+    [key: string]: string | number | string[] | number[] | undefined | null;
+}
+
+type UpdateSearchParams = <S>(patch: SearchParamsPatch, options?: NavigateOptions<S>) => void;
+
+type SearchParamsHook = [URLSearchParams, UpdateSearchParams];
+
+function useSearchParams(defaults?: SearchQuery): SearchParamsHook;
+```
+
+This returns a `[params, updateParams]` tuple so that you can both get and update search.
+
+```jsx
+import {useSearchParams} from '@huse/router';
+import {Select} from 'antd';
+
+const SearchFilter = () => {
+    const [params, updateParams] = useSearchParams({priority: 'normal'});
+    const setPriority = useCallback(
+        value => updateParams({priority: value}),
+        [updateParams]
+    );
+
+    return (
+        <div>
+            <Select value={params.get('priority')} onChange={setPriority}>
+                <Select.Option value="low">Low</Select.Option>
+                <Select.Option value="normal">Normal</Select.Option>
+                <Select.Option value="high">High</Select.Option>
+            </Select>
+        </div>
+    );
+};
 ```
 
 ## useSearchParam
 
-Like `useSearchParams` but get a single param.
+Like `useSearchParams` but get a single param without update function.
 
 ```typescript
 function useSearchParam(key: string): string | null
@@ -92,38 +136,23 @@ function useSearchParamAll(key: string): string[]
 Get a function to update search params via any object.
 
 ```typescript
-interface SearchQuery {
-    [key: string]: string | string[];
+interface SearchParamsPatch {
+    [key: string]: string | number | string[] | number[] | undefined | null;
 }
 
-interface UpdateSearchParamsOptions {
-    replace?: boolean;
-    stringify?(query: SearchQuery): string;
-}
+type UpdateSearchParams = <S>(patch: SearchParamsPatch, options?: NavigateOptions<S>) => void;
 
-type UpdateSearchParams = <S>(patch: S) => void;
-
-function useUpdateSearchParams(options?: UpdateSearchParamsOptions): UpdateSearchParams;
+function useUpdateSearchParams(): UpdateSearchParams;
 ```
 
-By default `URLSearchParams#toString` is used to stringify search params to search string, you can use your own `stringify` option using 3rd-party packages like `query-string`:
-
-```javascript
-import queryString from 'query-string';
-
-const useUpdateQueryString = () => {
-    // Pass a custom stringify function.
-    const updateSearchParams = useUpdateSearchParams({stringify: queryString.stringify});
-    return updateSearchParams;
-};
-```
+`URLSearchParams#toString` is used to stringify search params to search string.
 
 ## useSearchParamState
 
 Wrap a single search params as a react state.
 
 ```typescript
-function useSearchParamState(key: string, options: UpdateSearchParamsOptions = {replace: false}): [string | null, (value: string) => void];
+function useSearchParamState(key: string, options?: NavigateOptions): [string | null, (value: string) => void];
 ```
 
 When a state is stored in search params, using this hooks works just like `useState`.

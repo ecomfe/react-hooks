@@ -55,15 +55,19 @@ export function useInfiniteScroll<T>(
         createContextReducers<T>(),
         {pendingCount: 0, dataSource: initialItems, hasMore: true}
     );
+    const loading = !!pendingCount;
     const loadMore = useCallback(
         async () => {
+            if (loading) {
+                return;
+            }
             initialLoadStarted.current = true;
             requestStart();
             const response = await fetch({offset: dataSource.length});
             initialLoadEnded.current = true;
             requestEnd(response);
         },
-        [requestStart, fetch, dataSource.length, requestEnd]
+        [loading, requestStart, fetch, dataSource.length, requestEnd]
     );
     useEffect(
         () => {
@@ -78,7 +82,7 @@ export function useInfiniteScroll<T>(
         dataSource,
         loadMore,
         hasMore,
-        loading: !!pendingCount,
-        initialLoading: initialLoad && !initialLoadEnded.current && !!pendingCount,
+        loading,
+        initialLoading: initialLoad && !initialLoadEnded.current && loading,
     };
 }

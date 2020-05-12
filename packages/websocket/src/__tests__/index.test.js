@@ -345,7 +345,7 @@ test('url change auto reconnect', async () => {
         server.send('test message from mock server');
     });
 
-    expect(get(result, 'current[1].data')).toBe('test message from mock server');
+    expect(result.current[1].data).toBe('test message from mock server');
     expect(onOpen).toHaveBeenCalledTimes(1);
     expect(onMessage).toHaveBeenCalledTimes(1);
 
@@ -369,7 +369,7 @@ test('url change auto reconnect', async () => {
         server.send('test message from mock server second');
     });
 
-    expect(get(result, 'current[1].data')).toBe('test message from mock server second');
+    expect(result.current[1].data).toBe('test message from mock server second');
 });
 
 test('webSocket startWebSocket ok, closeWebSocket ok without options', async () => {
@@ -395,7 +395,7 @@ test('webSocket startWebSocket ok, closeWebSocket ok without options', async () 
     act(() => {
         server.send('test message from mock server');
     });
-    expect(get(result, 'current[1].data')).toBe('test message from mock server');
+    expect(result.current[1].data).toBe('test message from mock server');
     // 测试关闭websocket
     act(() => closeWebSocket());
     await act(async () => {

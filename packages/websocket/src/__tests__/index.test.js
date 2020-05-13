@@ -193,20 +193,20 @@ test('webSocket options filter return undefined', async () => {
         server.send('test message from mock server');
     });
 
-    expect(result.current[1].data).toBe(undefined);
+    expect(result.current[1]).toBe(null);
     expect(onOpen).toHaveBeenCalledTimes(1);
     expect(onMessage).toHaveBeenCalledTimes(1);
     expect(filter).toHaveBeenCalledTimes(1);
 });
-test('webSocket reconnect with shouldReconnect, with reconnectAttempts, with reconnectInterval', async () => {
+test('webSocket reconnect with reconnectOnClose, with reconnectAttempts, with reconnectInterval', async () => {
     const onOpen = jest.fn();
     const onClose = jest.fn();
-    const shouldReconnect = jest.fn(() => true);
+    const reconnectOnClose = jest.fn(() => true);
     const reconnectInterval = 1;
     const options = {
         onOpen,
         onClose,
-        shouldReconnect,
+        reconnectOnClose,
         reconnectInterval,
         reconnectAttempts: 1,
     };
@@ -233,7 +233,7 @@ test('webSocket reconnect with shouldReconnect, with reconnectAttempts, with rec
     });
     expect(onClose).toHaveBeenCalledTimes(1);
     expect(result.current[2]).toBe(3);
-    expect(shouldReconnect).toHaveBeenCalledTimes(1);
+    expect(reconnectOnClose).toHaveBeenCalledTimes(1);
     // 让第一次重启失败，自动重启第二次
     act(() => server.error());
     await act(async () => {
@@ -243,21 +243,21 @@ test('webSocket reconnect with shouldReconnect, with reconnectAttempts, with rec
     await act(() => timeout(reconnectInterval + 6));
     expect(onClose).toHaveBeenCalledTimes(2);
     expect(result.current[2]).toBe(3);
-    expect(shouldReconnect).toHaveBeenCalledTimes(2);
+    expect(reconnectOnClose).toHaveBeenCalledTimes(2);
     await act(() => timeout(reconnectInterval + 5));
     expect(result.current[2]).toBe(3);
 });
 
-test('webSocket reconnect with retryOnError, without reconnectAttempts, without reconnectInterval', async () => {
+test('webSocket reconnect with reconnectOnError, without reconnectAttempts, without reconnectInterval', async () => {
     const onOpen = jest.fn();
     const onMessage = jest.fn();
     const onError = jest.fn();
-    const retryOnError = jest.fn(() => true);
+    const reconnectOnError = jest.fn(() => true);
     const options = {
         onOpen,
         onMessage,
         onError,
-        retryOnError,
+        reconnectOnError,
     };
     const fakeURL = 'ws://localhost:1234';
     const server = new WS(fakeURL);
@@ -302,7 +302,7 @@ test('webSocket reconnect with retryOnError, without reconnectAttempts, without 
         return promise;
     });
     await act(() => timeout(DEFAULT_RECONNECT_INTERVAL_MS + 1));
-    expect(retryOnError).toHaveBeenCalledTimes(1);
+    expect(reconnectOnError).toHaveBeenCalledTimes(1);
 }, DEFAULT_RECONNECT_INTERVAL_MS * 2);
 
 // eslint-disable-next-line max-statements

@@ -23,6 +23,7 @@ export const attachListeners = (
         const reconnectLimit = options.reconnectAttempts ?? DEFAULT_RECONNECT_LIMIT;
         const reconnectInterval = options.reconnectInterval ?? DEFAULT_RECONNECT_INTERVAL_MS;
         if (reconnectCount.current < reconnectLimit) {
+            reconnectTimeout && clearTimeout(reconnectTimeout);
             reconnectTimeout = setTimeout(() => {
                 reconnectCount.current++;
                 reconnect();

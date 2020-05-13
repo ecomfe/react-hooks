@@ -100,7 +100,7 @@ const App = () => {
 
 重连机制
 
-默认情况下，`getWebSocket`不提供自动重连功能。只有当options中设置了`reconnectOnClose`或`reconnectOnError`判断回调方法，他们分别用来在websocket被关闭或出现错误时进行自动重连。拿`reconnectOnClose`来说，因为流关闭有可能是用户正常断开，也有可能是服务器异常断开情况，所以需要用户根据参数`CloseEvent`进行判断，返回一个布尔值，当返回true的时候则自动进行重连。类似的`reconnectOnError`方法可以根据ErrorEvent来进行自定义设置重连机制。options参数提供reconnectInterval配置项来设置重连间隔（默认是5000ms），提供reconnectAttempts配置项来设置最大重连次数（默认是10次）。可以参考如下例子：
+默认情况下，`useWebSocket`不提供自动重连功能。只有当options中设置了`reconnectOnClose`或`reconnectOnError`回调判断方法时才支持重连，他们分别用来在websocket断开或出现错误时进行自动重连。拿`reconnectOnClose`来说，因为流关闭有可能是用户正常断开，也有可能是服务器异常断开的情况，所以需要用户往往需要根据参数`CloseEvent`进行判断，返回一个布尔值，当返回true的时候则自动进行重连。类似的`reconnectOnError`方法可以根据ErrorEvent来进行自定义设置重连机制。options参数提供reconnectInterval配置项来设置重连间隔（默认是5000ms，单位是ms），提供reconnectAttempts配置项来设置最大尝试重连次数（默认是10次）。可以参考如下例子：
 
 ```jsx
 const options = useMemo(() => ({

@@ -1522,15 +1522,6 @@
   dependencies:
     "@hapi/hoek" "^8.3.0"
 
-"@huse/poll@^1.0.2":
-  version "1.0.2"
-  resolved "https://registry.npm.taobao.org/@huse/poll/download/@huse/poll-1.0.2.tgz#b44031c3fcc82bb89cba71207eda46cf0efa814f"
-  integrity sha1-tEAxw/zIK7icunEgftpGzw76gU8=
-  dependencies:
-    "@huse/action-pending" "^1.0.2"
-    "@huse/timeout" "^1.0.1"
-    user-attention "^1.0.3"
-
 "@hutson/parse-repository-url@^3.0.0":
   version "3.0.2"
   resolved "https://registry.npm.taobao.org/@hutson/parse-repository-url/download/@hutson/parse-repository-url-3.0.2.tgz?cache=0&sync_timestamp=1581897142778&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2F%40hutson%2Fparse-repository-url%2Fdownload%2F%40hutson%2Fparse-repository-url-3.0.2.tgz#98c23c950a3d9b6c8f0daed06da6c3af06981340"

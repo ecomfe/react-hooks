@@ -29,6 +29,17 @@ test('initial load', async () => {
     expect(result.current.dataSource).toEqual([1, 2, 3]);
 });
 
+test('initial load with loadMore called when loading', async () => {
+    const fetch = jest.fn(values);
+    const {result, waitForNextUpdate} = renderHook(() => useInfiniteScroll(fetch, {initialLoad: true}));
+    await act(() => result.current.loadMore());
+    expect(fetch).toHaveBeenCalledTimes(1);
+    expect(fetch).toHaveBeenCalledWith({offset: 0});
+    expect(result.current.hasMore).toBe(true);
+    expect(result.current.loading).toBe(false);
+    expect(result.current.dataSource).toEqual([1, 2, 3]);
+});
+
 test('load more', async () => {
     const fetch = jest.fn(values);
     const {result} = renderHook(() => useInfiniteScroll(fetch));

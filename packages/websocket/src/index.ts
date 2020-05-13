@@ -6,8 +6,8 @@ import {
     SendMessage,
     StartWebSocket,
     CloseWebSocket,
-    ReadyStateState,
     MessageType,
+    ReadyStateState,
 } from './types';
 import {ReadyState} from './constants';
 import {attachListeners} from './attachListeners';
@@ -33,9 +33,18 @@ export function useWebSocket(url: string, options: Options = {}): WebSocketHook 
     const [readyState, setReadyState] = useState<ReadyStateState>({}); // 每个url的readyState
 
     const webSocketRef = useRef<WebSocket>(null); // 当前最新的websocket对象
-    // const staticOptionsCheck = useRef(false); // options静态检查标记
     const reconnetRef = useRef<() => void>(noop); // 重启方法
     const reconnectCount = useRef(0); // 重启次数
+
+    const setUrlReadyState = useCallback(
+        (url: string, currentReadyState: ReadyState) => {
+            setReadyState(prev => ({
+                ...prev,
+                [url]: currentReadyState,
+            }));
+        },
+        []
+    );
 
     const sendMessage = useCallback(
         (message: MessageType) => {
@@ -50,10 +59,7 @@ export function useWebSocket(url: string, options: Options = {}): WebSocketHook 
     const startWebSocket = useCallback(
         () => {
             // 先修改状态
-            setReadyState(prev => ({
-                ...prev,
-                [url]: ReadyState.CONNECTING,
-            }));
+            setUrlReadyState(url, ReadyState.CONNECTING);
             // 创建WebSocket
             (webSocketRef as MutableRefObject<WebSocket>).current = new WebSocket(url);
             // 绑定事件
@@ -62,7 +68,7 @@ export function useWebSocket(url: string, options: Options = {}): WebSocketHook 
                 url,
                 {
                     setLastMessage,
-                    setReadyState,
+                    setUrlReadyState,
                 },
                 originalOptions,
                 reconnetRef.current,
@@ -70,7 +76,7 @@ export function useWebSocket(url: string, options: Options = {}): WebSocketHook 
             );
             return removeListeners;
         },
-        [url, originalOptions]
+        [url, setUrlReadyState, originalOptions]
     );
 
     // 关闭WebSocket

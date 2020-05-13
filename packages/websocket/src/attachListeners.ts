@@ -1,11 +1,11 @@
 import {MutableRefObject} from 'react';
 
 import {ReadyState, DEFAULT_RECONNECT_LIMIT, DEFAULT_RECONNECT_INTERVAL_MS} from './constants';
-import {ReadyStateState, Options} from './types';
+import {Options} from './types';
 
 export interface Setters {
     setLastMessage: (message: WebSocketEventMap['message']) => void;
-    setReadyState: (callback: (prev: ReadyStateState) => ReadyStateState) => void;
+    setUrlReadyState: (url: string, currentReadyState: ReadyState) => void;
 }
 
 export const attachListeners = (
@@ -16,7 +16,7 @@ export const attachListeners = (
     reconnect: () => void,
     reconnectCount: MutableRefObject<number>
 ) => {
-    const {setLastMessage, setReadyState} = setters;
+    const {setLastMessage, setUrlReadyState} = setters;
 
     let reconnectTimeout: NodeJS.Timeout | null = null;
     const restart = () => {
@@ -33,10 +33,7 @@ export const attachListeners = (
 
     webSocketInstance.onopen = (event: WebSocketEventMap['open']) => {
         options.onOpen && options.onOpen(event);
-        setReadyState(prev => ({
-            ...prev,
-            [url]: ReadyState.OPEN,
-        }));
+        setUrlReadyState(url, ReadyState.OPEN);
         // 成功启动后将重启次数清零
         reconnectCount.current = 0;
     };
@@ -53,10 +50,7 @@ export const attachListeners = (
 
     webSocketInstance.onclose = (event: WebSocketEventMap['close']) => {
         options.onClose && options.onClose(event);
-        setReadyState(prev => ({
-            ...prev,
-            [url]: ReadyState.CLOSED,
-        }));
+        setUrlReadyState(url, ReadyState.CLOSED);
 
         // 关闭后的自定义重启判断
         if (typeof options.reconnectOnClose === 'function' && options.reconnectOnClose(event)) {
@@ -75,10 +69,7 @@ export const attachListeners = (
 
     // 返回关闭流的操作
     return () => {
-        setReadyState(prev => ({
-            ...prev,
-            [url]: ReadyState.CLOSING,
-        }));
+        setUrlReadyState(url, ReadyState.CLOSING);
         webSocketInstance.close();
         if (reconnectTimeout) {
             clearTimeout(reconnectTimeout);

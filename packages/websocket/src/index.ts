@@ -46,6 +46,7 @@ export function useWebSocket(url: string, options: Options = {}): WebSocketHook 
         []
     );
 
+    // 发送消息
     const sendMessage = useCallback(
         (message: MessageType) => {
             /* istanbul ignore else */
@@ -56,6 +57,7 @@ export function useWebSocket(url: string, options: Options = {}): WebSocketHook 
         []
     );
 
+    // 开启WebSocket
     const startWebSocket = useCallback(
         () => {
             // 先修改状态
@@ -82,12 +84,15 @@ export function useWebSocket(url: string, options: Options = {}): WebSocketHook 
     // 关闭WebSocket
     const closeWebSocket = useCallback(() => webSocketRef.current?.close(), []);
 
-    // url变化自动开启WebSocket
+    // 当url改变时自动开启WebSocket
     useEffect(
         () => {
-            let removeListeners: (() => void) | null = null;
+            // eslint-disable-next-line @typescript-eslint/no-empty-function
+            let removeListeners = () => {};
+            // 重连方法
             reconnetRef.current = () => {
-                removeListeners && removeListeners();
+                // 先关闭上一次的链接
+                removeListeners();
                 startWebSocket();
             };
             removeListeners = startWebSocket();
@@ -96,7 +101,7 @@ export function useWebSocket(url: string, options: Options = {}): WebSocketHook 
         [startWebSocket]
     );
 
-    // options参数不允许变动
+    // 当前options参数不允许改变
     useEffect(
         () => {
             /* istanbul ignore else */

@@ -9,5 +9,5 @@ export enum ReadyState {
 // 默认重启次数限制 10次
 export const DEFAULT_RECONNECT_LIMIT = 10;
 
-// 默认重启间隔 5秒
+// 默认重启间隔 5000ms
 export const DEFAULT_RECONNECT_INTERVAL_MS = 5000;

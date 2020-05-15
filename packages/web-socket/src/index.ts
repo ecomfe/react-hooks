@@ -87,8 +87,7 @@ export function useWebSocket(url: string, options: Options = {}): WebSocketHook 
     // 当url改变时自动开启WebSocket
     useEffect(
         () => {
-            // eslint-disable-next-line @typescript-eslint/no-empty-function
-            let removeListeners = () => {};
+            let removeListeners = noop;
             // 重连方法
             reconnetRef.current = () => {
                 // 先关闭上一次的链接

@@ -1,4 +1,4 @@
-# @huse/websocket
+# @huse/web-socket
 
 提供WebSocket连接的一种hooks封装
 
@@ -38,8 +38,9 @@ function useWebSocket(
 基本用法
 
 ```jsx
-const {useState, useEffect, useCallback, useMemo} = React;
+import {useState, useEffect, useCallback, useMemo} from 'react';
 import {Input, Button} from 'antd';
+import {useWebSocket} from '@huse/web-socket';
 
 const readyStateMap = [
     '连接中',
@@ -84,8 +85,8 @@ const App = () => {
             </div>
             <div>
                 <Button onClick={handleSendMessage}>发送消息</Button>
-                <Button onClick={startWebSocket}>重启WebSocket</Button>
-                <Button onClick={closeWebSocket}>关闭WebSocket</Button>
+                <Button onClick={startWebSocket}>重启</Button>
+                <Button onClick={closeWebSocket}>关闭</Button>
             </div>
             <div>
                 接受到的所有消息: {messageHistory.join(',')}

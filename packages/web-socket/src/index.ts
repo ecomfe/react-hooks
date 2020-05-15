@@ -87,13 +87,17 @@ export function useWebSocket(url: string, options: Options = {}): WebSocketHook 
     // 当url改变时自动开启WebSocket
     useEffect(
         () => {
+            // url改变时重连次数清0
+            reconnectCount.current = 0;
+
             let removeListeners = noop;
             // 重连方法
             reconnetRef.current = () => {
-                // 先关闭上一次的链接
+                // 先关闭上一次的连接
                 removeListeners();
                 startWebSocket();
             };
+            // 自动开启
             removeListeners = startWebSocket();
             return removeListeners;
         },

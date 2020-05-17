@@ -1,0 +1,48 @@
+{
+  "name": "@huse/web-socket",
+  "version": "0.9.0",
+  "keywords": [
+    "react",
+    "hooks"
+  ],
+  "homepage": "https://github.com/ecomfe/react-hooks/tree/master/packages/websocket",
+  "bugs": {
+    "url": "https://github.com/ecomfe/react-hooks/issues"
+  },
+  "main": "cjs/index.js",
+  "module": "es/index.js",
+  "types": "es/index.d.ts",
+  "license": "MIT",
+  "files": [
+    "cjs",
+    "es",
+    "src"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.com"
+  },
+  "scripts": {
+    "build": "rm -rf es cjs && tsc & tsc --module ESNext --outDir ./es",
+    "build-check": "tsc",
+    "lint": "skr lint",
+    "test": "skr test --coverage"
+  },
+  "devDependencies": {
+    "@testing-library/react-hooks": "^3.2.1",
+    "@types/react": "^16.9.35",
+    "jest-websocket-mock": "^2.0.2",
+    "mock-socket": "^9.0.3",
+    "react": "^16.13.1",
+    "react-test-renderer": "^16.13.1",
+    "reskript": "^0.26.1",
+    "typescript": "^3.8.3"
+  },
+  "peerDependencies": {
+    "react": "^16.8.0"
+  },
+  "dependencies": {
+    "@huse/previous-value": "^1.0.1"
+  }
+}
+  

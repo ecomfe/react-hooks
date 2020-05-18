@@ -66,6 +66,7 @@
     "@huse/transition-state": "^1.0.1",
     "@huse/update": "^1.0.1",
     "@huse/user-media": "^0.9.0",
+    "@huse/web-socket": "^0.8.0",
     "@huse/window-size": "^1.0.1"
   },
   "devDependencies": {

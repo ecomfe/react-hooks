@@ -26,7 +26,7 @@ const getWindowSize = (): WindowSize => {
 };
 
 export function useWindowSize(): WindowSize {
-    const [size, setSize] = useState(getWindowSize);
+    const [size, setSize] = useState(getWindowSize());
     useEffect(
         () => {
             /* istanbul ignore else */

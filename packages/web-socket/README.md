@@ -138,5 +138,5 @@ const options = useMemo(
     },
     []
 };
-const [sendMessage, lastMessage, readyState] = useWebSocket('wss://echo.websocket.org', options);
+const {sendMessage, lastMessage, readyState} = useWebSocket('wss://echo.websocket.org', options);
 ```

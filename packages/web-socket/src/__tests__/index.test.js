@@ -216,7 +216,7 @@ test('webSocket reconnect with reconnectOnClose, with reconnectAttempts, with re
     const server = new WS(fakeURL);
 
     const {result} = renderHook(() => useWebSocket(fakeURL, options));
-    const {lastMessage, readyStateFromUrl, close: closeWebSocket} = result.current;
+    const {lastMessage, readyState: readyStateFromUrl, close: closeWebSocket} = result.current;
 
     await act(async () => {
         await server.connected;
@@ -242,11 +242,11 @@ test('webSocket reconnect with reconnectOnClose, with reconnectAttempts, with re
         await server.closed;
         return promise;
     });
-    await act(() => timeout(reconnectInterval + 6));
+    await act(() => timeout(reconnectInterval + 10));
     expect(onClose).toHaveBeenCalledTimes(2);
     expect(result.current.readyState).toBe(3);
     expect(reconnectOnClose).toHaveBeenCalledTimes(2);
-    await act(() => timeout(reconnectInterval + 5));
+    await act(() => timeout(reconnectInterval + 10));
     expect(result.current.readyState).toBe(3);
 });
 

@@ -1,4 +1,5 @@
 import {MutableRefObject} from 'react';
+
 import {ReadyState, DEFAULT_RECONNECT_LIMIT, DEFAULT_RECONNECT_INTERVAL_MS} from './constants';
 import {Options} from './interface';
 

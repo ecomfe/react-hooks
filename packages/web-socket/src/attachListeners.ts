@@ -1,7 +1,7 @@
 import {MutableRefObject} from 'react';
 
 import {ReadyState, DEFAULT_RECONNECT_LIMIT, DEFAULT_RECONNECT_INTERVAL_MS} from './constants';
-import {Options} from './types';
+import {Options} from './interface';
 
 export interface Setters {
     setLastMessage: (message: WebSocketEventMap['message']) => void;
@@ -34,17 +34,15 @@ export const attachListeners = (
     webSocketInstance.onopen = (event: WebSocketEventMap['open']) => {
         options.onOpen && options.onOpen(event);
         setUrlReadyState(url, ReadyState.OPEN);
-        // 成功启动后将重启次数清零
+        // Reset reconnect count on success.
         reconnectCount.current = 0;
     };
 
     webSocketInstance.onmessage = (message: WebSocketEventMap['message']) => {
         options.onMessage && options.onMessage(message);
-        // 支持通过options.filter来过滤一些消息
         if (typeof options.filter === 'function' && !options.filter(message)) {
             return;
         }
-        // 最新的消息
         setLastMessage(message);
     };
 
@@ -52,7 +50,6 @@ export const attachListeners = (
         options.onClose && options.onClose(event);
         setUrlReadyState(url, ReadyState.CLOSED);
 
-        // 关闭后的自定义重启判断
         if (typeof options.reconnectOnClose === 'function' && options.reconnectOnClose(event)) {
             restart();
         }
@@ -61,16 +58,15 @@ export const attachListeners = (
     webSocketInstance.onerror = (event: WebSocketEventMap['error']) => {
         options.onError && options.onError(event);
 
-        // 出错后的自定义重启判断
         if (typeof options.reconnectOnError === 'function' && options.reconnectOnError(event)) {
             restart();
         }
     };
 
-    // 返回关闭流的操作
     return () => {
         setUrlReadyState(url, ReadyState.CLOSING);
         webSocketInstance.close();
+
         if (reconnectTimeout) {
             clearTimeout(reconnectTimeout);
         }

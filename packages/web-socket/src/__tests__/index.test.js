@@ -27,7 +27,7 @@ test('webSocket startWebSocket ok and server handle error', async () => {
     const server = new WS(fakeURL);
 
     const {result} = renderHook(() => useWebSocket(fakeURL, options));
-    const [sendMessage, lastMessage, readyStateFromUrl] = result.current;
+    const {sendMessage, lastMessage, readyState: readyStateFromUrl} = result.current;
     // 连接之前
     expect(readyStateFromUrl).toBe(0);
     expect(lastMessage).toBe(null);
@@ -54,7 +54,7 @@ test('webSocket startWebSocket ok and server handle error', async () => {
         server.send('test message from mock server');
     });
 
-    expect(result.current[1].data).toBe('test message from mock server');
+    expect(result.current.lastMessage.data).toBe('test message from mock server');
     // console.log(lastMessage); 此处如果还用之前的变量是不行的，因为重新render了。
 
     expect(onOpen).toHaveBeenCalledTimes(1);
@@ -68,7 +68,7 @@ test('webSocket startWebSocket ok and server handle error', async () => {
     });
     expect(onError).toHaveBeenCalledTimes(1);
     expect(onClose).toHaveBeenCalledTimes(1);
-    expect(result.current[2]).toBe(3);
+    expect(result.current.readyState).toBe(3);
 });
 
 test('webSocket should start and close ok', async () => {
@@ -82,7 +82,7 @@ test('webSocket should start and close ok', async () => {
     const server = new WS(fakeURL);
 
     const {result} = renderHook(() => useWebSocket(fakeURL, options));
-    const [, lastMessage, readyStateFromUrl, startWebSocket, closeWebSocket] = result.current;
+    const {lastMessage, readyState: readyStateFromUrl, start: startWebSocket, close: closeWebSocket} = result.current;
     await act(async () => {
         await server.connected;
         return promise;
@@ -100,7 +100,7 @@ test('webSocket should start and close ok', async () => {
     });
 
     expect(onClose).toHaveBeenCalledTimes(1);
-    expect(result.current[2]).toBe(3);
+    expect(result.current.readyState).toBe(3);
 
     await act(() => {
         startWebSocket();
@@ -110,7 +110,7 @@ test('webSocket should start and close ok', async () => {
         await server.connected;
         return promise;
     });
-    expect(result.current[2]).toBe(0);
+    expect(result.current.readyState).toBe(0);
 });
 
 test('webSocket options not allowed to change', async () => {
@@ -136,8 +136,10 @@ test('webSocket options not allowed to change', async () => {
     const fakeURL = 'ws://localhost:1234';
     const server = new WS(fakeURL);
 
-    const {result, rerender} = renderHook(({fakeURL, options}) =>
-        useWebSocket(fakeURL, options), {initialProps: {fakeURL, options: defaultOptions}});
+    const {result, rerender} = renderHook(
+        ({fakeURL, options}) => useWebSocket(fakeURL, options),
+        {initialProps: {fakeURL, options: defaultOptions}}
+    );
     try {
         await act(async () => {
             await server.connected;
@@ -164,7 +166,7 @@ test('webSocket options filter return undefined', async () => {
     const server = new WS(fakeURL);
 
     const {result} = renderHook(() => useWebSocket(fakeURL, options));
-    const [sendMessage, lastMessage, readyStateFromUrl] = result.current;
+    const {sendMessage, lastMessage, readyState: readyStateFromUrl} = result.current;
     // 连接之前
     expect(readyStateFromUrl).toBe(0);
     expect(lastMessage).toBe(null);
@@ -193,7 +195,7 @@ test('webSocket options filter return undefined', async () => {
         server.send('test message from mock server');
     });
 
-    expect(result.current[1]).toBe(null);
+    expect(result.current.lastMessage).toBe(null);
     expect(onOpen).toHaveBeenCalledTimes(1);
     expect(onMessage).toHaveBeenCalledTimes(1);
     expect(filter).toHaveBeenCalledTimes(1);
@@ -214,7 +216,7 @@ test('webSocket reconnect with reconnectOnClose, with reconnectAttempts, with re
     const server = new WS(fakeURL);
 
     const {result} = renderHook(() => useWebSocket(fakeURL, options));
-    const [, lastMessage, readyStateFromUrl, , closeWebSocket] = result.current;
+    const {lastMessage, readyState: readyStateFromUrl, close: closeWebSocket} = result.current;
 
     await act(async () => {
         await server.connected;
@@ -232,7 +234,7 @@ test('webSocket reconnect with reconnectOnClose, with reconnectAttempts, with re
         return promise;
     });
     expect(onClose).toHaveBeenCalledTimes(1);
-    expect(result.current[2]).toBe(3);
+    expect(result.current.readyState).toBe(3);
     expect(reconnectOnClose).toHaveBeenCalledTimes(1);
     // 让第一次重启失败，自动重启第二次
     act(() => server.error());
@@ -240,12 +242,12 @@ test('webSocket reconnect with reconnectOnClose, with reconnectAttempts, with re
         await server.closed;
         return promise;
     });
-    await act(() => timeout(reconnectInterval + 6));
+    await act(() => timeout(reconnectInterval + 10));
     expect(onClose).toHaveBeenCalledTimes(2);
-    expect(result.current[2]).toBe(3);
+    expect(result.current.readyState).toBe(3);
     expect(reconnectOnClose).toHaveBeenCalledTimes(2);
-    await act(() => timeout(reconnectInterval + 5));
-    expect(result.current[2]).toBe(3);
+    await act(() => timeout(reconnectInterval + 10));
+    expect(result.current.readyState).toBe(3);
 });
 
 test('webSocket reconnect with reconnectOnError, without reconnectAttempts, without reconnectInterval', async () => {
@@ -263,7 +265,7 @@ test('webSocket reconnect with reconnectOnError, without reconnectAttempts, with
     const server = new WS(fakeURL);
 
     const {result} = renderHook(() => useWebSocket(fakeURL, options));
-    const [sendMessage, lastMessage, readyStateFromUrl] = result.current;
+    const {sendMessage, lastMessage, readyState: readyStateFromUrl} = result.current;
     // 连接之前
     expect(readyStateFromUrl).toBe(0);
     expect(lastMessage).toBe(null);
@@ -290,7 +292,7 @@ test('webSocket reconnect with reconnectOnError, without reconnectAttempts, with
         server.send('test message from mock server');
     });
 
-    expect(result.current[1].data).toBe('test message from mock server');
+    expect(result.current.lastMessage.data).toBe('test message from mock server');
 
     expect(onOpen).toHaveBeenCalledTimes(1);
     expect(onMessage).toHaveBeenCalledTimes(1);
@@ -318,7 +320,7 @@ test('url change auto reconnect', async () => {
     const server = new WS(fakeURL);
 
     const {result, rerender} = renderHook(() => useWebSocket(fakeURL, options));
-    const [sendMessage, lastMessage, readyStateFromUrl] = result.current;
+    const {sendMessage, lastMessage, readyState: readyStateFromUrl} = result.current;
     // 连接之前
     expect(readyStateFromUrl).toBe(0);
     expect(lastMessage).toBe(null);
@@ -345,7 +347,7 @@ test('url change auto reconnect', async () => {
         server.send('test message from mock server');
     });
 
-    expect(result.current[1].data).toBe('test message from mock server');
+    expect(result.current.lastMessage.data).toBe('test message from mock server');
     expect(onOpen).toHaveBeenCalledTimes(1);
     expect(onMessage).toHaveBeenCalledTimes(1);
 
@@ -355,7 +357,7 @@ test('url change auto reconnect', async () => {
         return promise;
     });
     // 连接之后
-    expect(result.current[2]).toBe(1);
+    expect(result.current.readyState).toBe(1);
     expect(onOpen).toHaveBeenCalledTimes(1);
 
     // sendMessage success
@@ -369,7 +371,7 @@ test('url change auto reconnect', async () => {
         server.send('test message from mock server second');
     });
 
-    expect(result.current[1].data).toBe('test message from mock server second');
+    expect(result.current.lastMessage.data).toBe('test message from mock server second');
 });
 
 test('webSocket startWebSocket ok, closeWebSocket ok without options', async () => {
@@ -377,7 +379,13 @@ test('webSocket startWebSocket ok, closeWebSocket ok without options', async () 
     const server = new WS(fakeURL);
 
     const {result} = renderHook(() => useWebSocket(fakeURL));
-    const [sendMessage, lastMessage, readyStateFromUrl, startWebSocket, closeWebSocket] = result.current;
+    const {
+        sendMessage,
+        lastMessage,
+        readyState: readyStateFromUrl,
+        start: startWebSocket,
+        close: closeWebSocket,
+    } = result.current;
     expect(readyStateFromUrl).toBe(0);
     expect(lastMessage).toBe(null);
 
@@ -395,14 +403,14 @@ test('webSocket startWebSocket ok, closeWebSocket ok without options', async () 
     act(() => {
         server.send('test message from mock server');
     });
-    expect(result.current[1].data).toBe('test message from mock server');
+    expect(result.current.lastMessage.data).toBe('test message from mock server');
     // 测试关闭websocket
     act(() => closeWebSocket());
     await act(async () => {
         await server.closed;
         return promise;
     });
-    expect(result.current[2]).toBe(3);
+    expect(result.current.readyState).toBe(3);
     await act(() => {
         startWebSocket();
         return promise;
@@ -411,5 +419,5 @@ test('webSocket startWebSocket ok, closeWebSocket ok without options', async () 
         await server.connected;
         return promise;
     });
-    expect(result.current[2]).toBe(0);
+    expect(result.current.readyState).toBe(0);
 });

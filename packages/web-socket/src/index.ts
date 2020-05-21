@@ -8,19 +8,19 @@ import {
     CloseWebSocket,
     MessageType,
     ReadyStateState,
-} from './types';
+} from './interface';
 import {ReadyState} from './constants';
 import {attachListeners} from './attachListeners';
 
 export {Options, MessageType, SendMessage, StartWebSocket, CloseWebSocket};
 
-export type WebSocketHook = [
-    SendMessage,
-    WebSocketEventMap['message'] | null,
-    ReadyState,
-    StartWebSocket,
-    CloseWebSocket
-];
+export interface WebSocketHook {
+    sendMessage: SendMessage;
+    lastMessage: WebSocketEventMap['message'] | null;
+    readyState: ReadyState;
+    start: StartWebSocket;
+    close: CloseWebSocket;
+}
 
 // eslint-disable-next-line @typescript-eslint/no-empty-function
 const noop = () => {};
@@ -28,25 +28,17 @@ const noop = () => {};
 export function useWebSocket(url: string, options: Options = {}): WebSocketHook {
     const originalOptions = useOriginalDeepCopy(options);
     const previousOptions = usePreviousValue(originalOptions);
-
-    const [lastMessage, setLastMessage] = useState<WebSocketEventMap['message'] | null>(null); // 最新一条消息
-    const [readyState, setReadyState] = useState<ReadyStateState>({}); // 每个url的readyState
-
-    const webSocketRef = useRef<WebSocket>(null); // 当前最新的websocket对象
-    const reconnetRef = useRef<() => void>(noop); // 重启方法
-    const reconnectCount = useRef(0); // 重启次数
-
+    const [lastMessage, setLastMessage] = useState<WebSocketEventMap['message'] | null>(null);
+    const [readyState, setReadyState] = useState<ReadyStateState>({}); // Manages ready state by url.
+    const webSocketRef = useRef<WebSocket>(null); // Latest web socket instance.
+    const reconnetRef = useRef<() => void>(noop); // Recunnect function.
+    const reconnectCount = useRef(0);
     const setUrlReadyState = useCallback(
         (url: string, currentReadyState: ReadyState) => {
-            setReadyState(prev => ({
-                ...prev,
-                [url]: currentReadyState,
-            }));
+            setReadyState(prev => ({...prev, [url]: currentReadyState}));
         },
         []
     );
-
-    // 发送消息
     const sendMessage = useCallback(
         (message: MessageType) => {
             /* istanbul ignore else */
@@ -56,15 +48,13 @@ export function useWebSocket(url: string, options: Options = {}): WebSocketHook 
         },
         []
     );
-
-    // 开启WebSocket
     const startWebSocket = useCallback(
         () => {
-            // 先修改状态
+            // Move to connecting state
             setUrlReadyState(url, ReadyState.CONNECTING);
-            // 创建WebSocket
+            // Create web socket instance.
             (webSocketRef as MutableRefObject<WebSocket>).current = new WebSocket(url);
-            // 绑定事件
+            // Bind all events.
             const removeListeners = attachListeners(
                 webSocketRef.current as WebSocket,
                 url,
@@ -80,31 +70,25 @@ export function useWebSocket(url: string, options: Options = {}): WebSocketHook 
         },
         [url, setUrlReadyState, originalOptions]
     );
-
-    // 关闭WebSocket
     const closeWebSocket = useCallback(() => webSocketRef.current?.close(), []);
-
-    // 当url改变时自动开启WebSocket
+    // Close previous socket and open a new one when url changes.
     useEffect(
         () => {
-            // url改变时重连次数清0
+            // Reset reconnect count on change.
             reconnectCount.current = 0;
-
             let removeListeners = noop;
-            // 重连方法
             reconnetRef.current = () => {
-                // 先关闭上一次的连接
+                // Close the previous one first.
                 removeListeners();
                 startWebSocket();
             };
-            // 自动开启
+            // Auto start the latest socket.
             removeListeners = startWebSocket();
             return removeListeners;
         },
         [startWebSocket]
     );
-
-    // 当前options参数不允许改变
+    // Check to see whether options change during component's life time.
     useEffect(
         () => {
             /* istanbul ignore else */
@@ -116,12 +100,12 @@ export function useWebSocket(url: string, options: Options = {}): WebSocketHook 
         [originalOptions]
     );
 
-    const readyStateFromUrl = readyState[url] ?? ReadyState.UNINSTANTIATED;
-    return [
+    const readyStateFromURL = readyState[url] ?? ReadyState.UNINSTANTIATED;
+    return {
         sendMessage,
         lastMessage,
-        readyStateFromUrl,
-        startWebSocket,
-        closeWebSocket,
-    ];
+        readyState: readyStateFromURL,
+        start: startWebSocket,
+        close: closeWebSocket,
+    };
 }

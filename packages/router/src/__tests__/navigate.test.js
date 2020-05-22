@@ -50,6 +50,14 @@ describe('useNavigate', () => {
         expect(history.entries[1].search).toBe('?x=1');
         expect(history.entries[1].hash).toBe('#y=2');
     });
+
+    test('only search', () => {
+        const history = createMemoryHistory({initialEntries: ['/foo?x=1']});
+        const {result} = renderHook(() => useNavigate(), {wrapper: wrapper(history)});
+        act(() => result.current('?x=2'));
+        expect(history.entries[1].pathname).toBe('/foo');
+        expect(history.entries[1].search).toBe('?x=2');
+    });
 });
 
 describe('useLocationState', () => {

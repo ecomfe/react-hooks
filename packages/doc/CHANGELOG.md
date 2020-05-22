@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.6.0](https://github.com/ecomfe/react-hooks/compare/@huse/doc@1.5.0...@huse/doc@1.6.0) (2020-05-22)
+
+
+### Features
+
+* **router:** keep useSearchParams work the same as the official implement ([#37](https://github.com/ecomfe/react-hooks/issues/37)) ([02ae693](https://github.com/ecomfe/react-hooks/commit/02ae693246f71f0c9356c08eb4adc6cd27dbf84f))
+* web-socket hooks ([#33](https://github.com/ecomfe/react-hooks/issues/33)) ([b60f0cd](https://github.com/ecomfe/react-hooks/commit/b60f0cdcb614cd58c94f5362e7ce70f3ed1844ed))
+
+
+
+
+
 # [1.5.0](https://github.com/ecomfe/react-hooks/compare/@huse/doc@1.4.0...@huse/doc@1.5.0) (2020-05-03)
 
 

@@ -20,17 +20,33 @@ const wrapper = historyOrURL => {
 describe('useSearchParams', () => {
     test('valid return', () => {
         const {result} = renderHook(() => useSearchParams(), {wrapper: wrapper('/foo?x=1&y=2')});
-        expect(result.current instanceof URLSearchParams).toBe(true);
-        expect(result.current.get('x')).toBe('1');
-        expect(result.current.get('y')).toBe('2');
+        expect(result.current[0] instanceof URLSearchParams).toBe(true);
+        expect(typeof result.current[1]).toBe('function');
+        expect(result.current[0].get('x')).toBe('1');
+        expect(result.current[0].get('y')).toBe('2');
     });
 
     test('update on location change', () => {
         const history = createMemoryHistory({initialEntries: ['/foo?x=1']});
         const {result} = renderHook(() => useSearchParams(), {wrapper: wrapper(history)});
         act(() => history.push('/foo?y=2'));
-        expect(result.current.get('x')).toBe(null);
-        expect(result.current.get('y')).toBe('2');
+        expect(result.current[0].get('x')).toBe(null);
+        expect(result.current[0].get('y')).toBe('2');
+    });
+
+    test('default override', () => {
+        const {result} = renderHook(() => useSearchParams({y: 2}), {wrapper: wrapper('/foo?x=1')});
+        expect(result.current[0].get('y')).toBe('2');
+    });
+
+    test('default exists on search', () => {
+        const {result} = renderHook(() => useSearchParams({x: 2}), {wrapper: wrapper('/foo?x=1')});
+        expect(result.current[0].get('x')).toBe('1');
+    });
+
+    test('default array', () => {
+        const {result} = renderHook(() => useSearchParams({x: [1, 2]}), {wrapper: wrapper('/foo')});
+        expect(result.current[0].getAll('x')).toEqual(['1', '2']);
     });
 });
 
@@ -98,19 +114,17 @@ describe('useUpdateSearchParams', () => {
         expect(history.entries[1].search).toBe('?x=1&x=2');
     });
 
-    test('custom stringify', () => {
-        const stringify = jest.fn(() => 'foo');
+    test('null', () => {
         const history = createMemoryHistory({initialEntries: ['/foo?x=1']});
-        const {result} = renderHook(() => useUpdateSearchParams({stringify}), {wrapper: wrapper(history)});
-        act(() => result.current({y: '2', z: ['1', '2']}));
-        expect(stringify.mock.calls[0][0]).toEqual({x: '1', y: '2', z: ['1', '2']});
-        expect(history.entries[1].search).toBe('?foo');
+        const {result} = renderHook(() => useUpdateSearchParams(), {wrapper: wrapper(history)});
+        act(() => result.current({x: null}));
+        expect(history.entries[1].search).toBe('');
     });
 
     test('replace', () => {
         const history = createMemoryHistory({initialEntries: ['/foo?x=1']});
-        const {result} = renderHook(() => useUpdateSearchParams({replace: true}), {wrapper: wrapper(history)});
-        act(() => result.current({x: 2}));
+        const {result} = renderHook(() => useUpdateSearchParams(), {wrapper: wrapper(history)});
+        act(() => result.current({x: 2}, {replace: true}));
         expect(history.length).toBe(1);
         expect(history.entries[0].search).toBe('?x=2');
     });

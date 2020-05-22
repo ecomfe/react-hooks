@@ -99,7 +99,7 @@ Open `http://localhost:3000` to view documents about hooks.
 | useUserMedia | Open video and audio streams in browser |
 | useNavigate | Get a function to navigate to any location |
 | useLocationState | Wrap location's state into a react state |
-| useSearchParams | Parse search string to `URLSearchParams` |
+| useSearchParams | Parse search string to `URLSearchParams` as well as a function to update search |
 | useSearchParam | Get a single search param |
 | useSearchParamAll | Get a single search param as array |
 | useUpdateSearchParams | Get a function to update search params |

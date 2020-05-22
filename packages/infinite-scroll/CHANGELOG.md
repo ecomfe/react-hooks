@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.1](https://github.com/ecomfe/react-hooks/compare/@huse/infinite-scroll@1.1.0...@huse/infinite-scroll@1.1.1) (2020-05-22)
+
+
+### Bug Fixes
+
+* **infinite-scroll:** fetch unexpected called twice ([#32](https://github.com/ecomfe/react-hooks/issues/32)) ([3f2c13b](https://github.com/ecomfe/react-hooks/commit/3f2c13bd4b78ab98bfd7f4a75828634f4998a674))
+
+
+
+
+
 # [1.1.0](https://github.com/ecomfe/react-hooks/compare/@huse/infinite-scroll@1.0.2...@huse/infinite-scroll@1.1.0) (2020-04-21)
 
 

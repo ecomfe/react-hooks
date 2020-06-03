@@ -49,6 +49,36 @@ const App = ({user}) => {
 };
 ```
 
+### Conditional Request
+
+Once you want `request` to fire only in certain condition, e.g. to fetch data only when selected ids are not empty, it is recommended to create a new function which only calls the original task in that condition.
+
+```jsx
+import {findByIds} from './api';
+
+const findByIdsOnSelect = params => {
+    // Fetch only when params.ids are not empty
+    if (params.ids.length) {
+        return findByIds(params);
+    }
+
+    // In other circumstance, resolve immediately to an empty array
+    return Promise.resolve([]);
+};
+
+const DetailList = ({ids}) => {
+    const {pending, users} = useRequest(findByIdsOnSelect, {ids});
+
+    return pending ?
+        <Loading />
+        : (
+            <ul>
+                {users.map(renderUser)}
+            </ul>
+        );
+};
+```
+
 ### Strategy
 
 When a second response arrives, it interacts with the previous response with the same params according to specified strategy.

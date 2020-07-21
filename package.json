@@ -11,7 +11,7 @@
   ],
   "scripts": {
     "generate": "node scripts/generate",
-    "lint": "lerna run lint && skr lint scripts",
+    "lint": "lerna run lint --parallel && skr lint scripts",
     "test": "lerna run test --concurrency 1",
     "build": "lerna run build",
     "build-check": "lerna run build-check",

@@ -1,6 +1,11 @@
 import {useState, useRef, useEffect, useCallback} from 'react';
 
-export function useTransitionState<S>(defaultValue: S, defaultDuration: number = -1) {
+export type TransitionStateHook<S> = [
+    S,
+    (value: S, duration?: number) => void,
+];
+
+export function useTransitionState<S>(defaultValue: S, defaultDuration: number = -1): TransitionStateHook<S> {
     const [value, setValue] = useState(defaultValue);
     const durationRef = useRef(defaultDuration);
     useEffect(

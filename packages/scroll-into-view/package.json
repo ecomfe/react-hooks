@@ -9,19 +9,15 @@
   "bugs": {
     "url": "https://github.com/ecomfe/react-hooks/issues"
   },
+  "license": "MIT",
   "main": "cjs/index.js",
   "module": "es/index.js",
   "types": "es/index.d.ts",
-  "license": "MIT",
   "files": [
     "cjs",
     "es",
     "src"
   ],
-  "publishConfig": {
-    "access": "public",
-    "registry": "https://registry.npmjs.com"
-  },
   "scripts": {
     "build": "rm -rf es cjs && tsc & tsc --module ESNext --outDir ./es",
     "build-check": "tsc",
@@ -30,14 +26,21 @@
     "test": "echo 'no test in @huse/scroll-into-view'"
   },
   "devDependencies": {
+    "@reskript/cli": "^0.9.0",
+    "@reskript/cli-dev": "^0.9.9",
+    "@reskript/cli-lint": "^0.9.0",
+    "@reskript/config-lint": "^0.12.3",
     "@types/react": "^16.9.22",
     "classnames": "^2.2.6",
     "react": "^16.12.0",
-    "reskript": "^0.25.16",
-    "typescript": "^3.8.2",
-    "webpack": "^4.42.0"
+    "typescript": "^3.9.7",
+    "webpack": "^4.44.0"
   },
   "peerDependencies": {
     "react": "^16.8.0"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.com"
   }
 }

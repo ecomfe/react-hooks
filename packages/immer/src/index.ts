@@ -12,7 +12,7 @@ export function useImmerReducer<S = any, A = any>(
     return useReducer<Reducer<S, A>>(
         (state, action) => {
             // @ts-ignore
-            const newState = produce(state, draft => reducer(draft, action));
+            const newState = produce(state, draft => reducer(draft, action)) as S;
             return newState;
         },
         initialState,

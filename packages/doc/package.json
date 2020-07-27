@@ -1,21 +1,14 @@
 {
   "name": "@huse/doc",
   "version": "1.6.0",
-  "main": "index.js",
-  "license": "MIT",
   "private": true,
+  "license": "MIT",
+  "main": "index.js",
   "scripts": {
     "build": "echo 'No build in @huse/doc'",
     "build-check": "echo 'No build in @huse/doc'",
     "lint": "echo 'No lint in @huse/doc'",
     "test": "echo 'No test in @huse/doc'"
-  },
-  "devDependencies": {
-    "@ant-design/icons": "^4.0.2",
-    "antd": "^4.0.1",
-    "docz": "^2.2.0",
-    "react": "^16.12.0",
-    "react-dom": "^16.12.0"
   },
   "dependencies": {
     "@huse/action-pending": "^1.0.2",
@@ -55,5 +48,16 @@
     "@huse/user-media": "^0.9.0",
     "@huse/window-size": "^1.0.2",
     "react-router-dom": "^5.1.2"
+  },
+  "devDependencies": {
+    "@ant-design/icons": "^4.0.2",
+    "@reskript/cli": "^0.9.0",
+    "@reskript/cli-lint": "^0.9.0",
+    "@reskript/cli-test": "^0.9.4",
+    "@reskript/config-lint": "^0.12.3",
+    "antd": "^4.0.1",
+    "docz": "^2.2.0",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0"
   }
 }

@@ -26,6 +26,6 @@
     "immer": "^6.0.1",
     "inquirer": "^7.0.6",
     "lerna": "^3.20.2",
-    "sort-package-json": "^1.40.0"
+    "sort-package-json": "^1.44.0"
   }
 }

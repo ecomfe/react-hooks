@@ -24,12 +24,18 @@
     "lint": "skr lint",
     "test": "skr test --coverage --target=react"
   },
+  "dependencies": {
+    "has-passive-events": "^1.0.0"
+  },
   "devDependencies": {
+    "@reskript/cli": "^0.9.0",
+    "@reskript/cli-lint": "^0.9.0",
+    "@reskript/cli-test": "^0.9.4",
+    "@reskript/config-lint": "^0.12.3",
     "@testing-library/react-hooks": "^3.2.1",
     "@types/react": "^16.9.22",
     "react": "^16.12.0",
-    "reskript": "^0.25.16",
-    "typescript": "^3.8.2"
+    "typescript": "^3.9.7"
   },
   "peerDependencies": {
     "react": "^16.8.0"
@@ -37,8 +43,5 @@
   "publishConfig": {
     "access": "public",
     "registry": "https://registry.npmjs.com"
-  },
-  "dependencies": {
-    "has-passive-events": "^1.0.0"
   }
 }

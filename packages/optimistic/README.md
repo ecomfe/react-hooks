@@ -141,7 +141,7 @@ When 2 arguments are provided, the first one is a `Promise` which resolves to a 
 
 ```js
 const [todos, setTodos] = useOptimisticState([]);
-const addTodo = todo => setState(
+const addTodo = todo => setTodos(
     (async () => {
         const newTodo = await saveTodo(todo);
         // We recommend to use a reducer since it is asynchronous

@@ -9,39 +9,42 @@
   "bugs": {
     "url": "https://github.com/ecomfe/react-hooks/issues"
   },
+  "license": "MIT",
   "main": "cjs/index.js",
   "module": "es/index.js",
   "types": "es/index.d.ts",
-  "license": "MIT",
   "files": [
     "cjs",
     "es",
     "src"
   ],
-  "publishConfig": {
-    "access": "public",
-    "registry": "https://registry.npmjs.com"
-  },
   "scripts": {
     "build": "rm -rf es cjs && tsc & tsc --module ESNext --outDir ./es",
     "build-check": "tsc",
     "lint": "skr lint",
     "test": "skr test --coverage"
   },
+  "dependencies": {
+    "@huse/previous-value": "^1.0.1"
+  },
   "devDependencies": {
+    "@reskript/cli": "^0.9.0",
+    "@reskript/cli-lint": "^0.9.0",
+    "@reskript/cli-test": "^0.9.4",
+    "@reskript/config-lint": "^0.12.3",
     "@testing-library/react-hooks": "^3.2.1",
     "@types/react": "^16.9.35",
     "jest-websocket-mock": "^2.0.2",
     "mock-socket": "^9.0.3",
     "react": "^16.13.1",
     "react-test-renderer": "^16.13.1",
-    "reskript": "^0.26.1",
-    "typescript": "^3.9.3"
+    "typescript": "^3.9.7"
   },
   "peerDependencies": {
     "react": "^16.8.0"
   },
-  "dependencies": {
-    "@huse/previous-value": "^1.0.1"
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.com"
   }
 }

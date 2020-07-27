@@ -29,6 +29,11 @@
     "@huse/methods": "^1.1.1"
   },
   "devDependencies": {
+    "@reskript/cli": "^0.9.0",
+    "@reskript/cli-dev": "^0.9.9",
+    "@reskript/cli-lint": "^0.9.0",
+    "@reskript/cli-test": "^0.9.4",
+    "@reskript/config-lint": "^0.12.3",
     "@testing-library/react-hooks": "^3.2.1",
     "@types/react": "^16.9.22",
     "classnames": "^2.2.6",
@@ -36,9 +41,8 @@
     "react-dom": "^16.12.0",
     "react-infinite-scroll-component": "^5.0.4",
     "react-loading": "^2.0.3",
-    "reskript": "^0.25.16",
-    "typescript": "^3.8.2",
-    "webpack": "^4.42.0"
+    "typescript": "^3.9.7",
+    "webpack": "^4.44.0"
   },
   "peerDependencies": {
     "react": "^16.8.0"

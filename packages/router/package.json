@@ -24,13 +24,21 @@
     "lint": "skr lint",
     "test": "skr test --coverage"
   },
+  "dependencies": {
+    "@types/history": "^4.7.5",
+    "@types/react-router-dom": "^5.1.4",
+    "history": "^4.10.1"
+  },
   "devDependencies": {
+    "@reskript/cli": "^0.9.0",
+    "@reskript/cli-lint": "^0.9.0",
+    "@reskript/cli-test": "^0.9.4",
+    "@reskript/config-lint": "^0.12.3",
     "@testing-library/react-hooks": "^3.2.1",
     "@types/react": "^16.9.22",
     "react": "^16.12.0",
-    "react-router-dom": "^5.1.2",
-    "reskript": "^0.25.16",
-    "typescript": "^3.8.2"
+    "react-router-dom": "^5.2.0",
+    "typescript": "^3.9.7"
   },
   "peerDependencies": {
     "react": "^16.8.0",
@@ -39,10 +47,5 @@
   "publishConfig": {
     "access": "public",
     "registry": "https://registry.npmjs.com"
-  },
-  "dependencies": {
-    "@types/history": "^4.7.5",
-    "@types/react-router-dom": "^5.1.4",
-    "history": "^4.10.1"
   }
 }

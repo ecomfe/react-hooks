@@ -64,6 +64,7 @@ export function useScript(src?: string): [boolean, boolean] {
     ];
 }
 
+// eslint-disable-next-line @reskript/no-excessive-hook
 export function useScriptSuspense(src?: string): boolean {
     if (!src) {
         return true;

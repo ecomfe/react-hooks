@@ -1,6 +1,6 @@
 {
   "name": "@huse/intersection",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "keywords": [
     "react",
     "hooks"
@@ -26,7 +26,7 @@
     "test": "echo 'no test in @huse/intersection'"
   },
   "dependencies": {
-    "@huse/effect-ref": "^1.0.1"
+    "@huse/effect-ref": "^1.0.2"
   },
   "devDependencies": {
     "@reskript/cli": "^0.9.0",

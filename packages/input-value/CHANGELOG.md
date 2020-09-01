@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.2](https://github.com/ecomfe/react-hooks/compare/@huse/input-value@1.0.1...@huse/input-value@1.0.2) (2020-09-01)
+
+
+### Bug Fixes
+
+* **input-value:** make useInputValue type compatible to textarea ([8d37350](https://github.com/ecomfe/react-hooks/commit/8d37350e351ec0115a143b1f80f1c359e7a97b34))
+
+
+
+
+
 ## [1.0.1](https://github.com/ecomfe/react-hooks/compare/@huse/input-value@0.9.3...@huse/input-value@1.0.1) (2020-03-23)
 
 

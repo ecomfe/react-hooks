@@ -33,9 +33,13 @@ export function useWebSocket(url: string, options: Options = {}): WebSocketHook 
     const webSocketRef = useRef<WebSocket>(null); // Latest web socket instance.
     const reconnetRef = useRef<() => void>(noop); // Recunnect function.
     const reconnectCount = useRef(0);
+    const unmountFlag = useRef(false);
     const setUrlReadyState = useCallback(
         (url: string, currentReadyState: ReadyState) => {
-            setReadyState(prev => ({...prev, [url]: currentReadyState}));
+            // avoid update a React state on an unmounted component
+            if (!unmountFlag.current) {
+                setReadyState(prev => ({...prev, [url]: currentReadyState}));
+            }
         },
         []
     );
@@ -99,6 +103,11 @@ export function useWebSocket(url: string, options: Options = {}): WebSocketHook 
         // eslint-disable-next-line react-hooks/exhaustive-deps
         [originalOptions]
     );
+    useEffect(() => {
+        return () => {
+            unmountFlag.current = true;
+        };
+    }, []);
 
     const readyStateFromURL = readyState[url] ?? ReadyState.UNINSTANTIATED;
     return {

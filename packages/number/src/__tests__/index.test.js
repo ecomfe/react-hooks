@@ -42,4 +42,24 @@ describe('useCounter', () => {
         act(() => result.current[1].reset());
         expect(result.current[0]).toBe(0);
     });
+
+    test('step', () => {
+        const {result} = renderHook(() => useCounter(0, {step: 2}));
+        act(() => result.current[1].increment());
+        expect(result.current[0]).toBe(2);
+        act(() => result.current[1].decrement());
+        expect(result.current[0]).toBe(0);
+    });
+
+    test('min', () => {
+        const {result} = renderHook(() => useCounter(2, {min: 2}));
+        act(() => result.current[1].decrement());
+        expect(result.current[0]).toBe(2);
+    });
+
+    test('max', () => {
+        const {result} = renderHook(() => useCounter(2, {max: 2}));
+        act(() => result.current[1].increment());
+        expect(result.current[0]).toBe(2);
+    });
 });

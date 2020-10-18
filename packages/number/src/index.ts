@@ -1,23 +1,31 @@
 import {useMethods} from '@huse/methods';
 
-const reducers = {
-    increment(state: number) {
-        return state + 1;
-    },
-    decrement(state: number) {
-        return state - 1;
-    },
-    inc(state: number) {
-        return state + 1;
-    },
-    dec(state: number) {
-        return state - 1;
-    },
-    reset(state: number, value: number = 0) {
-        return value;
-    },
-};
+export interface CounterOptions {
+    min?: number;
+    max?: number;
+    step?: number;
+}
 
-export function useCounter(initialValue: number = 0) {
-    return useMethods(reducers, initialValue);
+export function useCounter(initialValue: number = 0, options: CounterOptions = {}) {
+    const {min = -Infinity, max = Infinity, step = 1} = options;
+    return useMethods(
+        {
+            increment(state: number) {
+                return Math.min(max, state + step);
+            },
+            decrement(state: number) {
+                return Math.max(min, state - step);
+            },
+            inc(state: number) {
+                return Math.min(max, state + step);
+            },
+            dec(state: number) {
+                return Math.max(min, state - step);
+            },
+            reset(state: number, value: number = 0) {
+                return value;
+            },
+        },
+        initialValue
+    );
 }

@@ -6,9 +6,11 @@
   "repository": "git@github.com:ecomfe/react-hooks.git",
   "author": "otakustay <otakustay@gmail.com>",
   "license": "MIT",
-  "workspaces": [
-    "packages/*"
-  ],
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ]
+  },
   "scripts": {
     "generate": "node scripts/generate",
     "lint": "lerna run lint --parallel && skr lint scripts",

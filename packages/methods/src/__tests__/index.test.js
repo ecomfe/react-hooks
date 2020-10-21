@@ -46,7 +46,8 @@ describe('useMethods', () => {
 
     test('set state', () => {
         const {result} = renderHook(() => useMethods({}, {value: 0}));
-        act(() => result.current[2]({value: 1}));
+        // eslint-disable-next-line no-void
+        act(() => result.current[2](s => void s.value++));
         expect(result.current[0].value).toBe(1);
     });
 });

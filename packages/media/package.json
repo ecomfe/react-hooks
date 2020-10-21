@@ -26,17 +26,17 @@
     "test": "echo 'no test in @huse/media'"
   },
   "devDependencies": {
-    "@reskript/cli": "^0.9.0",
-    "@reskript/cli-dev": "^0.9.9",
-    "@reskript/cli-lint": "^0.9.0",
-    "@reskript/config-lint": "^0.12.3",
+    "@reskript/cli": "^1.0.0-beta.7",
+    "@reskript/cli-dev": "^1.0.0-beta.11",
+    "@reskript/cli-lint": "^1.0.0-beta.9",
+    "@reskript/config-lint": "^1.0.0-beta.8",
     "@types/react": "^16.9.22",
     "classnames": "^2.2.6",
-    "typescript": "^3.9.7",
-    "webpack": "^4.44.0"
+    "typescript": "^4.0.3",
+    "webpack": "^5.1.3"
   },
   "peerDependencies": {
-    "react": "^16.8.0"
+    "react": ">=16.8.0"
   },
   "publishConfig": {
     "access": "public",

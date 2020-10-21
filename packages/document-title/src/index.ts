@@ -1,7 +1,7 @@
-import {useEffect} from 'react';
+import {useLayoutEffect} from 'react';
 
 export function useDocumentTitle(title: string) {
-    useEffect(
+    useLayoutEffect(
         () => {
             const previous = document.title;
             document.title = title;

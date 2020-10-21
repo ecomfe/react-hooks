@@ -28,17 +28,17 @@
     "@huse/debounce": "^1.0.2"
   },
   "devDependencies": {
-    "@reskript/cli": "^0.9.0",
-    "@reskript/cli-lint": "^0.9.0",
-    "@reskript/cli-test": "^0.9.4",
-    "@reskript/config-lint": "^0.12.3",
+    "@reskript/cli": "^1.0.0-beta.7",
+    "@reskript/cli-lint": "^1.0.0-beta.9",
+    "@reskript/cli-test": "^1.0.0-beta.10",
+    "@reskript/config-lint": "^1.0.0-beta.8",
     "@testing-library/react-hooks": "^3.2.1",
     "@types/react": "^16.9.22",
-    "react": "^16.12.0",
-    "typescript": "^3.9.7"
+    "react": "^17.0.0",
+    "typescript": "^4.0.3"
   },
   "peerDependencies": {
-    "react": "^16.8.0"
+    "react": ">=16.8.0"
   },
   "publishConfig": {
     "access": "public",

@@ -1,6 +1,6 @@
 import {useMethods} from '@huse/methods';
 
-const createMethods = <T>() => {
+function createMethods<T>() {
     return {
         push(state: T[], item: T) {
             state.push(item);

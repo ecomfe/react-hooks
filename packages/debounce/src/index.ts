@@ -52,10 +52,8 @@ export function useDebouncedValue<T>(value: T, wait: number): T {
     return wait > 0 ? debouncedValue : value;
 }
 
-interface DebouncedFunction {
-    clear(): void;
-}
 
+// eslint-disable-next-line @typescript-eslint/ban-types
 export function useDebouncedCallback<C extends Function>(callback: C, wait: number): C {
     const debouncedCallback = useMemo(
         () => (wait > 0 ? debounce(callback, wait) : callback),

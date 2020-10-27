@@ -31,7 +31,7 @@ Open `http://localhost:3000` to view documents about hooks.
 
 | Hook | Description |
 | ---- | ----------- |
-| useActionPending | Add a pending indicator to any ascyn function |
+| useActionPending | Add a pending indicator to any async function |
 | useBoolean | Methods to control a boolean state |
 | useSwitch | More convenient way to use boolean state |
 | useToggle | Simply toggle boolean state |

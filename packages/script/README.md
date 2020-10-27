@@ -1,6 +1,10 @@
-# @huse/script
+# script
 
 Dynamically load a script via hook.
+
+```shell
+npm install @huse/script
+```
 
 ## useScript
 
@@ -18,7 +22,7 @@ The returned tuple is `[loaded, errored]` with three combinations indicating dif
 
 In most case the first `boolean` is meaningful enough.
 
-```jsx
+```javascript
 import {useScript} from '@huse/script';
 
 const App = () => {
@@ -55,7 +59,7 @@ function useScriptSuspense(src?: string): boolean
 
 A component using `useScriptSuspense` must reside inside a `<Suspense>`.
 
-```jsx
+```javascript
 import {useScriptSuspense} from '@huse/script';
 
 const Demo = () => {

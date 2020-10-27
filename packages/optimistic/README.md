@@ -1,8 +1,10 @@
-# @huse/optimistic
+# optimistic
 
 Provides a set of react hooks to help manage optimistic states.
 
-As previously stated in [redux-optimistic-thunk](https://github.com/ecomfe/redux-optimistic-thunk#why-this-middleware), manually managing optimistic states, commits, rollbacks and transactions are not ideal model of state management. React hooks provides powers to manage states in a more functional way, and this library aimed to build optimistic functions above hooks.
+As previously stated in [redux-optimistic-thunk](https://github.com/ecomfe/redux-optimistic-thunk#why-this-middleware),
+manually managing optimistic states, commits, rollbacks and transactions are not ideal model of state management.
+React hooks provides powers to manage states in a more functional way, and this library aimed to build optimistic functions above hooks.
 
 **This library requires [ES6 Generators](https://caniuse.com/#feat=es6-generators) to work.**
 
@@ -42,43 +44,45 @@ The return value of `useOptimisticFactory` is the same signature of `useReducer`
 This is a simple example to manage a todo list with `useOptimisticFactory`:
 
 ```jsx
+import React from 'react';
 import {Input, Button} from 'antd';
+import 'antd/dist/antd.min.css';
+import {useOptimisticFactory, useOptimisticState, useOptimisticTask} from '@huse/optimistic';
 
-const factory = ({type, payload}) => {
-    switch (type) {
-        case 'DELETE':
-            return items => {
-                const index = items.findIndex(i => i.id === payload);
-                return [
-                    ...items.slice(0, index),
-                    {...items[index], deleted: true},
-                    ...items.slice(index + 1),
-                ];
-            };
-        case 'CREATE':
-            return [
-                function* create() {
-                    // Await an async api call
-                    const newTodo = yield saveTodo(payload);
-                    // Insert the returned new todo to list, with pending set to false
-                    yield items => [
-                        ...items,
-                        {...newTodo, pending: false, deleted: false},
+export default () => {
+    const factory = ({type, payload}) => {
+        switch (type) {
+            case 'DELETE':
+                return items => {
+                    const index = items.findIndex(i => i.id === payload);
+                    return [
+                        ...items.slice(0, index),
+                        {...items[index], deleted: true},
+                        ...items.slice(index + 1),
                     ];
-                },
-                items => [
-                    ...items,
-                    // Insert an optimistic item with property pending set to true,
-                    // this item will be removed after saveTodo resolves
-                    {id: uid(), text: payload, pending: true, deleted: false},
-                ],
-            ];
-        default:
-            return s => s;
-    }
-};
-
-const App = () => {
+                };
+            case 'CREATE':
+                return [
+                    function* create() {
+                        // Await an async api call
+                        const newTodo = yield saveTodo(payload);
+                        // Insert the returned new todo to list, with pending set to false
+                        yield items => [
+                            ...items,
+                            {...newTodo, pending: false, deleted: false},
+                        ];
+                    },
+                    items => [
+                        ...items,
+                        // Insert an optimistic item with property pending set to true,
+                        // this item will be removed after saveTodo resolves
+                        {id: uid(), text: payload, pending: true, deleted: false},
+                    ],
+                ];
+            default:
+                return s => s;
+        }
+    };
     const [todos, dispatch] = useOptimisticFactory(factory, []);
     const renderTodo = ({id, text, pending, deleted}) => {
         const textStyle = {
@@ -89,7 +93,6 @@ const App = () => {
             color: pending ? '#d9d9d9' : '#1a90ff',
         };
         const deleteTodo = (pending || deleted) ? undefined : () => dispatch({type: 'DELETE', paylaod: id});
-
         return (
             <li key={id} style={{display: 'flex'}}>
                 <span style={textStyle}>{t.text}</span>
@@ -97,7 +100,6 @@ const App = () => {
             </li>
         );
     };
-
     return (
         <>
             <ul>
@@ -141,7 +143,7 @@ When 2 arguments are provided, the first one is a `Promise` which resolves to a 
 
 ```js
 const [todos, setTodos] = useOptimisticState([]);
-const addTodo = todo => setTodos(
+const addTodo = todo => setState(
     (async () => {
         const newTodo = await saveTodo(todo);
         // We recommend to use a reducer since it is asynchronous

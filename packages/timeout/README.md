@@ -1,6 +1,10 @@
-# @huse/timeout
+# timeout
 
 Hooks about timeout and interval.
+
+```shell
+npm install @huse/timeout
+```
 
 ## useTimeout
 
@@ -15,15 +19,20 @@ function useTimeout(callback: (() => void) | undefined, time: number): void;
 To cancel timeout, pass a negative `time`, `-1` is recommended.
 
 ```jsx
-import {useState} from 'react';
-import {useTimeout} from '@huse/timeout';
+import React, {useState} from 'react';
 import {Slider} from 'antd';
+import 'antd/dist/antd.min.css';
+import {useTimeout, useInterval} from '@huse/timeout';
 
-const App = () => {
+export default () => {
     const [theme, setTheme] = useState('light');
     const [delay, setDelay] = useState(2);
+    console.log(delay);
     useTimeout(
-        () => setTheme(theme => (theme === 'light' ? 'dark' : 'light')),
+        () => {
+            console.log('timeout');
+            setTheme(theme => (theme === 'light' ? 'dark' : 'light'));
+        },
         delay * 1000
     );
     const style = {
@@ -33,7 +42,6 @@ const App = () => {
         backgroundColor: theme === 'light' ? '#fff' : '#222',
         color: theme === 'light' ? '#666' : '#f4f5f6',
     };
-
     return (
         <>
             <div>
@@ -61,10 +69,12 @@ To cancel interval, pass a native `time`, `-1` is recommended.
 **Note: `useInterval` does not execute `callback` on initial mount, to trigger it immediately, add an extra `useEffect`.**
 
 ```jsx
-import {useState} from 'react';
-import {useTimeout} from '@huse/timeout';
+import React, {useState} from 'react';
+import {Slider} from 'antd';
+import 'antd/dist/antd.min.css';
+import {useTimeout, useInterval} from '@huse/timeout';
 
-const App = () => {
+export default () => {
     const [theme, setTheme] = useState('light');
     // Switch theme every 5s
     useInterval(
@@ -78,7 +88,6 @@ const App = () => {
         backgroundColor: theme === 'light' ? '#fff' : '#222',
         color: theme === 'light' ? '#666' : '#f4f5f6',
     };
-
     return (
         <>
             <div style={style}>

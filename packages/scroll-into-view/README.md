@@ -1,23 +1,36 @@
-# @huse/scroll-into-view
+# scroll-into-view
 
-控制元素滚动到视图内。
+```shell
+npm install @huse/scroll-into-view
+```
 
 ## useScrollIntoView
 
-```jsx
-import {useRef} from 'react';
-import {useScrollIntoView} from '@huse/scroll-into-view';
+To make an active element scroll into view on its mount.
 
-const Block = ({isFocused}) => {
-    const ref = useRef(null);
-    useScrollIntoView(ref, isFocused);
+```typescript
+function useScrollIntoView(
+    ref: RefObject<HTMLElement>,
+    active: boolean = true,
+    options: boolean | ScrollIntoViewOptions = {behavior: 'smooth'}
+): void
+```
+
+This hook conforms to `scrollIntoView` function on `HTMLElement`, the `active` argument controls whether scroll should be performed.
+
+It is recommended to have only one active element performing scroll.
+
+```javascript
+const App = () => {
+    const [activeIndex, setActiveIndex] = useState(0);
 
     return (
-        <div ref={ref}>
-            ...
+        <div>
+            <div className={c.header}>
+                {colors.map((c, i) => <Anchor key={c.color} {...c} onClick={() => setActiveIndex(i)} />)}
+            </div>
+            {colors.map((c, i) => <Block key={c.color} {...c} activeInView={i === activeIndex} />)}
         </div>
     );
 };
 ```
-
-具体的效果可参考`demo`目录。

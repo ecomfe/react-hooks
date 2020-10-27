@@ -1,6 +1,10 @@
-# @huse/input-value
+# input-value
 
 Generates `value` and `onChange` that satisfies input elements.
+
+```shell
+npm install @huse/input-value
+```
 
 ## useInputValue
 
@@ -17,19 +21,21 @@ function useInputValue(initialValue: string = ''): InputValueState;
 This hook is better used with `{...props}` syntax in JSX.
 
 ```jsx
+import React from 'react';
+import {Input} from 'antd';
+import 'antd/dist/antd.min.css';
 import {useInputValue} from '@huse/input-value';
 
-const App = () => {
+export default () => {
     const name = useInputValue('');
     const age = useInputValue(10);
-
     return (
         <>
             <div>
-                <label>Username: <input {...name} /></label>
+                <label>Username: <Input {...name} /></label>
             </div>
             <div>
-                <label>Age: <input type="number" {...age} /></label>
+                <label>Age: <Input type="number" {...age} /></label>
             </div>
         </>
     );

@@ -1,4 +1,12 @@
-# @huse/methods
+# methods
+
+Provides infrastructure hooks to encapsulate a state and some methods together.
+
+```shell
+npm install @huse/methods
+```
+
+## useMethods
 
 Provides hooks to create methods around a state.
 
@@ -32,37 +40,49 @@ export function useMethods<S, R extends Reducers<S>>(init: R | (() => R), initia
 In short, `useMethods` returns a tuple containing 3 items: the state, an object of methods mutating the state, the `setState` function.
 
 ```jsx
-const arrayReducers = {
-    push(state, value) {
-        // Immer is introduced by default
-        state.push(value);
-    },
-    // Works with any numbers of parameters
-    splice(state, index, count, ...inserts) {
-        state.splice(index, count, ...inserts);
-    },
-    empty() {
-        // Return a new state to reset it
-        return [];
-    },
-};
+import React, {useState} from 'react';
+import {Button, Switch} from 'antd';
+import 'antd/dist/antd.min.css';
+import {useMethods, useMethodsExtension} from '@huse/methods';
 
-const App = () => {
-    // The methods object contains properties exactly the same as given argument
-    const [list, {push, splice, empty}, setList] = useMethods(arrayReducers, []);
-
+export default () => {
+    const userMethods = {
+        asAdmin(user) {
+            user.role = 'admin';
+            user.history.push('change to admin');
+        },
+        asUser(user) {
+            user.role = 'uesr';
+            user.history.push('change to user');
+        },
+        enable(user) {
+            user.enabled = true;
+            user.history.push('disabled');
+        },
+        disable(user) {
+            user.enabled = false;
+            user.history.push('enabled');
+        },
+    };
+    const [user, methods] = useMethods(
+        userMethods,
+        {role: 'user', enabled: true, history: []}
+    );
     return (
         <>
+            <div>
+                Admin: <Switch checked={user.role === 'admin'} onChange={user.role === 'admin' ? methods.asUser : methods.asAdmin} />
+            </div>
+            <div>
+                Enabled: <Switch checked={user.enabled} onChange={user.enabled ? methods.disable : methods.enable} />
+            </div>
+            <h3>Mutation history:</h3>
             <ul>
-                {list.map(item => <li key={item.id}>{item.name}</li> />)}
+                {user.history.map((s, i) => <li key={i}>{s}</li>)}
             </ul>
-            <footer>
-                {/* Every method is callable without the first state argument */}
-                <Button onClick={() => push({id: list.length, name: 'empty'})}>Create</Button>
-            </footer>
         </>
     );
-}
+};
 ```
 
 **Note: `useMethods` is a one-time setup, that means `init` argument only works in the initial call,
@@ -101,7 +121,7 @@ export function useMethodsExtension<S, R extends ImmerReducers<S>>(reducers: R, 
 
 This hook is also useful to extends more methods from an already generated methods hook.
 
-```jsx
+```javascript
 const App = () => {
     // Suppose useArray is a hook implemented on useMethods
     const [list, methods, setList] = useArray();

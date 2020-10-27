@@ -1,6 +1,10 @@
-# @huse/merged-ref
+# merged-ref
 
 Merge multiple refs into one.
+
+```shell
+npm install @huse/merged-ref
+```
 
 ## useMergedRef
 
@@ -17,18 +21,36 @@ In the ecosystem of react, many custom hooks return callback ref, in order to se
 `useMergedRef` is introduced.
 
 ```jsx
+import React, {useState, useCallback, useRef, useEffect} from 'react';
 import {useMergedRef} from '@huse/merged-ref';
-import {useElementSize} from '@huse/element-size';
-import {useOnScreen} from '@huse/intersection';
 
-const App = () => {
-    const [sizeRef, size] = useElementSize();
-    const [onScreenRef, onScreen] = useOnScreen();
-    const ref = useMergedRef([sizeRef, onScreenRef]);
-
+export default () => {
+    const [size, setSize] = useState([0, 0]);
+    // callback ref
+    const observeSize = useCallback(
+        element => element && setSize([element.offsetWidth, element.offsetHeight]),
+        []
+    );
+    // mutation ref
+    const elementRef = useRef(null);
+    useEffect(
+        () => {
+            if (elementRef.current) {
+                elementRef.current.animate(
+                    [{opacity: '1'}, {opacity: '.4'}, {opacity: '1'}],
+                    {duration: 800, iterations: 4}
+                );
+            }
+        },
+        []
+    );
+    const ref = useMergedRef([observeSize, elementRef]);
     return (
-        <div ref={ref}>
-            {/* ... */}
+        <div
+            ref={ref}
+            style={{height: 60, lineHeight: '60px', textAlign: 'center', backgroundColor: '#007bd2', fontSize: 36, color: '#fff'}}
+        >
+            {size[0]} x {size[1]}
         </div>
     );
 };

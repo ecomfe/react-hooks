@@ -1,6 +1,10 @@
-# @huse/debounce
+# debounce
 
 Provides hooks to debounce value changes, effects or callbacks.
+
+```shell
+npm install @huse/debounce
+```
 
 ## useDebouncedValue
 
@@ -13,17 +17,18 @@ function useDebouncedValue<T>(value: T, wait: number): T
 Returned value will not update unless the input value stops change longer than `wait`.
 
 ```jsx
-import {useState} from 'react';
-import {useDebouncedValue} from '@huse/debounce';
+import React, {useState} from 'react';
+import {Button, Input} from 'antd';
+import 'antd/dist/antd.min.css';
+import {useDebouncedValue, useDebouncedEffect, useDebouncedCallback} from '@huse/debounce';
 
-const App = () => {
+export default () => {
     const [value, setValue] = useState('');
-    const debouncedValue = useDebouncedValue(value, 10); // debounced update 10ms
-
+    const debouncedValue = useDebouncedValue(value, 200); // debounced update 200ms
     return (
         <>
             <div>
-                <input value={value} onChange={e => setValue(e.target.value)} />
+                <Input value={value} onChange={e => setValue(e.target.value)} />
             </div>
             <div>
                 Current Value: {debouncedValue}
@@ -46,22 +51,29 @@ Unlike `useEffect`, `useDebouncedEffect` accepts only one dependency value.
 Still `callback` can return a clean-up function, this function is called **immediately when value changes without delay**.
 
 ```jsx
-import {useState} from 'react';
-import {useDebouncedEffect} from '@huse/debounce';
+import React, {useState} from 'react';
+import {Button, Input} from 'antd';
+import 'antd/dist/antd.min.css';
+import {useDebouncedValue, useDebouncedEffect, useDebouncedCallback} from '@huse/debounce';
 
-const App = () => {
+export default () => {
     const [value, setValue] = useState('');
+    const [message, setMessage] = useState('');
     useDebouncedEffect(
         () => {
-            saveValueToServer(value);
+            value && setMessage(`Value updated to ${value}`);
         },
         value,
         200
     );
-
     return (
         <>
-            <input value={value} onChange={e => setValue(e.target.value)} />
+            <div>
+                <Input value={value} onChange={e => setValue(e.target.value)} />
+            </div>
+            <div>
+                {message}
+            </div>
         </>
     );
 };
@@ -77,7 +89,7 @@ function useDebouncedCallback<C extends Function>(callback: C, wait: number): C
 
 Note all queued invocation will be canceled when component unmounts and when either `callback` r=or `wait` is changed.
 
-```jsx
+```javascript
 import {useState} from 'react';
 import {useDebouncedCallback} from '@huse/debounce';
 

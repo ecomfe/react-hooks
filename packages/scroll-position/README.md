@@ -1,6 +1,10 @@
-# @huse/scroll-position
+# scroll-position
 
 Provides a set of hooks to observe element or window scroll position.
+
+```shell
+npm install @huse/scroll-position
+```
 
 ## useScrollPosition
 
@@ -19,12 +23,6 @@ interface ScrollPosition {
 function useScrollPosition(element?: HTMLElement | null): ScrollPosition
 ```
 
-The `element` argument could be of three types:
-
-- When it is `null` nothing happens, `useScrollPosition` performance a noop.
-- When it is `undefined` then `documentElement` is observed for scroll container.
-- When it is a `HTMLElement` instance, this instance is observed.
-
 **Note there are different behaviors when `element` is either `null` or `undefined`, commonly `useRef`'s initial value is `null`.**
 When `documentElement` is the observe target, simple `useScrollPosition()` without argument.
 
@@ -32,7 +30,10 @@ In order to satisfy different developers, the returned `ScrollPosition` has a se
 all `x`, `left`, `scrollLeft` have same value while `y`, `top`, `scrollTop` have same value.
 
 ```jsx
-const App = () => {
+import React, {useRef} from 'react';
+import {useScrollPosition} from '@huse/scroll-position';
+
+export default () => {
     const ref = useRef(null);
     const position = useScrollPosition(ref.current);
     const gradient = 'radial-gradient(circle at 10% 20%, rgb(6, 123, 239) 14.2%, rgb(219, 115, 249) 89.5%)';

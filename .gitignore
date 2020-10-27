@@ -65,3 +65,5 @@ typings/
 /*/*/cjs
 packages/doc/.docz
 .DS_Store
+/.umi
+/dist

@@ -1,6 +1,10 @@
-# @huse/window-size
+# window-size
 
 Read and observe the size of viewport.
+
+```shell
+npm install @huse/window-size
+```
 
 ## useWindowSize
 
@@ -20,11 +24,11 @@ function useWindowSize(): WindowSize;
 State will update when window resizes.
 
 ```jsx
-import {useWindowSize} from '@huse/document-window-size';
+import React from 'react';
+import {useWindowSize} from '@huse/window-size';
 
-const App = () => {
+export default () => {
     const size = useWindowSize();
-
     return (
         <>
             <p>Outer: {size.outerWidth} x {size.outerHeight}</p>

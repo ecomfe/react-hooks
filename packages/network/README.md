@@ -1,14 +1,31 @@
-# @huse/network
+# network
 
-检查网络状态相关的hooks。
+Provides hooks to resolve and listen on network states like online or connectivity.
+
+```shell
+npm install @huse/network
+```
 
 ## useOnLine
 
-返回是否在线的`boolean`值。
+`useOnLine` returns a boolean indicates whether client is currently online.
+
+In case where client doesn't support `online` and `offline` events, this hook always return `true`.
 
 ```jsx
+import React from 'react';
+import {CheckCircleOutlined, CloseCircleOutlined} from '@ant-design/icons';
+import 'antd/dist/antd.min.css';
 import {useOnLine} from '@huse/network';
 
-const isOnLine = useOnLine;
-return <div>You are currently {isOnLine ? 'ONLINE' : 'OFFLIEN'}</div>;
+export default () => {
+    const isOnLine = useOnLine();
+    return (
+        <>
+            {isOnLine ? <CheckCircleOutlined /> : <CloseCircleOutlined />}
+            You are currently
+            <strong>{isOnLine ? 'ONLINE' : 'OFFLINE'}</strong>
+        </>
+    )
+};
 ```

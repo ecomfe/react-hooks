@@ -1,6 +1,10 @@
-# @huse/intersection
+# intersection
 
 Provides hooks to observe intersection between element and viewport.
+
+```shell
+npm install @huse/intersection
+```
 
 ## useOnScreen
 
@@ -8,7 +12,7 @@ Returns a boolean indicating whether element is currently on screen.
 
 ```typescript
 type OnScreenOptions = Omit<IntersectionObserverInit, 'root'>;
-function useOnScreen(options?: OnScreenOptions): [EffectRef, boolean];
+function useOnScreen({rootMargin, threshold}: OnScreenOptions = {}): [EffectRef, boolean];
 ```
 
 This hook only checks intersection between element and the root element (`documentElement` in browser).
@@ -16,15 +20,18 @@ This hook only checks intersection between element and the root element (`docume
 **Note: `useOnScreen` requires `IntersectionObserver` to work, without `IntersectionObserver` it supposes the element is always on screen.**
 
 ```jsx
+import React from 'react';
 import {useOnScreen} from '@huse/intersection';
 
-const LazyView = ({children}) => {
+export default () => {
     const [ref, isOnScreen] = useOnScreen(ref, {rootMargin: '10px', threshold: '30%'});
-
     return (
-        <div ref={ref}>
-            {isOnScreen && children()}
-        </div>
+        <>
+            <p>Visual port is currently {isOnScreen ? 'on' : 'out of'} screen</p>
+            <div ref={ref} style={{marginTop: 600, padding: 40, backgroundColor: '#007bd2', fontSize: 30, color: '#fff'}}>
+                This is visual port
+            </div>
+        </>
     );
 };
 ```
@@ -44,7 +51,7 @@ If element is out of screen when mount, `undefined` will return, once the elemen
 
 This can be helpful to implement lazy loading.
 
-```jsx
+```javascript
 import {useOnScreenLazyValue} from '@huse/intersection';
 
 const LazyImage = props => {
@@ -58,7 +65,7 @@ const LazyImage = props => {
 
 Passing a `true` as value works as `useOnScreen` but triggers only once:
 
-```jsx
+```javascript
 import {useOnScreenLazyValue} from '@huse/intersection';
 
 const App = ({children}) => {
@@ -84,3 +91,4 @@ function useOnScreenCallback(callback: (entry: IntersectionObserverEntry) => voi
 `callback` is triggered whenever element is into or out of screen.
 
 Most of the time `useOnScreen` and `useOnScreenValue` are enough, this hooks leaves the ability to extend custom logics with screen intersection.
+

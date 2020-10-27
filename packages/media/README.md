@@ -1,6 +1,10 @@
-# @huse/media
+# media
 
 Provides hooks to observe media query matches.
+
+```shell
+npm install @huse/media
+```
 
 ## useMedia
 
@@ -13,9 +17,10 @@ function useMedia(query: string): boolean;
 The return value is responsive to viewport and device changes.
 
 ```jsx
-import {useMedia} from '@huse/media';
+import React from 'react';
+import {useMedia, usePreferDarkMode} from '@huse/media';
 
-const App = () => {
+export default () => {
     const isMobile = useMedia('only screen and (min-device-width : 320px) and (max-device-width : 480px)');
     const isPad = useMedia('only screen and (min-device-width : 768px) and (max-device-width : 1024px)');
     const isDesktop = useMedia('only screen and (min-width : 1224px)');
@@ -31,7 +36,6 @@ const App = () => {
         }
         return 'Others';
     })();
-
     return (
         <p>
             You device: {deviceType}
@@ -51,13 +55,13 @@ function usePreferDarkMode(): boolean;
 This hook is also response, that means the value will be updated if system changes color scheme or having a automatic scheme.
 
 ```jsx
-import {usePreferDarkMode} from '@huse/media';
+import React from 'react';
+import {useMedia, usePreferDarkMode} from '@huse/media';
 
-const App = () => {
+export default () => {
     const darkMode = usePreferDarkMode();
     const backgroundColor = darkMode ? '#222' : '#fff';
     const color = darkMode ? '#f5f6f7' : '#666';
-
     return (
         <div style={{color, backgroundColor, height: 60, lineHeight: '60px', textAlign: 'center', fontSize: 30}}>
             Good {darkMode ? 'Evening' : 'Morning'}

@@ -1,6 +1,10 @@
-# @huse/effect-ref
+# effect-ref
 
 Makes a [callback ref](https://zh-hans.reactjs.org/docs/refs-and-the-dom.html#callback-refs) behaves like effects.
+
+```shell
+npm install @huse/effect-ref
+```
 
 ## useEffectRef
 
@@ -24,32 +28,30 @@ Unlike `useRef` which is not responsive to element change, this hook provides ab
 In case you need to use multiple callback refs on the same DOM element, `useMergedRef` from `@huse/merged-ref` may help.
 
 ```jsx
-import {useState, useCallback} from 'react';
+import React, {useState, useCallback, createElement} from 'react';
+import {Button, Select} from 'antd';
+import 'antd/dist/antd.min.css';
 import {useEffectRef} from '@huse/effect-ref';
-import elementResizeDetectorMaker from 'element-resize-detector';
 
-const resizeDetector = elementResizeDetectorMaker({strategy: 'scroll'});
-
-const App = () => {
-    const [size, setSize] = useState(null);
-    const observeResize = useCallback(
-        element => {
-            const listener = () => setSize({width: element.offsetWidth, height: element.offsetHeight});
-
-            resizeDetector.listenTo(element, listener);
-
-            return () => {
-                listener.removeListener(element, listener);
-            };
-        },
+export default () => {
+    const [tag, setTag] = useState('div');
+    const [message, setMessage] = useState('');
+    const updateMessage = useCallback(
+        element => setMessage(`Root element is changed to <${element.nodeName.toLowerCase()}>`),
         []
     );
-    const ref = useEffectRef(observeResize);
-
+    const ref = useEffectRef(updateMessage);
     return (
-        <div ref={ref}>
-            Resize Observable
-        </div>
+        <>
+            Choose a tag:
+            <Select value={tag} onChange={setTag}>
+                <Select.Option value="div">div</Select.Option>
+                <Select.Option value="section">section</Select.Option>
+                <Select.Option value="header">header</Select.Option>
+                <Select.Option value="footer">footer</Select.Option>
+            </Select>
+            {createElement(tag, {ref}, <p>{message}</p>)}
+        </>
     );
-}
+};
 ```

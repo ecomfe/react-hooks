@@ -1,6 +1,10 @@
-# @huse/transition-state
+# transition-state
 
 Provide a hook which will go back to its default value after a certain duration when set to a new value.
+
+```shell
+npm install @huse/transition-state
+```
 
 ## useTransitionState
 
@@ -14,26 +18,29 @@ function useTransitionState<S>(defaultValue: S, defaultDuration?: number)
 
 The `setValue` takes an extra `duration` argument to specify the time before value change back to default, it defaults to `defaultDuration` argument of `useTransitionState`.
 
-```js
+```jsx
+import React, {useCallback} from 'react';
+import {Button} from 'antd';
+import 'antd/dist/antd.min.css';
 import {useTransitionState} from '@huse/transition-state';
 
-const App = () => {
-    const [buttonText, setButtonText] = useTransitionState('Submit', 4 * 1000);
+export default () => {
+    // Save data to server, mocked
+    const saveData = () => new Promise(resolve => setTimeout(resolve, 20));
+    const [message, setMessage] = useTransitionState('', 4 * 1000);
     const submit = useCallback(
-        async () => {
-            await saveData();
+        () => {
             // Will change back to "Submit" after 4 seconds
-            setButtonText('Saved!');
+            saveData().then(() => setMessage('Saved!'));
         },
-        [setButtonText]
+        [setMessage, saveData]
     );
-
     return (
         <>
-            {/* form content */}
-            <footer>
-                <Button onClick={submit}>{buttonText}</Button>
-            </footer>
+            <Button onClick={submit}>Submit</Button>
+            <span style={{color: '#4285f4', transition: 'all 1s ease-in', opacity: message ? 1 : 0}}>
+                {message}
+            </span>
         </>
     );
 };

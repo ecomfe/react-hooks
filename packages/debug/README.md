@@ -1,6 +1,12 @@
-# @huse/debug
+# debug
 
 A set of hooks for debugging component.
+
+Since this package is for debugging, we will not consider the size of package an important factor, please remember to remove all debug hooks in production.
+
+```shell
+npm install @huse/debug
+```
 
 ## useRenderTimes
 
@@ -13,30 +19,56 @@ function useRenderTimes(): number
 This times returned starts from `1` and increase on each render, even props and states are not changed.
 
 ```jsx
-import {useRenderTimes} from '@huse/debug';
+import React, {useState} from 'react';
+import {Button} from 'antd';
+import 'antd/dist/antd.min.css';
+import {useRenderTimes, useChangeTimes, useUpdateCause} from '@huse/debug';
 
-const App = () => {
+export default () => {
+    const [value, setValue] = useState(0);
     const renderTimes = useRenderTimes();
-
-    console.log(renderTimes);
-
     return (
-        // ...
+        <>
+            <Button onClick={() => setValue(value => value - 1)}>-1</Button>
+            {value}
+            <span style={{color: '#999', padding: '0 10px'}}>(rendered {renderTimes} times)</span>
+            <Button onClick={() => setValue(value => value + 1)}>+1</Button>
+        </>
     );
 };
 ```
 
 ## useChangeTimes
 
-Like `useRenderTimes` but only increment when a value is actually changed.
+Like `useRenderTimes` but only increment when a value is actually changed, this value is zero based.
 
 ```typescript
 function useChangeTimes<T>(value: T): number
 ```
 
+```jsx
+import React, {useState} from 'react';
+import {Button} from 'antd';
+import 'antd/dist/antd.min.css';
+import {useRenderTimes, useChangeTimes, useUpdateCause} from '@huse/debug';
+
+export default () => {
+    const [value, setValue] = useState(0);
+    const renderTimes = useChangeTimes(value);
+    return (
+        <>
+            <Button onClick={() => setValue(value => value - 1)}>-1</Button>
+            {value}
+            <span style={{color: '#999', padding: '0 10px'}}>(changed {renderTimes} times)</span>
+            <Button onClick={() => setValue(value => value + 1)}>+1</Button>
+        </>
+    );
+};
+```
+
 This hooks identifies "change" by reference, to inspect why a value is changed, try `useUpdateCause` hook.
 
-```jsx
+```javascript
 import {useChangeTimes} from '@huse/debug';
 
 const App = props => {
@@ -83,7 +115,7 @@ By default this hook will print update causes in conse like:
 
 Passing the second argument as `false` can stop it from print in console.
 
-```jsx
+```javascript
 import {useUpdateCause} from '@huse/debug';
 
 const App = props => {

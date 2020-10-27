@@ -1,6 +1,10 @@
-# @huse/action-pending
+# action-pending
 
 Hooks to encapsulate async function with pending states.
+
+```shell
+npm install @huse/action-pending
+```
 
 ## useActionPending
 
@@ -15,27 +19,24 @@ function useActionPending<A extends AsyncFunction>(action: A): [A, number]
 The second value of returned tuple is the `pendingCount`, a simple `!!pendingCount` can be used to check whether there is any unfinished calls and motivates to a loading UI.
 
 ```jsx
+import React from 'react';
+import {Button, Spin} from 'antd';
+import 'antd/dist/antd.min.css';
 import {useActionPending} from '@huse/action-pending';
 
-const api = id => fetch(`/users/${id}`).then(r => r.json());
-
-const App = () => {
-    const [fetchUser, pendingCount] = useActionPending(api);
-
-    // Use it to determine loading state
-    if (pendingCount) {
-        return <Loading />;
-    }
-
+export default () => {
+    const wait = time => new Promise(resolve => setTimeout(resolve, time));
+    const [waitTime, pendingCount] = useActionPending(wait);
     return (
         <>
-            <Button onClick={() => fetchUser('admin')}>
-                Load Admin
-            </Button>
-            <Button onClick={() => fetchUser('super')}>
-                Load Super Admin
-            </Button>
+            <div>
+                <Button onClick={() => waitTime(2000)}>Wait 2s</Button>
+                <Button onClick={() => waitTime(4000)}>Wait 4s</Button>
+                <Button onClick={() => waitTime(6000)}>Wait 6s</Button>
+                <Button onClick={() => waitTime(8000)}>Wait 8s</Button>
+            </div>
+            {!!pendingCount && <div><Spin />{pendingCount} timeouts in the queue</div>}
         </>
-    )
+    );
 };
 ```

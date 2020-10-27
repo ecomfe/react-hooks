@@ -1,6 +1,10 @@
-# @huse/performance
+# performance
 
 Provides hooks to track and report component performance.
+
+```shell
+npm install @huse/performance
+```
 
 ## usePerformanceTiming
 
@@ -27,34 +31,37 @@ every time when a flag is changed from `false` to `true` the `callback` will be 
 all flags evaluated to `true` also reflects a property in this argument.
 
 ```jsx
-import {usePerformanceTiming} from '@huse/performance';
+import React, {useState, useReducer} from 'react';
+import {Button} from 'antd';
+import 'antd/dist/antd.min.css';
+import {usePerformanceTiming, useLayoutTiming} from '@huse/performance';
 
-const App = () => {
-    const [todos, setTodos] = useState(null);
-    useEffect(
-        () => {
-            fetchTodos.then(setTodos);
-        },
-        []
+export default () => {
+    // Don't do this in production!
+    const [timing, setTiming] = useState({});
+    const [userClicked, setClicked] = useReducer(() => true, false);
+    usePerformanceTiming(
+        setTiming,
+        {flags: {userClicked}}
     );
-    usePerformanceTiming(sendToLog, {flags: {todosLoaded: !!todos}});
+    console.log(timing);
+    return (
+        <>
+            <div>
+                <Button onClick={setClicked}>Click to update timing</Button>
+            </div>
+            <p>
+                initialRender: {timing.initialRender || 'N/A'}
+            </p>
+            <p>
+                initialLayout: {timing.initialLayout || 'N/A'}
+            </p>
+            <p>
+                userClicked: {timing.userClicked || 'N/A'}
+            </p>
+        </>
+    );
 };
-```
-
-The above example will trigger `sendToLog` twice:
-
-```jsx
-// First layout
-{
-    initialRender: number,
-    initialLayout: number,
-}
-// Todos loaded
-{
-    initialRender: number,
-    initialLayout: number,
-    todosLoaded: number,
-}
 ```
 
 ## useLayoutTiming
@@ -75,16 +82,22 @@ function useLayoutTiming(callback: (timing: TimeRange) => void, meaningful?: boo
 you can dynamiclly pass it to record a more meaningful layout time.
 
 ```jsx
-import {useLayoutTiming} from '@huse/performance';
+import React, {useState, useReducer} from 'react';
+import {Button} from 'antd';
+import 'antd/dist/antd.min.css';
+import {usePerformanceTiming, useLayoutTiming} from '@huse/performance';
 
-const App = () => {
-    const [todos, setTodos] = useState(null);
-    useEffect(
-        () => {
-            fetchTodos.then(setTodos);
-        },
-        []
+export default () => {
+    const [timing, setTiming] = useState();
+    const [userClicked, setClicked] = useReducer(() => true, false);
+    useLayoutTiming(setTiming, userClicked);
+    return (
+        <>
+            <div>
+                <Button onClick={setClicked}>Won't be meaningful until you click here</Button>
+            </div>
+            {timing && <p>{timing.end} (end) - {timing.start} (start) = {timing.ellapsed} (ellapsed)</p>}
+        </>
     );
-    useLayoutTiming(sendToLog, !!todos);
 };
 ```

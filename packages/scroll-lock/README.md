@@ -1,6 +1,10 @@
-# @huse/scroll-lock
+# scroll-lock
 
 Lock and unlock scroll conditionally.
+
+```shell
+npm install @huse/scroll-lock
+```
 
 ## useScrollLock
 
@@ -15,14 +19,14 @@ When `lock` is `true` scroll will be locked, `overflow` style will be reverted w
 If an other modification of `overflow` style happens after scroll lock, `useScrollLock` will not revert the style.
 
 ```jsx
-import {useState} from 'react';
+import React, {useState} from 'react';
 import {Button, Modal} from 'antd';
+import 'antd/dist/antd.min.css';
 import {useScrollLock} from '@huse/scroll-lock';
 
-const App = () => {
+export default () => {
     const [modalOpen, setModalOpen] = useState(false);
     useScrollLock(modalOpen);
-
     return (
         <>
             <Button onClick={() => setModalOpen(true)}>Open Modal</Button>
@@ -40,5 +44,5 @@ const App = () => {
             }
         </>
     );
-}
+};
 ```

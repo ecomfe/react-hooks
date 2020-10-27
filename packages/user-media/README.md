@@ -1,6 +1,10 @@
-# @huse/user-media
+# user-media
 
 Open a media stream in browser to produce video and audio from client.
+
+```shell
+npm install @huse/user-media
+```
 
 ## useUserMedia
 
@@ -27,12 +31,13 @@ By default `useUserMedia` requires both video and audio channels.
 **NOTE: On a browser where `getUserMedia` is not implemented, this hooks returns `UserMediaHook` object with a special `error` containing `code` property of `"ERR_METHOD_NOT_IMPLEMENTED"`.**
 
 ```jsx
-import {useMemo, useCallback, useRef, useEffect} from 'react';
+import React, {useMemo, useCallback, useRef, useEffect} from 'react';
+import {Button} from 'antd';
+import 'antd/dist/antd.min.css';
 import {useUserMedia} from '@huse/user-media';
 
-const App = () => {
+export default () => {
     const videoRef = useRef();
-
     // Constraints will be deep compared, it's safe to omit a useMemo here
     const constraints = {
         video: true,
@@ -60,23 +65,21 @@ const App = () => {
         []
     );
     const {start, stop} = useUserMedia(constraints, handleSuccess, handleError);
-    useEffect(
-        () => {
-            start();
-            return stop;
-        },
-        []
-    );
-
     return (
-        <div>
-            <video
-                ref={videoRef}
-                autoPlay
-                width={600}
-                height={400}
-            />
-        </div>
+        <>
+            <div>
+                <Button type="primary" onClick={start}>Start Record</Button>
+                This only works locally, video and audio will not be sent anywhere
+            </div>
+            <div>
+                <video
+                    ref={videoRef}
+                    autoPlay
+                    width={600}
+                    height={400}
+                />
+            </div>
+        </>
     );
 };
 ```

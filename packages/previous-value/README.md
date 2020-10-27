@@ -1,6 +1,10 @@
-# @huse/previous-value
+# previous-value
 
 Provides hooks about retrieving and comparing current value with the previous version.
+
+```shell
+npm install @huse/previous-value
+```
 
 ## usePreviousValue
 
@@ -16,14 +20,14 @@ function usePreviousValue<T>(value: T): T | undefined
 **Note: this hook is not designed to get the "previous different version", the previous value may be the same of given value.**
 
 ```jsx
-import {useReducer} from 'react';
+import React, {useReducer, useEffect} from 'react';
 import {Button} from 'antd';
-import {usePreviousValue} from '@huse/previous-value';
+import 'antd/dist/antd.min.css';
+import {usePreviousValue, useOriginalCopy} from '@huse/previous-value';
 
-const App = () => {
+export default () => {
     const [value, increment] = useReducer(v => v + 1, 0);
     const previousValue = usePreviousValue(value);
-
     return (
         <div>
             {previousValue === undefined ? value : `${previousValue} -> ${value}`}
@@ -45,7 +49,7 @@ but its reference changes.
 
 This hook, `useOriginalCopy`, aimed to help retrieve the very first version of an object, that is:
 
-```jsx
+```javascript
 const foo = {x: 1};
 originalCopy(foo); // This keeps foo in cache
 originalCopy({x: 1}) === foo; // This will evaluate to true since a cached version is returned
@@ -61,13 +65,18 @@ function useOriginalCopy<T>(value: T, equals: CustomEquals<T> = shallowEquals): 
 By default a shallow equal is used, a custom equality function can be passed.
 
 ```jsx
-import {useOriginalCopy} from '@huse/previous-value';
+import React, {useReducer, useEffect} from 'react';
+import {Button} from 'antd';
+import 'antd/dist/antd.min.css';
+import {usePreviousValue, useOriginalCopy} from '@huse/previous-value';
 
-const App = () => {
+export default () => {
     const [effectsCount, runEffect] = useReducer(v => v + 1, 0);
     const forceUpdate = useReducer(v => v + 1, 0)[1];
-    const value = {x: 1}; // This is not memoized
-    const originalValue = useOriginalCopy(value); // The original copy of value if retrieved on each render
+    // This is not memoized
+    const value = {x: 1};
+    // The original copy of value if retrieved on each render
+    const originalValue = useOriginalCopy(value);
     // originalValue will be reference equal on different render, effect runs only once
     useEffect(
         () => {
@@ -75,7 +84,6 @@ const App = () => {
         },
         [originalValue]
     );
-
     return (
         <div>
             Effect run {effectsCount} times.
@@ -96,7 +104,7 @@ function useOriginalDeepCopy<T>(value: T): T;
 
 In short, this is exactly the same as:
 
-```jsx
+```javascript
 return useOriginalCopy(value, deepEquals)
 ```
 

@@ -1,8 +1,12 @@
-# @huse/router
+# router
 
 Enpower `react-router-dom` with hooks to interactive with location, state, search params and more.
 
 **NOTE: This packages works only with `v5.x` and `react-router-dom` currently, `react-router-native` and `6.x` version are not supported.**
+
+```shell
+npm install @huse/router
+```
 
 ## useNavigate
 
@@ -31,7 +35,7 @@ function useLocationState<T>(defaultValue: T): [T, UpdateLocationState<T>];
 
 Commonly we store invisible but persist state like list selections inside it.
 
-```jsx
+```javascript
 import {useLocationState} from '@huse/router';
 import {Checkbox} from 'antd';
 
@@ -92,7 +96,7 @@ function useSearchParams(defaults?: SearchQuery): SearchParamsHook;
 
 This returns a `[params, updateParams]` tuple so that you can both get and update search.
 
-```jsx
+```javascript
 import {useSearchParams} from '@huse/router';
 import {Select} from 'antd';
 
@@ -158,25 +162,37 @@ function useSearchParamState(key: string, options?: NavigateOptions): [string | 
 When a state is stored in search params, using this hooks works just like `useState`.
 
 ```jsx
-import {useSearchParamState} from '@huse/router';
-import {Button} from 'antd';
+import React, {useCallback} from 'react';
+import {Checkbox, Button} from 'antd';
+import 'antd/dist/antd.min.css';
+import {MemoryRouter, useLocation} from 'react-router-dom';
+import {useLocationState, useSearchParamState} from '@huse/router';
 
-const App = () => {
-    const [page, setPage] = useSearchParamState('page');
-    const pageIndex = parseInt(page ?? '1', 10);
-    const nextPage = useCallback(
-        () => setPage((pageIndex + 1).toString()),
-        [pageIndex, setPage]
-    );
-    const start = pageIndex * 10 + 1;
-    const items = Array.from({length: 10}, (v, i) => ({id: start + i, name: `Item ${start + i}`}));
-
+export default () => {
+    const App = () => {
+        const location = useLocation();
+        const [page, setPage] = useSearchParamState('page');
+        const pageIndex = parseInt(page || '0', 10);
+        const nextPage = useCallback(
+            () => setPage((pageIndex + 1).toString()),
+            [pageIndex, setPage]
+        );
+        const start = pageIndex * 10 + 1;
+        const items = Array.from({length: 10}, (v, i) => ({id: start + i, name: `Item ${start + i}`}));
+        return (
+            <>
+                <p>{location.pathname}{location.search}</p>
+                <ul>
+                    {items.map(i => <li key={i.id}>{i.name}</li>)}
+                </ul>
+                <Button onClick={nextPage}>More Items</Button>
+            </>
+        );
+    };
     return (
-        <>
-            <ul>
-                {items.map(i => <li key={i.id}>{i.name}</li>)}
-            </ul>
-            <Button onClick={nextPage}>More Items</Button>
-        </>
+        <MemoryRouter initialEntries={['/list']}>
+            <App />
+        </MemoryRouter>
     );
 };
+```

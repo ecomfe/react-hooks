@@ -1,8 +1,12 @@
-# @huse/immer
+# immer
 
 **DEPRECATED: This package is depreacted in favor of [the offficial use-immer package](https://github.com/immerjs/use-immer).**
 
 Provides reducer and state hooks bound to [immer](https://github.com/immerjs/immer) library.
+
+```shell
+npm install @huse/immer
+```
 
 ## useImmerState
 
@@ -18,20 +22,21 @@ function useImmerState<S = any>(initialState: S | (() => S)): ImmerState<S>;
 This works exactly the same as `useState` with a single difference that when a function is passed to `setState`, it can mutate state directly.
 
 ```jsx
-import {useImmerState} from '@huse/immer';
+import React from 'react';
 import {Button} from 'antd';
+import 'antd/dist/antd.min.css';
+import {useImmerState, useImmerReducer} from '@huse/immer';
 
-const App = () => {
+export default () => {
     const [state, setState] = useImmerState({value: 1});
-
     return (
         <>
             <p>Current Value: {state.value}</p>
             <div>
                 {/* mutate state */}
-                <Button onClick={() => setState(s => s.value++)}>Increment</Button>
+                <Button onClick={() => setState(s => void s.value++)}>Increment</Button>
                 {/* return a new state */}
-                <Button onClick={() => setState(s => ({value: s.value - 1})}>Decrement</Button>
+                <Button onClick={() => setState(s => ({value: s.value - 1}))}>Decrement</Button>
                 {/* set to a new state */}
                 <Button onClick={() => setState({value: 0})}>Reset</Button>
             </div>
@@ -56,10 +61,13 @@ Some differences with `useReducer`:
 3. `initializer` won't receive `initialState` as its argument.
 
 ```jsx
-import {useImmerReducer} from '@huse/immer';
+import React from 'react';
+import {Button} from 'antd';
+import 'antd/dist/antd.min.css';
+import {useImmerState, useImmerReducer} from '@huse/immer';
 
-const App = () => {
-    const [value, dispatch] = useImmerReducer(
+export default () => {
+    const [state, dispatch] = useImmerReducer(
         (state, action) => {
             switch (action.type) {
                 case 'inc':
@@ -76,7 +84,6 @@ const App = () => {
         },
         {value: 0}
     );
-
     return (
         <>
             <p>Current Value: {state.value}</p>

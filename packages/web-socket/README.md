@@ -1,6 +1,9 @@
-# @huse/web-socket
-
+# web-socket
 Hooks to work with web socket.
+
+```shell
+npm install @huse/web-socket
+```
 
 ## useWebSocket
 
@@ -45,24 +48,21 @@ interface Options {
     reconnectAttempts?: number;
 }
 
-function useWebSocket(url: string, options?: Options): WebSocketHook;
-```
-
 Socket is started automatically, you can still close and start it via `start` and `close` function.
 
 ```jsx
-import {useState, useReducer, useEffect, useCallback, useMemo} from 'react';
+import React, {useState, useReducer, useEffect, useCallback, useMemo} from 'react';
 import {Input, Button} from 'antd';
+import 'antd/dist/antd.min.css';
 import {useWebSocket} from '@huse/web-socket';
 
-const readyStateMap = [
-    'Connecting',
-    'Connected',
-    'Closing',
-    'Closed'
-];
-
-const App = () => {
+export default () => {
+    const readyStateMap = [
+        'Connecting',
+        'Connected',
+        'Closing',
+        'Closed'
+    ];
     const url = 'wss://echo.websocket.org';
     const [messageHistory, pushMessageHistory] = useReducer(
         (history, data) => [...history, data],
@@ -96,9 +96,8 @@ const App = () => {
         },
         [lastMessage]
     );
-
     return (
-        <div>
+        <>
             <div>
                 <Input style={{width: 400}} value={message} onChange={handleMessageChange} />
             </div>
@@ -113,7 +112,7 @@ const App = () => {
             <div>
                 Current Status: {readyState} - {readyState >=0 && readyStateMap[readyState]}
             </div>
-        </div>
+        </>
     );
 };
 ```
@@ -124,7 +123,7 @@ Take `reconnectOnClose` as an example, a web socket can close because of user's 
 
 Also `reconnectInterval` controlls the interval between reconnections in milliseconds, defualt to 5000, `reconnectAttempts` controls the maximum reconnect attempts, default to 10.
 
-```jsx
+```javascript
 const options = useMemo(
     () => {
         return {

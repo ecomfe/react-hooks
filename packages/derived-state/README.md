@@ -1,6 +1,10 @@
-# @huse/derived-state
+# derived-state
 
 Derive a value from input.
+
+```shell
+npm install @huse/derived-state
+```
 
 ## useDerivedState
 
@@ -17,7 +21,7 @@ By default `compute` is `propValue => propValue`, this means state is always upd
 
 Suppose we have a `getDerivedStateFromProps` implement in early days:
 
-```jsx
+```javascript
 class Foo extends Component {
     static getDerivedStateFromProps(props, state) {
         if (state.list !== props.list) {
@@ -31,7 +35,7 @@ class Foo extends Component {
 
 A corresponding implement with `useDerivedState` could be:
 
-```jsx
+```javascript
 import {useDerivedState} from '@huse/derived-state';
 
 const Foo = ({list}) => {
@@ -48,6 +52,37 @@ const Foo = ({list}) => {
 ```
 
 On the initial derived, `stateValue` is `undefined`.
+
+```jsx
+import React, {useState} from 'react';
+import {Button, Input} from 'antd';
+import 'antd/dist/antd.min.css';
+import {useDerivedState} from '@huse/derived-state';
+
+export default () => {
+    const [name, setName] = useState('');
+    const [commitedName, commitName] = useState('');
+    const [welcome, setWelcome] = useDerivedState(commitedName, name => `Hello ${name}:`);
+    return (
+        <>
+            <div>
+                <h4>Your name</h4>
+                <Input value={name} onChange={e => setName(e.target.value)} />
+                <Button disabled={!name} onClick={() => commitName(name)}>OK</Button>
+                {commitedName && '(Change name and click OK will reset memo area)'}
+            </div>
+            {
+                commitedName && (
+                    <div>
+                        <h4>Write a memo</h4>
+                        <Input.TextArea rows={4} value={welcome} onChange={e => setWelcome(e.target.value)} />
+                    </div>
+                )
+            }
+        </>
+    );
+};
+```
 
 Note, this hook is to generate a state which will be updated later,
 if only a computation from a prop value to a derived value is required without future update,

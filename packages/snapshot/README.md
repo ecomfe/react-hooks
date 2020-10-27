@@ -1,6 +1,10 @@
-# @huse/snapshot
+# snapshot
 
 Provides hook to manage value history and work with undo and redo features.
+
+```shell
+npm install @huse/snapshot
+```
 
 ## useSnapshotState
 
@@ -28,10 +32,13 @@ export type SnapshotHook<T> = [T, Dispatch<SetStateAction<T>>, Snapshot];
 function useSnapshotState<T>(init: T | (() => T), options: SnapshotOptions = {}): SnapshotHook<T>
 ```
 
-A combination of `canUndo` and `undo` is a convenient solution to enable undo stack.
-
 ```jsx
-const Game = () => {
+import React, {useState, useCallback} from 'react';
+import {Button, Input} from 'antd';
+import 'antd/dist/antd.min.css';
+import {useSnapshotState} from '@huse/snapshot';
+
+export default () => {
     // A 3x3 matrix
     const [matrix, setMatrix, {undo, redo, canUndo, canRedo}] = useSnapshotState(() => Array(9).fill(false));
     const toggleCell = useCallback(
@@ -76,15 +83,21 @@ const Game = () => {
             </div>
         </>
     );
+};
 ```
 
 By passing a `delay` option `useSnapshotState` will behave as debounced,
 that is only commit value to history when it is not changed after a certain time.
 
 ```jsx
-const Editor = () => {
-    // save to history after 200ms
-    const [content, setContent, {undo, redo, canUndo, canRedo}] = useSnapshotState('', {delay: 200});
+import React, {useState, useCallback} from 'react';
+import {Button, Input} from 'antd';
+import 'antd/dist/antd.min.css';
+import {useSnapshotState} from '@huse/snapshot';
+
+export default () => {
+    // save to history after 2s
+    const [content, setContent, {undo, redo, canUndo, canRedo}] = useSnapshotState('', {delay: 2000});
     return (
         <>
             <div>

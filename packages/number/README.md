@@ -1,6 +1,10 @@
-# @huse/number
+# number
 
 Hooks to manage and mutate number types.
+
+```shell
+npm install @huse/number
+```
 
 ## useCounter
 
@@ -16,7 +20,7 @@ interface CounterOptions {
 function useCounter(initialValue: number, options?: CounterOptions): CounterMethods;
 ```
 
-This is a wrap of `useMethods` in `@huse/methods` and `CounterMethods` contains methods below:
+This is a wrap of `useMethods` in `@huse/methods` and contains methods below:
 
 ```typescript
 {
@@ -31,12 +35,14 @@ This is a wrap of `useMethods` in `@huse/methods` and `CounterMethods` contains 
 `inc` is an alias to `increment` and `dec` is an alias to `decrement`.
 
 ```jsx
+import React from 'react';
 import {Button} from 'antd';
+import 'antd/dist/antd.min.css';
 import {useCounter} from '@huse/number';
 
-const App = () => {
+export default () => {
     const [value, {increment, decrement, reset}] = useCounter(3);
-
+    console.log(value);
     return (
         <>
             <Button onClick={decrement}>-1</Button>

@@ -1,3 +1,10 @@
+---
+title: web-socket
+nav:
+  title: Hooks
+  path: /hook
+---
+
 # web-socket
 Hooks to work with web socket.
 

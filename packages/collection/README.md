@@ -1,3 +1,10 @@
+---
+title: collection
+nav:
+  title: Hooks
+  path: /hook
+---
+
 # collection
 
 Hooks to manage and mutate collection types.
@@ -35,38 +42,7 @@ Encapsulate arrays into methods via `useMethods`, contains methods below:
 }
 ```
 
-```jsx
-import React from 'react';
-import {Button} from 'antd';
-import 'antd/dist/antd.min.css';
-import {useArray} from '@huse/collection';
-
-export default () => {
-    const [array, methods] = useArray(() => Array.from({length: 3}, () => Math.random()));
-    const itemStyle = {
-        height: 30,
-        backgroundColor: '#007bd2',
-        color: '#fff',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        fontSize: 20,
-    };
-    const renderItem = (value, i) => (
-        <div key={i} style={itemStyle}>
-            #{i}: {value}
-        </div>
-    );
-    return (
-        <>
-            <div>
-                <Button onClick={() => methods.push(Math.random())}>Add Item</Button>
-            </div>
-            {array.map(renderItem)}
-        </>
-    );
-};
-```
+<code src="./demo/useArray.tsx">
 
 ## useSet
 
@@ -85,13 +61,13 @@ Encapsulate `Set` type into methods via `useMethods`, contains methods below:
 Works like any methods hook.
 
 ```javascript
-import {useSet} from '@huse/collection';
+import { useSet } from '@huse/collection';
 
-const App = () => {
+export default () => {
     const [set, methods] = useSet([1, 2, 3]);
 
     return (
-        // ...
+        // .... do something
     );
 };
 ```
@@ -113,13 +89,14 @@ Encapsulate `Map` type into methods via `useMethods`, contains methods below:
 Works like any methods hook.
 
 ```javascript
-import {useMap} from '@huse/collection';
+import { useMap } from '@huse/collection';
 
-const App = () => {
+export default () => {
     const [map, methods] = useMap([[1, 2], [3, 4]]);
 
     return (
-        // ...
+        // .... do something
     );
 };
 ```
+

@@ -1,3 +1,10 @@
+---
+title: huse
+nav:
+  title: Hooks
+  path: /hook
+---
+
 # huse
 
 This is an index package for all [@huse packages](https://www.npmjs.com/search?q=%40huse) **expect `@huse/router`**.

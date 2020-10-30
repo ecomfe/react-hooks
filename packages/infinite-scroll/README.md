@@ -1,3 +1,10 @@
+---
+title: infinite-scroll
+nav:
+  title: Hooks
+  path: /hook
+---
+
 # infinite-scroll
 
 Provides hooks to work with scroll-to-load cases.

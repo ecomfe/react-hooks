@@ -1,3 +1,10 @@
+---
+title: document-event
+nav:
+  title: Hooks
+  path: /hook
+---
+
 # document-event
 
 Register event listeners on `document`.
@@ -20,23 +27,4 @@ function useDocumentEvent<K extends EventNames>(eventName: K, fn: DocumentEventH
 
 The event handler passed to `useDocumentEvent` is not forced to be reference equal, this means you are allowed to use a function expression without `useCallback` to memoize it.
 
-```jsx
-import React, {useReducer} from 'react';
-import {useDocumentEvent} from '@huse/document-event';
-
-export default () => {
-    const [down, addDown] = useReducer(v => v + 1, 0);
-    const [up, addUp] = useReducer(v => v + 1, 0);
-    const [key, addKey] = useReducer(v => v + 1, 0);
-    useDocumentEvent('mousedown', addDown);
-    useDocumentEvent('mouseup', addUp);
-    useDocumentEvent('keypress', addKey);
-    return (
-        <>
-            <p>Mouse Down: {down} times</p>
-            <p>Mouse Up: {up} times</p>
-            <p>Key Press: {key} times</p>
-        </>
-    );
-};
-```
+<code src='./demo/useDocumentEvent.tsx'>

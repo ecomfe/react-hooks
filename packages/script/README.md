@@ -1,3 +1,10 @@
+---
+title: script
+nav:
+  title: Hooks
+  path: /hook
+---
+
 # script
 
 Dynamically load a script via hook.

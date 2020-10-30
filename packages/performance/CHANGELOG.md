@@ -1,3 +1,9 @@
+---
+nav:
+  title: Hooks
+  path: /hook
+---
+
 # Change Log
 
 All notable changes to this project will be documented in this file.

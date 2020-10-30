@@ -1,3 +1,10 @@
+---
+title: update
+nav:
+  title: Hooks
+  path: /hook
+---
+
 # update
 
 Force component to update.
@@ -35,21 +42,4 @@ const useRefState = initialValue => {
 
 Every time `forceUpdate` is invoked, component will have a re-render despite of other state changes or `memo` usage.
 
-```jsx
-import React, {useRef} from 'react';
-import {Button} from 'antd';
-import 'antd/dist/antd.min.css';
-import {useForceUpdate} from '@huse/update';
-
-export default () => {
-    const renderTimes = useRef(0);
-    const forceUpdate = useForceUpdate();
-    renderTimes.current++;
-    return (
-        <div>
-            Rendered {renderTimes.current} times
-            <Button onClick={forceUpdate}>Update</Button>
-        </div>
-    );
-};
-```
+<code src='./demo/useForceUpdate.tsx'>

@@ -1,3 +1,10 @@
+---
+title: scroll-into-view
+nav:
+  title: Hooks
+  path: /hook
+---
+
 # scroll-into-view
 
 ```shell

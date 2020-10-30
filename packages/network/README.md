@@ -1,3 +1,10 @@
+---
+title: network
+nav:
+  title: Hooks
+  path: /hook
+---
+
 # network
 
 Provides hooks to resolve and listen on network states like online or connectivity.
@@ -12,20 +19,4 @@ npm install @huse/network
 
 In case where client doesn't support `online` and `offline` events, this hook always return `true`.
 
-```jsx
-import React from 'react';
-import {CheckCircleOutlined, CloseCircleOutlined} from '@ant-design/icons';
-import 'antd/dist/antd.min.css';
-import {useOnLine} from '@huse/network';
-
-export default () => {
-    const isOnLine = useOnLine();
-    return (
-        <>
-            {isOnLine ? <CheckCircleOutlined /> : <CloseCircleOutlined />}
-            You are currently
-            <strong>{isOnLine ? 'ONLINE' : 'OFFLINE'}</strong>
-        </>
-    )
-};
-```
+<code src='./demo/useOnLine.tsx'>

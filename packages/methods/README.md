@@ -12,8 +12,8 @@ Provides hooks to create methods around a state.
 
 In order to work with both immer state from `@huse/immer` and native state from `useState`, we have both `useMethods` and `useMethodsNative` hooks.
 
-All hooks receives a reducers object containing methods to mutate (or create a new) state, after wrapping into methods,
-the first `state` argument is omitted, all subsequent arguments remains the same, the return values is changed to `void`.
+All hooks receive a reducer object containing methods to mutate (or create a new) state, after wrapping into methods,
+the first `state` argument is omitted, all subsequent arguments remain the same, the return values is changed to `void`.
 
 ```typescript
 interface NativeReducers<S> {
@@ -86,9 +86,9 @@ export default () => {
 ```
 
 **Note: `useMethods` is a one-time setup, that means `init` argument only works in the initial call,
-change it in subsequent calls take no effect.**
+change it in subsequent calls takes no effect.**
 
-To use with TypeScript requiring generic to complex type like `Array`, create a generic factory function to initialize the reducers object.
+To use with TypeScript requiring generic to complex type like `Array`, create a generic factory function to initialize the reducer object.
 
 ```typescript
 function createArrayReducers<T>(): Reducers<T[]> {
@@ -113,7 +113,7 @@ function useArray<T>(initialValues: T[]) {
 
 ## useMethodsExtension
 
-Once you already have a `setState` function from `useImmer` in `@huse/immer`, you can also wrap it to a methods object.
+Once you have a `setState` function from `useImmer` in `@huse/immer`, you can also wrap it to a methods object.
 
 ```typescript
 export function useMethodsExtension<S, R extends ImmerReducers<S>>(reducers: R, setState: SetImmerState<S>): Methods<S, R>
@@ -150,7 +150,7 @@ const App = () => {
 
 Like `useMethods` but works without immer support, this is used to wrap state of type which immer cannot handle, such like `Map`, `Set` and custom classes.
 
-As a result of the absence of immer, reducers does not allow in-place mutation to states, it must return a new state object.
+As a result of the absence of immer, reducer does not allow in-place mutation to states, it must return a new state object.
 
 ## useMethodsExtensionNative
 

@@ -2,7 +2,7 @@
 
 A set of hooks for debugging component.
 
-Since this package is for debugging, we will not consider the size of package an important factor, please remember to remove all debug hooks in production.
+Since this package is for debugging, we will not consider the size of package as an important factor, please remember to remove all debug hooks in production.
 
 ```shell
 npm install @huse/debug
@@ -16,7 +16,7 @@ Returns the times of render triggered.
 function useRenderTimes(): number
 ```
 
-This times returned starts from `1` and increase on each render, even props and states are not changed.
+This returned times starts from `1` and increase on each render, even props and states are not changed.
 
 ```jsx
 import React, {useState} from 'react';
@@ -66,7 +66,7 @@ export default () => {
 };
 ```
 
-This hooks identifies "change" by reference, to inspect why a value is changed, try `useUpdateCause` hook.
+This hook identifies "change" by reference, to inspect why a value has changed, try `useUpdateCause` hook.
 
 ```javascript
 import {useChangeTimes} from '@huse/debug';

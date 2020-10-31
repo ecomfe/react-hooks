@@ -74,7 +74,7 @@ Open `http://localhost:3000` to view documents about hooks.
 | usePoll | Periodically trigger an async function and manage its response |
 | usePreviousValue | Get previous version of a value |
 | usePreviousEquals | Return whether a value is equals to that on previous render |
-| useOriginalCopy | Track back a value to get a reference equals copy when content are identical |
+| useOriginalCopy | Track back a value to get a reference equal copy when content are identical |
 | useOriginalDeepCopy | `useOriginalCopy` with deep equal support |
 | useRequestCallback | Return a function to trigger request with its data, error and pending state |
 | useRequest | Trigger request on params change and return its data, error and pending state |

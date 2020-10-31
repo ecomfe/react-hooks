@@ -90,5 +90,5 @@ function useOnScreenCallback(callback: (entry: IntersectionObserverEntry) => voi
 
 `callback` is triggered whenever element is into or out of screen.
 
-Most of the time `useOnScreen` and `useOnScreenValue` are enough, this hooks leaves the ability to extend custom logics with screen intersection.
+Most of the time `useOnScreen` and `useOnScreenValue` are enough, those hooks leave the ability to extend custom logics with screen intersection.
 

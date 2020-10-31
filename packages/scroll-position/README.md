@@ -8,7 +8,7 @@ npm install @huse/scroll-position
 
 ## useScrollPosition
 
-Observe and returns scroll position of an element or window.
+Observe and return scroll position of an element or window.
 
 ```typescript
 interface ScrollPosition {
@@ -24,7 +24,7 @@ function useScrollPosition(element?: HTMLElement | null): ScrollPosition
 ```
 
 **Note there are different behaviors when `element` is either `null` or `undefined`, commonly `useRef`'s initial value is `null`.**
-When `documentElement` is the observe target, simple `useScrollPosition()` without argument.
+When `documentElement` is the observed target, simple `useScrollPosition()` without argument.
 
 In order to satisfy different developers, the returned `ScrollPosition` has a set of different key pairs,
 all `x`, `left`, `scrollLeft` have same value while `y`, `top`, `scrollTop` have same value.

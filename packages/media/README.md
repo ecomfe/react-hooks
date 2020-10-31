@@ -1,6 +1,6 @@
 # media
 
-Provides hooks to observe media query matches.
+Provide hooks to observe media query matches.
 
 ```shell
 npm install @huse/media
@@ -38,7 +38,7 @@ export default () => {
     })();
     return (
         <p>
-            You device: {deviceType}
+            Your device: {deviceType}
         </p>
     );
 };
@@ -52,7 +52,7 @@ A shortcut hook to determine whether current user prefers dark mode.
 function usePreferDarkMode(): boolean;
 ```
 
-This hook is also response, that means the value will be updated if system changes color scheme or having a automatic scheme.
+This hook is also responsive, that means the value will be updated if system changes color scheme or having a automatic scheme.
 
 ```jsx
 import React from 'react';

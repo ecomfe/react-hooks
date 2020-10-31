@@ -66,7 +66,7 @@ export default () => {
 
 ## useLayoutTiming
 
-This hooks tracks a meaningful layout once.
+This hook tracks a meaningful layout once.
 
 ```typescript
 interface TimeRange {

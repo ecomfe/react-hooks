@@ -67,3 +67,4 @@ packages/doc/.docz
 .DS_Store
 /.umi
 /dist
+packages/**/package-lock.json

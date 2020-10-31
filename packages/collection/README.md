@@ -16,22 +16,22 @@ Encapsulate arrays into methods via `useMethods`, contains methods below:
     unshift(item: T): void;
     pop(): void;
     shift(): void;
-    slice(start?: number, end?: number): void;
+    slice(start?: number, end?: number): T[];
     splice(index: number, deleteCount: number, ...insertions: T[]): void;
-    remove(item: T): void;
+    remove(item: T): T[];
     removeAt(index: number): void;
     insertAt(index: number, item: T): void;
-    concat(item: T | T[]): void;
+    concat(item: T | T[]): T[];
     replace(from: T, to: T): void;
-    replaceAll(from: T, to: T): void;
+    replaceAll(from: T, to: T): T[];
     replaceAt(index: number, item: T): void;
-    filter(predicate: (item: T, index: number) => boolean): void;
-    union(array: T[]): void;
-    intersect(array: T[]): void;
-    difference(array: T[]): void;
-    reverse(): void;
-    sort(compare?: (x: T, y: T) => number): void;
-    clear(): void;
+    filter(predicate: (item: T, index: number) => boolean): T[];
+    union(array: T[]): T[];
+    intersect(array: T[]): T[];
+    difference(array: T[]): T[];
+    reverse(): T[];
+    sort(compare?: (x: T, y: T) => number): T[];
+    clear(): T[];
 }
 ```
 
@@ -74,11 +74,11 @@ Encapsulate `Set` type into methods via `useMethods`, contains methods below:
 
 ```typescript
 {
-    add(item: T): void;
-    addAll(items: Iterable<T>): void;
-    delete(item: T): void;
-    deleteAll(items: Iterable<T>): void;
-    clear(): void;
+    add(item: T): Set<T>;
+    addAll(items: Iterable<T>): Set<T>;
+    delete(item: T): Set<T>;
+    deleteAll(items: Iterable<T>): Set<T>;
+    clear(): Set<T>;
 }
 ```
 
@@ -102,11 +102,11 @@ Encapsulate `Map` type into methods via `useMethods`, contains methods below:
 
 ```typescript
 {
-    set(key: K, value: V): void;
-    setAll(entries: Iterable<[K, V]>): void;
-    delete(key: K): void;
-    deleteAll(keys: Iterable<K>): void;
-    clear(): void;
+    set(key: K, value: V): Map<K, V>;
+    setAll(entries: Iterable<[K, V]>): Map<K, V>;
+    delete(key: K): Map<K, V>;
+    deleteAll(keys: Iterable<K>): Map<K, V>;
+    clear(): Map<K, V>;
 }
 ```
 

@@ -159,7 +159,7 @@ Wrap a single search params as a react state.
 function useSearchParamState(key: string, options?: NavigateOptions): [string | null, (value: string) => void];
 ```
 
-When a state is stored in search params, using this hooks works just like `useState`.
+When a state is stored in search params, using this hook works just like `useState`.
 
 ```jsx
 import React, {useCallback} from 'react';

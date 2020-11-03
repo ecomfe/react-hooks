@@ -1,3 +1,10 @@
+---
+title: intersection
+nav:
+  title: Hooks
+  path: /hook
+---
+
 # intersection
 
 Provides hooks to observe intersection between element and viewport.
@@ -19,22 +26,7 @@ This hook only checks intersection between element and the root element (`docume
 
 **Note: `useOnScreen` requires `IntersectionObserver` to work, without `IntersectionObserver` it supposes the element is always on screen.**
 
-```jsx
-import React from 'react';
-import {useOnScreen} from '@huse/intersection';
-
-export default () => {
-    const [ref, isOnScreen] = useOnScreen(ref, {rootMargin: '10px', threshold: '30%'});
-    return (
-        <>
-            <p>Visual port is currently {isOnScreen ? 'on' : 'out of'} screen</p>
-            <div ref={ref} style={{marginTop: 600, padding: 40, backgroundColor: '#007bd2', fontSize: 30, color: '#fff'}}>
-                This is visual port
-            </div>
-        </>
-    );
-};
-```
+<code src='./demo/useOnScreen.tsx'>
 
 ## useOnScreenLazyValue
 

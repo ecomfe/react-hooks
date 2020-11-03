@@ -1,3 +1,10 @@
+---
+title: performance
+nav:
+  title: Hooks
+  path: /hook
+---
+
 # performance
 
 Provides hooks to track and report component performance.
@@ -30,39 +37,7 @@ every time when a flag is changed from `false` to `true` the `callback` will be 
 `callback` function receives a `Timings` object containing at least `initialRender` and `initialLayout` properties,
 all flags evaluated to `true` also reflects a property in this argument.
 
-```jsx
-import React, {useState, useReducer} from 'react';
-import {Button} from 'antd';
-import 'antd/dist/antd.min.css';
-import {usePerformanceTiming, useLayoutTiming} from '@huse/performance';
-
-export default () => {
-    // Don't do this in production!
-    const [timing, setTiming] = useState({});
-    const [userClicked, setClicked] = useReducer(() => true, false);
-    usePerformanceTiming(
-        setTiming,
-        {flags: {userClicked}}
-    );
-    console.log(timing);
-    return (
-        <>
-            <div>
-                <Button onClick={setClicked}>Click to update timing</Button>
-            </div>
-            <p>
-                initialRender: {timing.initialRender || 'N/A'}
-            </p>
-            <p>
-                initialLayout: {timing.initialLayout || 'N/A'}
-            </p>
-            <p>
-                userClicked: {timing.userClicked || 'N/A'}
-            </p>
-        </>
-    );
-};
-```
+<code src="./demo/usePerformanceTiming.tsx">
 
 ## useLayoutTiming
 
@@ -81,23 +56,4 @@ function useLayoutTiming(callback: (timing: TimeRange) => void, meaningful?: boo
 `meaningful` is `true` by default in case the first layout will be reported,
 you can dynamiclly pass it to record a more meaningful layout time.
 
-```jsx
-import React, {useState, useReducer} from 'react';
-import {Button} from 'antd';
-import 'antd/dist/antd.min.css';
-import {usePerformanceTiming, useLayoutTiming} from '@huse/performance';
-
-export default () => {
-    const [timing, setTiming] = useState();
-    const [userClicked, setClicked] = useReducer(() => true, false);
-    useLayoutTiming(setTiming, userClicked);
-    return (
-        <>
-            <div>
-                <Button onClick={setClicked}>Won't be meaningful until you click here</Button>
-            </div>
-            {timing && <p>{timing.end} (end) - {timing.start} (start) = {timing.ellapsed} (ellapsed)</p>}
-        </>
-    );
-};
-```
+<code src="./demo/useLayoutTiming.tsx">

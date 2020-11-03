@@ -1,3 +1,10 @@
+---
+title: timeout
+nav:
+  title: Hooks
+  path: /hook
+---
+
 # timeout
 
 Hooks about timeout and interval.
@@ -18,43 +25,7 @@ function useTimeout(callback: (() => void) | undefined, time: number): void;
 
 To cancel timeout, pass a negative `time`, `-1` is recommended.
 
-```jsx
-import React, {useState} from 'react';
-import {Slider} from 'antd';
-import 'antd/dist/antd.min.css';
-import {useTimeout, useInterval} from '@huse/timeout';
-
-export default () => {
-    const [theme, setTheme] = useState('light');
-    const [delay, setDelay] = useState(2);
-    console.log(delay);
-    useTimeout(
-        () => {
-            console.log('timeout');
-            setTheme(theme => (theme === 'light' ? 'dark' : 'light'));
-        },
-        delay * 1000
-    );
-    const style = {
-        height: 40,
-        lineHeight: '40px',
-        textAlign: 'center',
-        backgroundColor: theme === 'light' ? '#fff' : '#222',
-        color: theme === 'light' ? '#666' : '#f4f5f6',
-    };
-    return (
-        <>
-            <div>
-                Choose a delay to switch theme:
-                <Slider value={delay} onChange={setDelay} />
-            </div>
-            <div style={style}>
-                Hello World
-            </div>
-        </>
-    );
-};
-```
+<code src='./demo/useTimeout.tsx'>
 
 ## useInterval
 
@@ -68,35 +39,7 @@ To cancel interval, pass a native `time`, `-1` is recommended.
 
 **Note: `useInterval` does not execute `callback` on initial mount, to trigger it immediately, add an extra `useEffect`.**
 
-```jsx
-import React, {useState} from 'react';
-import {Slider} from 'antd';
-import 'antd/dist/antd.min.css';
-import {useTimeout, useInterval} from '@huse/timeout';
-
-export default () => {
-    const [theme, setTheme] = useState('light');
-    // Switch theme every 5s
-    useInterval(
-        () => setTheme(theme => (theme === 'light' ? 'dark' : 'light')),
-        5 * 1000
-    );
-    const style = {
-        height: 40,
-        lineHeight: '40px',
-        textAlign: 'center',
-        backgroundColor: theme === 'light' ? '#fff' : '#222',
-        color: theme === 'light' ? '#666' : '#f4f5f6',
-    };
-    return (
-        <>
-            <div style={style}>
-                Hello World
-            </div>
-        </>
-    );
-};
-```
+<code src='./demo/useInterval.tsx'>
 
 ## useStableInterval
 

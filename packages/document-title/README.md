@@ -1,3 +1,10 @@
+---
+title: document-title
+nav:
+  title: Hooks
+  path: /hook
+---
+
 # document-title
 
 Change `document.title` to given value.
@@ -16,21 +23,4 @@ function useDocumentTitle(title: string): void;
 
 Since it reverts `document.title` to previous value, it should be safe to have multiple components using this hook simultaneously.
 
-```jsx
-import React, {useState} from 'react';
-import {Button, Input} from 'antd';
-import 'antd/dist/antd.min.css';
-import {useDocumentTitle} from '@huse/document-title';
-
-export default () => {
-    const [title, setTitle] = useState('');
-    useDocumentTitle(title);
-    return (
-        <>
-            Change <code>document.title</code>
-            <Input value={title} onChange={e => setTitle(e.target.value)} />
-            (Leave this page will reset <code>document.title</code>)
-        </>
-    );
-};
-```
+<code src='./demo/useDocumentTitle.tsx'>

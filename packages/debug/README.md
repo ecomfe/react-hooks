@@ -1,3 +1,10 @@
+---
+title: debug
+nav:
+  title: Hooks
+  path: /hook
+---
+
 # debug
 
 A set of hooks for debugging component.
@@ -18,25 +25,7 @@ function useRenderTimes(): number
 
 This times returned starts from `1` and increase on each render, even props and states are not changed.
 
-```jsx
-import React, {useState} from 'react';
-import {Button} from 'antd';
-import 'antd/dist/antd.min.css';
-import {useRenderTimes, useChangeTimes, useUpdateCause} from '@huse/debug';
-
-export default () => {
-    const [value, setValue] = useState(0);
-    const renderTimes = useRenderTimes();
-    return (
-        <>
-            <Button onClick={() => setValue(value => value - 1)}>-1</Button>
-            {value}
-            <span style={{color: '#999', padding: '0 10px'}}>(rendered {renderTimes} times)</span>
-            <Button onClick={() => setValue(value => value + 1)}>+1</Button>
-        </>
-    );
-};
-```
+<code src="./demo/useRenderTimes.tsx">
 
 ## useChangeTimes
 
@@ -46,25 +35,8 @@ Like `useRenderTimes` but only increment when a value is actually changed, this 
 function useChangeTimes<T>(value: T): number
 ```
 
-```jsx
-import React, {useState} from 'react';
-import {Button} from 'antd';
-import 'antd/dist/antd.min.css';
-import {useRenderTimes, useChangeTimes, useUpdateCause} from '@huse/debug';
+<code src="./demo/useChangeTimes.tsx">
 
-export default () => {
-    const [value, setValue] = useState(0);
-    const renderTimes = useChangeTimes(value);
-    return (
-        <>
-            <Button onClick={() => setValue(value => value - 1)}>-1</Button>
-            {value}
-            <span style={{color: '#999', padding: '0 10px'}}>(changed {renderTimes} times)</span>
-            <Button onClick={() => setValue(value => value + 1)}>+1</Button>
-        </>
-    );
-};
-```
 
 This hooks identifies "change" by reference, to inspect why a value is changed, try `useUpdateCause` hook.
 

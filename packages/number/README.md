@@ -1,3 +1,10 @@
+---
+title: number
+nav:
+  title: Hooks
+  path: /hook
+---
+
 # number
 
 Hooks to manage and mutate number types.
@@ -34,22 +41,4 @@ This is a wrap of `useMethods` in `@huse/methods` and contains methods below:
 
 `inc` is an alias to `increment` and `dec` is an alias to `decrement`.
 
-```jsx
-import React from 'react';
-import {Button} from 'antd';
-import 'antd/dist/antd.min.css';
-import {useCounter} from '@huse/number';
-
-export default () => {
-    const [value, {increment, decrement, reset}] = useCounter(3);
-    console.log(value);
-    return (
-        <>
-            <Button onClick={decrement}>-1</Button>
-            <span style={{padding: '0 10px'}}>{value}</span>
-            <Button onClick={increment}>+1</Button>
-            <Button onClick={() => reset()}>Reset</Button>
-        </>
-    );
-};
-```
+<code src='./demo/useCounter.tsx'>

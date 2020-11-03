@@ -1,3 +1,10 @@
+---
+title: effect-ref
+nav:
+  title: Hooks
+  path: /hook
+---
+
 # effect-ref
 
 Makes a [callback ref](https://zh-hans.reactjs.org/docs/refs-and-the-dom.html#callback-refs) behaves like effects.
@@ -27,31 +34,4 @@ Unlike `useRef` which is not responsive to element change, this hook provides ab
 
 In case you need to use multiple callback refs on the same DOM element, `useMergedRef` from `@huse/merged-ref` may help.
 
-```jsx
-import React, {useState, useCallback, createElement} from 'react';
-import {Button, Select} from 'antd';
-import 'antd/dist/antd.min.css';
-import {useEffectRef} from '@huse/effect-ref';
-
-export default () => {
-    const [tag, setTag] = useState('div');
-    const [message, setMessage] = useState('');
-    const updateMessage = useCallback(
-        element => setMessage(`Root element is changed to <${element.nodeName.toLowerCase()}>`),
-        []
-    );
-    const ref = useEffectRef(updateMessage);
-    return (
-        <>
-            Choose a tag:
-            <Select value={tag} onChange={setTag}>
-                <Select.Option value="div">div</Select.Option>
-                <Select.Option value="section">section</Select.Option>
-                <Select.Option value="header">header</Select.Option>
-                <Select.Option value="footer">footer</Select.Option>
-            </Select>
-            {createElement(tag, {ref}, <p>{message}</p>)}
-        </>
-    );
-};
-```
+<code src='./demo/useEffectRef.tsx'>

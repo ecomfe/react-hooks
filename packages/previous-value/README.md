@@ -1,3 +1,10 @@
+---
+title: previous-value
+nav:
+  title: Hooks
+  path: /hook
+---
+
 # previous-value
 
 Provides hooks about retrieving and comparing current value with the previous version.
@@ -19,23 +26,7 @@ function usePreviousValue<T>(value: T): T | undefined
 
 **Note: this hook is not designed to get the "previous different version", the previous value may be the same of given value.**
 
-```jsx
-import React, {useReducer, useEffect} from 'react';
-import {Button} from 'antd';
-import 'antd/dist/antd.min.css';
-import {usePreviousValue, useOriginalCopy} from '@huse/previous-value';
-
-export default () => {
-    const [value, increment] = useReducer(v => v + 1, 0);
-    const previousValue = usePreviousValue(value);
-    return (
-        <div>
-            {previousValue === undefined ? value : `${previousValue} -> ${value}`}
-            <Button onClick={increment}>+1</Button>
-        </div>
-    );
-};
-```
+<code src='./demo/usePreviousValue.tsx'>
 
 ## useOriginalCopy
 
@@ -64,34 +55,7 @@ function useOriginalCopy<T>(value: T, equals: CustomEquals<T> = shallowEquals): 
 
 By default a shallow equal is used, a custom equality function can be passed.
 
-```jsx
-import React, {useReducer, useEffect} from 'react';
-import {Button} from 'antd';
-import 'antd/dist/antd.min.css';
-import {usePreviousValue, useOriginalCopy} from '@huse/previous-value';
-
-export default () => {
-    const [effectsCount, runEffect] = useReducer(v => v + 1, 0);
-    const forceUpdate = useReducer(v => v + 1, 0)[1];
-    // This is not memoized
-    const value = {x: 1};
-    // The original copy of value if retrieved on each render
-    const originalValue = useOriginalCopy(value);
-    // originalValue will be reference equal on different render, effect runs only once
-    useEffect(
-        () => {
-            runEffect();
-        },
-        [originalValue]
-    );
-    return (
-        <div>
-            Effect run {effectsCount} times.
-            <Button onClick={forceUpdate}>Force Update</Button>
-        </div>
-    );
-};
-```
+<code src='./demo/useOriginalCopy.tsx'>
 
 ## useOriginalDeepCopy
 

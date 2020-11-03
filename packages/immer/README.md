@@ -1,3 +1,10 @@
+---
+title: immer
+nav:
+  title: Hooks
+  path: /hook
+---
+
 # immer
 
 **DEPRECATED: This package is depreacted in favor of [the offficial use-immer package](https://github.com/immerjs/use-immer).**
@@ -21,29 +28,7 @@ function useImmerState<S = any>(initialState: S | (() => S)): ImmerState<S>;
 
 This works exactly the same as `useState` with a single difference that when a function is passed to `setState`, it can mutate state directly.
 
-```jsx
-import React from 'react';
-import {Button} from 'antd';
-import 'antd/dist/antd.min.css';
-import {useImmerState, useImmerReducer} from '@huse/immer';
-
-export default () => {
-    const [state, setState] = useImmerState({value: 1});
-    return (
-        <>
-            <p>Current Value: {state.value}</p>
-            <div>
-                {/* mutate state */}
-                <Button onClick={() => setState(s => void s.value++)}>Increment</Button>
-                {/* return a new state */}
-                <Button onClick={() => setState(s => ({value: s.value - 1}))}>Decrement</Button>
-                {/* set to a new state */}
-                <Button onClick={() => setState({value: 0})}>Reset</Button>
-            </div>
-        </>
-    );
-};
-```
+<code src='./demo/useImmerState.tsx'>
 
 ## useImmerReducer
 
@@ -60,39 +45,4 @@ Some differences with `useReducer`:
 2. reducer can mutate state directly.
 3. `initializer` won't receive `initialState` as its argument.
 
-```jsx
-import React from 'react';
-import {Button} from 'antd';
-import 'antd/dist/antd.min.css';
-import {useImmerState, useImmerReducer} from '@huse/immer';
-
-export default () => {
-    const [state, dispatch] = useImmerReducer(
-        (state, action) => {
-            switch (action.type) {
-                case 'inc':
-                    state.value++;
-                    break;
-                case 'dec':
-                    state.value--;
-                    break;
-                case 'reset':
-                    return {value: 0};
-                default:
-                    return state;
-            }
-        },
-        {value: 0}
-    );
-    return (
-        <>
-            <p>Current Value: {state.value}</p>
-            <div>
-                <Button onClick={() => dispatch({type: 'inc'})}>Increment</Button>
-                <Button onClick={() => dispatch({type: 'dec'})}>Decrement</Button>
-                <Button onClick={() => dispatch({type: 'reset'})}>Reset</Button>
-            </div>
-        </>
-    );
-};
-```
+<code src='./demo/useImmerReducer.tsx'>

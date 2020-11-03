@@ -1,3 +1,10 @@
+---
+title: window-size
+nav:
+  title: Hooks
+  path: /hook
+---
+
 # window-size
 
 Read and observe the size of viewport.
@@ -23,18 +30,4 @@ function useWindowSize(): WindowSize;
 
 State will update when window resizes.
 
-```jsx
-import React from 'react';
-import {useWindowSize} from '@huse/window-size';
-
-export default () => {
-    const size = useWindowSize();
-    return (
-        <>
-            <p>Outer: {size.outerWidth} x {size.outerHeight}</p>
-            <p>Inner: {size.innerWidth} x {size.innerHeight}</p>
-            <p>Resize window to update</p>
-        </>
-    );
-};
-```
+<code src='./demo/useWindowSize.tsx'>

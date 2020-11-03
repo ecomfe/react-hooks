@@ -1,3 +1,10 @@
+---
+title: methods
+nav:
+  title: Hooks
+  path: /hook
+---
+
 # methods
 
 Provides infrastructure hooks to encapsulate a state and some methods together.
@@ -39,51 +46,7 @@ export function useMethods<S, R extends Reducers<S>>(init: R | (() => R), initia
 
 In short, `useMethods` returns a tuple containing 3 items: the state, an object of methods mutating the state, the `setState` function.
 
-```jsx
-import React, {useState} from 'react';
-import {Button, Switch} from 'antd';
-import 'antd/dist/antd.min.css';
-import {useMethods, useMethodsExtension} from '@huse/methods';
-
-export default () => {
-    const userMethods = {
-        asAdmin(user) {
-            user.role = 'admin';
-            user.history.push('change to admin');
-        },
-        asUser(user) {
-            user.role = 'uesr';
-            user.history.push('change to user');
-        },
-        enable(user) {
-            user.enabled = true;
-            user.history.push('disabled');
-        },
-        disable(user) {
-            user.enabled = false;
-            user.history.push('enabled');
-        },
-    };
-    const [user, methods] = useMethods(
-        userMethods,
-        {role: 'user', enabled: true, history: []}
-    );
-    return (
-        <>
-            <div>
-                Admin: <Switch checked={user.role === 'admin'} onChange={user.role === 'admin' ? methods.asUser : methods.asAdmin} />
-            </div>
-            <div>
-                Enabled: <Switch checked={user.enabled} onChange={user.enabled ? methods.disable : methods.enable} />
-            </div>
-            <h3>Mutation history:</h3>
-            <ul>
-                {user.history.map((s, i) => <li key={i}>{s}</li>)}
-            </ul>
-        </>
-    );
-};
-```
+<code src="./demo/useMethods.tsx">
 
 **Note: `useMethods` is a one-time setup, that means `init` argument only works in the initial call,
 change it in subsequent calls take no effect.**

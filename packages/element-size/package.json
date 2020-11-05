@@ -21,7 +21,7 @@
   "scripts": {
     "build": "rm -rf es cjs && tsc & tsc --module ESNext --outDir ./es",
     "build-check": "tsc",
-    "lint": "skr lint",
+    "lint": "skr lint src demo",
     "start": "skr dev --src=demo",
     "test": "echo 'no test in @huse/element-size'"
   },

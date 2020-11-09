@@ -1,43 +1,29 @@
 ---
 order: 1
 nav:
-  title: 指南
+  title: Guide
   order: 1
 ---
 
-# 使用@huse/hooks须知
+# Getting Started
 
-这是收集了常用的react hooks，用于支持百度内部的开发，我们欢迎社区所有人参与共建。
+This is a collection of frequently used react hooks to support development within baidu, contributions from community are also welcomed.
 
-## 项目结构
+## Document
 
-项目基于`yarn`来构建基本的工作环境，每一个hook都在`packages`目录文件夹下，使用`xx-xx`破折号分割, 没有使用`use`前缀，
-
-
-包名要确保是这种格式的`@huse/foo-bar`
-
-
-要注意每一个包的导出和命名规范 , 使用时如下示例:
-
-```js
-import {useInputValue} from '@huse/input-value';
-```
-我们推荐你使用单元测试，可以把单元测试文件放在`src/__tests__`文件夹下，以`.test.js`来结尾命名，我们强烈建议你的单测覆盖率要达到100%。
-
-## 说明
-
-我们现在还没法在线上发布文档，因为`docz build`会失败，你能在每个hook的文件夹下找到`README.md`查看，或者把代码下载到本地查看，然后执行以下代码
+You can click [here](https://ecomfe.github.io/react-hooks) to visit our document site 
+or you can find description to package in its `README.md` to start a document site locally.
 
 ```
 yarn
 yarn doc:dev
 ```
 
-打开 `http://localhost:3000` 去查阅关于hooks的介绍
+Open `http://localhost:3000` to view documents about hooks.
 
-### 所有的 hooks 列表
+### All hooks
 
-| Hook | 说明 |
+| Hook | Description |
 | ---- | ----------- |
 | useActionPending | Add a pending indicator to any async function |
 | useBoolean | Methods to control a boolean state |

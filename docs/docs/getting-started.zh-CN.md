@@ -1,42 +1,29 @@
 ---
 order: 1
 nav:
-  title: Guide
+  title: 指南
   order: 1
 ---
 
-# React Hooks
+# 快速上手
 
-This is a collection of frequently used react hooks to support development within baidu, contributions from community are also welcomed.
+这是收集了常用的react hooks，用于支持百度内部的开发，我们欢迎社区所有人参与共建。
 
-## Project structure
+## 说明
 
-This is a typical yarn workspace based monorepo, each hook creates a package in `packages` folder, the folder name is dash-cased and without the `use` prefix.
-
-Package name must comform a format of `@huse/foo-bar`.
-
-Each package should named export at least one hook like:
-
-```js
-import {useInputValue} from '@huse/input-value';
-```
-
-Unit tests are recommended, they are placed inside `src/__tests__` folder with an extension of `.test.js`, we highly recommend a 100% of branch coverage.
-
-## Document
-
-By now we are unable to publish document online since `docz build` fails, you can find description to package in its `README.md`, or to start a document site locally.
+你可以直接打开[这里](https://ecomfe.github.io/react-hooks)来访问我们的文档，
+或者把代码下载到本地查看，然后执行以下代码
 
 ```
 yarn
 yarn doc:dev
 ```
 
-Open `http://localhost:3000` to view documents about hooks.
+打开 `http://localhost:3000` 去查阅关于hooks的介绍
 
-### All hooks
+### 所有的 hooks 列表
 
-| Hook | Description |
+| Hook | 说明 |
 | ---- | ----------- |
 | useActionPending | Add a pending indicator to any async function |
 | useBoolean | Methods to control a boolean state |

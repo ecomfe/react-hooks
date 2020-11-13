@@ -13,4 +13,4 @@ order: 3
 
 Like `useMethods` but works without immer support, this is used to wrap state of type which immer cannot handle, such like `Map`, `Set` and custom classes.
 
-As a result of the absence of immer, reducers does not allow in-place mutation to states, it must return a new state object.
+As a result of the absence of immer, reducer does not allow in-place mutation to states, it must return a new state object.

@@ -39,6 +39,6 @@ function useUserMedia(
 
 By default `useUserMedia` requires both video and audio channels.
 
-**NOTE: On a browser where `getUserMedia` is not implemented, this hooks returns `UserMediaHook` object with a special `error` containing `code` property of `"ERR_METHOD_NOT_IMPLEMENTED"`.**
+**NOTE: On a browser where `getUserMedia` is not implemented, this hook returns `UserMediaHook` object with a special `error` containing `code` property of `"ERR_METHOD_NOT_IMPLEMENTED"`.**
 
 <code src='./demo/useUserMedia.tsx'>

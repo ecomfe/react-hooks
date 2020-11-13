@@ -11,7 +11,7 @@ order: 2
 
 ## useMethodsExtension
 
-Once you already have a `setState` function from `useImmer` in `@huse/immer`, you can also wrap it to a methods object.
+Once you have a `setState` function from `useImmer` in `@huse/immer`, you can also wrap it to a methods object.
 
 ```typescript
 export function useMethodsExtension<S, R extends ImmerReducers<S>>(reducers: R, setState: SetImmerState<S>): Methods<S, R>

@@ -11,7 +11,7 @@ order: 2
 
 ## useLayoutTiming
 
-This hooks tracks a meaningful layout once.
+This hooks track a meaningful layout once.
 
 ```typescript
 interface TimeRange {

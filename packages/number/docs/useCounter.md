@@ -19,7 +19,7 @@ npm install @huse/number
 
 ## useCounter
 
-Manges number as a counter which can increment and decrement.
+Manages number as a counter which can increment and decrement.
 
 ```typescript
 interface CounterOptions {

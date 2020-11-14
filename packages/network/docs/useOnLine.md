@@ -21,6 +21,6 @@ npm install @huse/network
 
 `useOnLine` returns a boolean indicates whether client is currently online.
 
-In case where client doesn't support `online` and `offline` events, this hook always return `true`.
+In case where client doesn't support `online` and `offline` events, this hook always returns `true`.
 
 <code src='./demo/useOnLine.tsx'>

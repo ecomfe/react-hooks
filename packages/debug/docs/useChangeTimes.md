@@ -20,7 +20,7 @@ function useChangeTimes<T>(value: T): number
 <code src="./demo/useChangeTimes.tsx">
 
 
-This hooks identifies "change" by reference, to inspect why a value is changed, try `useUpdateCause` hook.
+This hook identifies "change" by reference, to inspect why a value has changed, try `useUpdateCause` hook.
 
 ```javascript
 import {useChangeTimes} from '@huse/debug';

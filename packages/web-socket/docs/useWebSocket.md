@@ -132,7 +132,7 @@ By default `useWebSocket` doesn't attempt to reconnect on error or close, `recon
 
 Take `reconnectOnClose` as an example, a web socket can close because of user's intentional behavior, or due to unexpected disconnect from server, we need to check it from `CloseEvent`, return `ture` to tell web socket should reconnect.
 
-Also `reconnectInterval` controlls the interval between reconnections in milliseconds, defualt to 5000, `reconnectAttempts` controls the maximum reconnect attempts, default to 10.
+Also `reconnectInterval` controls the interval between reconnections in milliseconds, defualt to 5000, `reconnectAttempts` controls the maximum reconnect attempts, default to 10.
 
 ```javascript
 const options = useMemo(

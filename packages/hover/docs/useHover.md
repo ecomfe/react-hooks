@@ -19,7 +19,7 @@ npm install @huse/hover
 
 ## useHover
 
-This hooks returns a set of props to handle mouse events in order to report whether element is currently in hover state.
+This hook returns a set of props to handle mouse events in order to report whether element is currently in hover state.
 
 ```typescript
 interface HoverOptions {
@@ -34,7 +34,7 @@ interface HoverCallbacks {
 function useHover(options: HoverOptions = {}): [boolean, HoverCallbacks]
 ```
 
-The `delay` options is default to `0`, with a value less than or equals to 0 hover state will change immediately on mouse enter and leave.
+The `delay` option is default to `0`, with a value less than or equals to 0 hover state will change immediately on mouse enter and leave.
 
 <code src='./demo/useHover.tsx'>
 

@@ -17,7 +17,7 @@ Simply wrap a callback to a debounced one.
 function useDebouncedCallback<C extends Function>(callback: C, wait: number): C
 ```
 
-Note all queued invocation will be canceled when component unmounts and when either `callback` r=or `wait` is changed.
+Note all queued invocation will be canceled when component unmounts and when either `callback` or `wait` is changed.
 
 ```javascript
 import {useState} from 'react';

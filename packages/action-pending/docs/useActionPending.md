@@ -19,7 +19,7 @@ npm install @huse/action-pending
 
 ## useActionPending
 
-By providing an async function, this hook create a wrappred version with a number indicating how many pending calls are on the fly.
+By providing an async function, this hook creates a wrapped version with a number indicating how many pending calls are on the fly.
 
 ```typescript
 type AsyncFunction = (...args: any[]) => Promise<any>;

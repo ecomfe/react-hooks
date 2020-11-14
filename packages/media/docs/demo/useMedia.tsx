@@ -19,7 +19,7 @@ export default () => {
     })();
     return (
         <p>
-            You device: <span style={{ color: 'red' }}>{deviceType}</span>
+            Your device: <span style={{ color: 'red' }}>{deviceType}</span>
         </p>
     );
 };

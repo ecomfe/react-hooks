@@ -25,6 +25,6 @@ type ElementResizeCallback = (element: HTMLElement | null) => void;
 function useElementSize(): [ElementResizeCallback, Size | undefined];
 ```
 
-The initial size is `undefined` and will be updated on mount any anytime element is resized.
+The initial size is `undefined` and will be updated on mount anytime element is resized.
 
 <code src='./demo/useElementSize.tsx'>

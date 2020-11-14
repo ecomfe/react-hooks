@@ -23,8 +23,8 @@ Provides hooks to create methods around a state.
 
 In order to work with both immer state from `@huse/immer` and native state from `useState`, we have both `useMethods` and `useMethodsNative` hooks.
 
-All hooks receives a reducers object containing methods to mutate (or create a new) state, after wrapping into methods,
-the first `state` argument is omitted, all subsequent arguments remains the same, the return values is changed to `void`.
+All hooks receive a reducer object containing methods to mutate (or create a new) state, after wrapping into methods,
+the first `state` argument is omitted, all subsequent arguments remain the same, the return values is changed to `void`.
 
 ```typescript
 interface NativeReducers<S> {
@@ -53,9 +53,9 @@ In short, `useMethods` returns a tuple containing 3 items: the state, an object 
 <code src="./demo/useMethods.tsx">
 
 **Note: `useMethods` is a one-time setup, that means `init` argument only works in the initial call,
-change it in subsequent calls take no effect.**
+change it in subsequent calls takes no effect.**
 
-To use with TypeScript requiring generic to complex type like `Array`, create a generic factory function to initialize the reducers object.
+To use with TypeScript requiring generic to complex type like `Array`, create a generic factory function to initialize the reducer object.
 
 ```typescript
 function createArrayReducers<T>(): Reducers<T[]> {

@@ -11,7 +11,7 @@ order: 1
 
 # local-storage
 
-Accesses, observes and updates `localStorage`.
+Access, observe and update `localStorage`.
 
 ```shell
 npm install @huse/local-storage

@@ -19,7 +19,7 @@ npm install @huse/infinite-scroll
 
 ## useInfiniteScroll
 
-Given an async fetch function, this hook returns a set of properties to help integrated common infinite scroll solutions.
+Given an async fetch function, this hook returns a set of properties to help integrate common infinite scroll solution.
 
 ```typescript
 function useInfiniteScroll<T>(fetch: FetchDataSource<T>, options: InfiniteScrollOptions<T> = {}): InfiniteScrollHook<T>

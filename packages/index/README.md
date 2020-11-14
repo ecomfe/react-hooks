@@ -7,7 +7,7 @@ nav:
 
 # huse
 
-This is an index package for all [@huse packages](https://www.npmjs.com/search?q=%40huse) **expect `@huse/router`**.
+This is an index package for all [@huse packages](https://www.npmjs.com/search?q=%40huse) **except `@huse/router`**.
 
 **NOTE: This package does not include `@huse/router` since it requires `react-router-dom` which is not commonly installed.**
 

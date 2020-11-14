@@ -27,7 +27,7 @@ type ElementResizeCallback = (element: HTMLElement | null) => void;
 function useElementResize(callback: (element: HTMLElement) => void): ElementResizeCallback;
 ```
 
-To ensure all element changes are captured even with the change of element type (like from `<div>` to `<span>`),
+To ensure all element changed are captured even with the change of element type (like from `<div>` to `<span>`),
 `useElementResize` returns a callback ref, you are required to pass it via `ref` prop to an DOM element.
 
 **Note: `useElementResize` does not trigger callback on initial mount.**

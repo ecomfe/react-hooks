@@ -19,7 +19,7 @@ npm install @huse/snapshot
 
 ## useSnapshotState
 
-Creates a state with version history and provides `undo` and `redo` function to traverse the history.
+Creates a state with version history and provides `undo` and `redo` functions to traverse the history.
 
 ```typescript
 export interface SnapshotOptions {

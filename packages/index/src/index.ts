@@ -10,7 +10,6 @@ export * from '@huse/document-title';
 export * from '@huse/effect-ref';
 export * from '@huse/element-size';
 export * from '@huse/hover';
-export * from '@huse/immer';
 export * from '@huse/infinite-scroll';
 export * from '@huse/input-value';
 export * from '@huse/intersection';

@@ -10,7 +10,7 @@ export default () => {
         <>
             <div>
                 <Button className='button1' type="primary" onClick={on}>Switch On</Button>
-                <Button className='button2' type="danger" onClick={off}>Switch Off</Button>
+                <Button className='button2' danger onClick={off}>Switch Off</Button>
                 <Button className='button3' onClick={toggle}>Toggle Value</Button>
             </div>
             <div className='switch'>

@@ -1,6 +1,11 @@
 {
     "include": [
-        "packages/*/src/**/*.ts"
+        "packages/*/src/**/*.ts",
+        "packages/*/docs/**/*.ts",
+        "packages/*/docs/**/*.tsx",
+    ],
+    "exclude": [
+        "packages/**/__tests__/**"
     ],
     "compilerOptions": {
         "jsx": "preserve",

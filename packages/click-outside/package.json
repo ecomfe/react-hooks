@@ -1,6 +1,6 @@
 {
   "name": "@huse/click-outside",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "keywords": [
     "react",
     "hooks"
@@ -25,7 +25,7 @@
     "test": "skr test --coverage --target=react"
   },
   "dependencies": {
-    "@huse/document-event": "^1.0.2"
+    "@huse/document-event": "^1.0.3"
   },
   "devDependencies": {
     "@reskript/cli": "^1.0.0-beta.7",

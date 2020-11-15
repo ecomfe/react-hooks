@@ -1,6 +1,6 @@
 {
   "name": "@huse/script",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "keywords": [
     "react",
     "hooks"
@@ -26,7 +26,7 @@
     "test": "echo 'no test in @huse/script'"
   },
   "dependencies": {
-    "@huse/update": "^1.0.2"
+    "@huse/update": "^1.0.3"
   },
   "devDependencies": {
     "@reskript/cli": "^1.0.0-beta.7",

@@ -1,13 +1,23 @@
----
-nav:
-  title: Hooks
-  path: /hook
----
-
 # Change Log
 
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# [1.1.0](https://github.com/ecomfe/react-hooks/compare/@huse/number@1.0.2...@huse/number@1.1.0) (2020-11-15)
+
+
+### Bug Fixes
+
+* fix lint errors in docs and demos ([#57](https://github.com/ecomfe/react-hooks/issues/57)) ([ee94ff0](https://github.com/ecomfe/react-hooks/commit/ee94ff02bf09696374ca4250c496a4dec0cbe02a))
+
+
+### Features
+
+* **number:** support min, max and step options in useCounter ([#48](https://github.com/ecomfe/react-hooks/issues/48)) ([2333f98](https://github.com/ecomfe/react-hooks/commit/2333f98adc623c805b2e8c9b82e52dc150dcbe5d))
+
+
+
+
 
 ## [1.0.3](https://github.com/ecomfe/react-hooks/compare/@huse/number@1.0.2...@huse/number@1.0.3) (2020-09-01)
 

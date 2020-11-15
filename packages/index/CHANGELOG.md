@@ -1,13 +1,28 @@
----
-nav:
-  title: Hooks
-  path: /hook
----
-
 # Change Log
 
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# [2.0.0](https://github.com/ecomfe/react-hooks/compare/huse@1.4.1...huse@2.0.0) (2020-11-15)
+
+
+### Bug Fixes
+
+* fix lint errors in docs and demos ([#57](https://github.com/ecomfe/react-hooks/issues/57)) ([ee94ff0](https://github.com/ecomfe/react-hooks/commit/ee94ff02bf09696374ca4250c496a4dec0cbe02a))
+
+
+### chore
+
+* **index:** remove deprecated immer hooks from index ([e2d59e1](https://github.com/ecomfe/react-hooks/commit/e2d59e1277d841656ac0886fa34b5515d8aea9a4))
+
+
+### BREAKING CHANGES
+
+* **index:** hooks from  are removed from index package
+
+
+
+
 
 ## [1.4.2](https://github.com/ecomfe/react-hooks/compare/huse@1.4.1...huse@1.4.2) (2020-09-01)
 

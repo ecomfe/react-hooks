@@ -1,13 +1,19 @@
----
-nav:
-  title: Hooks
-  path: /hook
----
-
 # Change Log
 
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [1.0.3](https://github.com/ecomfe/react-hooks/compare/@huse/transition-state@1.0.1...@huse/transition-state@1.0.3) (2020-11-15)
+
+
+### Bug Fixes
+
+* fix lint errors in docs and demos ([#57](https://github.com/ecomfe/react-hooks/issues/57)) ([ee94ff0](https://github.com/ecomfe/react-hooks/commit/ee94ff02bf09696374ca4250c496a4dec0cbe02a))
+* **transition-state:** incorrect return type of useTransitionState ([#42](https://github.com/ecomfe/react-hooks/issues/42)) ([fe5e5f1](https://github.com/ecomfe/react-hooks/commit/fe5e5f118b619771ea825f52fe8bb10d81802418))
+
+
+
+
 
 ## [1.0.2](https://github.com/ecomfe/react-hooks/compare/@huse/transition-state@1.0.1...@huse/transition-state@1.0.2) (2020-09-01)
 

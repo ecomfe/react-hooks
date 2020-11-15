@@ -1,6 +1,6 @@
 {
   "name": "@huse/snapshot",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "keywords": [
     "react",
     "hooks"
@@ -25,7 +25,7 @@
     "test": "skr test --coverage"
   },
   "dependencies": {
-    "@huse/debounce": "^1.0.2"
+    "@huse/debounce": "^1.0.3"
   },
   "devDependencies": {
     "@reskript/cli": "^1.0.0-beta.7",

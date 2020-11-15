@@ -73,7 +73,7 @@ function createMethods<T>() {
             return [];
         },
     };
-};
+}
 
 export default function useArray<T>(initialValue: T[] = []) {
     return useMethods(createMethods<T>(), initialValue);

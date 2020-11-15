@@ -21,7 +21,7 @@ npm install @huse/methods
 
 Provides hooks to create methods around a state.
 
-In order to work with both immer state from `@huse/immer` and native state from `useState`, we have both `useMethods` and `useMethodsNative` hooks.
+In order to work with both immer state from `use-immer` and native state from `useState`, we have both `useMethods` and `useMethodsNative` hooks.
 
 All hooks receive a reducer object containing methods to mutate (or create a new) state, after wrapping into methods,
 the first `state` argument is omitted, all subsequent arguments remain the same, the return values is changed to `void`.

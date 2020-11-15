@@ -25,7 +25,7 @@
     "doc:build": "dumi build"
   },
   "devDependencies": {
-    "dumi": "^1.0.34",
+    "dumi": "^1.0.35",
     "fs-extra": "^9.0.1",
     "immer": "^7.0.14",
     "inquirer": "^7.0.6",

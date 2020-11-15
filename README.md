@@ -52,8 +52,8 @@ Open `http://localhost:3000` to view documents about hooks.
 | useElementResize | Trigger callback when element resize |
 | useElementSize | Return element's size |
 | useHover | Observe mouse enter and leave to element |
-| useImmerReducer | A `useReducer` with immer support |
-| useImmerState | A `useState` with immer support |
+| useImmerReducer | A `useReducer` with immer support **(deprecated)** |
+| useImmerState | A `useState` with immer support **(deprecated)** |
 | useInfiniteScroll | Encapsulate methods and props to implement infinite scroll |
 | useInputValue | Bound a value and it's change handler to input element |
 | useOnScreenCallback | Trigger callback when element intersects with viewport |

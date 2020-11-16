@@ -6,10 +6,10 @@ nav:
 group:
   title: Collection
   path: /collection
-order: 2
+order: 3
 ---
 
-## useSet
+# useSet
 
 Encapsulate `Set` type into methods via `useMethods`, contains methods below:
 

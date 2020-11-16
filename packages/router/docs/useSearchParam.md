@@ -6,10 +6,10 @@ nav:
 group:
   title: Router
   path: /router
-order: 4
+order: 5
 ---
 
-## useSearchParam
+# useSearchParam
 
 Like `useSearchParams` but get a single param without update function.
 

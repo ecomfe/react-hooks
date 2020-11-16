@@ -6,10 +6,10 @@ nav:
 group:
   title: Previous Value
   path: /previous-value
-order: 3
+order: 4
 ---
 
-## useOriginalDeepCopy
+# useOriginalDeepCopy
 
 This is a short cut version of `useOriginalCopy` using a deep equality function.
 

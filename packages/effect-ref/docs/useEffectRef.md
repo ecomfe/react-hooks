@@ -6,18 +6,10 @@ nav:
 group:
   title: Effect Ref
   path: /effect-ref
-order: 1
+order: 2
 ---
 
-# effect-ref
-
-Makes a [callback ref](https://zh-hans.reactjs.org/docs/refs-and-the-dom.html#callback-refs) behaves like effects.
-
-```shell
-npm install @huse/effect-ref
-```
-
-## useEffectRef
+# useEffectRef
 
 This hook returns a callback function, pass it as `ref` prop to any DOM element to run callback on element mount.
 

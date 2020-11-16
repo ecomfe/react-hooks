@@ -1,9 +1,18 @@
 ---
+title: README
 nav:
   title: Hooks
   path: /hook
 group:
   title: Update
   path: /update
-hide: true
+order: 1
 ---
+
+# Update
+
+Force component to update.
+
+```shell
+npm install @huse/update
+```

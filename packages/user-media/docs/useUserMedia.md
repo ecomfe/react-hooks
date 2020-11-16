@@ -6,18 +6,10 @@ nav:
 group:
   title: User Media
   path: /user-media
-order: 1
+order: 2
 ---
 
-# user-media
-
-Open a media stream in browser to produce video and audio from client.
-
-```shell
-npm install @huse/user-media
-```
-
-## useUserMedia
+# useUserMedia
 
 This hook tries to open a media stream via its `constraints` argument, returning a context indicating current streaming state, see [getUserMedia](https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/getUserMedia) to understand its underlying browser capabilities.
 

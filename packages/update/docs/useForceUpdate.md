@@ -6,18 +6,10 @@ nav:
 group:
   title: Update
   path: /update
-order: 1
+order: 2
 ---
 
-# update
-
-Force component to update.
-
-```shell
-npm install @huse/update
-```
-
-## useForceupdate
+# useForceupdate
 
 Return a function which when invoked will update current component.
 

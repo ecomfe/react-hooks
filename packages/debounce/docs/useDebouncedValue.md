@@ -6,18 +6,10 @@ nav:
 group:
   title: Debounce
   path: /debounce
-order: 1
+order: 3
 ---
 
-# debounce
-
-Provides hooks to debounce value changes, effects or callbacks.
-
-```shell
-npm install @huse/debounce
-```
-
-## useDebouncedValue
+# useDebouncedValue
 
 Derive a given value and debounce its update by a given delay.
 

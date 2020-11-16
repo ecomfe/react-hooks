@@ -6,9 +6,9 @@ nav:
 group:
   title: Methods
   path: /methods
-order: 4
+order: 5
 ---
 
-## useMethodsExtensionNative
+# useMethodsExtensionNative
 
 Like `useMethodsExtension` but for native `useState` function.

@@ -6,18 +6,10 @@ nav:
 group:
   title: Script
   path: /script
-order: 1
+order: 2
 ---
 
-# script
-
-Dynamically load a script via hook.
-
-```shell
-npm install @huse/script
-```
-
-## useScript
+# useScript
 
 Given a URL of an external script, `useScript` automatically loads it into document.
 

@@ -6,18 +6,10 @@ nav:
 group:
   title: Window Size
   path: /window-size
-order: 1
+order: 2
 ---
 
-# window-size
-
-Read and observe the size of viewport.
-
-```shell
-npm install @huse/window-size
-```
-
-## useWindowSize
+# useWindowSize
 
 Retrieve current window size, both inner and outer.
 

@@ -6,10 +6,10 @@ nav:
 group:
   title: Previous Value
   path: /previous-value
-order: 4
+order: 5
 ---
 
-## usePreviousEquals
+# usePreviousEquals
 
 Determine whether value is changed in current render.
 

@@ -6,10 +6,10 @@ nav:
 group:
   title: Router
   path: /router
-order: 3
+order: 4
 ---
 
-## useSearchParams
+# useSearchParams
 
 Parse location search to a `URLSearchParams` object as well as a function to update it.
 

@@ -6,18 +6,10 @@ nav:
 group:
   title: Timeout
   path: /timeout
-order: 1
+order: 2
 ---
 
-# timeout
-
-Hooks about timeout and interval.
-
-```shell
-npm install @huse/timeout
-```
-
-## useTimeout
+# useTimeout
 
 Set a timeout to execute callback.
 

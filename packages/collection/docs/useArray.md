@@ -6,18 +6,10 @@ nav:
 group:
   title: Collection
   path: /collection
-order: 1
+order: 2
 ---
 
-# collection
-
-Hooks to manage and mutate collection types.
-
-```shell
-npm install @huse/collection
-```
-
-## useArray
+# useArray
 
 Encapsulate arrays into methods via `useMethods`, contains methods below:
 

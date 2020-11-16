@@ -1,10 +1,18 @@
 ---
+title: README
 nav:
   title: Hooks
   path: /hook
 group:
   title: Boolean
   path: /boolean
-hide: true
-order: 3
+order: 1
 ---
+
+# Boolean
+
+Provides hooks to work with `boolean` primitive type.
+
+```shell
+npm install @huse/boolean
+```

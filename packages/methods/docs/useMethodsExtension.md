@@ -6,10 +6,10 @@ nav:
 group:
   title: Methods
   path: /methods
-order: 2
+order: 3
 ---
 
-## useMethodsExtension
+# useMethodsExtension
 
 Once you have a `setState` function from `useImmer` in [`use-immer`](https://github.com/immerjs/use-immer/), you can also wrap it to a methods object.
 

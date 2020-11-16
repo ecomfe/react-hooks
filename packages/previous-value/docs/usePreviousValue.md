@@ -6,18 +6,10 @@ nav:
 group:
   title: Previous Value
   path: /previous-value
-order: 1
+order: 2
 ---
 
-# previous-value
-
-Provides hooks about retrieving and comparing current value with the previous version.
-
-```shell
-npm install @huse/previous-value
-```
-
-## usePreviousValue
+# usePreviousValue
 
 Prevoius value if sometimes useful in react development, like to derive a state,
 or to determine transition duration on how value is changed.

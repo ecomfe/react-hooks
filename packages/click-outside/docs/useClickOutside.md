@@ -6,18 +6,10 @@ nav:
 group:
   title: Click Outside
   path: /click-outside
-order: 1
+order: 2
 ---
 
-# click-outside
-
-Listen for clicks in document and trigger a callback when it happens outside an element.
-
-```shell
-npm install @huse/click-outside
-```
-
-## useClickOutside
+# useClickOutside
 
 By passing a `ref` object containing an element, `callback` will be triggered when a click happens outside that element.
 

@@ -1,15 +1,15 @@
 ---
-title: useInterval
+title: useStableInterval
 nav:
   title: Hooks
   path: /hook
 group:
   title: Timeout
   path: /timeout
-order: 3
+order: 4
 ---
 
-## useStableInterval
+# useStableInterval
 
 Like `useInterval` but counts time ellapsed to execute `callback`, when `callback` returns a `Promise`, it's resolve time is counted.
 

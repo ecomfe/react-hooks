@@ -6,10 +6,10 @@ nav:
 group:
   title: Timeout
   path: /timeout
-order: 2
+order: 3
 ---
 
-## useInterval
+# useInterval
 
 Set an interval to execute callback periodically.
 

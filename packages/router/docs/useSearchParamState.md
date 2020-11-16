@@ -6,10 +6,10 @@ nav:
 group:
   title: Router
   path: /router
-order: 7
+order: 8
 ---
 
-## useSearchParamState
+# useSearchParamState
 
 Wrap a single search params as a react state.
 

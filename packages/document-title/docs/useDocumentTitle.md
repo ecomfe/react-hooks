@@ -9,15 +9,7 @@ group:
 order: 1
 ---
 
-# document-title
-
-Change `document.title` to given value.
-
-```shell
-npm install @huse/document-title
-```
-
-## useDocumentTitle
+# useDocumentTitle
 
 This hook updates `document.title` to custom value and will revert the change on component unmount.
 

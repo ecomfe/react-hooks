@@ -6,10 +6,10 @@ nav:
 group:
   title: Debug
   path: /debug
-order: 3
+order: 4
 ---
 
-## useUpdateCause
+# useUpdateCause
 
 Returns an array of reasons causing component to update.
 

@@ -6,18 +6,10 @@ nav:
 group:
   title: Boolean
   path: /boolean
-order: 1
+order: 2
 ---
 
-# boolean
-
-Provides hooks to work with `boolean` primitive type.
-
-```shell
-npm install @huse/boolean
-```
-
-## useBoolean
+# useBoolean
 
 `useBoolean` returns a `[value, methods]` tuple, in which methods are listed as:
 

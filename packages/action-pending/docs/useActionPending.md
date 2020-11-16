@@ -6,18 +6,10 @@ nav:
 group:
   title: Action Pending
   path: /action-pending
-order: 1
+order: 2
 ---
 
-# Action Pending
-
-Hooks to encapsulate async function with pending states.
-
-```shell
-npm install @huse/action-pending
-```
-
-## useActionPending
+# useActionPending
 
 By providing an async function, this hook creates a wrapped version with a number indicating how many pending calls are on the fly.
 

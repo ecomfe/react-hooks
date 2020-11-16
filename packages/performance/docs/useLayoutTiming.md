@@ -6,10 +6,10 @@ nav:
 group:
   title: Performance
   path: /performance
-order: 2
+order: 3
 ---
 
-## useLayoutTiming
+# useLayoutTiming
 
 This hooks track a meaningful layout once.
 

@@ -6,10 +6,10 @@ nav:
 group:
   title: Router
   path: /router
-order: 6
+order: 7
 ---
 
-## useUpdateSearchParams
+# useUpdateSearchParams
 
 Get a function to update search params via any object.
 

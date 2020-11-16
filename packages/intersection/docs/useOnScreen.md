@@ -6,18 +6,10 @@ nav:
 group:
   title: Intersection
   path: /intersection
-order: 1
+order: 2
 ---
 
-# intersection
-
-Provides hooks to observe intersection between element and viewport.
-
-```shell
-npm install @huse/intersection
-```
-
-## useOnScreen
+# useOnScreen
 
 Returns a boolean indicating whether element is currently on screen.
 

@@ -6,10 +6,10 @@ nav:
 group:
   title: Request
   path: /request
-order: 2
+order: 3
 ---
 
-## useRequestCallback
+# useRequestCallback
 
 Like `useReqeust` but instead of trigger request automatically this hook returns a function (`() => void`) to allow manual trigger of request.
 

@@ -6,9 +6,9 @@ nav:
 group:
   title: Boolean
   path: /boolean
-order: 2
+order: 3
 ---
 
-## useSwitch
+# useSwitch
 
 `useSwitch` returns a `[value, on, off, toggle]` tuple, this is simple a wrapper hook around `useBoolean` and expand all methods into tuple.

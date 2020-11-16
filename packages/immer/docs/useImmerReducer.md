@@ -6,10 +6,10 @@ nav:
 group:
   title: Immer
   path: /immer
-order: 2
+order: 3
 ---
 
-## useImmerReducer
+# useImmerReducer
 
 A `useReducer` bound to immer, direct mutation of state is allowed inside reducer.
 

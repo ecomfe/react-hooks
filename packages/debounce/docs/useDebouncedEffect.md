@@ -9,7 +9,7 @@ group:
 order: 2
 ---
 
-## useDebouncedEffect
+# useDebouncedEffect
 
 Runs a callback when a value changed with a delay, effect will be canceled if value is changed again within delay.
 

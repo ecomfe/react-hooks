@@ -6,10 +6,10 @@ nav:
 group:
   title: Debounce
   path: /debounce
-order: 3
+order: 4
 ---
 
-## useDebouncedCallback
+# useDebouncedCallback
 
 Simply wrap a callback to a debounced one.
 

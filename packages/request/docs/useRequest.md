@@ -6,20 +6,10 @@ nav:
 group:
   title: Request
   path: /request
-order: 1
+order: 2
 ---
 
-# request
-
-Tries to provide basic capabilities to make a request inside react components.
-
-By "request" we mean any asynchronous mapping from a input to an output, typically a HTTP fetch.
-
-```shell
-npm install @huse/request
-```
-
-## useRequest
+# useRequest
 
 `useRequest` receives a request function and a param of any type, returns an context obejct containing information about the pending state, response data and errors.
 

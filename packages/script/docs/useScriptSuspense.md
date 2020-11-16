@@ -6,10 +6,10 @@ nav:
 group:
   title: Script
   path: /script
-order: 2
+order: 3
 ---
 
-## useScriptSuspense
+# useScriptSuspense
 
 The suspense version of `useScript`, it returns a single `boolean` value indicating whether script loads successfully.
 

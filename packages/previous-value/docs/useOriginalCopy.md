@@ -6,10 +6,10 @@ nav:
 group:
   title: Previous Value
   path: /previous-value
-order: 2
+order: 3
 ---
 
-## useOriginalCopy
+# useOriginalCopy
 
 React is a framework heavily depends on "reference equal",
 native hooks like `useCallback` and `useEffect` all requires a dependency list,

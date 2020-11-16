@@ -6,9 +6,9 @@ nav:
 group:
   title: Scroll Position
   path: /scroll-position
-order: 2
+order: 3
 ---
 
-## useScrollLeft
+# useScrollLeft
 
 `useScrollLeft` is a short hook to get the `left` value of `useScrollPosition`.

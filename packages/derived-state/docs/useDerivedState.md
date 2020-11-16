@@ -6,18 +6,10 @@ nav:
 group:
   title: Derived State
   path: /derived-state
-order: 1
+order: 2
 ---
 
-# derived-state
-
-Derive a value from input.
-
-```shell
-npm install @huse/derived-state
-```
-
-## useDerivedState
+# useDerivedState
 
 This hook works like `getDerivedStateFromProps` in class components,
 receiving a prop value and its managed state value to generate the derived value.

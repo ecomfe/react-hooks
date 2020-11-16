@@ -6,18 +6,10 @@ nav:
 group:
   title: Local Storage
   path: /local-storage
-order: 1
+order: 2
 ---
 
-# local-storage
-
-Access, observe and update `localStorage`.
-
-```shell
-npm install @huse/local-storage
-```
-
-## useLocalStorage
+# useLocalStorage
 
 Retrieve value from `localStorage` by key, also returns a function to update it.
 

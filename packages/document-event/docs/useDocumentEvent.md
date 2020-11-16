@@ -6,18 +6,10 @@ nav:
 group:
   title: Document Event
   path: /document-event
-order: 1
+order: 2
 ---
 
-# document-event
-
-Register event listeners on `document`.
-
-```shell
-npm install @huse/document-event
-```
-
-## useDocumentEvent
+# useDocumentEvent
 
 This hook will register a event listener on `document` on component mount, and unlisten that event on unmount.
 

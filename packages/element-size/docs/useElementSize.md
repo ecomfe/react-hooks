@@ -6,10 +6,10 @@ nav:
 group:
   title: Element Size
   path: /element-size
-order: 2
+order: 3
 ---
 
-## useElementSize
+# useElementSize
 
 Observes and returns the offset size of an element.
 

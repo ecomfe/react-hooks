@@ -6,10 +6,10 @@ nav:
 group:
   title: Optimistic
   path: /optimistic
-order: 3
+order: 4
 ---
 
-### useOptimisticTask
+# useOptimisticTask
 
 This is a binding of `useOptimisticState` and an async task.
 

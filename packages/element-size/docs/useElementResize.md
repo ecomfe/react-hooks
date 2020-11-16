@@ -6,18 +6,10 @@ nav:
 group:
   title: Element Size
   path: /element-size
-order: 1
+order: 2
 ---
 
-# element-size
-
-Hooks related to observing element size.
-
-```shell
-npm install @huse/element-size
-```
-
-## useElementResize
+# useElementResize
 
 Trigger a callback when element resizes.
 

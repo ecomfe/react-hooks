@@ -6,10 +6,10 @@ nav:
 group:
   title: Router
   path: /router
-order: 5
+order: 6
 ---
 
-## useSearchParamAll
+# useSearchParamAll
 
 Like `useSearchParams` but get a single param as array.
 

@@ -1,9 +1,18 @@
 ---
+title: README
 nav:
   title: Hooks
   path: /hook
 group:
   title: Collection
   path: /collection
-hide: true
+order: 1
 ---
+
+# Collection
+
+Hooks to manage and mutate collection types.
+
+```shell
+npm install @huse/collection
+```

@@ -6,18 +6,10 @@ nav:
 group:
   title: Merged Ref
   path: /merged-ref
-order: 1
+order: 2
 ---
 
-# merged-ref
-
-Merge multiple refs into one.
-
-```shell
-npm install @huse/merged-ref
-```
-
-## useMergedRef
+# useMergedRef
 
 In react, refs can be a mutation container typed `Ref<T>`, or a callback typed `CallbackRef<T>`.
 In case you need to use multiple refs on a single element like, this hook helps you to merge them into a single `CallbackRef<T>`.

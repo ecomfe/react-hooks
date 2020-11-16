@@ -6,16 +6,10 @@ nav:
 group:
   title: Scroll Into View
   path: /scroll-into-view
-order: 1
+order: 2
 ---
 
-# scroll-into-view
-
-```shell
-npm install @huse/scroll-into-view
-```
-
-## useScrollIntoView
+# useScrollIntoView
 
 To make an active element scroll into view on its mount.
 

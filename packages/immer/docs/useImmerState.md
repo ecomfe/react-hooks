@@ -6,20 +6,10 @@ nav:
 group:
   title: Immer
   path: /immer
-order: 1
+order: 2
 ---
 
-# immer
-
-**DEPRECATED: This package is depreacted in favor of [the offficial use-immer package](https://github.com/immerjs/use-immer).**
-
-Provides reducer and state hooks bound to [immer](https://github.com/immerjs/immer) library.
-
-```shell
-npm install @huse/immer
-```
-
-## useImmerState
+# useImmerState
 
 Like `useState` but give the ability to update state by directly mutate it.
 

@@ -6,18 +6,10 @@ nav:
 group:
   title: Infinite Scroll
   path: /infinite-scroll
-order: 1
+order: 2
 ---
 
-# infinite-scroll
-
-Provides hooks to work with scroll-to-load cases.
-
-```shell
-npm install @huse/infinite-scroll
-```
-
-## useInfiniteScroll
+# useInfiniteScroll
 
 Given an async fetch function, this hook returns a set of properties to help integrate common infinite scroll solution.
 

@@ -6,18 +6,10 @@ nav:
 group:
   title: Performance
   path: /performance
-order: 1
+order: 2
 ---
 
-# performance
-
-Provides hooks to track and report component performance.
-
-```shell
-npm install @huse/performance
-```
-
-## usePerformanceTiming
+# usePerformanceTiming
 
 This hook tracks component's layout times and report it to a custom callback function.
 

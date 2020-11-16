@@ -6,18 +6,10 @@ nav:
 group:
   title: Scroll Position
   path: /scroll-position
-order: 1
+order: 2
 ---
 
-# scroll-position
-
-Provides a set of hooks to observe element or window scroll position.
-
-```shell
-npm install @huse/scroll-position
-```
-
-## useScrollPosition
+# useScrollPosition
 
 Observe and return scroll position of an element or window.
 

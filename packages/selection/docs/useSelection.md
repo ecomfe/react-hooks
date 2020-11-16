@@ -6,18 +6,10 @@ nav:
 group:
   title: Selection
   path: /selection
-order: 1
+order: 2
 ---
 
-# selection
-
-Hooks about selecting on a list of items via mouse clicks.
-
-```shell
-npm install @huse/selection
-```
-
-## useSelection
+# useSelection
 
 This hook provides fundamental capabilities to select single, multiple or a range of items in a list.
 

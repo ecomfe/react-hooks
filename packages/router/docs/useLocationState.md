@@ -6,10 +6,10 @@ nav:
 group:
   title: Router
   path: /router
-order: 2
+order: 3
 ---
 
-## useLocationState
+# useLocationState
 
 Wrap `location.state` to a react state tuple.
 

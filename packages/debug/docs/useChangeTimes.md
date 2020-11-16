@@ -6,10 +6,10 @@ nav:
 group:
   title: Debug
   path: /debug
-order: 2
+order: 3
 ---
 
-## useChangeTimes
+# useChangeTimes
 
 Like `useRenderTimes` but only increment when a value is actually changed, this value is zero based.
 

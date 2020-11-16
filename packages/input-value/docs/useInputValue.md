@@ -6,18 +6,10 @@ nav:
 group:
   title: Input Value
   path: /input-value
-order: 1
+order: 2
 ---
 
-# input-value
-
-Generates `value` and `onChange` that satisfies input elements.
-
-```shell
-npm install @huse/input-value
-```
-
-## useInputValue
+# useInputValue
 
 To get rid of the duplication of `e => setState(e.target.value)`, `useInputValue` returns an object containing both `value` and change event aware `onChange`.
 

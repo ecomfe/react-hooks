@@ -6,18 +6,10 @@ nav:
 group:
   title: Methods
   path: /methods
-order: 1
+order: 2
 ---
 
-# methods
-
-Provides infrastructure hooks to encapsulate a state and some methods together.
-
-```shell
-npm install @huse/methods
-```
-
-## useMethods
+# useMethods
 
 Provides hooks to create methods around a state.
 

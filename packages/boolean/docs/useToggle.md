@@ -6,9 +6,9 @@ nav:
 group:
   title: Boolean
   path: /boolean
-order: 3
+order: 4
 ---
 
-## useToggle
+# useToggle
 
 `useToggle` returns a `[value, toggle]` tuple.

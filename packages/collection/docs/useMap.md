@@ -6,10 +6,10 @@ nav:
 group:
   title: Collection
   path: /collection
-order: 3
+order: 4
 ---
 
-## useMap
+# useMap
 
 Encapsulate `Map` type into methods via `useMethods`, contains methods below:
 

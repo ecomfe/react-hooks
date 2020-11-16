@@ -6,18 +6,10 @@ nav:
 group:
   title: Number
   path: /number
-order: 1
+order: 2
 ---
 
-# number
-
-Hooks to manage and mutate number types.
-
-```shell
-npm install @huse/number
-```
-
-## useCounter
+# useCounter
 
 Manages number as a counter which can increment and decrement.
 

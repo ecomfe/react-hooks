@@ -6,18 +6,10 @@ nav:
 group:
   title: Scroll Lock
   path: /scroll-lock
-order: 1
+order: 2
 ---
 
-# scroll-lock
-
-Lock and unlock scroll conditionally.
-
-```shell
-npm install @huse/scroll-lock
-```
-
-## useScrollLock
+# useScrollLock
 
 Pass a `boolean` value to lock scroll on document.
 

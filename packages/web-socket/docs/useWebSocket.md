@@ -6,17 +6,10 @@ nav:
 group:
   title: Web Socket
   path: /web-socket
-order: 1
+order: 2
 ---
 
-# web-socket
-Hooks to work with web socket.
-
-```shell
-npm install @huse/web-socket
-```
-
-## useWebSocket
+# useWebSocket
 
 Create a web socket connecting to specified url.
 

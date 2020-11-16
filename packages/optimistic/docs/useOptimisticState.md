@@ -6,10 +6,10 @@ nav:
 group:
   title: Optimistic
   path: /optimistic
-order: 2
+order: 3
 ---
 
-### useOptimisticState
+# useOptimisticState
 
 Like `useState` and `useReducer`, `useOptimisticState` is a simmple encapsulation to `useOptimisticFactory`.
 

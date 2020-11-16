@@ -6,10 +6,10 @@ nav:
 group:
   title: Methods
   path: /methods
-order: 3
+order: 4
 ---
 
-## useMethodsNative
+# useMethodsNative
 
 Like `useMethods` but works without immer support, this is used to wrap state of type which immer cannot handle, such like `Map`, `Set` and custom classes.
 

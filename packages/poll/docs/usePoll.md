@@ -6,18 +6,10 @@ nav:
 group:
   title: Poll
   path: /poll
-order: 1
+order: 2
 ---
 
-# poll
-
-Poll data periodically and update corresponding state.
-
-```shell
-npm install @huse/poll
-```
-
-## usePoll
+# usePoll
 
 Provides the ability to periodically request data, store it in a state.
 

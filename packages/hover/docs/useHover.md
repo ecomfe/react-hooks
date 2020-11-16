@@ -6,18 +6,10 @@ nav:
 group:
   title: Hover
   path: /hover
-order: 1
+order: 2
 ---
 
-# hover
-
-Provides a hook to observe whether element is in hover state.
-
-```shell
-npm install @huse/hover
-```
-
-## useHover
+# useHover
 
 This hook returns a set of props to handle mouse events in order to report whether element is currently in hover state.
 

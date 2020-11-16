@@ -6,18 +6,10 @@ nav:
 group:
   title: Snapshot
   path: /snapshot
-order: 1
+order: 2
 ---
 
-# snapshot
-
-Provides hook to manage value history and work with undo and redo features.
-
-```shell
-npm install @huse/snapshot
-```
-
-## useSnapshotState
+# useSnapshotState
 
 Creates a state with version history and provides `undo` and `redo` functions to traverse the history.
 

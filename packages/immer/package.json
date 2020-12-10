@@ -25,7 +25,7 @@
     "test": "skr test --coverage"
   },
   "dependencies": {
-    "immer": "^7.0.14"
+    "immer": "^8.0.0"
   },
   "devDependencies": {
     "@reskript/cli": "^1.0.0-beta.7",

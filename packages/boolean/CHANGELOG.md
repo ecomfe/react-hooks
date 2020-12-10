@@ -1,13 +1,23 @@
----
-nav:
-  title: Hooks
-  path: /hook
----
-
 # Change Log
 
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# [1.1.0](https://github.com/ecomfe/react-hooks/compare/@huse/boolean@1.0.4...@huse/boolean@1.1.0) (2020-12-10)
+
+
+### Bug Fixes
+
+* **boolean:** move boolean hooks to useMethodsNative ([3942ebd](https://github.com/ecomfe/react-hooks/commit/3942ebd429a8c5c3074ce52d1ef20540422fbcea))
+
+
+### Features
+
+* add every hook link and change every hook README order ([4e9a89c](https://github.com/ecomfe/react-hooks/commit/4e9a89c6bbe846214d65393f0afef24c291718e6))
+
+
+
+
 
 ## [1.0.4](https://github.com/ecomfe/react-hooks/compare/@huse/boolean@1.0.2...@huse/boolean@1.0.4) (2020-11-15)
 

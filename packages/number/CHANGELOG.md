@@ -1,13 +1,24 @@
----
-nav:
-  title: Hooks
-  path: /hook
----
-
 # Change Log
 
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# [1.2.0](https://github.com/ecomfe/react-hooks/compare/@huse/number@1.1.0...@huse/number@1.2.0) (2020-12-10)
+
+
+### Bug Fixes
+
+* **number:** move number hooks to useMethodsNative ([66cadc1](https://github.com/ecomfe/react-hooks/commit/66cadc12c5cc179b82fc4f38ed4a6c5dade0b721))
+* fix messy nav bar ([#64](https://github.com/ecomfe/react-hooks/issues/64)) ([d300f58](https://github.com/ecomfe/react-hooks/commit/d300f5800310f880d79e36b459c502c5b4f5cfe2))
+
+
+### Features
+
+* add every hook link and change every hook README order ([4e9a89c](https://github.com/ecomfe/react-hooks/commit/4e9a89c6bbe846214d65393f0afef24c291718e6))
+
+
+
+
 
 # [1.1.0](https://github.com/ecomfe/react-hooks/compare/@huse/number@1.0.2...@huse/number@1.1.0) (2020-11-15)
 

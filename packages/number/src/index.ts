@@ -1,4 +1,4 @@
-import {useMethods} from '@huse/methods';
+import {useMethodsNative} from '@huse/methods';
 
 export interface CounterOptions {
     min?: number;
@@ -8,7 +8,7 @@ export interface CounterOptions {
 
 export function useCounter(initialValue: number = 0, options: CounterOptions = {}) {
     const {min = -Infinity, max = Infinity, step = 1} = options;
-    return useMethods(
+    return useMethodsNative(
         {
             increment(state: number) {
                 return Math.min(max, state + step);

@@ -1,4 +1,4 @@
-import {useMethods} from '@huse/methods';
+import {useMethodsNative} from '@huse/methods';
 
 const reducers = {
     on() {
@@ -13,7 +13,7 @@ const reducers = {
 };
 
 export function useBoolean(initialValue: boolean = false) {
-    return useMethods(reducers, initialValue);
+    return useMethodsNative(reducers, initialValue);
 }
 
 export function useSwitch(initialValue: boolean = false) {

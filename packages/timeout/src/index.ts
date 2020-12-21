@@ -76,9 +76,9 @@ export function useStableInterval(callback: (() => any) | undefined, time: numbe
                     return;
                 }
 
-                const reutrnValue = fn.current();
-                if (typeof reutrnValue?.then === 'function') {
-                    reutrnValue.then(next, next);
+                const returnValue = fn.current();
+                if (typeof returnValue?.then === 'function') {
+                    returnValue.then(next, next);
                 }
                 else {
                     next();

@@ -81,6 +81,11 @@ test('splice', () => {
 
 test('remove', () => {
     testFunction(m => m.remove(2), [1, 3, 4, 1, 3, 4]);
+    testFunction(m => m.remove(10), [1, 2, 3, 4, 1, 2, 3, 4]);
+    const objectArray = [{}, {}, {}];
+    const {result} = renderHook(() => useArray(objectArray));
+    act(() => result.current[1].remove(objectArray[1]));
+    expect(result.current[0].length).toBe(2);
 });
 
 test('removeAt', () => {

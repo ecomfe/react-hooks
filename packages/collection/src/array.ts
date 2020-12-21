@@ -1,37 +1,53 @@
-import {useMethods} from '@huse/methods';
+import {useMethodsNative} from '@huse/methods';
 
 function createMethods<T>() {
     return {
         push(state: T[], item: T) {
-            state.push(item);
+            return [...state, item];
         },
         unshift(state: T[], item: T) {
-            state.unshift(item);
+            return [item, ...state];
         },
         pop(state: T[]) {
-            if (state.length !== 0) {
-                state.splice(state.length - 1, 1);
+            if (!state.length) {
+                return state;
             }
+
+            return state.slice(0, -1);
         },
         shift(state: T[]) {
-            if (state.length !== 0) {
-                state.splice(0, 1);
+            if (!state.length) {
+                return state;
             }
+
+            return state.slice(1);
         },
         slice(state: T[], start?: number, end?: number) {
             return state.slice(start, end);
         },
         splice(state: T[], index: number, deleteCount: number, ...insertions: T[]) {
-            state.splice(index, deleteCount, ...insertions);
+            return [
+                ...state.slice(0, index),
+                ...insertions,
+                ...state.slice(index + deleteCount),
+            ];
         },
         remove(state: T[], item: T) {
-            return state.filter(v => v !== item);
+            const next = state.filter(v => v !== item);
+            return state.length === next.length ? state : next;
         },
         removeAt(state: T[], index: number) {
-            state.splice(index, 1);
+            return [
+                ...state.slice(0, index),
+                ...state.slice(index + 1),
+            ];
         },
         insertAt(state: T[], index: number, item: T) {
-            state.splice(index, 0, item);
+            return [
+                ...state.slice(0, index),
+                item,
+                ...state.slice(index),
+            ];
         },
         concat(state: T[], item: T | T[]) {
             return state.concat(item);
@@ -39,15 +55,24 @@ function createMethods<T>() {
         replace(state: T[], from: T, to: T) {
             const index = state.indexOf(from);
             if (index >= 0) {
-                state.splice(index, 1, to);
+                return [
+                    ...state.slice(0, index),
+                    to,
+                    ...state.slice(index + 1),
+                ];
             }
+            return state;
         },
         replaceAll(state: T[], from: T, to: T) {
             const has = state.includes(from);
             return has ? state.map(v => (v === from ? to : v)) : state;
         },
         replaceAt(state: T[], index: number, item: T) {
-            state.splice(index, 1, item);
+            return [
+                ...state.slice(0, index),
+                item,
+                ...state.slice(index + 1),
+            ];
         },
         filter(state: T[], predicate: (item: T, index: number) => boolean) {
             return state.filter(predicate);
@@ -76,5 +101,5 @@ function createMethods<T>() {
 }
 
 export default function useArray<T>(initialValue: T[] = []) {
-    return useMethods(createMethods<T>(), initialValue);
+    return useMethodsNative(createMethods<T>(), initialValue);
 }

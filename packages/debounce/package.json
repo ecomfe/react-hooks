@@ -28,16 +28,16 @@
     "debounce": "^1.2.0"
   },
   "devDependencies": {
-    "@reskript/cli": "^1.0.0-beta.7",
-    "@reskript/cli-lint": "^1.0.0-beta.9",
-    "@reskript/cli-test": "^1.0.0-beta.10",
-    "@reskript/config-lint": "^1.0.0-beta.8",
-    "@testing-library/react-hooks": "^3.2.1",
+    "@reskript/cli": "^1.0.0-beta.21",
+    "@reskript/cli-lint": "^1.0.0-beta.21",
+    "@reskript/cli-test": "^1.0.0-beta.21",
+    "@reskript/config-lint": "^1.0.0-beta.21",
+    "@testing-library/react-hooks": "^3.7.0",
     "@types/debounce": "^1.2.0",
-    "@types/react": "^16.9.22",
+    "@types/react": "^17.0.0",
     "react": "^17.0.0",
     "react-test-renderer": "^17.0.0",
-    "typescript": "^4.0.3"
+    "typescript": "^4.1.3"
   },
   "peerDependencies": {
     "react": ">=16.8.0"

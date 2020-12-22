@@ -10,6 +10,7 @@ export interface ReducerEntry<T> {
 
 export interface OptimisticState<T> {
     readonly optimistic: boolean;
+    // eslint-disable-next-line @typescript-eslint/ban-types
     readonly archive: T | {};
     readonly queue: Array<ReducerEntry<T>>;
     readonly hostState: T;

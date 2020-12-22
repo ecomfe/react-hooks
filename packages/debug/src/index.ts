@@ -38,7 +38,7 @@ export interface UpdateCause {
     currentValue: any;
 }
 
-function findUpdateCause<T extends {}>(previous: T, current: T): UpdateCause[] {
+function findUpdateCause<T extends Record<string, any>>(previous: T, current: T): UpdateCause[] {
     const causes = [] as UpdateCause[];
     const keys = Object.keys(previous);
 
@@ -61,7 +61,7 @@ function findUpdateCause<T extends {}>(previous: T, current: T): UpdateCause[] {
     return causes;
 }
 
-export function useUpdateCause<T extends {}>(props: T, print: boolean = true): UpdateCause[] {
+export function useUpdateCause<T extends Record<string, any>>(props: T, print: boolean = true): UpdateCause[] {
     const previous = usePreviousValue(props);
 
     if (previous === undefined) {

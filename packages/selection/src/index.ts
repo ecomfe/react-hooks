@@ -9,17 +9,6 @@ interface Action {
     payload: number;
 }
 
-export interface SelectionOptions {
-    multiple?: boolean;
-    range?: boolean;
-}
-
-export interface SelectionMethods {
-    selectIndex(index: number, e?: ClickContext): void;
-}
-
-export type SelectionHook = [number[], SelectionMethods];
-
 export interface ClickContext {
     ctrlKey: boolean;
     metaKey: boolean;
@@ -31,6 +20,17 @@ interface SelectionContext {
     rangeEnd?: number;
     selected: number[];
 }
+
+export interface SelectionOptions {
+    multiple?: boolean;
+    range?: boolean;
+}
+
+export interface SelectionMethods {
+    selectIndex(index: number, e?: ClickContext): void;
+}
+
+export type SelectionHook = [number[], SelectionMethods];
 
 const DEFAULT_OPTIONS: SelectionOptions = {
     multiple: false,

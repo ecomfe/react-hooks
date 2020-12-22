@@ -65,10 +65,10 @@
     "@huse/window-size": "^1.0.4"
   },
   "devDependencies": {
-    "@reskript/cli": "^1.0.0-beta.7",
-    "@reskript/cli-lint": "^1.0.0-beta.9",
-    "@reskript/config-lint": "^1.0.0-beta.8",
-    "typescript": "^4.0.3"
+    "@reskript/cli": "^1.0.0-beta.21",
+    "@reskript/cli-lint": "^1.0.0-beta.21",
+    "@reskript/config-lint": "^1.0.0-beta.21",
+    "typescript": "^4.1.3"
   },
   "peerDependencies": {
     "react": ">=16.8.0"

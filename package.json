@@ -13,12 +13,12 @@
   },
   "scripts": {
     "generate": "node scripts/generate",
-    "lint": "lerna run lint --parallel && skr lint scripts",
-    "test": "lerna run test --concurrency 1",
+    "lint": "lerna run lint --concurrency 3 && skr lint scripts",
+    "test": "lerna run test --concurrency 1 --ignore @huse/web-socket",
     "build": "lerna run build",
     "build-check": "lerna run build-check",
     "release": "lerna version --conventional-commits --no-push",
-    "ci": "yarn && yarn lint && yarn build-check && yarn test",
+    "ci": "yarn && yarn lint && yarn build && yarn test",
     "preversion": "yarn ci",
     "prepack": "yarn && yarn build",
     "doc:dev": "dumi dev",
@@ -27,10 +27,12 @@
   "devDependencies": {
     "dumi": "^1.0.35",
     "fs-extra": "^9.0.1",
+    "glob": "^7.1.6",
     "immer": "^8.0.0",
     "inquirer": "^7.0.6",
     "lerna": "^3.20.2",
-    "sort-package-json": "^1.44.0"
+    "lodash": "^4.17.20",
+    "sort-package-json": "^1.48.0"
   },
   "resolutions": {
     "react": "^17.0.0"

@@ -1,9 +1,9 @@
 import {useEffect} from 'react';
 import {useForceUpdate} from '@huse/update';
 
-const CACHE: {[src: string]: boolean | Promise<never>} = {};
+const CACHE: {[src: string]: boolean | Promise<void>} = {};
 
-const loadScript = (src: string): Promise<never> => {
+const loadScript = (src: string): Promise<void> => {
     const cache = CACHE[src];
 
     if (typeof cache === 'boolean') {
@@ -33,7 +33,7 @@ const loadScript = (src: string): Promise<never> => {
         );
         document.head.appendChild(script);
     };
-    const loading = new Promise<never>(execute);
+    const loading = new Promise<void>(execute);
     CACHE[src] = loading;
     return loading;
 };

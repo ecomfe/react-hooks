@@ -30,17 +30,17 @@
     "resize-detector": "^0.2.1"
   },
   "devDependencies": {
-    "@reskript/cli": "^1.0.0-beta.7",
-    "@reskript/cli-dev": "^1.0.0-beta.11",
-    "@reskript/cli-lint": "^1.0.0-beta.9",
-    "@reskript/config-lint": "^1.0.0-beta.8",
-    "@types/react": "^16.9.22",
-    "antd": "^4.0.1",
+    "@reskript/cli": "^1.0.0-beta.21",
+    "@reskript/cli-dev": "^1.0.0-beta.21",
+    "@reskript/cli-lint": "^1.0.0-beta.21",
+    "@reskript/config-lint": "^1.0.0-beta.21",
+    "@types/react": "^17.0.0",
+    "antd": "^4.9.4",
     "classnames": "^2.2.6",
     "react": "^17.0.0",
     "react-dom": "^17.0.0",
-    "typescript": "^4.0.3",
-    "webpack": "^5.1.3"
+    "typescript": "^4.1.3",
+    "webpack": "^5.11.0"
   },
   "peerDependencies": {
     "react": ">=16.8.0"

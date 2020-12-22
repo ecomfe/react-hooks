@@ -107,6 +107,7 @@ export async function consumeOptimistic<T, R>(
                 next = generator.next(result);
             }
             catch (ex) {
+                // eslint-disable-next-line @typescript-eslint/ban-types
                 next = (generator.throw as Function)(ex);
             }
         }

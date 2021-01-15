@@ -1,10 +1,18 @@
+const fillPrefix = (filePath) => { 
+  let prefix = process.env.NODE_ENV === 'production' ? '/react-hooks/' : '/';
+  if (typeof filePath === 'string') {
+    return prefix + filePath;
+  } else { 
+    return '';
+  }
+};
 export default {
   mode: "site",
   title: "huse",
   // favicon: '/simple-logo.svg',
-  logo: '/huse.svg',
+  logo: fillPrefix('huse.svg'),
   links: [
-    { rel: 'stylesheet', href: '/style.css' },
+    { rel: 'stylesheet', href: fillPrefix('style.css') },
   ],
   // hash: true,
   resolve: {

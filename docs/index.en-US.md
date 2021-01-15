@@ -1,7 +1,7 @@
 ---
 title: "huse - React Hooks Library"
 hero:
-  title: "huse"
+  title: huse
   desc: Hook To Use.
   actions:
     - text: Getting Started

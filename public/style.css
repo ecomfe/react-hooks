@@ -1,0 +1,10 @@
+.__dumi-default-navbar-logo {
+    color: transparent !important; /*干掉title 只显示logo*/
+}
+.__dumi-default-navbar > nav a:not(:nth-child(2)) {
+    display:none !important; /*干掉没用的bar*/
+} 
+.__dumi-default-navbar > nav a:nth-child(3),
+.__dumi-default-navbar > nav a[rel="noopener noreferrer"] {
+    display:inline-block !important;/*这里有个坑 bar上加了几个你就得手动显示几个*/
+}

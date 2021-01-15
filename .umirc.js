@@ -2,7 +2,10 @@ export default {
   mode: "site",
   title: "huse",
   // favicon: '/simple-logo.svg',
-  // logo: '/logo.svg',
+  logo: '/huse.svg',
+  links: [
+    { rel: 'stylesheet', href: '/style.css' },
+  ],
   // hash: true,
   resolve: {
     includes: ["docs", "packages"],
@@ -35,7 +38,12 @@ export default {
     ["zh-CN", "中文"],
   ],
   navs: {
-    "zh-CN": [null],
-    "en-US": [null],
+    "zh-CN": [
+      null,
+      { title: 'GitHub', path: 'https://github.com/ecomfe/react-hooks' }
+    ],
+    "en-US": [null,
+      { title: 'GitHub', path: 'https://github.com/ecomfe/react-hooks' }
+    ],
   },
 };

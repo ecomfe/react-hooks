@@ -3,10 +3,28 @@ import debounce from 'debounce';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-function
 const noop = () => {};
+interface DebounceOption {
+    immediate?: boolean;
+}
 
-export function useDebouncedEffect<T>(callback: () => void | (() => void), value: T, wait: number): void {
+/**
+ * Wrapper `React.useEffect` with debounce ability
+ * @param callback {Function} function that contains imperative,
+ * will excute both in udpate and cleanup stage. Notice! this won't use it's return function like `useEffect`
+ * @param dependency {Function} function to wrap
+ * @param wait {Number} timeout in ms (`100`)
+ * @param option.immediate {Boolean} whether to execute at the beginning (`false`)
+ */
+export function useDebouncedEffect<T>(
+    callback: () => void | (() => void),
+    dependency: T,
+    wait: number,
+    option: DebounceOption = {}
+): void {
     const callbackRef = useRef(callback);
     const cleanUpRef = useRef(noop);
+    const {immediate} = option;
+
     useEffect(
         () => {
             callbackRef.current = callback;
@@ -34,30 +52,47 @@ export function useDebouncedEffect<T>(callback: () => void | (() => void), value
                     console.warn('useDebouncedEffect callback should return undefined or a clean-up function');
                 }
             };
-            const tick = setTimeout(trigger, wait);
-            return () => {
+
+            const cleanUp = tick => {
                 clearTimeout(tick);
                 cleanUpRef.current();
                 cleanUpRef.current = noop;
             };
+
+            if (immediate && cleanUpRef.current === noop) {
+                trigger();
+                cleanUpRef.current = trigger;
+
+                const tick = setTimeout(() => (cleanUpRef.current = noop), wait);
+                return () => cleanUp(tick);
+            }
+            else {
+                const tick = setTimeout(trigger, wait);
+                return () => cleanUp(tick);
+            }
         },
-        [value, wait]
+        [dependency, wait, immediate]
     );
 }
 
-export function useDebouncedValue<T>(value: T, wait: number): T {
+export function useDebouncedValue<T>(value: T, wait: number, option?: DebounceOption): T {
     const [debouncedValue, setDebouncedValue] = useState(value);
-    useDebouncedEffect(() => setDebouncedValue(value), value, wait);
+    useDebouncedEffect(() => setDebouncedValue(value), value, wait, option);
 
     return wait > 0 ? debouncedValue : value;
 }
 
-
-// eslint-disable-next-line @typescript-eslint/ban-types
-export function useDebouncedCallback<C extends Function>(callback: C, wait: number): C {
+/**
+ * Create a debounced callback base on lib `debounce`
+ * @param callback {Function} function to wrap
+ * @param wait {Number} timeout in ms (`100`)
+ * @param option.immediate {Boolean} whether to execute at the beginning (`false`)
+ */
+export function useDebouncedCallback<C extends Function>(callback: C, wait: number, option: DebounceOption = {}): C {
+    const {immediate} = option;
     const debouncedCallback = useMemo(
-        () => (wait > 0 ? debounce(callback, wait) : callback),
-        [callback, wait]
+        () => (wait > 0 ? debounce(callback, wait, immediate) : callback),
+        [callback, wait, immediate]
     );
     useEffect(
         () => {

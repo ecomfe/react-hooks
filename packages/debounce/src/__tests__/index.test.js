@@ -12,6 +12,14 @@ describe('useDebouncedEffect', () => {
         expect(callback).toHaveBeenCalledTimes(1);
     });
 
+    test('mount with immediate option', async () => {
+        const callback = jest.fn();
+        renderHook(() => useDebouncedEffect(callback, 1, 4, {immediate: true}));
+        expect(callback).toHaveBeenCalledTimes(1);
+        await act(() => timeout(5));
+        expect(callback).toHaveBeenCalledTimes(1);
+    });
+
     test('update', async () => {
         const callback = jest.fn();
         const {rerender} = renderHook(
@@ -21,6 +29,18 @@ describe('useDebouncedEffect', () => {
         rerender({value: 2});
         await act(() => timeout(5));
         expect(callback).toHaveBeenCalledTimes(1);
+    });
+
+    test('update with immediate option', async () => {
+        const callback = jest.fn();
+        const {rerender} = renderHook(
+            props => useDebouncedEffect(callback, props.value, 4, {immediate: true}),
+            {initialProps: {value: 1}}
+        );
+        expect(callback).toHaveBeenCalledTimes(1);
+        await act(() => timeout(5));
+        rerender({value: 2});
+        expect(callback).toHaveBeenCalledTimes(2);
     });
 
     test('change callback on update', async () => {
@@ -106,6 +126,16 @@ describe('useDebouncedCallback', () => {
         const {result} = renderHook(() => useDebouncedCallback(fn, 4));
         result.current(1);
         expect(fn).not.toHaveBeenCalled();
+        await act(() => timeout(5));
+        expect(fn).toHaveBeenCalledTimes(1);
+    });
+
+    test('debounce execute with immediate option', async () => {
+        const fn = jest.fn();
+        const {result} = renderHook(() => useDebouncedCallback(fn, 4, {immediate: true}));
+        result.current(1);
+        expect(fn).toHaveBeenCalledTimes(1);
+        result.current(1);
         await act(() => timeout(5));
         expect(fn).toHaveBeenCalledTimes(1);
     });

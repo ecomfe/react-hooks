@@ -50,31 +50,37 @@ export function useRequestCallback<K, O = void, E = Error>(
     }
 
     const implement = builtInStrategies[strategy];
+    const unmounted = useRef(false);
     const querySets = useRef(new WeakMap<typeof task, QuerySet<K, O, E>>());
     const forceUpdate = useForceUpdate();
+    const safeForceUpdate = useCallback(() => {
+        if (!unmounted.current) {
+            forceUpdate();
+        }
+    }, [forceUpdate]);
     const fetch = useCallback(
         (key: K) => {
             const querySet = querySets.current.get(task) as QuerySet<K, O, E>;
             querySets.current.set(task, implement.fetch(querySet, key));
-            forceUpdate();
+            safeForceUpdate();
         },
-        [forceUpdate, implement, task]
+        [safeForceUpdate, implement, task]
     );
     const receive = useCallback(
         (key: K, data: O) => {
             const querySet = querySets.current.get(task) as QuerySet<K, O, E>;
             querySets.current.set(task, implement.receive(querySet, key, data));
-            forceUpdate();
+            safeForceUpdate();
         },
-        [forceUpdate, implement, task]
+        [safeForceUpdate, implement, task]
     );
     const error = useCallback(
         (key: K, error: E) => {
             const querySet = querySets.current.get(task) as QuerySet<K, O, E>;
             querySets.current.set(task, implement.error(querySet, key, error));
-            forceUpdate();
+            safeForceUpdate();
         },
-        [forceUpdate, implement, task]
+        [safeForceUpdate, implement, task]
     );
     const key = useOriginalDeepCopy(params);
     const querySet = querySets.current.get(task);
@@ -103,9 +109,16 @@ export function useRequestCallback<K, O = void, E = Error>(
         () => {
             const querySet = querySets.current.get(task) as QuerySet<K, O, E>;
             querySets.current.set(task, implement.accept(querySet, key));
-            forceUpdate();
+            safeForceUpdate();
         },
-        [forceUpdate, implement, key, task]
+        [safeForceUpdate, implement, key, task]
+    );
+
+    useEffect(
+        () => () => {
+            unmounted.current = true;
+        },
+        []
     );
 
     if (!query) {

@@ -3,7 +3,7 @@ import {useOnScreen} from '@huse/intersection';
 import './useOnScreen.less';
 
 export default () => {
-    const [ref, isOnScreen] = useOnScreen({rootMargin: '10px', threshold: '30%'});
+    const [ref, isOnScreen] = useOnScreen({rootMargin: '10px', threshold: 0.3});
     return (
         <>
             <h1>Scroll Your Web 👇</h1>

@@ -31,7 +31,7 @@ export function useLocalStorage<T>(key: string, initialValue: T): [T, (value: T)
             }
 
             const notify = (e: StorageEvent) => {
-                if (e.key === key) {
+                if (e.storageArea === localStorage && e.key === key) {
                     try {
                         setValue(e.newValue ? JSON.parse(e.newValue) : initialValue);
                     }

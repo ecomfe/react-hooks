@@ -23,7 +23,12 @@ describe('with localStorage', () => {
 
     test('listen on change', () => {
         const {result} = renderHook(() => useLocalStorage('foo', 'bar'));
-        const event = new StorageEvent('storage', {key: 'foo', oldValue: '"bar"', newValue: '"foo"'});
+        const event = new StorageEvent('storage', {
+            key: 'foo',
+            oldValue: '"bar"',
+            newValue: '"foo"',
+            storageArea: window.localStorage,
+        });
         // eslint-disable-next-line no-void
         act(() => void window.dispatchEvent(event));
         expect(result.current[0]).toBe('foo');
@@ -31,7 +36,12 @@ describe('with localStorage', () => {
 
     test('fallback on change value parse error', () => {
         const {result} = renderHook(() => useLocalStorage('foo', 'bar'));
-        const event = new StorageEvent('storage', {key: 'foo', oldValue: '"bar"', newValue: 'invalid json'});
+        const event = new StorageEvent('storage', {
+            key: 'foo',
+            oldValue: '"bar"',
+            newValue: 'invalid json',
+            storageArea: window.localStorage,
+        });
         // eslint-disable-next-line no-void
         act(() => void window.dispatchEvent(event));
         expect(result.current[0]).toBe('bar');
@@ -39,7 +49,12 @@ describe('with localStorage', () => {
 
     test('fallback on change with null new value', () => {
         const {result} = renderHook(() => useLocalStorage('foo', 'bar'));
-        const event = new StorageEvent('storage', {key: 'foo', oldValue: '"bar"', newValue: null});
+        const event = new StorageEvent('storage', {
+            key: 'foo',
+            oldValue: '"bar"',
+            newValue: null,
+            storageArea: window.localStorage,
+        });
         // eslint-disable-next-line no-void
         act(() => void window.dispatchEvent(event));
         expect(result.current[0]).toBe('bar');
@@ -47,7 +62,12 @@ describe('with localStorage', () => {
 
     test('ignore unexpected change key', () => {
         const {result} = renderHook(() => useLocalStorage('foo', 'bar'));
-        const event = new StorageEvent('storage', {key: 'bar', oldValue: '"bar"', newValue: '"foo"'});
+        const event = new StorageEvent('storage', {
+            key: 'bar',
+            oldValue: '"bar"',
+            newValue: '"foo"',
+            storageArea: window.localStorage,
+        });
         // eslint-disable-next-line no-void
         act(() => void window.dispatchEvent(event));
         expect(result.current[0]).toBe('bar');
@@ -57,6 +77,19 @@ describe('with localStorage', () => {
         const {result} = renderHook(() => useLocalStorage('foo', 'bar'));
         act(() => result.current[1]('foo'));
         expect(result.current[0]).toBe('foo');
+    });
+
+    test('ignore session storage change', () => {
+        const {result} = renderHook(() => useLocalStorage('foo', 'bar'));
+        const event = new StorageEvent('storage', {
+            key: 'bar',
+            oldValue: '"bar"',
+            newValue: '"foo"',
+            storageArea: window.sessionStorage,
+        });
+        // eslint-disable-next-line no-void
+        act(() => void window.dispatchEvent(event));
+        expect(result.current[0]).toBe('bar');
     });
 });
 

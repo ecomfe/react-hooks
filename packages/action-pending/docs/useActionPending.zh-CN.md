@@ -19,6 +19,6 @@ type AsyncFunction = (...args: any[]) => Promise<any>;
 function useActionPending<A extends AsyncFunction>(action: A): [A, number]
 ```
 
-在返回的元祖中，第二项称为`pendingCount`，你可以简单地用`!!pendingCount`来判断是否还有未完成的异步，并在界面上表现为一个“加载中”的视图。
+在返回的元组中，第二项称为`pendingCount`，你可以简单地用`!!pendingCount`来判断是否还有未完成的异步，并在界面上表现为一个“加载中”的视图。
 
 <code src="./demo/useActionPending.tsx">

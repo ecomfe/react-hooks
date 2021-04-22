@@ -1,5 +1,5 @@
 ---
-title: useForceupdate
+title: useForceUpdate
 nav:
   title: Hooks
   path: /hook
@@ -9,7 +9,7 @@ group:
 order: 2
 ---
 
-# useForceupdate
+# useForceUpdate
 
 Return a function which when invoked will update current component.
 

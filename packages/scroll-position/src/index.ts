@@ -1,4 +1,4 @@
-import {useRef, useEffect, useState} from 'react';
+import {useRef, useEffect, useState, MutableRefObject} from 'react';
 import hasPassiveEvent from 'has-passive-events';
 
 export interface ScrollPosition {
@@ -28,18 +28,28 @@ const getScrollPosition = (element: HTMLElement): ScrollPosition => {
     };
 };
 
-export function useScrollPosition(element?: HTMLElement | null): ScrollPosition {
+type Target = MutableRefObject<HTMLElement> | HTMLElement | null;
+
+function getTargetNode(target?: Target): HTMLElement | Document {
+    if (!target) {
+        return document;
+    }
+    if ('current' in target) {
+        return target.current;
+    }
+    return target;
+}
+
+export function useScrollPosition(target?: Target): ScrollPosition {
     const rafTick = useRef(0);
     const [position, setPosition] = useState(INITIAL_POSITION);
     useEffect(
         () => {
-            if (element === null) {
+            if (target === null) {
                 return;
             }
-
-            const target = element ?? document;
-            const targetElement = element ?? document.documentElement;
-
+            const targetNode = getTargetNode(target);
+            const targetElement = targetNode === document ? document.documentElement : targetNode as HTMLElement;
             setPosition(getScrollPosition(targetElement));
 
             const syncScroll = () => {
@@ -54,14 +64,14 @@ export function useScrollPosition(element?: HTMLElement | null): ScrollPosition 
                 rafTick.current = requestAnimationFrame(callback);
             };
 
-            target.addEventListener('scroll', syncScroll, EVENT_OPTIONS);
+            targetNode.addEventListener('scroll', syncScroll, EVENT_OPTIONS);
 
             return () => {
-                target.removeEventListener('scroll', syncScroll, EVENT_OPTIONS);
+                targetNode.removeEventListener('scroll', syncScroll, EVENT_OPTIONS);
                 cancelAnimationFrame(rafTick.current);
             };
         },
-        [element]
+        [target]
     );
 
     return position;

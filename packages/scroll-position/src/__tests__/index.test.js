@@ -1,10 +1,27 @@
+import {useEffect, useRef} from 'react';
 import {renderHook} from '@testing-library/react-hooks';
+import {render} from '@testing-library/react';
 import {useScrollPosition, useScrollLeft, useScrollTop} from '../index';
 
 describe('useScrollPosition', () => {
     test('default position on null element', () => {
         const {result} = renderHook(() => useScrollPosition(null));
         expect(result.current).toEqual({x: 0, y: 0, left: 0, top: 0, scrollLeft: 0, scrollTop: 0});
+    });
+
+    test('pass ref', () => {
+        let scroll = null;
+        let ref = null;
+        const Foo = () => {
+            ref = useRef(null);
+            useEffect(() => {
+                ref.current.scrollTop = 10;
+            }, []);
+            scroll = useScrollPosition(ref);
+            return <span ref={ref} id="root" />;
+        };
+        render(<Foo />);
+        expect(scroll).toEqual({x: 0, y: 10, left: 0, top: 10, scrollLeft: 0, scrollTop: 10});
     });
 
     test('element scroll position', () => {

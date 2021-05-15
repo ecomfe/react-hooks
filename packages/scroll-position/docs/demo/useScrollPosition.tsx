@@ -3,7 +3,7 @@ import {useScrollPosition} from '@huse/scroll-position';
 
 export default () => {
     const ref = useRef(null);
-    const position = useScrollPosition(ref.current);
+    const position = useScrollPosition(ref);
     const gradient = 'radial-gradient(circle at 10% 20%, rgb(6, 123, 239) 14.2%, rgb(219, 115, 249) 89.5%)';
     console.log('position---->', position);
     return (

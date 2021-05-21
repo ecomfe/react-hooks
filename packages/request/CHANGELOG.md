@@ -1,13 +1,24 @@
----
-nav:
-  title: Hooks
-  path: /hook
----
-
 # Change Log
 
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# [1.2.0](https://github.com/ecomfe/react-hooks/compare/@huse/request@1.1.3...@huse/request@1.2.0) (2021-05-21)
+
+
+### Bug Fixes
+
+* **request:** prevent forceUpdate in unmounted component ([bb49009](https://github.com/ecomfe/react-hooks/commit/bb49009a9ce06370ad9ad4cb7a098a8f4953cf84))
+* fix messy nav bar ([#64](https://github.com/ecomfe/react-hooks/issues/64)) ([d300f58](https://github.com/ecomfe/react-hooks/commit/d300f5800310f880d79e36b459c502c5b4f5cfe2))
+
+
+### Features
+
+* add every hook link and change every hook README order ([4e9a89c](https://github.com/ecomfe/react-hooks/commit/4e9a89c6bbe846214d65393f0afef24c291718e6))
+
+
+
+
 
 ## [1.1.3](https://github.com/ecomfe/react-hooks/compare/@huse/request@1.1.1...@huse/request@1.1.3) (2020-11-15)
 

@@ -1,13 +1,24 @@
----
-nav:
-  title: Hooks
-  path: /hook
----
-
 # Change Log
 
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# [1.1.0](https://github.com/ecomfe/react-hooks/compare/@huse/local-storage@1.0.3...@huse/local-storage@1.1.0) (2021-05-21)
+
+
+### Bug Fixes
+
+* **local-storage:** only handle storage event when localStorage changed ([cc18b2f](https://github.com/ecomfe/react-hooks/commit/cc18b2ffc3b1a71c42936f68db5b46bf13356ffe))
+* fix messy nav bar ([#64](https://github.com/ecomfe/react-hooks/issues/64)) ([d300f58](https://github.com/ecomfe/react-hooks/commit/d300f5800310f880d79e36b459c502c5b4f5cfe2))
+
+
+### Features
+
+* add every hook link and change every hook README order ([4e9a89c](https://github.com/ecomfe/react-hooks/commit/4e9a89c6bbe846214d65393f0afef24c291718e6))
+
+
+
+
 
 ## [1.0.3](https://github.com/ecomfe/react-hooks/compare/@huse/local-storage@1.0.1...@huse/local-storage@1.0.3) (2020-11-15)
 

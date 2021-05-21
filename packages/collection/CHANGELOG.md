@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.1](https://github.com/ecomfe/react-hooks/compare/@huse/collection@1.1.0...@huse/collection@1.1.1) (2021-05-21)
+
+
+### Bug Fixes
+
+* **collection:** useArray incorrectly use immer for filter ([f04bc53](https://github.com/ecomfe/react-hooks/commit/f04bc5341b4e3cee4589c6aebe17aed00f1850da))
+
+
+
+
+
 # [1.1.0](https://github.com/ecomfe/react-hooks/compare/@huse/collection@1.0.4...@huse/collection@1.1.0) (2020-12-10)
 
 

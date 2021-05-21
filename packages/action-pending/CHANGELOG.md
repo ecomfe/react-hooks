@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.1](https://github.com/ecomfe/react-hooks/compare/@huse/action-pending@1.1.0...@huse/action-pending@1.1.1) (2021-05-21)
+
+
+### Bug Fixes
+
+* **action-pending:** prevent state update in unmounted component ([cf3644f](https://github.com/ecomfe/react-hooks/commit/cf3644f996271da2369e6db07a123c38a16d7a06))
+
+
+
+
+
 # [1.1.0](https://github.com/ecomfe/react-hooks/compare/@huse/action-pending@1.0.4...@huse/action-pending@1.1.0) (2020-12-10)
 
 

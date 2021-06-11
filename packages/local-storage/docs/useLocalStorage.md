@@ -11,7 +11,7 @@ order: 2
 
 # useLocalStorage
 
-Retrieve value from `localStorage` by key, also returns a function to update it.
+Retrieve value from `localStorage` by key, also returns a function to update it. Value could be any type which can be handled by `JSON.stringify`.
 
 ```typescript
 function useLocalStorage<T>(key: string, initialValue: T): [T, (value: T) => void]

@@ -26,6 +26,7 @@ export interface WebSocketHook {
 const noop = () => {};
 
 export function useWebSocket(url: string, options: Options = {}): WebSocketHook {
+    const {autoStart = true} = options; // Default connect state is open
     const originalOptions = useOriginalDeepCopy(options);
     const previousOptions = usePreviousValue(originalOptions);
     const [lastMessage, setLastMessage] = useState<WebSocketEventMap['message'] | null>(null);
@@ -78,6 +79,10 @@ export function useWebSocket(url: string, options: Options = {}): WebSocketHook 
     // Close previous socket and open a new one when url changes.
     useEffect(
         () => {
+            // Connect state
+            if (!autoStart) {
+                return;
+            }
             // Reset reconnect count on change.
             reconnectCount.current = 0;
             let removeListeners = noop;
@@ -90,7 +95,7 @@ export function useWebSocket(url: string, options: Options = {}): WebSocketHook 
             removeListeners = startWebSocket();
             return removeListeners;
         },
-        [startWebSocket]
+        [startWebSocket, autoStart]
     );
     // Check to see whether options change during component's life time.
     useEffect(

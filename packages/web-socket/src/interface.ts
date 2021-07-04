@@ -10,6 +10,7 @@ export interface Options {
     reconnectOnError?: (event: WebSocketEventMap['error']) => boolean;
     reconnectInterval?: number;
     reconnectAttempts?: number;
+    autoStart?: boolean;
 }
 
 export type MessageType = string | ArrayBuffer | SharedArrayBuffer | Blob | ArrayBufferView;

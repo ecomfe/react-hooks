@@ -50,6 +50,7 @@ interface Options {
     reconnectOnError?: (event: WebSocketEventMap['error']) => boolean; // Return `true` to reconnect
     reconnectInterval?: number; // Interval between reconnects in milliseconds
     reconnectAttempts?: number;
+    autoStart?: boolean;
 }
 
 Socket is started automatically, you can still close and start it via `start` and `close` function.

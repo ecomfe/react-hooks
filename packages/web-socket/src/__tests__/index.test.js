@@ -421,3 +421,57 @@ test('webSocket startWebSocket ok, closeWebSocket ok without options', async () 
     });
     expect(result.current.readyState).toBe(0);
 });
+
+describe('webSocket autoStart', () => {
+    test('webSocket startWebSocket autoStart true', async () => {
+        const fakeURL = 'ws://localhost:1234';
+        const server = new WS(fakeURL);
+
+        const options = {
+            autoStart: true,
+        };
+
+        const {result} = renderHook(() => useWebSocket(fakeURL, options));
+
+        await act(async () => {
+            await server.connected;
+            return promise;
+        });
+        expect(result.current.readyState).toBe(3);
+    });
+
+    test('webSocket startWebSocket autoStart false', async () => {
+        const fakeURL = 'ws://localhost:1234';
+        const server = new WS(fakeURL);
+        const options = {
+            autoStart: false,
+        };
+
+        const {result} = renderHook(() => useWebSocket(fakeURL, options));
+
+        await act(async () => {
+            await server.connected;
+            return promise;
+        });
+        expect(result.current.readyState).toBe(undefined);
+    });
+});
+
+test('webSocket startWebSocket repeat open', async () => {
+    const fakeURL = 'ws://localhost:1234';
+    const server = new WS(fakeURL);
+
+    const {result} = renderHook(() => useWebSocket(fakeURL));
+    const {start: startWebSocket} = result.current;
+
+    await act(async () => {
+        await server.connected;
+        return promise;
+    });
+    // 连接之后
+    expect(result.current.readyState).toBe(1);
+    // 再次连接
+    startWebSocket();
+    // 状态不变
+    expect(result.current.readyState).toBe(1);
+});

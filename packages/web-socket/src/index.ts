@@ -55,6 +55,10 @@ export function useWebSocket(url: string, options: Options = {}): WebSocketHook 
     );
     const startWebSocket = useCallback(
         () => {
+            // Avoid duplicate opening
+            if (webSocketRef?.current?.readyState === ReadyState.OPEN) {
+                return;
+            }
             // Move to connecting state
             setUrlReadyState(url, ReadyState.CONNECTING);
             // Create web socket instance.

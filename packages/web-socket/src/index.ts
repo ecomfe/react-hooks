@@ -57,7 +57,8 @@ export function useWebSocket(url: string, options: Options = {}): WebSocketHook 
         () => {
             // Avoid duplicate opening
             if (webSocketRef?.current?.readyState === ReadyState.OPEN) {
-                return;
+                // Prevent undefined
+                return noop;
             }
             // Move to connecting state
             setUrlReadyState(url, ReadyState.CONNECTING);

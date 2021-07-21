@@ -80,7 +80,10 @@ export function useWebSocket(url: string, options: Options = {}): WebSocketHook 
         },
         [url, setUrlReadyState, originalOptions]
     );
-    const closeWebSocket = useCallback(() => webSocketRef.current?.close(), []);
+    const closeWebSocket = useCallback(
+        () => webSocketRef.current?.close(),
+        []
+    );
     // Close previous socket and open a new one when url changes.
     useEffect(
         () => {
@@ -113,11 +116,14 @@ export function useWebSocket(url: string, options: Options = {}): WebSocketHook 
         // eslint-disable-next-line react-hooks/exhaustive-deps
         [originalOptions]
     );
-    useEffect(() => {
-        return () => {
-            unmountFlag.current = true;
-        };
-    }, []);
+    useEffect(
+        () => {
+            return () => {
+                unmountFlag.current = true;
+            };
+        },
+        []
+    );
 
     const readyStateFromURL = readyState[url] ?? ReadyState.UNINSTANTIATED;
     return {

@@ -20,8 +20,13 @@ export function useActionPending<A extends AsyncFunction>(action: A): [A, number
         },
         [action, dec, inc]
     );
-    useEffect(() => () => {
-        unmounted.current = true;
-    }, []);
+    useEffect(
+        () => {
+            return () => {
+                unmounted.current = true;
+            };
+        },
+        []
+    );
     return [actionWithPending as A, pendingCount];
 }

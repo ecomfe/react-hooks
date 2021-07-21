@@ -102,7 +102,10 @@ export function useUserMedia(
         [stop, originalConstraints, onSuccess, onError]
     );
     // Force stop stream when component unmounts to prevent memory leak
-    useEffect(() => stop, [stop]);
+    useEffect(
+        () => stop,
+        [stop]
+    );
 
     return {
         recording,

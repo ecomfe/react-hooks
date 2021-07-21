@@ -53,11 +53,14 @@ export function useRequestCallback<K, O = void, E = Error>(
     const unmounted = useRef(false);
     const querySets = useRef(new WeakMap<typeof task, QuerySet<K, O, E>>());
     const forceUpdate = useForceUpdate();
-    const safeForceUpdate = useCallback(() => {
-        if (!unmounted.current) {
-            forceUpdate();
-        }
-    }, [forceUpdate]);
+    const safeForceUpdate = useCallback(
+        () => {
+            if (!unmounted.current) {
+                forceUpdate();
+            }
+        },
+        [forceUpdate]
+    );
     const fetch = useCallback(
         (key: K) => {
             const querySet = querySets.current.get(task) as QuerySet<K, O, E>;

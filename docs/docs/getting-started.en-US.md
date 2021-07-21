@@ -11,12 +11,12 @@ This is a collection of frequently used react hooks to support development withi
 
 ## Document
 
-You can click [here](https://ecomfe.github.io/react-hooks) to visit our document site 
+You can click [here](https://ecomfe.github.io/react-hooks) to visit our document site
 or you can find description to package in its `README.md` to start a document site locally.
 
 ```
-yarn
-yarn doc:dev
+pnpm install
+npm run doc:dev
 ```
 
 Open `http://localhost:3000` to view documents about hooks.

@@ -15,8 +15,8 @@ nav:
 或者把代码下载到本地查看，然后执行以下代码
 
 ```
-yarn
-yarn doc:dev
+pnpm install
+npm run doc:dev
 ```
 
 打开 `http://localhost:3000` 去查阅关于hooks的介绍

@@ -52,8 +52,18 @@ export function useScript(src?: string): [boolean, boolean] {
                 return;
             }
 
+            let unmounted = false;
             const loading = loadScript(src);
-            loading.then(forceUpdate, forceUpdate);
+            loading.finally(() => {
+                if (unmounted) {
+                    return;
+                }
+                forceUpdate();
+            });
+
+            return () => {
+                unmounted = true;
+            };
         },
         [forceUpdate, src]
     );

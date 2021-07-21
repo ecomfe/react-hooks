@@ -1,4 +1,4 @@
-import {useEffect} from 'react';
+import {useEffect, useRef} from 'react';
 import {useForceUpdate} from '@huse/update';
 
 const CACHE: {[src: string]: boolean | Promise<void>} = {};
@@ -40,6 +40,7 @@ const loadScript = (src: string): Promise<void> => {
 
 export function useScript(src?: string): [boolean, boolean] {
     const forceUpdate = useForceUpdate();
+    const unmounted = useRef(false);
     useEffect(
         () => {
             if (!src) {
@@ -52,20 +53,19 @@ export function useScript(src?: string): [boolean, boolean] {
                 return;
             }
 
-            let unmounted = false;
             const loading = loadScript(src);
-            loading.finally(() => {
-                if (unmounted) {
-                    return;
-                }
-                forceUpdate();
-            });
-
-            return () => {
-                unmounted = true;
-            };
+            loading.finally(() => !unmounted.current && forceUpdate());
         },
         [forceUpdate, src]
+    );
+    useEffect(
+        () => {
+            unmounted.current = false;
+            return () => {
+                unmounted.current = true;
+            };
+        },
+        []
     );
 
     return [

@@ -22,6 +22,7 @@ export function useActionPending<A extends AsyncFunction>(action: A): [A, number
     );
     useEffect(
         () => {
+            unmounted.current = false;
             return () => {
                 unmounted.current = true;
             };

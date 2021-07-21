@@ -118,8 +118,12 @@ export function useRequestCallback<K, O = void, E = Error>(
     );
 
     useEffect(
-        () => () => {
-            unmounted.current = true;
+        () => {
+            unmounted.current = false;
+
+            return () => {
+                unmounted.current = true;
+            };
         },
         []
     );

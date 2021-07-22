@@ -30,7 +30,7 @@ importers:
 
   packages/action-pending:
     specifiers:
-      '@huse/number': ^1.2.1
+      '@huse/number': ^1.2.2
       '@reskript/cli': ^1.10.1
       '@reskript/cli-lint': ^1.10.1
       '@reskript/cli-test': ^1.10.1
@@ -57,7 +57,7 @@ importers:
 
   packages/boolean:
     specifiers:
-      '@huse/methods': ^1.2.1
+      '@huse/methods': ^1.2.2
       '@reskript/cli': ^1.10.1
       '@reskript/cli-lint': ^1.10.1
       '@reskript/cli-test': ^1.10.1
@@ -84,7 +84,7 @@ importers:
 
   packages/click-outside:
     specifiers:
-      '@huse/document-event': ^1.1.0
+      '@huse/document-event': ^1.1.1
       '@reskript/cli': ^1.10.1
       '@reskript/cli-lint': ^1.10.1
       '@reskript/cli-test': ^1.10.1
@@ -113,7 +113,7 @@ importers:
 
   packages/collection:
     specifiers:
-      '@huse/methods': ^1.2.1
+      '@huse/methods': ^1.2.2
       '@reskript/cli': ^1.10.1
       '@reskript/cli-lint': ^1.10.1
       '@reskript/cli-test': ^1.10.1
@@ -169,7 +169,7 @@ importers:
 
   packages/debug:
     specifiers:
-      '@huse/previous-value': ^1.1.0
+      '@huse/previous-value': ^1.1.1
       '@reskript/cli': ^1.10.1
       '@reskript/cli-lint': ^1.10.1
       '@reskript/cli-test': ^1.10.1
@@ -302,7 +302,7 @@ importers:
 
   packages/element-size:
     specifiers:
-      '@huse/effect-ref': ^1.1.0
+      '@huse/effect-ref': ^1.1.1
       '@reskript/cli': ^1.10.1
       '@reskript/cli-dev': ^1.10.1
       '@reskript/cli-lint': ^1.10.1
@@ -333,7 +333,7 @@ importers:
 
   packages/hover:
     specifiers:
-      '@huse/boolean': ^1.1.1
+      '@huse/boolean': ^1.1.2
       '@reskript/cli': ^1.10.1
       '@reskript/cli-lint': ^1.10.1
       '@reskript/cli-test': ^1.10.1
@@ -383,44 +383,44 @@ importers:
 
   packages/index:
     specifiers:
-      '@huse/action-pending': ^1.1.1
-      '@huse/boolean': ^1.1.1
-      '@huse/click-outside': ^1.1.0
-      '@huse/collection': ^1.1.1
-      '@huse/debounce': ^1.1.0
-      '@huse/debug': ^1.1.0
-      '@huse/derived-state': ^1.1.0
-      '@huse/document-event': ^1.1.0
-      '@huse/document-title': ^1.1.0
-      '@huse/effect-ref': ^1.1.0
-      '@huse/element-size': ^1.1.0
-      '@huse/hover': ^1.1.1
-      '@huse/infinite-scroll': ^1.2.1
-      '@huse/input-value': ^1.1.0
-      '@huse/intersection': ^1.2.0
-      '@huse/local-storage': ^1.1.0
-      '@huse/media': ^1.1.0
-      '@huse/merged-ref': ^1.2.0
-      '@huse/methods': ^1.2.1
-      '@huse/network': ^1.1.1
-      '@huse/number': ^1.2.1
-      '@huse/optimistic': ^0.10.0
-      '@huse/performance': ^1.1.0
-      '@huse/poll': ^1.1.1
-      '@huse/previous-value': ^1.1.0
-      '@huse/request': ^1.2.0
-      '@huse/script': ^1.1.0
-      '@huse/scroll-into-view': ^1.1.0
-      '@huse/scroll-lock': ^1.1.0
-      '@huse/scroll-position': ^1.1.0
-      '@huse/selection': ^1.1.1
-      '@huse/snapshot': ^1.1.0
-      '@huse/timeout': ^1.1.0
-      '@huse/transition-state': ^1.1.0
-      '@huse/update': ^1.1.0
-      '@huse/user-media': ^0.10.0
-      '@huse/web-socket': ^0.10.0
-      '@huse/window-size': ^1.1.0
+      '@huse/action-pending': ^1.1.2
+      '@huse/boolean': ^1.1.2
+      '@huse/click-outside': ^1.1.1
+      '@huse/collection': ^1.1.2
+      '@huse/debounce': ^1.1.1
+      '@huse/debug': ^1.1.1
+      '@huse/derived-state': ^1.1.1
+      '@huse/document-event': ^1.1.1
+      '@huse/document-title': ^1.1.1
+      '@huse/effect-ref': ^1.1.1
+      '@huse/element-size': ^1.1.1
+      '@huse/hover': ^1.1.2
+      '@huse/infinite-scroll': ^1.2.2
+      '@huse/input-value': ^1.1.1
+      '@huse/intersection': ^1.2.1
+      '@huse/local-storage': ^1.1.1
+      '@huse/media': ^1.1.1
+      '@huse/merged-ref': ^1.2.1
+      '@huse/methods': ^1.2.2
+      '@huse/network': ^1.1.2
+      '@huse/number': ^1.2.2
+      '@huse/optimistic': ^0.10.1
+      '@huse/performance': ^1.1.1
+      '@huse/poll': ^1.1.2
+      '@huse/previous-value': ^1.1.1
+      '@huse/request': ^1.2.1
+      '@huse/script': ^1.1.1
+      '@huse/scroll-into-view': ^1.1.1
+      '@huse/scroll-lock': ^1.1.1
+      '@huse/scroll-position': ^1.1.1
+      '@huse/selection': ^1.1.2
+      '@huse/snapshot': ^1.1.1
+      '@huse/timeout': ^1.1.1
+      '@huse/transition-state': ^1.1.1
+      '@huse/update': ^1.1.1
+      '@huse/user-media': ^0.10.1
+      '@huse/web-socket': ^0.11.0
+      '@huse/window-size': ^1.1.1
       '@reskript/cli': ^1.10.1
       '@reskript/cli-lint': ^1.10.1
       '@reskript/config-lint': ^1.10.1
@@ -472,7 +472,7 @@ importers:
 
   packages/infinite-scroll:
     specifiers:
-      '@huse/methods': ^1.2.1
+      '@huse/methods': ^1.2.2
       '@reskript/cli': ^1.10.1
       '@reskript/cli-dev': ^1.10.1
       '@reskript/cli-lint': ^1.10.1
@@ -555,7 +555,7 @@ importers:
 
   packages/intersection:
     specifiers:
-      '@huse/effect-ref': ^1.1.0
+      '@huse/effect-ref': ^1.1.1
       '@reskript/cli': ^1.10.1
       '@reskript/cli-dev': ^1.10.1
       '@reskript/cli-lint': ^1.10.1
@@ -628,7 +628,7 @@ importers:
 
   packages/merged-ref:
     specifiers:
-      '@huse/previous-value': ^1.1.0
+      '@huse/previous-value': ^1.1.1
       '@reskript/cli': ^1.10.1
       '@reskript/cli-lint': ^1.10.1
       '@reskript/cli-test': ^1.10.1
@@ -681,7 +681,7 @@ importers:
   packages/network:
     specifiers:
       '@ant-design/icons': ^4.6.2
-      '@huse/boolean': ^1.1.1
+      '@huse/boolean': ^1.1.2
       '@reskript/cli': ^1.10.1
       '@reskript/cli-lint': ^1.10.1
       '@reskript/cli-test': ^1.10.1
@@ -709,7 +709,7 @@ importers:
 
   packages/number:
     specifiers:
-      '@huse/methods': ^1.2.1
+      '@huse/methods': ^1.2.2
       '@reskript/cli': ^1.10.1
       '@reskript/cli-lint': ^1.10.1
       '@reskript/cli-test': ^1.10.1
@@ -778,8 +778,8 @@ importers:
 
   packages/poll:
     specifiers:
-      '@huse/action-pending': ^1.1.1
-      '@huse/timeout': ^1.1.0
+      '@huse/action-pending': ^1.1.2
+      '@huse/timeout': ^1.1.1
       '@reskript/cli': ^1.10.1
       '@reskript/cli-dev': ^1.10.1
       '@reskript/cli-lint': ^1.10.1
@@ -842,8 +842,8 @@ importers:
 
   packages/request:
     specifiers:
-      '@huse/previous-value': ^1.1.0
-      '@huse/update': ^1.1.0
+      '@huse/previous-value': ^1.1.1
+      '@huse/update': ^1.1.1
       '@reskript/cli': ^1.10.1
       '@reskript/cli-lint': ^1.10.1
       '@reskript/cli-test': ^1.10.1
@@ -904,7 +904,7 @@ importers:
 
   packages/script:
     specifiers:
-      '@huse/update': ^1.1.0
+      '@huse/update': ^1.1.1
       '@reskript/cli': ^1.10.1
       '@reskript/cli-dev': ^1.10.1
       '@reskript/cli-lint': ^1.10.1
@@ -1000,7 +1000,7 @@ importers:
 
   packages/selection:
     specifiers:
-      '@huse/collection': ^1.1.1
+      '@huse/collection': ^1.1.2
       '@reskript/cli': ^1.10.1
       '@reskript/cli-lint': ^1.10.1
       '@reskript/cli-test': ^1.10.1
@@ -1025,7 +1025,7 @@ importers:
 
   packages/snapshot:
     specifiers:
-      '@huse/debounce': ^1.1.0
+      '@huse/debounce': ^1.1.1
       '@reskript/cli': ^1.10.1
       '@reskript/cli-lint': ^1.10.1
       '@reskript/cli-test': ^1.10.1
@@ -1122,7 +1122,7 @@ importers:
 
   packages/user-media:
     specifiers:
-      '@huse/previous-value': ^1.1.0
+      '@huse/previous-value': ^1.1.1
       '@reskript/cli': ^1.10.1
       '@reskript/cli-lint': ^1.10.1
       '@reskript/cli-test': ^1.10.1
@@ -1151,7 +1151,7 @@ importers:
 
   packages/web-socket:
     specifiers:
-      '@huse/previous-value': ^1.1.0
+      '@huse/previous-value': ^1.1.1
       '@reskript/cli': ^1.10.1
       '@reskript/cli-lint': ^1.10.1
       '@reskript/cli-test': ^1.10.1

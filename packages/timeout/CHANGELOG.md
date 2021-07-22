@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.1](https://github.com/ecomfe/react-hooks/compare/@huse/timeout@1.1.0...@huse/timeout@1.1.1) (2021-07-22)
+
+
+### Bug Fixes
+
+* **timeout:** use clearInterval to cancel setInterval to avoid confusion ([156bd54](https://github.com/ecomfe/react-hooks/commit/156bd54669ed456c72e9f2ef46a979c6e4175963))
+
+
+
+
+
 # [1.1.0](https://github.com/ecomfe/react-hooks/compare/@huse/timeout@1.0.3...@huse/timeout@1.1.0) (2021-05-21)
 
 

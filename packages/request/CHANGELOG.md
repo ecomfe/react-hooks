@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.1](https://github.com/ecomfe/react-hooks/compare/@huse/request@1.2.0...@huse/request@1.2.1) (2021-07-22)
+
+
+### Bug Fixes
+
+* make unmount flag compatible to concurrent mode ([61d7590](https://github.com/ecomfe/react-hooks/commit/61d7590b59e816c77f070e1140a5bee03647701a))
+
+
+
+
+
 # [1.2.0](https://github.com/ecomfe/react-hooks/compare/@huse/request@1.1.3...@huse/request@1.2.0) (2021-05-21)
 
 

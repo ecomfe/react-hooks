@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.11.0](https://github.com/ecomfe/react-hooks/compare/@huse/web-socket@0.10.0...@huse/web-socket@0.11.0) (2021-07-22)
+
+
+### Bug Fixes
+
+* make unmount flag compatible to concurrent mode ([61d7590](https://github.com/ecomfe/react-hooks/commit/61d7590b59e816c77f070e1140a5bee03647701a))
+
+
+### Features
+
+* **web-socket:** support automatic opening parameters ([#94](https://github.com/ecomfe/react-hooks/issues/94)) ([5b1c9cf](https://github.com/ecomfe/react-hooks/commit/5b1c9cf1ac2a2c32b998f61f3ea9c59aac9c37d9))
+
+
+
+
+
 # [0.10.0](https://github.com/ecomfe/react-hooks/compare/@huse/web-socket@0.9.2...@huse/web-socket@0.10.0) (2021-05-21)
 
 

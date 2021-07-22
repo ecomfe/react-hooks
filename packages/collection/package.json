@@ -1,6 +1,6 @@
 {
   "name": "@huse/collection",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "keywords": [
     "react",
     "hooks"
@@ -25,7 +25,7 @@
     "test": "skr test --coverage"
   },
   "dependencies": {
-    "@huse/methods": "^1.2.1"
+    "@huse/methods": "^1.2.2"
   },
   "devDependencies": {
     "@reskript/cli": "^1.10.1",

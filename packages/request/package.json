@@ -1,6 +1,6 @@
 {
   "name": "@huse/request",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "keywords": [
     "react",
     "hooks"
@@ -25,8 +25,8 @@
     "test": "skr test --coverage"
   },
   "dependencies": {
-    "@huse/previous-value": "^1.1.0",
-    "@huse/update": "^1.1.0",
+    "@huse/previous-value": "^1.1.1",
+    "@huse/update": "^1.1.1",
     "query-shape": "^1.0.2"
   },
   "devDependencies": {

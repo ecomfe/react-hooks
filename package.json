@@ -31,11 +31,11 @@
     "@reskript/cli-lint": "^1.10.1",
     "dumi": "^1.0.35",
     "dumi-theme-default": "^1.1.6",
-    "fs-extra": "^9.0.1",
+    "fs-extra": "^10.0.0",
     "glob": "^7.1.6",
-    "immer": "^8.0.0",
-    "inquirer": "^7.0.6",
-    "lerna": "^3.20.2",
+    "immer": "^9.0.5",
+    "inquirer": "^8.1.2",
+    "lerna": "^4.0.0",
     "lodash": "^4.17.20",
     "sort-package-json": "^1.48.0"
   }

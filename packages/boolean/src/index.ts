@@ -25,3 +25,15 @@ export function useToggle(initialValue: boolean = false) {
     const [value, {toggle}] = useBoolean(initialValue);
     return [value, toggle] as const;
 }
+
+export function useToggleOrSet(initialValue: boolean = false) {
+    const [value, {toggleOrSet}] = useMethodsNative(
+        {
+            toggleOrSet: (prevState: boolean, arg: any) => {
+                return typeof arg === 'boolean' ? arg : !prevState;
+            },
+        },
+        initialValue
+    );
+    return [value, toggleOrSet] as const;
+}

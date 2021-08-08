@@ -7,8 +7,8 @@ const reducers = {
     off() {
         return false;
     },
-    toggle(value: boolean) {
-        return !value;
+    toggle(prevState: boolean, arg: any) {
+        return typeof arg === 'boolean' ? arg : !prevState;
     },
 };
 
@@ -24,16 +24,4 @@ export function useSwitch(initialValue: boolean = false) {
 export function useToggle(initialValue: boolean = false) {
     const [value, {toggle}] = useBoolean(initialValue);
     return [value, toggle] as const;
-}
-
-export function useToggleOrSet(initialValue: boolean = false) {
-    const [value, {toggleOrSet}] = useMethodsNative(
-        {
-            toggleOrSet: (prevState: boolean, arg: any) => {
-                return typeof arg === 'boolean' ? arg : !prevState;
-            },
-        },
-        initialValue
-    );
-    return [value, toggleOrSet] as const;
 }

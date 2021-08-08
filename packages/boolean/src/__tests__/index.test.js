@@ -1,5 +1,5 @@
 import {renderHook, act} from '@testing-library/react-hooks';
-import {useBoolean, useSwitch, useToggle, useToggleOrSet} from '../index';
+import {useBoolean, useSwitch, useToggle} from '../index';
 
 test('valid return type', () => {
     const {result} = renderHook(() => useBoolean());
@@ -70,15 +70,6 @@ test('toggle hook', () => {
     expect(result.current[0]).toBe(true);
     act(() => result.current[1]());
     expect(result.current[0]).toBe(false);
-});
-
-test('toggleOrSet hook', () => {
-    const {result} = renderHook(() => useToggleOrSet(false));
-    expect(result.current[0]).toBe(false);
-    act(() => result.current[1]());
-    expect(result.current[0]).toBe(true);
-    act(() => result.current[1]());
-    expect(result.current[0]).toBe(false);
     act(() => result.current[1](false));
     expect(result.current[0]).toBe(false);
     act(() => result.current[1](true));
@@ -93,7 +84,4 @@ test('default initialValue is false', () => {
 
     const {result: result2} = renderHook(() => useToggle());
     expect(result2.current[0]).toBe(false);
-
-    const {result: result3} = renderHook(() => useToggleOrSet());
-    expect(result3.current[0]).toBe(false);
 });

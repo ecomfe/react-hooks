@@ -2,6 +2,11 @@
 
 This is a collection of frequently used react hooks to support development within baidu, contributions from community are also welcomed.
 
+## 📚 Documentation
+
+- [English](https://ecomfe.github.io/react-hooks/)
+- [简体中文](https://ecomfe.github.io/react-hooks/#/zh-CN)
+
 ## Project structure
 
 This is a typical pnpm workspace based monorepo, each hook creates a package in `packages` folder, the folder name is dash-cased and without the `use` prefix.

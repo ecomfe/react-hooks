@@ -70,4 +70,18 @@ test('toggle hook', () => {
     expect(result.current[0]).toBe(true);
     act(() => result.current[1]());
     expect(result.current[0]).toBe(false);
+    act(() => result.current[1](false));
+    expect(result.current[0]).toBe(false);
+    act(() => result.current[1](true));
+    expect(result.current[0]).toBe(true);
+    act(() => result.current[1]({}));
+    expect(result.current[0]).toBe(false);
+});
+
+test('default initialValue is false', () => {
+    const {result: result1} = renderHook(() => useSwitch());
+    expect(result1.current[0]).toBe(false);
+
+    const {result: result2} = renderHook(() => useToggle());
+    expect(result2.current[0]).toBe(false);
 });

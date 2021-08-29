@@ -7,8 +7,8 @@ const reducers = {
     off() {
         return false;
     },
-    toggle(value: boolean) {
-        return !value;
+    toggle(prevState: boolean, arg: unknown) {
+        return typeof arg === 'boolean' ? arg : !prevState;
     },
 };
 

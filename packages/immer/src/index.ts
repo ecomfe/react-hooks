@@ -17,6 +17,7 @@ export function useImmerReducer<S = any, A = any>(
     return useReducer<Reducer<S, A>>(
         (state, action) => {
             // @ts-ignore
+            // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
             const newState = produce(state, draft => reducer(draft, action)) as S;
             return newState;
         },

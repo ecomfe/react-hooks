@@ -25,3 +25,5 @@ export function useDocumentEvent<K extends EventNames>(
         [eventName, options]
     );
 }
+
+export {useHotKey} from './hotKey';

@@ -66,7 +66,7 @@ export default function Demo() {
                     <Radio.Button value="drawer">Drawer</Radio.Button>
                 </Radio.Group>
             </div>
-            <MyViewer title="Emoji Viewer" viewerType={typeProps.value} />
+            <MyViewer title="Emoji Viewer" />
         </>
     );
 }

@@ -1,13 +1,19 @@
 import {forwardRef} from 'react';
-import {Modal as AModal, Drawer as ADrawer, Radio} from 'antd';
+import {Modal as AModal, Drawer as ADrawer, Radio, ModalProps, DrawerProps} from 'antd';
 import {partial} from 'lodash';
 import 'antd/dist/antd.min.css';
 import {useInputValue} from '@huse/input-value';
+import {useRenderTimes} from '@huse/debug';
 import {useControl, useControlSource} from '@huse/control';
 
 const items = Array.from({length: 10}, (_, i) => String.fromCodePoint(0x1f600 + i));
 
-function createViewerMethods(setState) {
+interface ControlMethods {
+    open(i: number, content: React.ReactNode): void;
+    close(): void;
+}
+
+function createViewerMethods(setState): ControlMethods {
     return {
         close: partial(setState, []),
         open(i, content) {
@@ -17,7 +23,8 @@ function createViewerMethods(setState) {
 }
 
 function useViewerSource(ref) {
-    const [[i, content], {close}] = useControlSource<[number?, React.ReactNode?]>(ref, [], createViewerMethods);
+    const [[i, content], {close}] =
+        useControlSource<[number?, React.ReactNode?], ControlMethods>(ref, createViewerMethods, []);
     return {
         footer: <>第{i + 1}个</>,
         content,
@@ -25,19 +32,19 @@ function useViewerSource(ref) {
     };
 }
 
-const Modal = forwardRef(function Viewer(props, ref) {
+const Modal = forwardRef<ControlMethods, DrawerProps>(function Viewer(props, ref) {
     const {content, footer, close} = useViewerSource(ref);
     return (
-        <AModal visible={content} footer={footer} onCancel={close} {...props}>
+        <AModal visible={!!content} footer={footer} onCancel={close} {...props}>
             {content}
         </AModal>
     );
 });
 
-const Drawer = forwardRef(function Viewer(props, ref) {
+const Drawer = forwardRef<ControlMethods, DrawerProps>(function Viewer(props, ref) {
     const {content, footer, close} = useViewerSource(ref);
     return (
-        <ADrawer visible={content} footer={footer} onClose={close} {...props}>
+        <ADrawer visible={!!content} footer={footer} onClose={close} {...props}>
             {content}
         </ADrawer>
     );
@@ -46,7 +53,9 @@ const Drawer = forwardRef(function Viewer(props, ref) {
 
 export default function Demo() {
     const typeProps = useInputValue('modal');
-    const [MyViewer, {open: openViewer}] = useControl(typeProps.value === 'modal' ? Modal : Drawer);
+    const [MyViewer, {open: openViewer}] = useControl<ModalProps | DrawerProps, ControlMethods>(
+        typeProps.value === 'modal' ? Modal : Drawer
+    );
     const handleClick = i => openViewer(i, (
         <div style={{textAlign: 'center'}}>
             <div style={{fontSize: 120}}>{items[i]}</div>
@@ -54,12 +63,14 @@ export default function Demo() {
         </div>
     ));
 
+    const renderTimes = useRenderTimes();
+
     return (
         <>
             <p>
                 {items.map((item, i) => <button key={item} onClick={partial(handleClick, i)}>{item}</button>)}
             </p>
-            <p>Click emoji to preview detail</p>
+            <p>Click emoji to preview detail. <small>{renderTimes}</small></p>
             <div>
                 <Radio.Group size="small" {...typeProps}>
                     <Radio.Button value="modal">Modal</Radio.Button>

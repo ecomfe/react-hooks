@@ -5,10 +5,10 @@ import {useControl, useControlSource} from '../index';
 
 
 const Foo = forwardRef(({title}, ref) => {
-    const [i, {increase}] = useControlSource(ref, 0, setState => ({
+    const [i, {increase}] = useControlSource(ref, setState => ({
         increase: () => setState(v => v + 1),
         decrease: () => setState(v => v - 1),
-    }));
+    }), 0);
     return <div data-title={title} onClick={increase}>{i}</div>;
 });
 

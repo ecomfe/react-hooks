@@ -3,11 +3,10 @@ import {useImperativeHandle, useRef, useMemo, useState} from 'react';
 interface ControlMethods {
     [key: string]: (...args: any[]) => any;
 }
-interface ProxyMethods extends ControlMethods {
-    $get: (property: string) => any;
-}
+type ProxyMethods<T> = {readonly $get: (property: string) => any} & Omit<T, '$get'>;
+type ControlRef<T> = React.MutableRefObject<T>;
 
-function createMethodsProxy(ref: React.MutableRefObject<ControlMethods>): ProxyMethods {
+function createMethodsProxy(ref) {
     return new Proxy(
         {
             $get(property: string) {
@@ -30,12 +29,12 @@ function createMethodsProxy(ref: React.MutableRefObject<ControlMethods>): ProxyM
     );
 }
 
-export function useControl(
-    CompIn: React.ForwardRefExoticComponent<ControlMethods> | null
-): [React.FunctionComponent | null, ProxyMethods] {
-    const ref = useRef({});
+export function useControl<P, M = ControlMethods>(
+    CompIn: React.ForwardRefExoticComponent<React.PropsWithoutRef<P> & React.RefAttributes<M>> | null
+): [React.FunctionComponent<React.PropsWithoutRef<P>> | null, ProxyMethods<M>] {
+    const ref = useRef({}) as ControlRef<M>;
     const methods = useMemo(
-        () => createMethodsProxy(ref),
+        () => createMethodsProxy(ref) as ProxyMethods<M>,
         []
     );
 
@@ -55,11 +54,11 @@ export function useControl(
 }
 
 
-export function useControlSource<T>(
-    ref: React.MutableRefObject<ControlMethods>,
-    initialData: T | undefined,
-    deriveMethods: (setData: React.Dispatch<React.SetStateAction<T | undefined>>) => ControlMethods
-) {
+export function useControlSource<T, M = ControlMethods>(
+    ref: ControlRef<M>,
+    deriveMethods: (setData: React.Dispatch<React.SetStateAction<T>>) => M,
+    initialData: T
+): [T, M] {
     const [data, setData] = useState(initialData);
     const methods = useMemo(
         () => deriveMethods(setData),

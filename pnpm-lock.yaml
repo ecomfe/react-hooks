@@ -138,6 +138,30 @@ importers:
       react-test-renderer: 17.0.2_react@17.0.2
       typescript: 4.3.5
 
+  packages/control:
+    specifiers:
+      '@reskript/cli': ^1.10.1
+      '@reskript/cli-lint': ^1.10.1
+      '@reskript/cli-test': ^1.10.1
+      '@reskript/config-lint': ^1.10.1
+      '@testing-library/react': ^12.0.0
+      '@types/react': ^17.0.14
+      antd: ^4.16.8
+      react: ^17.0.0
+      react-dom: ^17.0.0
+      typescript: ^4.3.5
+    devDependencies:
+      '@reskript/cli': 1.10.1
+      '@reskript/cli-lint': 1.10.1_react@17.0.2+typescript@4.3.5
+      '@reskript/cli-test': 1.10.1_react-dom@17.0.2+react@17.0.2
+      '@reskript/config-lint': 1.10.1_react@17.0.2+typescript@4.3.5
+      '@testing-library/react': 12.0.0_react-dom@17.0.2+react@17.0.2
+      '@types/react': 17.0.14
+      antd: 4.16.8_react-dom@17.0.2+react@17.0.2
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+      typescript: 4.3.5
+
   packages/debounce:
     specifiers:
       '@reskript/cli': ^1.10.1
@@ -8798,6 +8822,7 @@ packages:
 
   /encoding/0.1.13:
     resolution: {integrity: sha512-ETBauow1T35Y/WZMkio9jiM0Z5xjHHmJ4XmjZOq1l/dXz3lr2sRn87nJy20RupqSh1F2m3HHPSp8ShIPQJrJ3A==}
+    requiresBuild: true
     dependencies:
       iconv-lite: 0.6.3
     dev: true
@@ -9932,6 +9957,7 @@ packages:
     resolution: {integrity: sha512-xiqMQR4xAeHTuB9uWm+fFRcIOgKBMiOBP+eXiyT7jsgVCq1bkVygt00oASowB7EdtpOHaaPgKt812P9ab+DDKA==}
     engines: {node: ^8.16.0 || ^10.6.0 || >=11.0.0}
     os: [darwin]
+    requiresBuild: true
     dev: true
     optional: true
 
@@ -10843,6 +10869,7 @@ packages:
     resolution: {integrity: sha1-Cd/Uq50g4p6xw+gLiZA3jfnjy5w=}
     engines: {node: '>=0.10.0'}
     hasBin: true
+    requiresBuild: true
     dev: true
     optional: true
 
@@ -13356,6 +13383,7 @@ packages:
     resolution: {integrity: sha512-ZTq6WYkN/3782H1393me3utVYdq2XyqNUFBsprEE3VMAT0+hP/cItpnITpqsY6ep2yeFE4Tqtqwc74VqUlUYtw==}
     engines: {node: '>= 4.4.x'}
     hasBin: true
+    requiresBuild: true
     dependencies:
       debug: 3.2.7
       iconv-lite: 0.4.24
@@ -18835,6 +18863,7 @@ packages:
     resolution: {integrity: sha512-57H3ACYFXeo1IaZ1w02sfA71wI60MGco/IQFjOqK+WtKoprh7Go2/yvd2HPtoJILO2Or84ncLccI4xoHMTSbGg==}
     engines: {node: '>=0.8.0'}
     hasBin: true
+    requiresBuild: true
     dev: true
     optional: true
 

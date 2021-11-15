@@ -4,7 +4,7 @@ interface ControlMethods {
     [key: string]: (...args: any[]) => any;
 }
 type ProxyMethods<T> = {readonly $get: (property: string) => any} & Omit<T, '$get'>;
-type ControlRef<T> = React.MutableRefObject<T>;
+export type ControlRef<T> = React.MutableRefObject<T>;
 
 function createMethodsProxy(ref) {
     return new Proxy(

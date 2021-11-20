@@ -842,8 +842,8 @@ importers:
 
   packages/request:
     specifiers:
+      '@huse/intended-lazy': ^1.1.2
       '@huse/previous-value': ^1.1.1
-      '@huse/update': ^1.1.1
       '@reskript/cli': ^1.10.1
       '@reskript/cli-lint': ^1.10.1
       '@reskript/cli-test': ^1.10.1
@@ -851,14 +851,14 @@ importers:
       '@testing-library/react-hooks': ^7.0.1
       '@types/react': ^17.0.14
       antd: ^4.16.8
-      query-shape: ^1.0.2
+      fast-json-stable-stringify: ^2.1.0
       react: ^17.0.0
       react-test-renderer: ^17.0.0
       typescript: ^4.3.5
     dependencies:
+      '@huse/intended-lazy': link:../intended-lazy
       '@huse/previous-value': link:../previous-value
-      '@huse/update': link:../update
-      query-shape: 1.0.2
+      fast-json-stable-stringify: 2.1.0
     devDependencies:
       '@reskript/cli': 1.10.1
       '@reskript/cli-lint': 1.10.1_react@17.0.2+typescript@4.3.5
@@ -2741,8 +2741,8 @@ packages:
     dependencies:
       '@babel/eslint-parser': 7.14.7_eslint@7.31.0
       '@babel/eslint-plugin': 7.14.5_d74dec4396a692a282888e4a872f5cfb
-      '@typescript-eslint/eslint-plugin': 4.28.4_a6570253b5214ac15f0738ba14962bea
-      '@typescript-eslint/parser': 4.28.4_eslint@7.31.0
+      '@typescript-eslint/eslint-plugin': 4.28.4_b1648df9f9ba40bdeef3710a5a5af353
+      '@typescript-eslint/parser': 4.28.4_eslint@7.31.0+typescript@4.3.5
       eslint: 7.31.0
       eslint-plugin-react: 7.24.0_eslint@7.31.0
       eslint-plugin-react-hooks: 4.2.0_eslint@7.31.0
@@ -8798,6 +8798,7 @@ packages:
 
   /encoding/0.1.13:
     resolution: {integrity: sha512-ETBauow1T35Y/WZMkio9jiM0Z5xjHHmJ4XmjZOq1l/dXz3lr2sRn87nJy20RupqSh1F2m3HHPSp8ShIPQJrJ3A==}
+    requiresBuild: true
     dependencies:
       iconv-lite: 0.6.3
     dev: true
@@ -9603,7 +9604,6 @@ packages:
 
   /fast-json-stable-stringify/2.1.0:
     resolution: {integrity: sha512-lhd/wF+Lk98HZoTCtlVraHtfh5XYijIjalXck7saUtuanSDyLMxnHhSXEDJqHxD7msR8D0uCmqlkwjCV8xvwHw==}
-    dev: true
 
   /fast-levenshtein/2.0.6:
     resolution: {integrity: sha1-PYpcZog6FqMMqGQ+hR8Zuqd5eRc=}
@@ -9932,6 +9932,7 @@ packages:
     resolution: {integrity: sha512-xiqMQR4xAeHTuB9uWm+fFRcIOgKBMiOBP+eXiyT7jsgVCq1bkVygt00oASowB7EdtpOHaaPgKt812P9ab+DDKA==}
     engines: {node: ^8.16.0 || ^10.6.0 || >=11.0.0}
     os: [darwin]
+    requiresBuild: true
     dev: true
     optional: true
 
@@ -10843,6 +10844,7 @@ packages:
     resolution: {integrity: sha1-Cd/Uq50g4p6xw+gLiZA3jfnjy5w=}
     engines: {node: '>=0.10.0'}
     hasBin: true
+    requiresBuild: true
     dev: true
     optional: true
 
@@ -13356,6 +13358,7 @@ packages:
     resolution: {integrity: sha512-ZTq6WYkN/3782H1393me3utVYdq2XyqNUFBsprEE3VMAT0+hP/cItpnITpqsY6ep2yeFE4Tqtqwc74VqUlUYtw==}
     engines: {node: '>= 4.4.x'}
     hasBin: true
+    requiresBuild: true
     dependencies:
       debug: 3.2.7
       iconv-lite: 0.4.24
@@ -15353,10 +15356,6 @@ packages:
     resolution: {integrity: sha512-VCdBRNFTX1fyE7Nb6FYoURo/SPe62QCaAyzJvUjwRaIsc+NePBEniHlvxFmmX56+HZphIGtV0XeCirBtpDrTyQ==}
     engines: {node: '>=0.6'}
     dev: true
-
-  /query-shape/1.0.2:
-    resolution: {integrity: sha512-6p5K0EABPhrc4GpoE7D6zQgiJs59hk3GzFoHOUGXuZi8tOaX2KlMB7EFmH9hxowRVg8Rxmu4BkMuGxljjTqrIQ==}
-    dev: false
 
   /query-string/4.3.4:
     resolution: {integrity: sha1-u7aTucqRXCMlFbIosaArYJBD2+s=}
@@ -18835,6 +18834,7 @@ packages:
     resolution: {integrity: sha512-57H3ACYFXeo1IaZ1w02sfA71wI60MGco/IQFjOqK+WtKoprh7Go2/yvd2HPtoJILO2Or84ncLccI4xoHMTSbGg==}
     engines: {node: '>=0.8.0'}
     hasBin: true
+    requiresBuild: true
     dev: true
     optional: true
 

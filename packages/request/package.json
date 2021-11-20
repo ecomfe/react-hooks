@@ -25,9 +25,9 @@
     "test": "skr test --coverage"
   },
   "dependencies": {
+    "@huse/intended-lazy": "^1.1.2",
     "@huse/previous-value": "^1.1.1",
-    "@huse/update": "^1.1.1",
-    "query-shape": "^1.0.2"
+    "fast-json-stable-stringify": "^2.1.0"
   },
   "devDependencies": {
     "@reskript/cli": "^1.10.1",

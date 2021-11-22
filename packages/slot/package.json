@@ -1,0 +1,50 @@
+{
+  "name": "@huse/slot",
+  "version": "0.8.0",
+  "keywords": [
+    "react",
+    "hooks"
+  ],
+  "homepage": "https://github.com/ecomfe/react-hooks/tree/master/packages/slot",
+  "bugs": {
+    "url": "https://github.com/ecomfe/react-hooks/issues"
+  },
+  "license": "MIT",
+  "main": "cjs/index.js",
+  "module": "es/index.js",
+  "types": "es/index.d.ts",
+  "files": [
+    "cjs",
+    "es",
+    "src"
+  ],
+  "scripts": {
+    "lint": "skr lint",
+    "build": "rm -rf es cjs && tsc & tsc --module ESNext --outDir ./es",
+    "build-check": "tsc",
+    "test": "skr test --coverage --target=react",
+    "start": "skr dev --src=demo"
+  },
+  "devDependencies": {
+    "@reskript/cli": "^1.10.1",
+    "@testing-library/react": "^12.0.0",
+    "@testing-library/react-hooks": "^7.0.1",
+    "@types/react": "^17.0.14",
+    "classnames": "^2.2.6",
+    "enzyme": "^3.11.0",
+    "react": "^17.0.0",
+    "react-dom": "^17.0.0",
+    "typescript": "^4.3.5",
+    "webpack": "^5.45.1"
+  },
+  "peerDependencies": {
+    "react": "^16.8.0"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.com"
+  },
+  "dependencies": {
+    "lodash": "^4.17.21"
+  }
+}

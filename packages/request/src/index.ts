@@ -42,7 +42,7 @@ export function useRequestCallback<K, O = void, E = Error>(
     task: Request<K, O>,
     params: K,
     options?: RequestOptions
-): [() => void, RequestResult<O, E>] {
+): [() => Promise<void> | undefined, RequestResult<O, E>] {
     const {strategy = 'acceptLatest', idempotent = false} = options || {};
 
     if (!builtInStrategies.hasOwnProperty(strategy)) {
@@ -101,7 +101,7 @@ export function useRequestCallback<K, O = void, E = Error>(
 
             fetch(key);
 
-            task(key).then(
+            return task(key).then(
                 data => receive(key, data),
                 ex => error(key, ex)
             );

@@ -1,6 +1,6 @@
 {
   "name": "@huse/router",
-  "version": "0.11.0",
+  "version": "0.11.1",
   "keywords": [
     "react",
     "hooks"
@@ -21,7 +21,7 @@
   "scripts": {
     "build": "rm -rf es cjs && tsc & tsc --module ESNext --outDir ./es",
     "build-check": "tsc",
-    "lint": "skr lint src demo",
+    "lint": "skr lint --strict src demo",
     "test": "skr test --coverage"
   },
   "dependencies": {
@@ -30,15 +30,16 @@
     "history": "^4.10.1"
   },
   "devDependencies": {
-    "@reskript/cli": "^1.0.0-beta.21",
-    "@reskript/cli-lint": "^1.0.0-beta.21",
-    "@reskript/cli-test": "^1.0.0-beta.21",
-    "@reskript/config-lint": "^1.0.0-beta.21",
-    "@testing-library/react-hooks": "^3.7.0",
-    "@types/react": "^17.0.0",
+    "@reskript/cli": "^1.10.1",
+    "@reskript/cli-lint": "^1.10.1",
+    "@reskript/cli-test": "^1.10.1",
+    "@reskript/config-lint": "^1.10.1",
+    "@testing-library/react-hooks": "^7.0.1",
+    "@types/react": "^17.0.14",
+    "antd": "^4.16.8",
     "react": "^17.0.0",
     "react-router-dom": "^5.2.0",
-    "typescript": "^4.1.3"
+    "typescript": "^4.3.5"
   },
   "peerDependencies": {
     "react": ">=16.8.0",

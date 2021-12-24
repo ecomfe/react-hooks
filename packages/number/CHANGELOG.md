@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.2](https://github.com/ecomfe/react-hooks/compare/@huse/number@1.2.1...@huse/number@1.2.2) (2021-07-22)
+
+**Note:** Version bump only for package @huse/number
+
+
+
+
+
 ## [1.2.1](https://github.com/ecomfe/react-hooks/compare/@huse/number@1.2.0...@huse/number@1.2.1) (2021-05-21)
 
 **Note:** Version bump only for package @huse/number

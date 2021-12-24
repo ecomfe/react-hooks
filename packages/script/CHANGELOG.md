@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.1](https://github.com/ecomfe/react-hooks/compare/@huse/script@1.1.0...@huse/script@1.1.1) (2021-07-22)
+
+
+### Bug Fixes
+
+* make unmount flag compatible to concurrent mode ([61d7590](https://github.com/ecomfe/react-hooks/commit/61d7590b59e816c77f070e1140a5bee03647701a))
+* **script:** forceUpdate call before component unmounted ([#89](https://github.com/ecomfe/react-hooks/issues/89)) ([78b28ac](https://github.com/ecomfe/react-hooks/commit/78b28acd472cae681aee6ee7f24c43d581bffc0c))
+
+
+
+
+
 # [1.1.0](https://github.com/ecomfe/react-hooks/compare/@huse/script@1.0.3...@huse/script@1.1.0) (2021-05-21)
 
 

@@ -38,7 +38,7 @@ export function useInterval(callback: (() => void) | undefined, time: number): v
 
             const trigger = () => fn.current && fn.current();
             const tick = setInterval(trigger, time);
-            return () => clearTimeout(tick);
+            return () => clearInterval(tick);
         },
         [time]
     );

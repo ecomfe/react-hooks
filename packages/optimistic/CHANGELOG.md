@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.10.1](https://github.com/ecomfe/react-hooks/compare/@huse/optimistic@0.10.0...@huse/optimistic@0.10.1) (2021-07-22)
+
+**Note:** Version bump only for package @huse/optimistic
+
+
+
+
+
 # [0.10.0](https://github.com/ecomfe/react-hooks/compare/@huse/optimistic@0.9.2...@huse/optimistic@0.10.0) (2021-05-21)
 
 

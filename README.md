@@ -4,7 +4,7 @@ This is a collection of frequently used react hooks to support development withi
 
 ## Project structure
 
-This is a typical yarn workspace based monorepo, each hook creates a package in `packages` folder, the folder name is dash-cased and without the `use` prefix.
+This is a typical pnpm workspace based monorepo, each hook creates a package in `packages` folder, the folder name is dash-cased and without the `use` prefix.
 
 Package name must comform a format of `@huse/foo-bar`.
 
@@ -21,8 +21,8 @@ Unit tests are recommended, they are placed inside `src/__tests__` folder with a
 By now we are unable to publish document online since `docz build` fails, you can find description to package in its `README.md`, or to start a document site locally.
 
 ```
-yarn
-yarn doc:dev
+pnpm install
+npm run doc:dev
 ```
 
 Open `http://localhost:3000` to view documents about hooks.
@@ -34,7 +34,7 @@ Open `http://localhost:3000` to view documents about hooks.
 | useActionPending | Add a pending indicator to any async function |
 | useBoolean | Methods to control a boolean state |
 | useSwitch | More convenient way to use boolean state |
-| useToggle | Simply toggle boolean state |
+| useToggle | More convenient way to toggle boolean state or setState directly |
 | useClickOutside | Trigger callback when clicks outside a specific element |
 | useArray | Methods to control array state |
 | useSet | Methods to control `Set` state |

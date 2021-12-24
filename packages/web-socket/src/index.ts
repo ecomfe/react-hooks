@@ -34,11 +34,11 @@ export function useWebSocket(url: string, options: Options = {}): WebSocketHook 
     const webSocketRef = useRef<WebSocket>(null); // Latest web socket instance.
     const reconnetRef = useRef<() => void>(noop); // Recunnect function.
     const reconnectCount = useRef(0);
-    const unmountFlag = useRef(false);
+    const unmounted = useRef(false);
     const setUrlReadyState = useCallback(
         (url: string, currentReadyState: ReadyState) => {
             // avoid update a React state on an unmounted component
-            if (!unmountFlag.current) {
+            if (!unmounted.current) {
                 setReadyState(prev => ({...prev, [url]: currentReadyState}));
             }
         },
@@ -80,7 +80,10 @@ export function useWebSocket(url: string, options: Options = {}): WebSocketHook 
         },
         [url, setUrlReadyState, originalOptions]
     );
-    const closeWebSocket = useCallback(() => webSocketRef.current?.close(), []);
+    const closeWebSocket = useCallback(
+        () => webSocketRef.current?.close(),
+        []
+    );
     // Close previous socket and open a new one when url changes.
     useEffect(
         () => {
@@ -113,11 +116,15 @@ export function useWebSocket(url: string, options: Options = {}): WebSocketHook 
         // eslint-disable-next-line react-hooks/exhaustive-deps
         [originalOptions]
     );
-    useEffect(() => {
-        return () => {
-            unmountFlag.current = true;
-        };
-    }, []);
+    useEffect(
+        () => {
+            unmounted.current = false;
+            return () => {
+                unmounted.current = true;
+            };
+        },
+        []
+    );
 
     const readyStateFromURL = readyState[url] ?? ReadyState.UNINSTANTIATED;
     return {

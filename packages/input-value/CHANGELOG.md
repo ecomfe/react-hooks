@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.1](https://github.com/ecomfe/react-hooks/compare/@huse/input-value@1.1.0...@huse/input-value@1.1.1) (2021-07-22)
+
+**Note:** Version bump only for package @huse/input-value
+
+
+
+
+
 # [1.1.0](https://github.com/ecomfe/react-hooks/compare/@huse/input-value@1.0.3...@huse/input-value@1.1.0) (2021-05-21)
 
 

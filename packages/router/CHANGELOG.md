@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.11.1](https://github.com/ecomfe/react-hooks/compare/@huse/router@0.11.0...@huse/router@0.11.1) (2021-07-22)
+
+**Note:** Version bump only for package @huse/router
+
+
+
+
+
 # [0.11.0](https://github.com/ecomfe/react-hooks/compare/@huse/router@0.10.2...@huse/router@0.11.0) (2021-05-21)
 
 

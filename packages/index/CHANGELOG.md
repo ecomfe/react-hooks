@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.3](https://github.com/ecomfe/react-hooks/compare/huse@2.0.2...huse@2.0.3) (2021-07-22)
+
+**Note:** Version bump only for package huse
+
+
+
+
+
 ## [2.0.2](https://github.com/ecomfe/react-hooks/compare/huse@2.0.1...huse@2.0.2) (2021-05-21)
 
 **Note:** Version bump only for package huse

@@ -88,7 +88,7 @@ export function useDebouncedValue<T>(value: T, wait: number, option?: DebounceOp
  * @param wait {Number} timeout in ms (`100`)
  * @param option.immediate {Boolean} whether to execute at the beginning (`false`)
  */
-export function useDebouncedCallback<C extends (...args: any) => any>(
+export function useDebouncedCallback<C extends(...args: any) => any>(
     callback: C,
     wait: number,
     option: DebounceOption = {}

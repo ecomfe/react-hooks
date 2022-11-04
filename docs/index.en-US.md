@@ -5,7 +5,7 @@ hero:
   desc: Hook To Use.
   actions:
     - text: Getting Started
-      link: /docs/getting-started
+      link: /guide/getting-started
 features:
   - icon: https://gw.alipayobjects.com/zos/bmw-prod/813f5ed9-6bc4-43d4-9f74-ec81ecf35733/k7htg6n4_w144_h144.png
     title: Rich Collection

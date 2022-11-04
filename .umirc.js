@@ -14,7 +14,7 @@ export default {
         includes: ['docs', 'packages'],
     },
     history: {
-        type: 'browser',
+        type: 'hash',
     },
     publicPath: process.env.CI ? '/react-hooks/' : '/',
     // extraBabelPlugins: [

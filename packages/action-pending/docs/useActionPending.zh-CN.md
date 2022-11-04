@@ -11,7 +11,7 @@ order: 2
 
 # useActionPending
 
-当你传递一个异步函数给这个hook时，它会返回一个封装后的函数和一个"异步进行中"的数量。
+当你传递一个异步函数给这个hook时，它会返回一个封装后的函数和一个“异步进行中”的数量。
 
 ```typescript
 type AsyncFunction = (...args: any[]) => Promise<any>;

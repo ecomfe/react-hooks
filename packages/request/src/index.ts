@@ -32,7 +32,7 @@ export interface RequestResult<O = void, E = Error> {
 }
 
 export interface RequestResponse<O, E> extends RequestResult<O, E>{
-    request: () => void;
+    refresh: () => void;
 }
 
 const builtInStrategies: {[K in ResponseStrategy]: QueryStrategy} = {
@@ -167,7 +167,7 @@ export function useRequest<K, O = void, E = Error>(
     const resultFixedForEffect: RequestResponse<O, E> = {
         ...result,
         pending: result.pendingCount === undefined ? true : result.pending,
-        request,
+        refresh: request,
     };
     useEffect(
         () => {

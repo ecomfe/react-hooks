@@ -31,6 +31,10 @@ export interface RequestResult<O = void, E = Error> {
     accept(): void;
 }
 
+export interface RequestResponse<O, E> extends RequestResult<O, E>{
+    refresh: () => void;
+}
+
 const builtInStrategies: {[K in ResponseStrategy]: QueryStrategy} = {
     acceptLatest: createStrategy(acceptLatest),
     keepEarliest: createStrategy(keepEarliest),
@@ -156,13 +160,14 @@ export function useRequest<K, O = void, E = Error>(
     task: Request<K, O>,
     params: K,
     options?: RequestOptions
-): RequestResult<O, E> {
+): RequestResponse<O, E> {
     const [request, result] = useRequestCallback<K, O, E>(task, params, options);
     // Since `useRequestCallback` triggers request manually, its initial `pending` is `false`,
     // however in `useRequest` we need initial `pending` to be `true`.
-    const resultFixedForEffect: RequestResult<O, E> = {
+    const resultFixedForEffect: RequestResponse<O, E> = {
         ...result,
         pending: result.pendingCount === undefined ? true : result.pending,
+        refresh: request,
     };
     useEffect(
         () => {

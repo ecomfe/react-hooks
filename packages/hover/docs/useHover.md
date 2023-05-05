@@ -16,6 +16,8 @@ This hook returns a set of props to handle mouse events in order to report wheth
 ```typescript
 interface HoverOptions {
     delay?: number;
+    onEnter?(event: MouseEvent): void;
+    onLeave?(event: MouseEvent): void;
 }
 
 interface HoverCallbacks {

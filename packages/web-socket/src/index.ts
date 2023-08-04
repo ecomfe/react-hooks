@@ -87,10 +87,6 @@ export function useWebSocket(url: string, options: Options = {}): WebSocketHook 
     // Close previous socket and open a new one when url changes.
     useEffect(
         () => {
-            // Connect state
-            if (!autoStart) {
-                return;
-            }
             // Reset reconnect count on change.
             reconnectCount.current = 0;
             let removeListeners = noop;
@@ -99,6 +95,10 @@ export function useWebSocket(url: string, options: Options = {}): WebSocketHook 
                 removeListeners();
                 startWebSocket();
             };
+            // Connect state
+            if (!autoStart) {
+                return;
+            }
             // Auto start the latest socket.
             removeListeners = startWebSocket();
             return removeListeners;

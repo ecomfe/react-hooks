@@ -20,7 +20,7 @@ interface RequestOptions {
     strategy?: ResponseStrategy;
     idempotent?: boolean;
 }
-interface RequestResult<O = void, E = Error> {
+interface RequestResponse<O, E> {
     pending: boolean; // Whether request is pending, a shortcut of "pendingCount > 0"
     pendingCount?: number; // Number of pending request
     data?: O; // Response data if succeeds
@@ -28,8 +28,9 @@ interface RequestResult<O = void, E = Error> {
     nextData?: O; // Next response data waiting for manual accept
     nextError?: E; // Next response error waiting for manual accept
     accept(): void; // Accept next data or error
+    refresh: () => void; // Refetch the request
 }
-function useRequest<K, O, E>(task: Request<K, O>, params: K, options?: RequestOptions): RequestResult<O, E>;
+function useRequest<K, O = void, E = Error>(task: Request<K, O>, params: K, options?: RequestOptions): RequestResponse<O, E>;
 ```
 
 Comparing to various request hooks in community, `useRequest` tries to keep itself simple and managed to solve some essential issues related to asynchronous processes.

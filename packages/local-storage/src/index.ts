@@ -14,15 +14,19 @@ function getStorage<T>(key: string, initialValue: T): T {
     }
 }
 
+const isFunction = (value: unknown): value is (...args: any) => any =>
+    typeof value === 'function';
+
 export function useLocalStorage<T>(key: string, initialValue: T): [T, (value: T) => void] {
     const [value, setValue] = useState(() => getStorage<T>(key, initialValue));
     const setStorageValue = useCallback(
-        (value: T) => {
+        (newValue: T | ((prevValue?: T) => T)) => {
+            const currentValue = isFunction(newValue) ? newValue(value) : newValue;
             // eslint-disable-next-line no-unused-expressions
-            window?.localStorage?.setItem(key, JSON.stringify(value));
-            setValue(value);
+            window?.localStorage?.setItem(key, JSON.stringify(currentValue));
+            setValue(currentValue);
         },
-        [key]
+        [key, value]
     );
     useEffect(
         () => {

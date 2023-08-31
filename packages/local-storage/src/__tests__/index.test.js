@@ -79,6 +79,16 @@ describe('with localStorage', () => {
         expect(result.current[0]).toBe('foo');
     });
 
+    test('set new value through function', () => {
+        const {result} = renderHook(() => useLocalStorage('foo', {bar: 1}));
+        act(() => result.current[1](value => {
+            const newValue = {...value};
+            newValue.bar = 2;
+            return newValue;
+        }));
+        expect(result.current[0].bar).toBe(2);
+    });
+
     test('ignore session storage change', () => {
         const {result} = renderHook(() => useLocalStorage('foo', 'bar'));
         const event = new StorageEvent('storage', {

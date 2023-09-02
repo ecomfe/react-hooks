@@ -1,0 +1,46 @@
+{
+  "name": "@huse/control",
+  "version": "0.1.0",
+  "keywords": [
+    "react",
+    "hooks"
+  ],
+  "homepage": "https://github.com/ecomfe/react-hooks/tree/master/packages/control",
+  "bugs": {
+    "url": "https://github.com/ecomfe/react-hooks/issues"
+  },
+  "license": "MIT",
+  "main": "cjs/index.js",
+  "module": "es/index.js",
+  "types": "es/index.d.ts",
+  "files": [
+    "cjs",
+    "es",
+    "src"
+  ],
+  "scripts": {
+    "build": "rm -rf es cjs && tsc & tsc --module ESNext --outDir ./es",
+    "build-check": "tsc",
+    "lint": "skr lint --strict src demo",
+    "test": "skr test --coverage --target=react"
+  },
+  "devDependencies": {
+    "@reskript/cli": "^1.10.1",
+    "@reskript/cli-lint": "^1.10.1",
+    "@reskript/cli-test": "^1.10.1",
+    "@reskript/config-lint": "^1.10.1",
+    "@testing-library/react": "^12.0.0",
+    "@types/react": "^17.0.14",
+    "antd": "^4.16.8",
+    "react": "^17.0.0",
+    "react-dom": "^17.0.0",
+    "typescript": "^4.3.5"
+  },
+  "peerDependencies": {
+    "react": ">=16.8.0"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.com"
+  }
+}

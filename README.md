@@ -104,4 +104,5 @@ Open `http://localhost:3000` to view documents about hooks.
 | useSearchParamAll | Get a single search param as array |
 | useUpdateSearchParams | Get a function to update search params |
 | useSearchParamState | Wrap a single search param into a react state |
+| useSearchParamArray | Get an array of search param |
 | useWebSocket | Create a web socket connecting to specified url |

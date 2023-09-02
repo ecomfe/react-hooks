@@ -7,6 +7,7 @@ import {
     useSearchParamAll,
     useUpdateSearchParams,
     useSearchParamState,
+    useSearchParamArray,
 } from '../search';
 
 const wrapper = historyOrURL => {
@@ -153,5 +154,22 @@ describe('useSearchParamState', () => {
         expect(history.length).toBe(1);
         expect(history.entries[0].search).toBe('?x=2');
         expect(result.current[0]).toBe('2');
+    });
+});
+
+describe('useSearchParamArray', () => {
+    test('single value', () => {
+        const {result} = renderHook(() => useSearchParamArray('x'), {wrapper: wrapper('/foo?x=1')});
+        expect(result.current).toEqual(['1']);
+    });
+
+    test('multiple values', () => {
+        const {result} = renderHook(() => useSearchParamArray(['x','y']), {wrapper: wrapper('/foo?x=1&y=2')});
+        expect(result.current).toEqual(['1', '2']);
+    });
+
+    test('no value', () => {
+        const {result} = renderHook(() => useSearchParamArray(['y']), {wrapper: wrapper('/foo?x=1')});
+        expect(result.current).toEqual([null]);
     });
 });

@@ -89,3 +89,12 @@ export function useSearchParamState(key: string, options: NavigateOptions = {}):
 
     return [value, setValue];
 }
+
+export function useSearchParamArray(keys: Array<string>): Array<string|null> {
+    const result: Array<string|null> = [];
+    const [params] = useSearchParams();
+    for(const key of keys){
+        result.push(params.get(key));
+    }
+    return result;
+}

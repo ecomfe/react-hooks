@@ -1,18 +1,19 @@
 import {useState, useCallback} from 'react';
 
-interface ChangeEvent {
-    target: {value: string};
+export interface InputValueState<T> {
+    value: T;
+    onChange(e: any): void;
 }
 
-export interface InputValueState {
-    value: string;
-    onChange(e: ChangeEvent): void;
-}
-
-export function useInputValue(initialValue: string = ''): InputValueState {
-    const [value, setValue] = useState(initialValue);
+export function useInputValue<T = string>(initialValue: T): InputValueState<T> {
+    const [value, setValue] = useState<T>(initialValue);
     const onChange = useCallback(
-        (e: ChangeEvent) => setValue(e.target.value),
+        (event: any) => {
+            const v = event && event.target && 'value' in event.target
+                ? (event.target as HTMLInputElement).value
+                : event;
+            setValue(v as T);
+        },
         []
     );
     return {value, onChange};

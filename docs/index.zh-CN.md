@@ -5,7 +5,7 @@ hero:
   desc: 这是收集了常用的react hooks，用于支持百度内部的开发，我们欢迎社区所有人参与共建
   actions:
     - text: 快速上手
-      link: /zh-CN/docs/getting-started
+      link: /zh-CN/guide/getting-started
 features:
   - icon: https://gw.alipayobjects.com/zos/bmw-prod/813f5ed9-6bc4-43d4-9f74-ec81ecf35733/k7htg6n4_w144_h144.png
     title: 内容丰富
